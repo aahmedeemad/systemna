@@ -239,6 +239,18 @@ $(document).on('click','.sal',function(event)
 		});  
    }
     $("#btn1").click( function() {
+	    	function checkAvai()
+  {
+    jQuery.ajax(
+      {
+  url: "AddQuestion.php",
+  data: 'question='+$("#question").val(),
+  type:"POST",
+  success: function( data ) {
+		
+  }
+});
+  }
 		var a = document.getElementById('question').value;
 		var b = document.getElementById('answer').value;
 		if(a!=""&& b!="")

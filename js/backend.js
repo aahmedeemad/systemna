@@ -239,8 +239,8 @@ $(document).on('click','.sal',function(event)
 		});  
    }
     $("#btn1").click( function() {
-		var a = document.getElementById('Question').value;
-		var b = document.getElementById('Answer').value;
+		var a = document.getElementById('question').value;
+		var b = document.getElementById('answer').value;
 		if(a!=""&& b!="")
 		{
 		alert('Data Saved Successfully');

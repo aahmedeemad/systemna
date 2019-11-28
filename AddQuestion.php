@@ -10,9 +10,9 @@
 <div>
   <form id="Addquestionform" action="FAQ.php" method='post'>
     <h4>Question : </h4>
-    <input type="text" id="Question" name="Question" placeholder="Your question.." required><br>
+    <input type="text" id="question" name="question" placeholder="Your question.." required><br>
     <h4>Answer : </h4>
-    <textarea id="Answer" name="Answer" placeholder="Question's Answer.." required></textarea>
+    <textarea id="answer" name="answer" placeholder="Question's Answer.." required></textarea>
     <br>
     <br>
     <br>

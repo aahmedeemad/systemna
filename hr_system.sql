@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2019 at 07:33 PM
+-- Generation Time: Nov 29, 2019 at 07:53 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -123,8 +123,18 @@ CREATE TABLE `requests` (
 
 CREATE TABLE `requests_types` (
   `Type_id` int(50) NOT NULL,
-  `Name` int(50) NOT NULL
+  `Name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requests_types`
+--
+
+INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
+(1, 'General HR Letter'),
+(2, 'Embassy HR Letter'),
+(3, 'HR Letter directed to specific organization'),
+(4, 'HR Letter to whom it may concern');
 
 --
 -- Indexes for dumped tables
@@ -193,7 +203,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `requests_types`
 --
 ALTER TABLE `requests_types`
-  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

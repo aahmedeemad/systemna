@@ -1,6 +1,6 @@
 <?php include "template/header.php"; ?>
-    <input type=text id='search' class = 'search' placeholder='search'>
-     <select id = 'choice' class = 'select'>
+    <input type=text id='tblsearch' class = 'tblsearch' placeholder='search'>
+     <select id = 'choice' class = 'tblselect'>
      <option value="email">Email</option>
      <option value="ssn">SSN</option>
      <option value="username">UserName</option>

@@ -246,26 +246,26 @@ tr:nth-child(even)
     padding: 2px 3px;
     width: 50px;  
 }
-.search {
+.tblsearch {
     width: 270px;
     background: #FFF; color: #222;
     border: 1px solid #EAEAEA; border-radius: 1px;
     padding: 8px 8px; font-size: 12pt;
     position: relative;
     top:5%;
-    left:24%;
-    height:3%
+    left:30%;
+    height:5.5%
   }
-.search:focus { border-color: #3971ED !important; }
-.search:hover { border-color: #CECECE; }
-.select {
+.tblsearch:focus { border-color: #3971ED !important; }
+.tblsearch:hover { border-color: #CECECE; }
+.tblselect {
     width: 270px;
     background: #FFF; color: #222;
     border: 1px solid #EAEAEA; border-radius: 1px;
     padding: 8px 8px; font-size: 12pt;
     position: relative;
     top:5%;
-    left:24%
+    left:30%
 }
 
 /* Profile Page */ 

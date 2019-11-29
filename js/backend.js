@@ -206,7 +206,7 @@ $(document).on('click','.sal',function(event)
 	      })
          }
     })
-	$('#search').keyup(function(){  
+	$('#tblsearch').keyup(function(){  
 		search_table($(this).val());  
    });  
    function search_table(value){ 

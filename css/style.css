@@ -154,7 +154,7 @@
     top:200px;
     right:-23%;
 }
-table
+#Display
 {
     position:relative;
     border-collapse: collapse;
@@ -172,7 +172,7 @@ tr:nth-child(even)
 {
     background: #e8e8e8;
 }
-#button {
+.button {
     background-color: #1c87c9;
     border: none;
     color: white;

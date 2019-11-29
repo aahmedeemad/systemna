@@ -172,7 +172,7 @@ tr:nth-child(even)
 {
     background: #e8e8e8;
 }
-#button {
+.EditBtn {
     background-color: #1c87c9;
     border: none;
     color: white;

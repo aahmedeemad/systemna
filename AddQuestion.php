@@ -4,7 +4,7 @@ if (isset($_POST['question'])) {
 
 $question=$_POST['question'];
 $answer=$_POST['answer'];
-$sql="INSERT INTO questions (question,answer) VALUES ('$question','$answer') ";
+$sql="INSERT INTO faq (question,answer) VALUES ('$question','$answer') ";
 
 $DB->query($sql);
 $DB->execute();

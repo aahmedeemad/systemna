@@ -1,28 +1,28 @@
 <?php include "template/header.php"; ?>
-    <input type=text id='tblsearch' class = 'tblsearch' placeholder='search'>
-     <select id = 'choice' class = 'tblselect'>
-     <option value="email">Email</option>
-     <option value="ssn">SSN</option>
-     <option value="username">UserName</option>
-    </select> 
-    <table id='Display' >
-        <tr id='must'>
-            <th>#</th>
-            <th>Status</th>
-            <th>ID</th>
-            <th>FullName</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Location</th>
-            <th>SSN</th>
-            <th>Passport_ID</th>
-            <th>Birthday</th>
-            <th>Phone</th>
-            <th>Gender</th>
-            <th>Salary</th>
-            <th>Delete</th>
-        </tr>
-        <?php
+<input type=text id='tblsearch' class='tblsearch' placeholder='search'>
+<select id='choice' class='tblselect'>
+    <option value="email">Email</option>
+    <option value="ssn">SSN</option>
+    <option value="username">UserName</option>
+</select>
+<table id='Display'>
+    <tr id='must'>
+        <th>#</th>
+        <th>Status</th>
+        <th>ID</th>
+        <th>FullName</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th>SSN</th>
+        <th>Passport_ID</th>
+        <th>Birthday</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Salary</th>
+        <th>Delete</th>
+    </tr>
+    <?php
         function check($c){
          if($c==null)
           $c='-';
@@ -80,14 +80,14 @@
                 <td>{$gender}</td>
                 <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
                 ?>
-               <td><a type='submit' onclick="return confirm('Delete this account?')" href="operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" 
-                class='EditBtn'>Delete</a></td> 
-                
-                </tr>
-                <?php
+    <td><a type='submit' onclick="return confirm('Delete this account?')"
+            href="operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+
+    </tr>
+    <?php
             }
         }
         ?>
-    </table>
+</table>
 
 <?php include "template/footer.php"; ?>

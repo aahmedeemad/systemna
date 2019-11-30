@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 11:10 PM
+-- Generation Time: Nov 29, 2019 at 07:53 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -80,31 +80,6 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `n_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requests`
---
-
-CREATE TABLE `requests` (
-  `Request_id` int(50) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `Type_id` int(11) NOT NULL,
-  `Status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `requests_types`
---
-
-CREATE TABLE `requests_types` (
-  `Type_id` int(50) NOT NULL,
-  `Name` int(50) NOT NULL,
-  `Priority` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `faq`
 --
 
@@ -125,6 +100,41 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
 (3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
 (4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `Request_id` int(50) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `Type_id` int(11) NOT NULL,
+  `Status` varchar(255) NOT NULL,
+  `priority` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests_types`
+--
+
+CREATE TABLE `requests_types` (
+  `Type_id` int(50) NOT NULL,
+  `Name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requests_types`
+--
+
+INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
+(1, 'General HR Letter'),
+(2, 'Embassy HR Letter'),
+(3, 'HR Letter directed to specific organization'),
+(4, 'HR Letter to whom it may concern');
 
 --
 -- Indexes for dumped tables
@@ -148,6 +158,12 @@ ALTER TABLE `employee`
   ADD UNIQUE KEY `ssn` (`n_id`);
 
 --
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -160,12 +176,6 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
-  
---
--- Indexes for table `faq`
---
-ALTER TABLE `faq`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -178,6 +188,12 @@ ALTER TABLE `employee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
@@ -187,14 +203,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `requests_types`
 --
 ALTER TABLE `requests_types`
-  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `faq`
---
-ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
+  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

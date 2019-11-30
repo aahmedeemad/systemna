@@ -3,7 +3,7 @@ include_once "Database.php";
 $DB = new Database();
 if ($_POST['type'] == "fullname")
 {
-    $sql="INSERT INTO update_info VALUES(NULL, :id , :fullname, '', NULL, :type, 0)" ;
+    $sql="INSERT INTO update_info VALUES(NULL, :id , :fullname, NULL, NULL, :type, 0)" ;
     $DB->query($sql);
     $DB->bind(':id',$_POST['id']);
     $DB->bind(':fullname',$_POST['fullname']);
@@ -12,7 +12,6 @@ if ($_POST['type'] == "fullname")
     if($DB->numRows() > 0)
     {
         echo "true";
-        exit();
     }
 }
 else if($_POST['type'] == "basic-info")
@@ -28,8 +27,7 @@ else if($_POST['type'] == "basic-info")
     if($DB->numRows() > 0)
     {
         echo "true";
-        exit();
-    }   
+    }  
 }
 else if ($_POST['type'] == "contact-info")
 {
@@ -43,7 +41,6 @@ else if ($_POST['type'] == "contact-info")
     if($DB->numRows() > 0)
     {
         echo "true";
-        exit();
     }  
 }
 else if ($_POST['type'] == "company-info")
@@ -59,7 +56,6 @@ else if ($_POST['type'] == "company-info")
     if($DB->numRows() > 0)
     {
         echo "true";
-        exit();
     }  
 }
 else {

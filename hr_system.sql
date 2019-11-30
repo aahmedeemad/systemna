@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 29, 2019 at 07:53 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: localhost
+-- Generation Time: Nov 30, 2019 at 10:09 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -136,6 +136,22 @@ INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
 (3, 'HR Letter directed to specific organization'),
 (4, 'HR Letter to whom it may concern');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `update_info`
+--
+
+CREATE TABLE `update_info` (
+  `ID` int(11) NOT NULL,
+  `UID` int(11) NOT NULL,
+  `val1` varchar(255) DEFAULT NULL,
+  `val2` varchar(255) DEFAULT NULL,
+  `val3` date DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -178,6 +194,13 @@ ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
 
 --
+-- Indexes for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UID` (`UID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -206,6 +229,12 @@ ALTER TABLE `requests_types`
   MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `update_info`
+--
+ALTER TABLE `update_info`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -221,6 +250,12 @@ ALTER TABLE `add_info`
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
   ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`Type_id`) REFERENCES `requests_types` (`Type_id`);
+
+--
+-- Constraints for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD CONSTRAINT `update_info_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `employee` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

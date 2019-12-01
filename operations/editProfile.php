@@ -1,5 +1,5 @@
 <?php
-include_once "Database.php";
+include_once "../Database.php";
 $DB = new Database();
 if ($_POST['type'] == "fullname")
 {
@@ -58,7 +58,7 @@ else if ($_POST['type'] == "company-info")
     }  
 }
 else {
-    header("Location: profile.php");
+    header("Location: ../pages/profile.php");
 }
 
 ?>

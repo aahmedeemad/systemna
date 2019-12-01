@@ -1,5 +1,5 @@
 <?php 
-include('Database.php');
+include('../Database.php');
 $DB = new Database();
 ?>
 <!DOCTYPE html>
@@ -7,9 +7,9 @@ $DB = new Database();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/popup.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/all.min.css">
+        <link rel="stylesheet" href="../css/popup.css">
         <link rel = "icon" type = "image/png" href = "logo.png">
         <title>Admin Page</title>
     </head>
@@ -26,7 +26,7 @@ $DB = new Database();
             <div class="mainPage">
                 <div class="sidenav">
                     <div class="sidenav-header">
-                        <div class="avatar"><img src="avatar.jpg" alt="" class="rounded-circle"></div>
+                        <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
                         <div class="title">
                             <h1 class="name">Mark</h1>
                             <div class="position">Admin</div>

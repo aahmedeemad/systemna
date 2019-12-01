@@ -65,7 +65,7 @@ $(document).ready(function() {
         var id = $("#id").text();
         $.ajax({
             type: "POST",
-            url: "editProfile.php",
+            url: "../operations/editProfile.php",
             data: "id=" + id + "&fullname=" + fullname + "&type=fullname",
             success: function(html) {
                 if (html == "true") {
@@ -93,7 +93,7 @@ $(document).ready(function() {
         var id = $("#id").text();
         $.ajax({
             type: "POST",
-            url: "editProfile.php",
+            url: "../operations/editProfile.php",
             data:
             "id=" +
             id +
@@ -131,7 +131,7 @@ $(document).ready(function() {
         var id = $("#id").text();
         $.ajax({
             type: "POST",
-            url: "editProfile.php",
+            url: "../operations/editProfile.php",
             data:
             "id=" +
             id +
@@ -167,7 +167,7 @@ $(document).ready(function() {
         var id = $("#id").text();
         $.ajax({
             type: "POST",
-            url: "editProfile.php",
+            url: "../operations/editProfile.php",
             data:
             "id=" + id + "&uname=" + uname + "&pass=" + pass + "&type=company-info",
             success: function(html) {
@@ -222,7 +222,7 @@ $(document).ready(function() {
             if(file.type.match(/.jpeg/)){
                 formData.append("image", file);
                 $.ajax({
-                    url: "uploadUserImage.php",
+                    url: "../operations/uploadUserImage.php",
                     type: "POST",
                     data: formData,
                     processData: false,

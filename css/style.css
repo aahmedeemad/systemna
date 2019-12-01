@@ -406,7 +406,6 @@ tr:nth-child(even) {
 }
 
 .profile .profile-left .profile-picture {
-    /*    margin-left: 33%;*/
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -420,7 +419,7 @@ tr:nth-child(even) {
 .profile .profile-left .p-image {
     position: absolute;
     top: 140px;
-    right: 140px;
+    right: 30%;
     color: #666666;
 }
 
@@ -508,6 +507,11 @@ box-sizing: content-box;
     .profile .profile-right .profile-right-up {
         margin-bottom: 40px;
     }
+
+    .profile .profile-left .p-image {
+        right: 15%;
+    }
+
 }
 
 /* Ahmed Emad's FAQ related Styles */

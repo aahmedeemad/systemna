@@ -1,4 +1,4 @@
-<?php include "template/header.php"; ?>
+<?php include "../template/header.php"; ?>
 
 <?php
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = 1" ;
@@ -12,7 +12,7 @@ if($DB->numRows() > 0)
 {
 ?>
 
-<img src="profileBackground.jpg" alt="" class="profile-background">
+<img src="../template/profileBackground.jpg" alt="" class="profile-background">
 <div class="loading hidden"></div>
 <div id="myModal" class="modal">
     <div class="popup-notification" id='popup'>
@@ -33,7 +33,7 @@ if($DB->numRows() > 0)
 
     <div class="profile-left">
         <div class="image-container">
-            <img src="<?php echo $info[0]->profile_picture == 0 ? "avatar.jpg" :  "usersImages/". $info[0]->id . ".jpeg" ?>" class="profile-picture">
+            <img src="<?php echo $info[0]->profile_picture == 0 ? "../template/avatar.jpg" :  "../usersImages/". $info[0]->id . ".jpeg" ?>" class="profile-picture">
             <input id="profile-image-upload" class="hidden" type="file" accept="image/*"> 
             <div class="p-image">
                 <i class="fa fa-camera upload-button"></i>
@@ -112,4 +112,4 @@ if($DB->numRows() > 0)
 }
 ?>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

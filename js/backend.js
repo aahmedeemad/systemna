@@ -3,6 +3,18 @@ $(document).ready(function() {
         $(".sidenav").animate({ width: "toggle" }, 350);
     });
 
+    $(window).click(function(e){
+        if(e.target == $('.modal')[0])
+        {
+            $('.modal').css('display','none');
+        }
+    });
+
+    $('.popup-close').on('click',function(){
+        $('.modal').css('display','none');
+
+    });
+
     function fullnameToggle() {
         $("#fullname").toggleClass("hidden");
         $(".input-fullname").toggleClass("hidden");
@@ -61,10 +73,14 @@ $(document).ready(function() {
                     $(".input-fullname").toggleClass("hidden");
                     $(".save-fullname").toggleClass("hidden");
                     $(".cancel-fullname").toggleClass("hidden");
+                    $('.loading').toggleClass('hidden');
+                    $('.profile').toggleClass('hidden');
+                    $('.modal').css('display','block');
                 }
             },
             beforeSend: function() {
-                //                $("#add_err2").html("loading...");
+                $('.loading').toggleClass('hidden');
+                $('.profile').toggleClass('hidden');
             }
         });
     });
@@ -97,10 +113,14 @@ $(document).ready(function() {
                     $(".input-basic-info").toggleClass("hidden");
                     $(".save-basic-info").toggleClass("hidden");
                     $(".cancel-basic-info").toggleClass("hidden");
+                    $('.loading').toggleClass('hidden');
+                    $('.profile').toggleClass('hidden');
+                    $('.modal').css('display','block');
                 }
             },
             beforeSend: function() {
-                //                $("#add_err2").html("loading...");
+                $('.loading').toggleClass('hidden');
+                $('.profile').toggleClass('hidden');
             }
         });
     });
@@ -127,10 +147,14 @@ $(document).ready(function() {
                     $(".input-contact-info").toggleClass("hidden");
                     $(".save-contact-info").toggleClass("hidden");
                     $(".cancel-contact-info").toggleClass("hidden");
+                    $('.loading').toggleClass('hidden');
+                    $('.profile').toggleClass('hidden');
+                    $('.modal').css('display','block');
                 }
             },
             beforeSend: function() {
-                //                $("#add_err2").html("loading...");
+                $('.loading').toggleClass('hidden');
+                $('.profile').toggleClass('hidden');
             }
         });
     });
@@ -153,10 +177,14 @@ $(document).ready(function() {
                     $(".input-company-info").toggleClass("hidden");
                     $(".save-company-info").toggleClass("hidden");
                     $(".cancel-company-info").toggleClass("hidden");
+                    $('.loading').toggleClass('hidden');
+                    $('.profile').toggleClass('hidden');
+                    $('.modal').css('display','block');
                 }
             },
             beforeSend: function() {
-                //                $("#add_err2").html("loading...");
+                $('.loading').toggleClass('hidden');
+                $('.profile').toggleClass('hidden');
             }
         });
     });
@@ -191,7 +219,7 @@ $(document).ready(function() {
         file = input.files[0];
         if(file != undefined){
             formData= new FormData();
-            if(!!file.type.match(/.jpeg/)){
+            if(file.type.match(/.jpeg/)){
                 formData.append("image", file);
                 $.ajax({
                     url: "uploadUserImage.php",
@@ -200,8 +228,6 @@ $(document).ready(function() {
                     processData: false,
                     contentType: false,
                     success: function(data){
-                        console.log(data);
-                        alert('success');
                         $('.profile-picture').attr('src',data);
                         window.location.reload();
                     }
@@ -217,7 +243,7 @@ $(document).ready(function() {
     $(".file-upload").on('change', function(){
         uploadFile();
     });
-    
+
     $(".upload-button").on('click', function() {
         $(".file-upload").click();
     });

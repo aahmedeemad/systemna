@@ -13,6 +13,21 @@ if($DB->numRows() > 0)
 ?>
 
 <img src="profileBackground.jpg" alt="" class="profile-background">
+<div class="loading hidden"></div>
+<div id="myModal" class="modal">
+    <div class="popup-notification" id='popup'>
+        <h2>Success</h2>
+        <a class="popup-close" href="">&times;</a>
+        <div class="popup-content">
+            Your Request Has Been Submitted Successfully
+        </div>
+    </div>
+
+</div>
+
+
+
+
 <div class="profile">
 
 

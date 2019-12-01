@@ -11,11 +11,11 @@
     echo "<br>
     <h1 style='color:#DAA520'>Latest Inquireis!</h1>
     <br><br>" ;
-    for($i=$DB->numRows(); $i>=0; --$i){
+    for($i=$DB->numRows(); $i>0; --$i){
     $x=$DB->getdata();
-    echo "<h2> Message ID: " . $x[$i]->id . "<br>" . "Requested by: " . $x[$i]->requester_name . "</h2>" . "<br><h4>" . "Requester email:" . $x[$i]->requester_email . "</h4>" . "<br>" . "Message subject: " . $x[$i]->subject . "<br>" . "Message content: " . $x[$i]->message . "<br>";
-    }
+    echo "<hr><br>" . "<b>Message ID: </b>" . $x[$i-1]->id . "<br><b>Requested by: </b>" . $x[$i-1]->requester_name . "<br><b>Requester email: </b>" . $x[$i-1]->requester_email . "<br><br>" . "<b>Message subject: </b>" . $x[$i-1]->subject . "<br><b>Message content: </b>" . $x[$i-1]->message . "<br>";
     echo "<br><br>";
+    }
     ?>
 </div>
 

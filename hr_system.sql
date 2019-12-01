@@ -2,10 +2,17 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
+-- Host: localhost
+-- Generation Time: Dec 01, 2019 at 05:21 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
+=======
 -- Host: 127.0.0.1
 -- Generation Time: Dec 01, 2019 at 07:22 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
+>>>>>>> master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,17 +41,18 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `ssn` varchar(255) DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
-  `passport_id` varchar(255) DEFAULT NULL
+  `passport_id` varchar(255) DEFAULT NULL,
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `add_info`
 --
 
-INSERT INTO `add_info` (`emp_id`, `phone`, `bdate`, `ssn`, `salary`, `passport_id`) VALUES
-(1, '01112511830', '2019-11-04', '5454545415154', 45454, '65545454'),
-(2, '8889898', '2019-11-11', '552559595', 215487, '0112511830'),
-(6, '0015154', NULL, '1115487', 9999999, NULL);
+INSERT INTO `add_info` (`emp_id`, `phone`, `bdate`, `ssn`, `salary`, `passport_id`, `profile_picture`) VALUES
+(1, '01112511830', '2019-11-04', '5454545415154', 45454, '65545454', 1),
+(2, '8889898', '2019-11-11', '552559595', 215487, '0112511830', 0),
+(6, '0015154', NULL, '1115487', 9999999, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -212,7 +220,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -229,8 +237,13 @@ ALTER TABLE `requests_types`
 --
 -- AUTO_INCREMENT for table `inquiries`
 --
+<<<<<<< HEAD
+ALTER TABLE `update_info`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+=======
 ALTER TABLE `inquiries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> master
 
 --
 -- Constraints for dumped tables

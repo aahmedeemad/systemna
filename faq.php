@@ -3,7 +3,7 @@
 
 <body>
     <div>
-        <div class="faqdiv">
+        <div class="faqdiv" id="faqdiv">
             <?php
             $sql = "
             SELECT *

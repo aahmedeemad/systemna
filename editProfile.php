@@ -50,7 +50,6 @@ else if ($_POST['type'] == "company-info")
     $DB->bind(':id',$_POST['id']);
     $DB->bind(':uname',$_POST['uname']);
     $DB->bind(':pass',$_POST['pass']);
-    
     $DB->bind(':type',$_POST['type']);
     $DB->execute();
     if($DB->numRows() > 0)

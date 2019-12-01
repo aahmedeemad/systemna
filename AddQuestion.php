@@ -1,10 +1,11 @@
 <?php include "template/header.php"; 
-if (isset($_POST['question'])) {
+if (isset($_POST['Question'])) {
 
 
-$question=$_POST['question'];
-$answer=$_POST['answer'];
-$sql="INSERT INTO faq (question,answer) VALUES ('$question','$answer') ";
+$Question=$_POST['Question'];
+$Answer=$_POST['Answer'];
+$Added_by=1;
+$sql="INSERT INTO faq (Question,Answer,Added_by) VALUES ('$Question','$Answer','$Added_by') ";
 
 $DB->query($sql);
 $DB->execute();
@@ -21,9 +22,9 @@ $DB->execute();
 <div>
   <form id="Addquestionform" action="" method='post'>
     <h4>Question : </h4>
-    <input type="text" id="question" name="question" placeholder="Your question.." required><br>
+    <input type="text" id="question" name="Question" placeholder="Your question.." required><br>
     <h4>Answer : </h4>
-    <textarea id="answer" name="answer" placeholder="Question's Answer.." required></textarea>
+    <textarea id="answer" name="Answer" placeholder="Question's Answer.." required></textarea>
     <br>
     <br>
     <br>

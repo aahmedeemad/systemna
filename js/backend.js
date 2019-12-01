@@ -148,6 +148,8 @@ $(document).ready(function() {
         console.log("aaaa");
         var uname = $("#usernameEdit").val();
         var pass = $("#passwordEdit").val();
+        console.log(uname);
+        console.log(pass);
         var id = $("#id").text();
         $.ajax({
             type: "POST",
@@ -155,11 +157,11 @@ $(document).ready(function() {
             data:
             "id=" + id + "&uname=" + uname + "&pass=" + pass + "&type=company-info",
             success: function(html) {
-                console.log(html);
                 if (html == "true") {
-                    $(".profile-right-down").html(
-                        '<div class="alert alert-success"><strong>Message Sent!</strong></div>'
-                    );
+                    console.log(html);
+                    //                    $(".profile-right-down").html(
+                    //                        '<div class="alert alert-success"><strong>Message Sent!</strong></div>'
+                    //                    );
                 }
             },
             beforeSend: function() {

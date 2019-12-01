@@ -1,4 +1,5 @@
 <?php include "template/header.php"; ?>
+<?php include "searchbar.php"; ?>
 
 <body>
     <div>

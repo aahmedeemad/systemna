@@ -17,7 +17,6 @@ if($DB->numRows() > 0)
 
 
     <div class="profile-left">
-        <!--        <div class="user-sex"><i class="fas fa-venus"></i></div>-->
         <div class="image-container">
             <img src="<?php echo $info[0]->profile_picture == 0 ? "avatar.jpg" :  "usersImages/". $info[0]->id . ".jpeg" ?>" class="profile-picture">
             <input id="profile-image-upload" class="hidden" type="file" accept="image/*"> 
@@ -27,7 +26,7 @@ if($DB->numRows() > 0)
             </div>
         </div>
 
-        <div id="id" style="display:none">1</div>
+        <div id="id" style="display:none"><?php echo $info[0]->id ?></div>
         <div id="fullname" class="user-name"><?php echo $info[0]->fullname; ?>
             <span class="edit edit-fullname"><i class="fas fa-pen"></i></span>
         </div> 
@@ -44,7 +43,7 @@ if($DB->numRows() > 0)
         <div id="birthdate"><i class="fas fa-birthday-cake fa-fw"></i> <?php echo $info[0]->bdate; ?></div>
         <div id="location"><i class="fas fa-globe-europe fa-fw"></i> <?php echo $info[0]->location; ?></div>
 
-        <div class="input-edit input-basic-info hidden"  ><i class="fas fa-id-card fa-fw"></i><input id="ssnEdit" type="text" value="<?php echo $info[0]->ssn; ?>"></div>
+        <div class="input-edit input-basic-info hidden"  ><i class="fas fa-id-card fa-fw"></i><input id="ssnEdit" type="number" value="<?php echo $info[0]->ssn; ?>"></div>
         <div class="input-edit input-basic-info hidden" ><i class="fas fa-birthday-cake fa-fw"></i><input id="birthdateEdit" type="date" value="<?php echo $info[0]->bdate; ?>"></div>
         <div class="input-edit input-basic-info hidden"><i class="fas fa-globe-europe fa-fw"></i><input  id="locationEdit" type="text" value="<?php echo $info[0]->location; ?>"></div>
 

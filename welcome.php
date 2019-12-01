@@ -45,7 +45,7 @@
             <tr>
                 <td>
                     <div class="paddingview">
-                        <img src="logo.PNG" alt="SYSTEMNA Logo" style="align:center; width: 50%; height:50%;">
+                        <img src="template/logo.PNG" alt="SYSTEMNA Logo" style="align:center; width: 50%; height:50%;">
                         <h1 style="font-size: 3em;">Welcome to <strong style="color: #DAA520">SYSTEM</strong><strong>NA</strong>!</h1>
                         <br><br><br>
                         <h2 style="text-decoration: underline; font-size: 2em;">-Mission-</h2>

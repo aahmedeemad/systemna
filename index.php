@@ -1,4 +1,5 @@
-<?php include "template/header.php"; ?>
+<?php include "template/header.php";
+session_start(); ?>
 <input type=text id='tblsearch' class='tblsearch' placeholder='search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>
@@ -36,6 +37,8 @@
         FROM employee left join add_info
         on emp_id=id where employee.active = 1 AND privilege = 'user'
               ";
+        try
+        {
               
         $DB->query($sql);
         $DB->execute();
@@ -87,6 +90,12 @@
     <?php
             }
         }
+      }
+      catch(Exception $e)
+      {
+          $_SESSION['error'] = 'error in sql';
+      }
+
         ?>
 </table>
 

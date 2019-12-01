@@ -137,6 +137,20 @@ INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
 (3, 'HR Letter directed to specific organization'),
 (4, 'HR Letter to whom it may concern');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inquiries`
+--
+
+CREATE TABLE `inquiries` (
+  `id` int(11) NOT NULL,
+  `header` text NOT NULL,
+  `message` text NOT NULL,
+  `requester_name` varchar(250) NOT NULL,
+  `requester_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -179,6 +193,12 @@ ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
 
 --
+-- Indexes for table `inquiries`
+--
+ALTER TABLE `inquiries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -205,6 +225,12 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `inquiries`
+--
+ALTER TABLE `inquiries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

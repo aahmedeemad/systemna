@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         unset($_SESSION['error']);
 
         try{
-            $sql="insert into employee(username,fullname,n_id,password,email,accepted,active,privilege) values('".$username."' ,  '".$name."' ,  '".$_POST["ssn"]."' , '".$_POST["password"]."' , '".$email."' ,'0','1','user' )  ";
+            $sql="insert into employee(username,fullname,n_id,password,email,accepted,active,privilege) values('".$username."' ,  '".$name."' ,  '".$_POST["ssn"]."' , '".$_POST["password"]."' , '".$email."' ,'2','1','user' )  ";
             $DB->query($sql);
             $DB->execute();
         }

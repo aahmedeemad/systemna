@@ -27,9 +27,7 @@
             <h2>Send us an inquiry</h2>
             <br>
             <form>
-                Name: <input type="text" name="" value="" id="faqinputtext" required>
-                <br><br>
-                Email: <input type="text" name="" value="" id="faqinputtext" required>
+                Subject:<br><br><input type="text" name="" value="" id="faqinputtext" required>
                 <br><br>
                 Message:<br><br><textarea name="name" rows="8" cols="50" id="faqtextarea" required></textarea>
                 <br><br>

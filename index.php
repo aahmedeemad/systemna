@@ -68,8 +68,10 @@ session_start(); ?>
                 echo "<td>{$y}</td>";
                 if($x[$i]->accepted==1)
                     echo "<td><a type='submit' href='operations/EditTable.php?accepted=1&id={$id}' id='button-accepted'>Accepted</a></td>";
-                else
+                else if($x[$i]->accepted==0)
                     echo "<td><a type='submit' href='operations/EditTable.php?accepted=0&id={$id}' id='button-rejected'>Rejected</a></td>";
+                else 
+                    echo "<td><a type='submit' href='operations/EditTable.php?accepted=2&id={$id}' id='button-pending'>Pending</a></td>";
                 echo "
                 <td>{$id}</td>
                 <td>{$fullname}</td>

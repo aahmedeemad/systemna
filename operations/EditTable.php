@@ -31,6 +31,11 @@ if(isset($_GET['accepted'])){
         $DB2->query($sql);
         $DB2->execute();
      }
+     else if($accepted==2){
+        $sql = "update employee set accepted=0 where id = '$ID';";
+        $DB2->query($sql);
+        $DB2->execute();
+     }
     header("Location: ../index.php");
 
 }

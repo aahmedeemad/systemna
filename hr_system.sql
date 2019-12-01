@@ -145,10 +145,10 @@ INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
 
 CREATE TABLE `inquiries` (
   `id` int(11) NOT NULL,
-  `header` text NOT NULL,
+  `subject` text NOT NULL,
   `message` text NOT NULL,
   `requester_name` varchar(250) NOT NULL,
-  `requester_id` int(11) NOT NULL
+  `requester_email` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

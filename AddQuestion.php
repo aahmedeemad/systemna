@@ -20,7 +20,7 @@ $DB->execute();
 
 
 <div>
-  <form id="Addquestionform" action="" method='post'>
+  <form id="Addquestionform" action="faq.php" method='post'>
     <h4>Question : </h4>
     <input type="text" id="question" name="Question" placeholder="Your question.." required><br>
     <h4>Answer : </h4>

@@ -1,24 +1,20 @@
 <?php include "../template/header.php"; 
+
 if (isset($_POST['Question'])) {
-
-
 $Question=$_POST['Question'];
 $Answer=$_POST['Answer'];
 $Added_by=1;
-$sql="INSERT INTO faq (Question,Answer,Added_by) VALUES ('$Question','$Answer','$Added_by') ";
+$Requested_by=1;
+$sql="INSERT INTO 'faq' ('Question','Answer','Added_by','Requested_by') VALUES ('$Question','$Answer','$Added_by','$Requested_by') ";
 
 $DB->query($sql);
 $DB->execute();
 }
 ?>
 
-
-
 <h3> Add New Question </h3>
 <hr>
 <br>
-
-
 <div>
   <form id="Addquestionform" action="faq.php" method='post'>
     <h4>Question : </h4>
@@ -29,7 +25,6 @@ $DB->execute();
     <br>
     <br>
     <input type="submit" id = "btn1" value="Add Question">
-
   </form>
 </div>
 

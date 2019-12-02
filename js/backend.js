@@ -412,42 +412,45 @@ $(document).ready(function() {
     }
   });
 
-
   $("#submitbtn").click(function() {
-
-    if ((document.getElementById("rdbtn1").checked ||
+    if (
+      (document.getElementById("rdbtn1").checked ||
         document.getElementById("rdbtn2").checked) &&
       (document.getElementById("rdbtn3").checked ||
         document.getElementById("rdbtn4").checked) &&
-      arr != "" &&  Boolean(counter)) {
+      arr != "" &&
+      Boolean(counter)
+    ) {
       alert("your request has been placed Successfully");
     } else {
       alert("you have an error completing your request");
     }
-    if(document.getElementById("rdbtn1").checked ){
-      priority=true;
+    if (document.getElementById("rdbtn1").checked) {
+      priority = true;
+    } else if (document.getElementById("rdbtn2").checked) {
+      priority = false;
     }
-    else if(document.getElementById("rdbtn2").checked ){
-        priority=false;
+    if (document.getElementById("rdbtn3").checked) {
+      salary = true;
+    } else if (document.getElementById("rdbtn4").checked) {
+      salary = false;
+    }
+    jQuery.ajax({
+      method: "POST",
+      url: "lettertypes.php",
+      data: { arr: arr, salary: salary, priority: priority },
+
+      success: function(data2) {
+        alert("does");
       }
-      if(document.getElementById("rdbtn3").checked ){
-        salary=true;
-      }
-      else if(document.getElementById("rdbtn4").checked ){
-          salary=false;
-        }
-        function check() {
-          jQuery.ajax({
-            url: "lettertypes.php",
-            data2: {arr: arr , salary:salary , priority:priority},
-            mehod: "POST",
-            success: function(data2) {}
-          });
-        }
+    });
   });
   $("#searched").keyup(function() {
     var page = $("#faqdiv");
-    var pageText = page.text().replace("<span>", "").replace("</span>");
+    var pageText = page
+      .text()
+      .replace("<span>", "")
+      .replace("</span>");
     var searchedText = $("#searched").val();
     var theRegEx = new RegExp("(" + searchedText + ")", "igm");
     var newHtml = pageText.replace(theRegEx, "<span>$1</span>");

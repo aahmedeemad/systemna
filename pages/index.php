@@ -1,5 +1,4 @@
-<?php include "../template/header.php";
-session_start(); ?>
+<?php include "../template/header.php"; ?>
 <input type=text id='tblsearch' class='tblsearch' placeholder='search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>

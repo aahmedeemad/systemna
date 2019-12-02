@@ -27,12 +27,23 @@
             <br>
             <h2>Send us an inquiry</h2>
             <br>
+            <?php
+            if (isset($_POST['faqinputtext'])) {
+                $subject=$_POST['faqinputtext'];
+                $message=$_POST['faqtextarea'];
+                $requester_name=1;
+                $requester_email=1;
+                $sql="INSERT INTO 'inquiries' ('subject','message','requester_name','requester_email') VALUES ('$subject','$message','$requester_name','$requester_email') ";
+                $DB->query($sql);
+                $DB->execute();
+            }
+            ?>
             <form>
-                Subject:<br><br><input type="text" name="" value="" id="faqinputtext" required>
+                Subject:<br><br><input type="text" name="subject" value="" id="faqinputtext" required>
                 <br><br>
-                Message:<br><br><textarea name="name" rows="8" cols="50" id="faqtextarea" required></textarea>
+                Message:<br><br><textarea name="message" rows="8" cols="50" id="faqtextarea" required></textarea>
                 <br><br>
-                <input type="submit" name="" value="Submit" id="faqsubmit">
+                <input type="submit" id="faqsubmit" value="Submit" >
                 <br>
             </form>
         </div>

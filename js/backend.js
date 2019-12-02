@@ -342,6 +342,22 @@ $(document).ready(function() {
         }
     });
 
+    $("#faqsubmit").click(function() {
+        function checkAvai() {
+            jQuery.ajax({
+                url: "faq.php",
+                data: "subject=" + $("#faqinputtext").val(),
+                type: "POST",
+                success: function(data) {}
+            });
+        }
+        var a = document.getElementById("faqinputtext").value;
+        var b = document.getElementById("faqtextarea").value;
+        if (a != "" && b != "") {
+            alert("Message Sent Successfully");
+        }
+    });
+
     var arr = [];
     var counter = 0;
     var cntr1 = 0;

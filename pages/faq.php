@@ -28,9 +28,9 @@
             <h2>Send us an inquiry</h2>
             <br>
             <?php
-            if (isset($_POST['faqinputtext'])) {
-                $subject=$_POST['faqinputtext'];
-                $message=$_POST['faqtextarea'];
+            if (isset($_POST['subject'])) {
+                $subject=$_POST['subject'];
+                $message=$_POST['message'];
                 $requester_name=1;
                 $requester_email=1;
                 $sql="INSERT INTO inquiries (subject,message,requester_name,requester_email) VALUES ('$subject','$message','$requester_name','$requester_email') ";

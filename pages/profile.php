@@ -7,7 +7,7 @@ $DB->execute();
 $info=$DB->getdata();
 
 ?>
-<?
+<?php
 if($DB->numRows() > 0)
 {
 ?>

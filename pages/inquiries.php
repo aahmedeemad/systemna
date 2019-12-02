@@ -9,7 +9,7 @@
     $DB->query($sql);
     $DB->execute();
     echo "<br>
-    <h1 style='color:#DAA520'>Latest Inquireis!</h1>
+    <h1 style='color:#DAA520'>Latest Inquiries!</h1>
     <br><br>" ;
     for($i=$DB->numRows(); $i>0; --$i){
     $x=$DB->getdata();

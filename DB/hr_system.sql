@@ -107,7 +107,9 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (1, 'What is SYSTEMNA ?', 'SYSTEMNA is our company\'s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
 (2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
 (3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
-(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
+(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad'),
+(11, 'mmm', 'mmmm', '1', '1'),
+(12, 'mmm', 'mmm', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -146,6 +148,32 @@ INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
 (4, 'HR Letter to whom it may concern');
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `update_info`
+--
+
+CREATE TABLE `update_info` (
+  `ID` int(11) NOT NULL,
+  `UID` int(11) NOT NULL,
+  `val1` varchar(255) DEFAULT NULL,
+  `val2` varchar(255) DEFAULT NULL,
+  `val3` date DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `update_info`
+--
+
+INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`) VALUES
+(48, 1, 'islam@gmail.com', '0111251183000', NULL, 'contact-info', 0),
+(49, 1, 'Islam', NULL, NULL, 'fullname', 0),
+(50, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0),
+(51, 1, 'islam@gmail.com', '01112511830', NULL, 'contact-info', 0),
+(52, 1, 'Islam', '1234', NULL, 'company-info', 0),
+(53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0);
 
 --
 -- Table structure for table `inquiries`
@@ -199,6 +227,13 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
+
+--
+-- Indexes for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UID` (`UID`);
 
 --
 -- Indexes for table `inquiries`

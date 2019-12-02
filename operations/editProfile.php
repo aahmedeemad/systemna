@@ -1,5 +1,5 @@
 <?php
-include_once "../Database.php";
+include_once "../DB/Database.php";
 $DB = new Database();
 if ($_POST['type'] == "fullname")
 {

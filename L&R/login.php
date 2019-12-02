@@ -3,7 +3,7 @@
 
 
 session_start();
-include('Database.php');
+include('../DB/Database.php');
 $DB = new Database();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){

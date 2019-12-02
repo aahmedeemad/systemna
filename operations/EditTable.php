@@ -1,5 +1,5 @@
 <?php
-include "../Database.php";
+include "../DB/Database.php";
 $DB2 = new Database();
 if(isset($_POST['test'])){
     $sal=$_POST['test']; 

@@ -10,7 +10,7 @@ $DB = new Database();
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/all.min.css">
         <link rel="stylesheet" href="../css/popup.css">
-        <link rel = "icon" type = "image/png" href = "logo.png">
+        <link rel="icon" type="image/png" href="logo.png">
         <title>Admin Page</title>
     </head>
 

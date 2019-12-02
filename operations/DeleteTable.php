@@ -1,5 +1,5 @@
 <?php
-include "../Database.php";
+include "../DB/Database.php";
 $DB2 = new Database();
 $d_id = $_GET['id'];
 $sql = "update employee set active=0 where id = '$d_id;'";

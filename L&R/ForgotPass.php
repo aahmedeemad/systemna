@@ -18,7 +18,7 @@ $NewPass = generateRandomString(6);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Forgot Your Password</title>
-        <link rel="stylesheet" href="css/ForgotPass-style.css">
+        <link rel="stylesheet" href="../css/ForgotPass-style.css">
     </head>
     <body>
         <div id="popup1" class="overlay">
@@ -37,7 +37,7 @@ $NewPass = generateRandomString(6);
                         <h1 class="heading">Forgot Your Password ?</h1>
                         <div class="input">
                             <input placeholder="Email" type="text">
-                            <img src="img/blackmail.svg">
+                            <img src="imgs/blackmail.svg">
                         </div>
                     </div>
                     <a class="button" href="#popup1">Reset</a>
@@ -51,7 +51,7 @@ $NewPass = generateRandomString(6);
             </div>
         </div>
     </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function(){
             $('ul').click(function(){

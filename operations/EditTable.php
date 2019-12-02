@@ -9,13 +9,13 @@ if(isset($_POST['test'])){
     $DB2->execute();
     $assign = $DB2->numRows();
     if($assign)
-     header("Location: ../index.php");
+     header("Location: ../pages/index.php");
     else 
     {
      $sql = "insert into add_info(emp_id,salary) values ('$id','$sal');";
      $DB2->query($sql);
      $DB2->execute();
-     header("Location: ../index.php");
+     header("Location: ../pages/index.php");
     }
 }
 if(isset($_GET['accepted'])){
@@ -36,7 +36,7 @@ if(isset($_GET['accepted'])){
         $DB2->query($sql);
         $DB2->execute();
      }
-    header("Location: ../index.php");
+    header("Location: ../pages/index.php");
 
 }
 ?>

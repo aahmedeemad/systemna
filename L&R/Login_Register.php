@@ -1,11 +1,3 @@
-<?php
-
-session_start();
-
-
-
-
-?>
 
 
 <html lang="en">
@@ -16,6 +8,7 @@ session_start();
         <title>Login/Register</title>
         <link rel="stylesheet" href="css/Login_Register-style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/registerValidate.js"> </script>
     </head>
     <body>
@@ -32,21 +25,21 @@ session_start();
                     <form action="L&R/login.php" method="post">
                         <div class="inputs">
                             <h1 class="heading">Welcome back !</h1>
-                            <span style="color:red; font-weight:bold; position:relative; left:35px; bottom:15px;" ><?php if(isset($_SESSION['error1'])){echo $_SESSION['error1']; } ?></span>
+                            <span style="color:red; font-weight:bold; position:relative; bottom:15px;" ><?php if( !empty( $_REQUEST['Message'] )     ){echo $_REQUEST['Message'];} ?></span>
                             <div class="input">
                                 <input required placeholder="Username" name="Username" type="text">
-                                <img src="L&R/imgs/user.svg">
+                                <img src="L&R/img/user.svg">
                             </div>
                             <div class="input">
                                 <input required placeholder="Password" name="Password" type="password">
-                                <img src="L&R/imgs/pass.svg">
+                                <img src="L&R/img/pass.svg">
                             </div>
                         </div>
                         <label>
 
                             <input type="checkbox" name="remember_me" id="remember_me">
                             Remember Me</label>
-                        <a href="L&R/ForgotPass.php" class="FP" name='FP'>Forgot your password ?</a>
+                        <a href="ForgotPass.php" class="FP" name='FP'>Forgot your password ?</a>
                         <button>Login</button>
                     </form>
                 </div>
@@ -54,40 +47,40 @@ session_start();
                     <form action="L&R/signup.php"  method="post">
                         <div class="inputs">
 
-                            <span style="  color:red;" id="error"><?php if(isset($_SESSION['error'])){echo $_SESSION['error']; } ?></span>
+                            <span style="  color:red;" id="error"></span>
                             <h1 class="heading">Join us !</h1>
                             <div class="input">
 
                                 <input  required onblur="validateFName(this)" name="fullname" id="fullname" placeholder="Full Name" type="text">
-                                <img src="L&R/imgs/user.svg">
-                                   
+                                <img src="L&R/img/user.svg">
+
                             </div>
-                                <span style="color:red; display:block; margin-bottom:20px;" id="name"></span>
+                            <span style="color:red; display:block; margin-bottom:20px;" id="name"></span>
                             <div class="input">
-                                <input required onblur="validateEmail(this)" name="Email" placeholder="E-mail" type="text">
-                                <img src="L&R/imgs/blackmail.svg">
+                                <input required onblur="checkmail()" id="Email" name="Email" placeholder="E-mail" type="text">
+                                <img src="L&R/img/blackmail.svg">
                             </div>
-                                <span style=" color:red; display:block; margin-bottom:20px;" id="mail"></span>
+                            <span style=" color:red; display:block; margin-bottom:20px;" id="mail"></span>
                             <div class="input">
-                                <input onblur="validateUsername(this)"  name="username" placeholder="User Name" type="text">
-                                <img src="L&R/imgs/user.svg">
+                                <input  onblur="checkuserr()" id="UserNamee" name="username" placeholder="User Name" type="text">
+                                <img src="L&R/img/user.svg">
                             </div>  
-                                <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
+                            <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
                             <div class="input">
                                 <input  onblur="validateNumber(this)" required  name="Telephone Number" placeholder="Telephone Number" type="text">
-                                <img src="L&R/imgs/phone-call.svg">
+                                <img src="L&R/img/phone-call.svg">
                             </div>
-                                <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>
+                            <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>
                             <div class="input">
-                                <input onblur="validateSSN(this)" required placeholder="Social Security Number" name="ssn"  type="text">
+                                <input onblur="checkssn()" id="SSN" required placeholder="Social Security Number" name="ssn"  type="text">
                                 <i class="fa fa-id-card-o" style="width: 16px; position: absolute; left: 19px;"></i>
                             </div>
-                                <span style=" color:red; display:block; margin-bottom:20px;" id="ssn"></span>
+                            <span style=" color:red; display:block; margin-bottom:20px;" id="ssn"></span>
                             <div class="input">
                                 <input onblur="validatepassword(this)" required placeholder="Password"  name="password" type="password">
-                                <img src="L&R/imgs/pass.svg">
+                                <img src="L&R/img/pass.svg">
                             </div>
-                                <span style="color:red; display:block; margin-bottom:20px;" id="password"></span>
+                            <span style="color:red; display:block; margin-bottom:20px;" id="password"></span>
                             <div class="input">
                                 <input  type="file" placeholder="Upload File">
                             </div>
@@ -104,15 +97,11 @@ session_start();
             </div>
         </div>
     </body>
-   
-    <script src="js/jquery-3.4.1.min.js"></script>
+
     <script src="js/Login_Register-script.js"></script>
-    <?php
-if(isset($_SESSION['error'])){ echo "<script>document.getElementById('Register').click();</script>"; }
-?>
 
     <script>
-        
+
         $(document).ready(function(){
             $('ul').click(function(){
                 $('ul').toggleClass('active')
@@ -125,5 +114,8 @@ if(isset($_SESSION['error'])){ echo "<script>document.getElementById('Register')
                 $('label').toggleClass('Light')
             })
         })
+
+
     </script>
 </html>
+

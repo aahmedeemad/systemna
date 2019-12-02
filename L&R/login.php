@@ -7,56 +7,37 @@ include('../DB/Database.php');
 $DB = new Database();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $username = filter_var($_POST["Username"], FILTER_SANITIZE_STRING);
-    $sql="SELECT * FROM employee where username= '".$username."' and password = '".$_POST["Password"]."' ";
-    $DB->query($sql);
-    $DB->execute();
+    try{
+
+        $username = filter_var($_POST["Username"], FILTER_SANITIZE_STRING);
+        $sql="SELECT * FROM employee where username= '".$username."' and password = '".$_POST["Password"]."' ";
+        $DB->query($sql);
+        $DB->execute();
+    }  catch (Exception $e){
+        $Message = "something gone wrong. ";
+        header("Location:../index.php?Message={$Message}");
+    }
     if($DB->numRows()==0)
-    {
-        $_SESSION['error1']="wrong username or password";
-        header('Location:Login_Register.php');
-
-    }else if(isset($_SESSION['error1'])){
-        unset($_SESSION['error1']);
-        $x=$DB->getdata();
-
-        $_SESSION['username']=$x[0]->fullname;
-        $_SESSION['username']=$x[0]->username;
-        $_SESSION['username']=$x[0]->email;
-        $_SESSION['username']=$x[0]->n_id;
-        $_SESSION['username']=$x[0]->accepted;
-        $_SESSION['username']=$x[0]->active;
-        $_SESSION['username']=$x[0]->gender;
-        $_SESSION['username']=$x[0]->privilege;
-
-        if(!empty($_POST['remember'])){
-            setcookie("username", $_POST['username'], time()+(10 * 365 * 24 * 60 * 60));
-            setcookie("password", $_POST['password'], time()+(10 * 365 * 24 * 60 * 60));
-        }else{
-            if(ISSET($_COOKIE['username'])){
-                setcookie("username", "");
-            }
-
-            if(ISSET($_COOKIE['password'])){
-                setcookie("password", "");
-            }
+    {  
+        $Message = "wrong username or password. ";
+        header("Location:../index.php?Message={$Message}");
 
 
-        }
-        header('Location:hello.php');   
     }
     else {
 
         $x=$DB->getdata();
 
-        $_SESSION['username']=$x[0]->fullname;
+        $_SESSION['name']=$x[0]->fullname;
+        $_SESSION['password']=$x[0]->password;
         $_SESSION['username']=$x[0]->username;
-        $_SESSION['username']=$x[0]->email;
-        $_SESSION['username']=$x[0]->n_id;
-        $_SESSION['username']=$x[0]->accepted;
-        $_SESSION['username']=$x[0]->active;
-        $_SESSION['username']=$x[0]->gender;
-        $_SESSION['username']=$x[0]->privilege;
+        $_SESSION['email']=$x[0]->email;
+        $_SESSION['ssn']=$x[0]->n_id;
+        $_SESSION['status']=$x[0]->accepted;
+        $_SESSION['activity']=$x[0]->active;
+        $_SESSION['gender']=$x[0]->gender;
+        $_SESSION['type']=$x[0]->privilege;
+        $_SESSION['id']=$x[0]->id;
 
 
         if(!empty($_POST['remember'])){
@@ -73,7 +54,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 
         }
-        header('Location:hello.php');   
+        if($_SESSION['type']=='admin'){
+            header('Location:../pages/index.php');}
+        else if($_SESSION['type']=='user'){
+            header('Location:../pages/lettertypes.php');
+        }
 
     }
 }

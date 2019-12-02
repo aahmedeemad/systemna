@@ -1,6 +1,6 @@
 <?php include "../template/header.php"; ?>
 <?php include "../template/searchbar.php"; ?>
-
+<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}?>
 <body>
     <div>
         <div class="faqdiv" id="faqdiv">

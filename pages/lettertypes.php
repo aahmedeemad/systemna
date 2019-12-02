@@ -1,6 +1,7 @@
 <?php include "../template/header.php"; ?>
 
-
+<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
+  ?>
 
 <h2>Choose the type of the letter that you want to apply for : </h2>
 <hr>

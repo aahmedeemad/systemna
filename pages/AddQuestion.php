@@ -1,5 +1,9 @@
-<?php include "../template/header.php"; 
-
+<?php include "../template/header.php"; ?>
+    
+    <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
+ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
+    
+<?php
 if (isset($_POST['Question'])) {
     $Question=$_POST['Question'];
     $Answer=$_POST['Answer'];

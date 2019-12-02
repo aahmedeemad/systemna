@@ -1,4 +1,7 @@
 <?php include "../template/header.php"; ?>
+<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
+ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
+
 <input type=text id='tblsearch' class='tblsearch' placeholder='search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>

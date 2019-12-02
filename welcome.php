@@ -59,7 +59,7 @@
                 </td>
                 <td><div class = "vertical"></div></td>
                 <td><div class = "horizontal"></div></td>
-                <td><div class = "login"><?php include "Login_Register.php"; ?></div></td>
+                <td><div class = "login"><?php include "L&R/Login_Register.php"; ?></div></td>
             </tr>
         </table>
     </body>

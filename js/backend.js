@@ -426,14 +426,14 @@ $(document).ready(function() {
       alert("you have an error completing your request");
     }
     if (document.getElementById("rdbtn1").checked) {
-      priority = true;
+      priority = 1;
     } else if (document.getElementById("rdbtn2").checked) {
-      priority = false;
+      priority = 0;
     }
     if (document.getElementById("rdbtn3").checked) {
-      salary = true;
+      salary = 1;
     } else if (document.getElementById("rdbtn4").checked) {
-      salary = false;
+      salary = 0;
     }
     jQuery.ajax({
       method: "POST",
@@ -441,7 +441,7 @@ $(document).ready(function() {
       data: { arr: arr, salary: salary, priority: priority },
 
       success: function(data2) {
-        
+
       }
     });
   });

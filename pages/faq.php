@@ -33,12 +33,12 @@
                 $message=$_POST['faqtextarea'];
                 $requester_name=1;
                 $requester_email=1;
-                $sql="INSERT INTO 'inquiries' ('subject','message','requester_name','requester_email') VALUES ('$subject','$message','$requester_name','$requester_email') ";
+                $sql="INSERT INTO inquiries (subject,message,requester_name,requester_email) VALUES ('$subject','$message','$requester_name','$requester_email') ";
                 $DB->query($sql);
                 $DB->execute();
             }
             ?>
-            <form>
+            <form method='post'>
                 Subject:<br><br><input type="text" name="subject" value="" id="faqinputtext" required>
                 <br><br>
                 Message:<br><br><textarea name="message" rows="8" cols="50" id="faqtextarea" required></textarea>

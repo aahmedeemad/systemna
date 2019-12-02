@@ -346,7 +346,7 @@ $(document).ready(function() {
         function checkAvai() {
             jQuery.ajax({
                 url: "faq.php",
-                data: "subject=" + $("#faqinputtext").val(),
+                data: "faqinputtext=" + $("#faqinputtext").val(),
                 type: "POST",
                 success: function(data) {}
             });

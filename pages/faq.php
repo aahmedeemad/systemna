@@ -1,7 +1,14 @@
 <?php include "../template/header.php"; ?>
-<?php include "../template/searchbar.php"; ?>
+<?php// include "../template/searchbar.php"; ?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}?>
+
 <body>
+    <div>
+        <form id="newsearch">
+            <input type="text" id="searched" class="stextinput" size="21" maxlength="120"><input type="submit"
+                id="submit" value="search" class="sbutton">
+        </form>
+    </div>
     <div>
         <div class="faqdiv" id="faqdiv">
             <?php
@@ -43,7 +50,7 @@
                 <br><br>
                 Message:<br><br><textarea name="message" rows="8" cols="50" id="faqtextarea" required></textarea>
                 <br><br>
-                <input type="submit" id="faqsubmit" value="Submit" >
+                <input type="submit" id="faqsubmit" value="Submit">
                 <br>
             </form>
         </div>

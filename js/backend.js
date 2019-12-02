@@ -441,7 +441,7 @@ $(document).ready(function() {
       data: { arr: arr, salary: salary, priority: priority },
 
       success: function(data2) {
-        alert("does");
+        
       }
     });
   });

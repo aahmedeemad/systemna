@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2019 at 07:02 PM
+-- Generation Time: Dec 02, 2019 at 07:16 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -34,17 +34,19 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `passport_id` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT NULL,
+  `national_id_picture` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `add_info`
 --
 
-INSERT INTO `add_info` (`emp_id`, `phone`, `bdate`, `salary`, `passport_id`, `profile_picture`) VALUES
-(1, '01112511830', '2019-11-04', 45454, '65545454', 1),
-(2, '8889898', '2019-11-11', 215487, '0112511830', 0),
-(6, '0015154', NULL, 9999999, NULL, 0);
+INSERT INTO `add_info` (`emp_id`, `phone`, `bdate`, `salary`, `passport_id`, `profile_picture`, `passport_picture`, `national_id_picture`) VALUES
+(1, '01112511830', '2019-11-04', 45454, '65545454', 1, NULL, NULL),
+(2, '8889898', '2019-11-11', 215487, '0112511830', 0, NULL, NULL),
+(6, '0015154', NULL, 9999999, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 

@@ -447,10 +447,7 @@ $(document).ready(function() {
   });
   $("#searched").keyup(function() {
     var page = $("#faqdiv");
-    var pageText = page
-      .text()
-      .replace("<span>", "")
-      .replace("</span>");
+    var pageText = page.text().replace("<span>", "").replace("</span>");
     var searchedText = $("#searched").val();
     var theRegEx = new RegExp("(" + searchedText + ")", "igm");
     var newHtml = pageText.replace(theRegEx, "<span>$1</span>");

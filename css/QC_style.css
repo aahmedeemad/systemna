@@ -1,0 +1,40 @@
+input[type=submit]
+{
+	background: #000;
+	padding: 14px 20px;
+	border: 2px solid rgb(167, 163, 145);
+	border-color: #DAA520;
+	border-radius: 12px;
+    color: #DAA520;
+	font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 940px;
+
+}
+input[type=submit]:hover
+{
+    background: #DAA520;
+	color: #000;
+}
+textarea
+{
+    margin-left: 830px;
+    border: 1px solid #888;
+    box-shadow:10px 10px 10px -10px black;
+}
+h2
+{
+    text-align: center;
+}
+@media only screen and (max-width: 768px) {
+    input[type=submit]
+    {
+        margin-left: auto;
+    }
+    textarea
+    {
+        margin-left: auto;
+    }
+
+}

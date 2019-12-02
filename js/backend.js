@@ -289,10 +289,11 @@ $(document).ready(function() {
 
     if (!test.match(/^[0-9]+$/)) {
       alert("Salary must be a number");
+      window.location.replace("index.php");
     } else {
       $.ajax({
         method: "POST",
-        url: "operations/EditTable.php",
+        url: "../operations/EditTable.php",
         data: { test: test, id: c.text() },
         success: function(msg) {
           alert("Salary Updated!");
@@ -440,9 +441,7 @@ $(document).ready(function() {
       url: "lettertypes.php",
       data: { arr: arr, salary: salary, priority: priority },
 
-      success: function(data2) {
-
-      }
+      success: function(data2) {}
     });
   });
   $("#searched").keyup(function() {

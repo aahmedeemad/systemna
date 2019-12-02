@@ -63,7 +63,7 @@
         </style>
     </head>
     <body>
-        <div class="popup" onmouseenter="fadingIn()" onmouseleave="fadingOut()" onclick="window.open('faq.php')">
+        <div class="popup" onmouseenter="fadingIn()" onmouseleave="fadingOut()" onclick="window.location.replace('faq.php')">
             <p style="margin: 0.5;">?</p>
             <p class="popuptxt" id="myPopup" style="margin: 0.5;">Help & FAQ ?</p>
         </div>

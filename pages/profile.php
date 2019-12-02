@@ -1,7 +1,7 @@
 <?php include "../template/header.php"; ?>
 
 <?php
-$sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = '".$_SESSION['id']."'   " ;
+$sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = ".$_SESSION['id']."" ;
 $DB->query($sql);
 $DB->execute();
 $info=$DB->getdata();
@@ -54,11 +54,11 @@ if($DB->numRows() > 0)
         <div class="user-position"><?php echo $info[0]->privilege; ?></div>
         <div class="title-info">Basic Info <span class="edit edit-basic-info"><i class="fas fa-pen"></i></span></div>
         <hr>
-        <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->ssn; ?></div>
-        <div id="birthdate"><i class="fas fa-birthday-cake fa-fw"></i> <?php echo $info[0]->bdate; ?></div>
-        <div id="location"><i class="fas fa-globe-europe fa-fw"></i> <?php echo $info[0]->location; ?></div>
+        <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->n_id; ?></div>
+        <div id="birthdate"><i class="fas fa-birthday-cake fa-fw"></i> <?php echo $info[0]->bdate == NULL ? "--" : $info[0]->bdate; ?></div>
+        <div id="location"><i class="fas fa-globe-europe fa-fw"></i> <?php echo $info[0]->location == NULL ? "--" : $info[0]->location; ?></div>
 
-        <div class="input-edit input-basic-info hidden"  ><i class="fas fa-id-card fa-fw"></i><input id="ssnEdit" type="number" value="<?php echo $info[0]->ssn; ?>"></div>
+        <div class="input-edit input-basic-info hidden"  ><i class="fas fa-id-card fa-fw"></i><input id="ssnEdit" type="number" value="<?php echo $info[0]->n_id; ?>"></div>
         <div class="input-edit input-basic-info hidden" ><i class="fas fa-birthday-cake fa-fw"></i><input id="birthdateEdit" type="date" value="<?php echo $info[0]->bdate; ?>"></div>
         <div class="input-edit input-basic-info hidden"><i class="fas fa-globe-europe fa-fw"></i><input  id="locationEdit" type="text" value="<?php echo $info[0]->location; ?>"></div>
 

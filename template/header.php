@@ -1,5 +1,5 @@
 <?php 
-include('../Database.php');
+include('../DB/Database.php');
 $DB = new Database();
 ?>
 <!DOCTYPE html>

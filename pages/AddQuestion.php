@@ -1,4 +1,4 @@
-<?php include "template/header.php"; 
+<?php include "../template/header.php"; 
 if (isset($_POST['Question'])) {
 
 
@@ -33,4 +33,4 @@ $DB->execute();
   </form>
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

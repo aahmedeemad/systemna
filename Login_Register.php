@@ -35,11 +35,11 @@ session_start();
                             <span style="color:red; font-weight:bold; position:relative; left:35px; bottom:15px;" ><?php if(isset($_SESSION['error1'])){echo $_SESSION['error1']; } ?></span>
                             <div class="input">
                                 <input required placeholder="Username" name="Username" type="text">
-                                <img src="img/user.svg">
+                                <img src="L&R/imgs/user.svg">
                             </div>
                             <div class="input">
                                 <input required placeholder="Password" name="Password" type="password">
-                                <img src="img/pass.svg">
+                                <img src="L&R/imgs/pass.svg">
                             </div>
                         </div>
                         <label>
@@ -59,23 +59,23 @@ session_start();
                             <div class="input">
 
                                 <input  required onblur="validateFName(this)" name="fullname" id="fullname" placeholder="Full Name" type="text">
-                                <img src="img/user.svg">
+                                <img src="L&R/imgs/user.svg">
                                    
                             </div>
                                 <span style="color:red; display:block; margin-bottom:20px;" id="name"></span>
                             <div class="input">
                                 <input required onblur="validateEmail(this)" name="Email" placeholder="E-mail" type="text">
-                                <img src="img/blackmail.svg">
+                                <img src="L&R/imgs/blackmail.svg">
                             </div>
                                 <span style=" color:red; display:block; margin-bottom:20px;" id="mail"></span>
                             <div class="input">
                                 <input onblur="validateUsername(this)"  name="username" placeholder="User Name" type="text">
-                                <img src="img/user.svg">
+                                <img src="L&R/imgs/user.svg">
                             </div>  
                                 <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
                             <div class="input">
                                 <input  onblur="validateNumber(this)" required  name="Telephone Number" placeholder="Telephone Number" type="text">
-                                <img src="img/phone-call.svg">
+                                <img src="L&R/imgs/phone-call.svg">
                             </div>
                                 <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>
                             <div class="input">
@@ -85,7 +85,7 @@ session_start();
                                 <span style=" color:red; display:block; margin-bottom:20px;" id="ssn"></span>
                             <div class="input">
                                 <input onblur="validatepassword(this)" required placeholder="Password"  name="password" type="password">
-                                <img src="img/pass.svg">
+                                <img src="L&R/imgs/pass.svg">
                             </div>
                                 <span style="color:red; display:block; margin-bottom:20px;" id="password"></span>
                             <div class="input">

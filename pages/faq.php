@@ -1,5 +1,5 @@
-<?php include "template/header.php"; ?>
-<?php include "template/searchbar.php"; ?>
+<?php include "../template/header.php"; ?>
+<?php include "../template/searchbar.php"; ?>
 
 <body>
     <div>
@@ -39,4 +39,4 @@
     </div>
 </body>
 
-<?php include "template/footer.php"; ?>
+<?php include "../template/footer.php"; ?>

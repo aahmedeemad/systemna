@@ -2,7 +2,29 @@
 
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
   ?>
+  <?php
 
+  if (isset($_POST['priority'])) {
+    $emp_id=$_SESSION['id'];
+    $priority=$_POST['priority'];
+    $Type_id=1;
+    $Status=1;
+    $salary=$_POST['salary'];
+    $arr=$_POST['arr'];
+    $length=count($arr);
+
+    for ($i=0; $i <$length ; $i++) {
+      $sql="INSERT INTO requests (emp_id,Type_id,Status,priority,salary) VALUES ('$emp_id','$Type_id','$Status','$priority','$salary') ";
+      $DB->query($sql);
+      $DB->execute();
+    }
+
+
+
+
+      header("location: .php");
+  }
+  ?>
 <h2>Choose the type of the letter that you want to apply for : </h2>
 <hr>
 

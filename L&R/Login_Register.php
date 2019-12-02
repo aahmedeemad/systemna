@@ -67,7 +67,7 @@
                             </div>  
                             <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
                             <div class="input">
-                                <input  onblur="validateNumber(this)" required  name="Telephone Number" placeholder="Telephone Number" type="text">
+                                <input  onblur="validateNumber(this)" required  name="phone" placeholder="Telephone Number" type="text">
                                 <img src="L&R/img/phone-call.svg">
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>

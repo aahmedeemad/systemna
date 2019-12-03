@@ -1,5 +1,5 @@
 <?php include "../template/header.php"; ?>
-<link rel="stylesheet" href="css/QC_style.css">
+<link rel="stylesheet" href="../css/QC_style.css">
 <h1 style="text-align:center">Quality Control</h1>
 <input type="text" id='tblsearch' class='tblsearch' placeholder='Search' style="left:680px;">
 <select id='choice' class='tblselect' style="left:720px;padding:15px">

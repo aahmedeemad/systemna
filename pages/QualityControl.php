@@ -1,5 +1,4 @@
-<?php include "template/header.php";
-session_start(); ?>
+<?php include "../template/header.php"; ?>
 <link rel="stylesheet" href="css/QC_style.css">
 <h1 style="text-align:center">Quality Control</h1>
 <input type="text" id='tblsearch' class='tblsearch' placeholder='Search' style="left:680px;">
@@ -105,5 +104,6 @@ session_start(); ?>
 <br><br>
 <input type="submit" value="Submit Comment">
 </div>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/backend.js"></script>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/backend.js"></script>
+<?php include "../template/footer.php"; ?>

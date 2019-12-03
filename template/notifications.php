@@ -162,6 +162,7 @@
             $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
 
             return false;
+            /* ay 7aga */
         });
 
         // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 $SESSION['username']="Mark Refaat Ramzy";
 include('../DB/Database.php');
@@ -61,6 +61,8 @@ $DB = new Database();
                         <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Letters</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/inquiries.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Inquiries</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
+
                     </ul>
                 </div>
                 <?php } else header("Location:../index.php") ?>

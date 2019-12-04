@@ -1,6 +1,6 @@
 <?php include "../template/header.php"; ?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
- if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
+    ?>
 
 
 
@@ -45,7 +45,7 @@
 
                 echo  "<tr>";
                 echo "<td>{$id}</td>";
-                echo "<td>{$y}</td>";
+                echo "<td>$emp_id</td>";
 
                 if($x[$i]->Status==1){
                     echo "<td>Accepted</td>";}

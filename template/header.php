@@ -13,7 +13,7 @@ $DB = new Database();
         <link rel="stylesheet" href="../css/all.min.css">
         <link rel="stylesheet" href="../css/popup.css">
         <link rel="icon" type="image/png" href="../template/logo.png">
-        <title>Admin Page</title>
+        <title>Systemna</title>
     </head>
 
     <body>
@@ -22,7 +22,7 @@ $DB = new Database();
                 <div class="navbar-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <a style="text-decoration: none;" href=""><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: white">na</strong></div></a>
+                <a style="text-decoration: none;" href="index.php"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: white">na</strong></div></a>
                 <div class="right"><a style="text-decoration: none; color:white;" href="../pages/logout.php">Logout</a>
                 </div>
             </header>

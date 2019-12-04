@@ -21,9 +21,32 @@ $DB = new Database();
         <script>
             $(document).ready(function () {
                 $('#noti_Counter')
-                    .text('999');
+                    .text('<?php
+                        $uid = $_SESSION['id'];
+                        $sql = "
+                        SELECT *
+                        FROM notifications
+                        WHERE userid = $uid AND status = 0
+                        ";
+                        $DB->query($sql);
+                        $DB->execute();
+                        echo ($DB->numRows());
+                        ?>');
                 $('#notidata')
-                    .text('notifications go here')
+                    .text('<?php
+                        $uid = $_SESSION['id'];
+                        $sql = "
+                        SELECT *
+                        FROM notifications
+                        WHERE userid = $uid AND status = 0
+                        ";
+                        $DB->query($sql);
+                        $DB->execute();
+                        for($i=0; $i<$DB->numRows(); $i++){
+                            $x=$DB->getdata();
+                            echo "<hr>" . ($i+1) . "- " . $x[$i]->notidata ;
+                        }
+                        ?>')
                     .css('height', '20vw');
                 $('#noti_Button').click(function () {
                     // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
@@ -33,7 +56,7 @@ $DB = new Database();
                         }
                         else $('#noti_Button').css('background-color', '#2d3035');
                     });
-                    $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
+                    //$('#noti_Counter').fadeOut('slow'); // HIDE THE COUNTER.
                     return false;
                 });
                 // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
@@ -48,6 +71,31 @@ $DB = new Database();
                 $('#notifications').click(function () {
                     // DO NOTHING WHEN CONTAINER IS CLICKED.
                     return false;
+                });
+                // MARK ALL AS READ AND RESET COUNTER
+                $('#markAll').click(function () {
+                    <?php
+                    $uid = $_SESSION['id'];
+                    $sql = "
+                    UPDATE notifications
+                    SET status = 1
+                    WHERE userid = $uid AND status = 0
+                    ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    ?>
+                    $('#noti_Counter')
+                    .text('<?php
+                        $uid = $_SESSION['id'];
+                        $sql = "
+                        SELECT *
+                        FROM notifications
+                        WHERE userid = $uid AND status = 0
+                        ";
+                        $DB->query($sql);
+                        $DB->execute();
+                        echo ($DB->numRows());
+                        ?>');
                 });
             });
         </script>

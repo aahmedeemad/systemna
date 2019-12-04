@@ -23,7 +23,7 @@
             <br><br>" ;
             for($i=0; $i<$DB->numRows(); $i++){
                 $x=$DB->getdata();
-                echo "<h2>" . $x[$i]->ID . "- " . $x[$i]->Question . "</h2>" . "<br>";
+                echo "<h2>" . ($i+1) . "- " . $x[$i]->Question . "</h2>" . "<br>";
                 echo "<h4>" . $x[$i]->Answer . "</h4>" . "<br>";
             }
             echo "<br><br>";
@@ -38,8 +38,8 @@
             if (isset($_POST['subject'])) {
                 $subject=$_POST['subject'];
                 $message=$_POST['message'];
-                $requester_name=1;
-                $requester_email=1;
+                $requester_name=$_SESSION['username'];
+                $requester_email=$_SESSION['email'];
                 $sql="INSERT INTO inquiries (subject,message,requester_name,requester_email) VALUES ('$subject','$message','$requester_name','$requester_email') ";
                 $DB->query($sql);
                 $DB->execute();

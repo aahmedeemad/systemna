@@ -25,7 +25,7 @@
 
         $sql="  SELECT *
         FROM requests INNER join requests_types
-        on Type_id=Type_id where emp_id='".$_SESSION['id']."'";
+        on requests.Type_id=requests_types.Type_id where emp_id='".$_SESSION['id']."'";
         try
         {
 
@@ -38,8 +38,8 @@
             {
                 $x=$DB->getdata();
                 $y++;
-                $id=$x[$i]->id;
-                $emp_id=$x[$i]->$_SESSION['id'];
+                $id=$x[$i]->Request_id;
+                $emp_id=$_SESSION['id'];
                 $priority=check($x[$i]->priority);
                 $salary=check($x[$i]->salary);
 

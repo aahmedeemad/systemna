@@ -17,6 +17,40 @@ $DB = new Database();
     </head>
 
     <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#noti_Counter')
+                    .text('999');
+                $('#notidata')
+                    .text('notifications go here')
+                    .css('height', '20vw');
+                $('#noti_Button').click(function () {
+                    // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+                    $('#notifications').fadeToggle('fast', 'linear', function () {
+                        if ($('#notifications').is(':visible')) {
+                            $('#noti_Button').css('background-color', '#DAA520');
+                        }
+                        else $('#noti_Button').css('background-color', '#2d3035');
+                    });
+                    $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
+                    return false;
+                });
+                // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+                $(document).click(function () {
+                    $('#notifications').hide();
+                    // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
+                    if ($('#noti_Counter').is(':hidden')) {
+                        // CHANGE BACKGROUND COLOR OF THE BUTTON.
+                        $('#noti_Button').css('background-color', '#2d3035');
+                    }
+                });
+                $('#notifications').click(function () {
+                    // DO NOTHING WHEN CONTAINER IS CLICKED.
+                    return false;
+                });
+            });
+        </script>
         <div class="container">
             <header class="header">
                 <div class="navbar-toggle">
@@ -39,6 +73,13 @@ $DB = new Database();
                     </div>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Notifications
+                            <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                            <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
+                                <div id="notidata"></div>
+                                <div id="markAll">Mark All as Read</div>
+                            </div>
+                        </span></a></li>
                         <li class="sidenav-button"><a href="../pages/AddQuestion.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Add Question</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>

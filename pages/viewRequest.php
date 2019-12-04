@@ -44,14 +44,28 @@
                 $salary=check($x[$i]->salary);
 
                 echo  "<tr>";
+                echo "<td>{$id}</td>";
                 echo "<td>{$y}</td>";
-                if($x[$i]->Status==1)
-                    echo "<td>Accepted</td>";
-                else if($x[$i]->Status==0)
-                    echo "<td>Rejected</td>";
-                else
+
+                if($x[$i]->Status==1){
+                    echo "<td>Accepted</td>";}
+                else if($x[$i]->Status==0){
+                    echo "<td>Rejected</td>";}
+                else{
                     echo "<td>Pending</td>";
-                if($x[$i]->Status==1)
+                  }
+                  if($x[$i]->Type_id==1){
+                      echo "<td>General HR Letter</td>";}
+                  else if($x[$i]->Type_id==2){
+                      echo "<td>Embassy HR Letter</td>";}
+                      else if($x[$i]->Type_id==3){
+                          echo "<td>HR Letter directed to specific organization</td>";}
+                  else{
+                      echo "<td>HR Letter to whom it may concern</td>";
+                    }
+
+
+                if($x[$i]->priority==1)
                         echo "<td>URGENT</td>";
                 else
                         echo "<td>NORMAL</td>";
@@ -61,11 +75,7 @@
                 else
                         echo "<td>WITHOUT SALARY</td>";
 
-                echo "
-                <td>{$id}</td>
-                <td>{$priority}</td>
-                <td>{$salary}</td>
-              ";
+
                 ?>
     </tr>
     <?php

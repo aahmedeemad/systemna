@@ -13,6 +13,7 @@
         <th>Priority</th>
         <th>Salary</th>
         <th>Delete</th>
+        <th>Edit</th>
 
     </tr>
     <?php
@@ -81,12 +82,16 @@
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
 
+                <td><a type='submit' onclick="return confirm('Delete this Request?')"
+                      href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Edit</a></td>
+
 
     </tr>
     <?php
                  }
-                else 
+                else
                  echo "<td></td>";
+                  echo "<td></td>";
 
             }
         }

@@ -1,6 +1,6 @@
-<?php 
+<?php
 $pageTitle = "SYSTEMNA | Requested Letters";
-include "../template/header.php"; 
+include "../template/header.php";
 ?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
     ?>
@@ -86,7 +86,7 @@ include "../template/header.php";
                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
 
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
-                      href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Edit</a></td>
+                      href="../operations/editrequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Edit</a></td>
 
 
     </tr>

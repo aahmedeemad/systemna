@@ -12,6 +12,7 @@
         <th>Applied for Letter</th>
         <th>Priority</th>
         <th>Salary</th>
+        <th>Delete</th>
 
     </tr>
     <?php
@@ -65,24 +66,28 @@
                     }
 
 
-                if($x[$i]->priority==1)
-                        echo "<td>URGENT</td>";
-                else
-                        echo "<td>NORMAL</td>";
+                if($x[$i]->priority==1){
+                        echo "<td>URGENT</td>";}
+                else{
+                        echo "<td>NORMAL</td>";}
 
-                if($x[$i]->priority==1)
-                        echo "<td>WITH Salary</td>";
-                else
-                        echo "<td>WITHOUT SALARY</td>";
+                if($x[$i]->priority==1){
+                        echo "<td>WITH Salary</td>";}
+                else{
+                        echo "<td>WITHOUT SALARY</td>";}
 
 
                 ?>
+                <td><a type='submit' onclick="return confirm('Delete this Request?')"
+                      href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
+
+
     </tr>
     <?php
             }
         }
         else {
-          echo"<tr><td colspan=6>No matches found </td></tr>";
+          echo"<tr><td colspan=7>No matches found </td></tr>";
         }
       }
       catch(Exception $e)

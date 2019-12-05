@@ -54,7 +54,7 @@ if($DB->numRows() > 0)
         <div class="user-position"><?php echo $info[0]->privilege; ?></div>
         <div class="title-info">Basic Info <span class="edit edit-basic-info"><i class="fas fa-pen"></i></span></div>
         <hr>
-        <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->n_id; ?></div>
+        <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->ssn; ?></div>
         <div id="birthdate"><i class="fas fa-birthday-cake fa-fw"></i> <?php echo $info[0]->bdate == NULL ? "--" : $info[0]->bdate; ?></div>
         <div id="location"><i class="fas fa-globe-europe fa-fw"></i> <?php echo $info[0]->location == NULL ? "--" : $info[0]->location; ?></div>
 

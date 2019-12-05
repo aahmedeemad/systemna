@@ -77,7 +77,8 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `ssn`
 (2, 'Zaky', 'Zaky', '123', 'zaky@gmail.com', '225585', 'Egypt', 1, 1, 'male', 'user'),
 (3, 'Fawler', 'Fawler', '123', 'FawlerMorgan@gmail.com', '444487', 'NewZeland', 0, 1, 'male', 'user'),
 (6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '00000000', 'NewAutsin', 0, 1, 'male', 'user'),
-(7, 'fady', 'fady', '123456', 'fady@hotmail.com', '12345678902332', '', 0, 1, '', 'user');
+(7, 'fady', 'fady', '123456', 'fady@hotmail.com', '12345678902332', '', 0, 1, '', 'user'),
+(8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '12345678912377', '', 0, 1, '', 'admin');
 
 -- --------------------------------------------------------
 
@@ -101,9 +102,7 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (1, 'What is SYSTEMNA ?', 'SYSTEMNA is our company\'s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
 (2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
 (3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
-(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad'),
-(11, 'mmm', 'mmmm', '1', '1'),
-(12, 'mmm', 'mmm', '1', '1');
+(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
 
@@ -118,6 +117,13 @@ CREATE TABLE `inquiries` (
   `requester_name` varchar(250) NOT NULL,
   `requester_email` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inquiries`
+--
+
+INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`) VALUES
+(1, 'testing subject', 'testing message', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -183,6 +189,32 @@ INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`
 (52, 1, 'Islam', '1234', NULL, 'company-info', 0),
 (53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `notidata` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
+(1, '0', '8', 'Welcome to SYSTEMNA'),
+(2, '0', '8', 'This is notification number 2 for user number 8'),
+(3, '0', '8', 'This is notification number 3 for user number 8'),
+(4, '0', '7', 'This is notification number 1 for user number 7'),
+(5, '0', '7', 'This is notification number 2 for user number 7'),
+(6, '0', '1', 'This is notification number 1 for user number 1'),
+(7, '0', '2', 'This is notification number 1 for user number 2');
+
 --
 -- Indexes for dumped tables
 --
@@ -237,6 +269,12 @@ ALTER TABLE `update_info`
   ADD KEY `UID` (`UID`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -250,7 +288,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
@@ -275,6 +313,12 @@ ALTER TABLE `requests_types`
 --
 ALTER TABLE `update_info`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

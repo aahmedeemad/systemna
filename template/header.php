@@ -33,7 +33,7 @@ $DB = new Database();
                         echo ($DB->numRows());
                         ?>');
                 $('#notidata')
-                    .text('<?php
+                    .html('<?php
                         $uid = $_SESSION['id'];
                         $sql = "
                         SELECT *
@@ -42,9 +42,9 @@ $DB = new Database();
                         ";
                         $DB->query($sql);
                         $DB->execute();
-                        for($i=0; $i<$DB->numRows(); $i++){
+                        for($i=$DB->numRows(); $i>0; --$i){
                             $x=$DB->getdata();
-                            echo "<hr>" . ($i+1) . "- " . $x[$i]->notidata ;
+                            echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata ;
                         }
                         ?>')
                     .css('height', '20vw');
@@ -96,6 +96,21 @@ $DB = new Database();
                         $DB->execute();
                         echo ($DB->numRows());
                         ?>');
+                    $('#notidata')
+                    .html('<?php
+                        $uid = $_SESSION['id'];
+                        $sql = "
+                        SELECT *
+                        FROM notifications
+                        WHERE userid = $uid AND status = 0
+                        ";
+                        $DB->query($sql);
+                        $DB->execute();
+                        for($i=$DB->numRows(); $i>0; --$i){
+                            $x=$DB->getdata();
+                            echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata ;
+                        }
+                        ?>')
                 });
             });
         </script>

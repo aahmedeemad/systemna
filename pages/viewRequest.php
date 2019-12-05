@@ -84,7 +84,10 @@
 
     </tr>
     <?php
-  }
+                 }
+                else 
+                 echo "<td></td>";
+
             }
         }
         else {

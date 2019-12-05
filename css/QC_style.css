@@ -9,7 +9,7 @@ input[type=submit]
 	font-weight: 700;
     font-size: 18px;
     cursor: pointer;
-    margin-left: 1040px;
+    margin-left: 900px;
 
 }
 input[type=submit]:hover
@@ -19,7 +19,7 @@ input[type=submit]:hover
 }
 textarea
 {
-    margin-left: 750px;
+    margin-left: 600px;
     border: 1px solid #888;
     box-shadow:10px 10px 10px -10px black;
 }
@@ -27,8 +27,12 @@ h2
 {
     text-align: center;
 }
+h1
+{
+    text-align:center;
+}
 @media only screen and (max-width: 768px) {
-    input[type=submit]
+    input
     {
         margin-left: auto;
     }
@@ -36,5 +40,12 @@ h2
     {
         margin-left: auto;
     }
-
+    h2
+    {
+        margin-left: auto;
+    }
+    h1
+    {
+        margin-left: auto;
+    }
 }

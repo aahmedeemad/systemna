@@ -6,7 +6,7 @@
     <div>
         <form id="newsearch">
             <input type="text" id="searched" class="stextinput" size="21" maxlength="120"><input type="submit"
-                id="submit" value="search" class="sbutton">
+                id="submit" value="search" class="sbutton" disabled="true" style="cursor: default;">
         </form>
     </div>
     <div>

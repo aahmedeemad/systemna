@@ -5,11 +5,13 @@
 <body>
     <div>
         <form id="newsearch">
-            <input type="text" id="searched" class="stextinput" size="21" maxlength="120"><input type="submit"
-                id="submit" value="search" class="sbutton" disabled="true" style="cursor: default;">
+            <input type="text" id="searched" class="stextinput" size="21" maxlength="120"><input type="button" id="submits" value="search" class="sbutton">
         </form>
     </div>
     <div>
+        <?php echo "<br>
+            <h1 style='color:#DAA520'>Frequently Asked Questions!</h1>
+            <br><br>" ; ?>
         <div class="faqdiv" id="faqdiv">
             <?php
             $sql = "
@@ -18,9 +20,6 @@
             ";
             $DB->query($sql);
             $DB->execute();
-            echo "<br>
-            <h1 style='color:#DAA520'>Frequently Asked Questions!</h1>
-            <br><br>" ;
             for($i=0; $i<$DB->numRows(); $i++){
                 $x=$DB->getdata();
                 echo "<h2>" . ($i+1) . "- " . $x[$i]->Question . "</h2>" . "<br>";

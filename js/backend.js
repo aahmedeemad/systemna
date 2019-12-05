@@ -444,16 +444,22 @@ $(document).ready(function() {
       success: function(data2) {}
     });
   });
-  $("#searched").keyup(function() {
+  $("#submits").on("click", function() {
+    if (($("#searched").val())=="" || ($("#searched").val())==" ") {
+      alert('error: Enter something to search for!');
+      return false;
+    };
     var page = $("#faqdiv");
-    var pageText = page
-      .text()
-      .replace("<span>", "")
-      .replace("</span>");
+    var pageText = page.html();
     var searchedText = $("#searched").val();
     var theRegEx = new RegExp("(" + searchedText + ")", "igm");
     var newHtml = pageText.replace(theRegEx, "<span>$1</span>");
     page.html(newHtml);
+  });
+  $("#searched").keyup(function() {
+    if (($("#searched").val())=="" || ($("#searched").val())==" ") {
+      location.reload();
+    };
   });
   $(document).on("click", "#EditFAQ", function(event) {
     var row = $(this).closest("tr");

@@ -162,6 +162,14 @@ $DB = new Database();
                     </div>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Notifications
+                            <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                            <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
+                                <div id="notidata"></div>
+                                <div id="markAll">Mark All as Read</div>
+                            </div>
+                        </span></a></li>
                         <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Letters</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/inquiries.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Inquiries</span></a></li><li class="sidenav-button"></li>

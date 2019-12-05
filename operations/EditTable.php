@@ -25,6 +25,9 @@ if(isset($_GET['accepted'])){
         $sql = "update employee set accepted=1 where id = '$ID';";
         $DB2->query($sql);
         $DB2->execute();
+        $sql = "insert into notifications(status,userid,notidata) values (0,'$ID','Welcome to SYSTEMNA');";
+        $DB2->query($sql);
+        $DB2->execute();
      }
      else if($accepted==1){
         $sql = "update employee set accepted=0 where id = '$ID';";

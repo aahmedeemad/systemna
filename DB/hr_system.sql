@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 02, 2019 at 08:35 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: localhost
+-- Generation Time: Dec 05, 2019 at 04:43 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,23 +30,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `add_info` (
   `emp_id` int(11) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
-  `passport_id` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT NULL,
-  `n_id_picture` tinyint(1) DEFAULT NULL
+  `location` varchar(255) DEFAULT NULL,
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `add_info`
 --
 
-INSERT INTO `add_info` (`emp_id`, `phone`, `bdate`, `salary`, `passport_id`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
-(1, '01112511830', '2019-11-04', 45454, '65545454', 1, NULL, NULL),
-(2, '8889898', '2019-11-11', 215487, '0112511830', 0, NULL, NULL),
-(6, '0015154', NULL, 9999999, NULL, 0, NULL, NULL);
+INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
+(1, '2019-11-04', 45454, '', 1, NULL, NULL),
+(2, '2019-11-11', 215487, '', 1, NULL, NULL),
+(6, NULL, 9999999, '', 0, NULL, NULL),
+(24, NULL, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -60,11 +60,10 @@ CREATE TABLE `employee` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
   `ssn` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
   `accepted` tinyint(1) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `gender` varchar(255) NOT NULL,
   `privilege` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,13 +71,14 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `ssn`, `location`, `accepted`, `active`, `gender`, `privilege`) VALUES
-(1, 'Islam', 'Islam', '123', 'islam@gmail.com', '225999999', 'Cairo,egypt', 1, 1, 'male', 'user'),
-(2, 'Zaky', 'Zaky', '123', 'zaky@gmail.com', '225585', 'Egypt', 1, 1, 'male', 'user'),
-(3, 'Fawler', 'Fawler', '123', 'FawlerMorgan@gmail.com', '444487', 'NewZeland', 0, 1, 'male', 'user'),
-(6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '00000000', 'NewAutsin', 0, 1, 'male', 'user'),
-(7, 'fady', 'fady', '123456', 'fady@hotmail.com', '12345678902332', '', 0, 1, '', 'user'),
-(8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '12345678912377', '', 0, 1, '', 'admin');
+INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `accepted`, `active`, `privilege`) VALUES
+(1, 'Islam', 'Islam', '123', 'islam@gmail.com', '', '225999999', 1, 1, 'admin'),
+(2, 'Zaky', 'Zaky', '123', 'zaky@gmail.com', '', '225585', 1, 1, 'user'),
+(3, 'Fawler', 'Fawler', '123', 'FawlerMorgan@gmail.com', '', '444487', 1, 1, 'user'),
+(6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
+(7, 'fady', 'fady', '123456', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
+(8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '', '12345678912377', 0, 1, 'admin'),
+(24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user');
 
 -- --------------------------------------------------------
 
@@ -124,6 +124,35 @@ CREATE TABLE `inquiries` (
 
 INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`) VALUES
 (1, 'testing subject', 'testing message', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `notidata` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
+(1, 0, 8, 'Welcome to SYSTEMNA'),
+(2, 0, 8, 'This is notification number 2 for user number 8'),
+(3, 0, 8, 'This is notification number 3 for user number 8'),
+(4, 1, 7, 'This is notification number 1 for user number 7'),
+(5, 1, 7, 'This is notification number 2 for user number 7'),
+(6, 1, 1, 'This is notification number 1 for user number 1'),
+(7, 1, 2, 'This is notification number 1 for user number 2'),
+(8, 1, 2, 'Welcome to SYSTEMNA'),
+(9, 1, 1, 'Welcome to SYSTEMNA'),
+(10, 0, 3, 'Welcome to SYSTEMNA');
 
 -- --------------------------------------------------------
 
@@ -189,32 +218,6 @@ INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`
 (52, 1, 'Islam', '1234', NULL, 'company-info', 0),
 (53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
-CREATE TABLE `notifications` (
-  `ID` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `notidata` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
-(1, '0', '8', 'Welcome to SYSTEMNA'),
-(2, '0', '8', 'This is notification number 2 for user number 8'),
-(3, '0', '8', 'This is notification number 3 for user number 8'),
-(4, '0', '7', 'This is notification number 1 for user number 7'),
-(5, '0', '7', 'This is notification number 2 for user number 7'),
-(6, '0', '1', 'This is notification number 1 for user number 1'),
-(7, '0', '2', 'This is notification number 1 for user number 2');
-
 --
 -- Indexes for dumped tables
 --
@@ -223,8 +226,7 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
 -- Indexes for table `add_info`
 --
 ALTER TABLE `add_info`
-  ADD PRIMARY KEY (`emp_id`),
-  ADD UNIQUE KEY `phone` (`phone`);
+  ADD PRIMARY KEY (`emp_id`);
 
 --
 -- Indexes for table `employee`
@@ -248,6 +250,12 @@ ALTER TABLE `inquiries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -269,12 +277,6 @@ ALTER TABLE `update_info`
   ADD KEY `UID` (`UID`);
 
 --
--- Indexes for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -282,19 +284,25 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -313,12 +321,6 @@ ALTER TABLE `requests_types`
 --
 ALTER TABLE `update_info`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT for table `notifications`
---
-ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

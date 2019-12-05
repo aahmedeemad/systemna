@@ -22,10 +22,8 @@ include "../template/header.php";
         <th>Email</th>
         <th>Location</th>
         <th>SSN</th>
-        <th>Passport_ID</th>
         <th>Birthday</th>
         <th>Phone</th>
-        <th>Gender</th>
         <th>Salary</th>
         <th>Delete</th>
     </tr>
@@ -60,8 +58,6 @@ include "../template/header.php";
                 $ssn=check($x[$i]->ssn);
                 $bdate=check($x[$i]->bdate);
                 $salary=check($x[$i]->salary);
-                $passport_id=check($x[$i]->passport_id);
-                $gender=check($x[$i]->gender);
                 $fullname=check($x[$i]->fullname);
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
@@ -85,10 +81,8 @@ include "../template/header.php";
                 <td>{$email}</td>
                 <td>{$location}</td>
                 <td>{$ssn}</td>
-                <td>{$passport_id}</td>
                 <td>{$bdate}</td>
                 <td>{$phone}</td>
-                <td>{$gender}</td>
                 <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
                 ?>
     <td><a type='submit' onclick="return confirm('Delete this account?')"

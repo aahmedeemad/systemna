@@ -333,6 +333,37 @@ $(document).ready(function() {
       }
     });
   }
+  $("#QCtblsearch").keyup(function() {
+    search_table($(this).val());
+  });
+  function search_table(value) {
+    var selected = $("#choice")
+      .children("option:selected")
+      .val();
+    var selection;
+    if (selected == "empname") selection = 2;
+    if (selected == "requestname") selection = 3;
+    if (selected == "empid") selection = 4;
+    $("#Display tr").each(function() {
+      var found = "false";
+      var x = $(this).find("td:eq(" + selection + ")");
+      if (
+        x
+          .text()
+          .toLowerCase()
+          .indexOf(value.toLowerCase()) >= 0
+      ) {
+        found = "true";
+      }
+
+      if (found == "true") {
+        $(this).show();
+      } else {
+        $(this).hide();
+        $("#must").show();
+      }
+    });
+  }
   $("#btn1").click(function() {
     function checkAvai() {
       jQuery.ajax({

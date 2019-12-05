@@ -345,7 +345,7 @@ $(document).ready(function() {
     var a = document.getElementById("question").value;
     var b = document.getElementById("answer").value;
     var c = document.getElementById("requested_by").value;
-    if (a != "" && b != ""&& c != "") {
+    if (a != "" && b != "") {
       alert("Data Saved Successfully");
     }
   });

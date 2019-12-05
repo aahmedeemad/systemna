@@ -8,5 +8,5 @@ $sql = "Delete FROM requests WHERE 	Request_id = '$d_id' AND Status=2 " ;
 $DB2->query($sql);
 $DB2->execute();
 
-header("Location: ../viewRequest.php");
+header("Location: ../pages/viewRequest.php");
 ?>

@@ -76,7 +76,7 @@
                 else{
                         echo "<td>WITHOUT SALARY</td>";}
 
-
+                if($x[$i]->Status==2){
                 ?>
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
@@ -84,6 +84,7 @@
 
     </tr>
     <?php
+  }
             }
         }
         else {

@@ -26,7 +26,7 @@ $DB = new Database();
                         $sql = "
                         SELECT *
                         FROM notifications
-                        WHERE userid = $uid AND status = 0
+                        WHERE  userid = $uid AND status = 0
                         ";
                         $DB->query($sql);
                         $DB->execute();

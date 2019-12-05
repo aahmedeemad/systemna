@@ -77,7 +77,7 @@ if(isset($_POST['ssn'])){
     $ssn=$_POST['ssn'];
     if(!filter_var($ssn, FILTER_VALIDATE_INT) === false && strlen((string)$ssn)==14){
         try{
-            $sql="SELECT * FROM employee where n_id= '".$ssn."'  ";
+            $sql="SELECT * FROM employee where ssn= '".$ssn."'  ";
             $DB->query($sql);
             $DB->execute();
             if($DB->numRows()>0)

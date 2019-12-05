@@ -9,11 +9,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $username=$_POST['username'];
 
     try{
-        $sql="INSERT INTO employee(username,fullname,n_id,password,email,accepted,active,privilege) VALUES('".$username."' ,  '".$name."' ,  '".$_POST["ssn"]."' , '".$_POST["password"]."' , '".$email."' ,'0','1','user' )  ";
+        $sql="INSERT INTO employee(username,fullname,ssn,password,email,accepted,active,privilege) VALUES('".$username."' ,  '".$name."' ,  '".$_POST["ssn"]."' , '".$_POST["password"]."' , '".$email."' ,'0','1','user' )  ";
         $DB->query($sql);
         $DB->execute();
-
-        $sql="INSERT INTO add_info VALUES(".$DB->lastInsertedId()." ,  '".$_POST['phone']."' ,  NULL , '".$_POST["ssn"]."' , NULL ,NULL,0)";            
+        $lid = $DB->lastInsertedId();
+        $sql="INSERT INTO add_info(emp_id,phone,bdate,salary,passport_id,profile_picture,passport_picture,n_id_picture)
+         VALUES('$lid' ,  '".$_POST['phone']."' ,  NULL , NULL ,NULL,0,0,0)";            
 
         $DB->query($sql);
         $DB->execute();

@@ -66,20 +66,22 @@
                     }
 
 
-                if($x[$i]->priority==1)
-                        echo "<td>URGENT</td>";
-                else
-                        echo "<td>NORMAL</td>";
+                if($x[$i]->priority==1){
+                        echo "<td>URGENT</td>";}
+                else{
+                        echo "<td>NORMAL</td>";}
 
-                if($x[$i]->priority==1)
-                        echo "<td>WITH Salary</td>";
-                else
-                        echo "<td>WITHOUT SALARY</td>";
+                if($x[$i]->priority==1){
+                        echo "<td>WITH Salary</td>";}
+                else{
+                        echo "<td>WITHOUT SALARY</td>";}
 
 
                 ?>
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
-                        href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?>" class='EditBtn'>Delete</a></td>
+                      href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
+
+
     </tr>
     <?php
             }

@@ -1,4 +1,7 @@
-<?php include "../template/header.php"; ?>
+<?php
+$pageTitle = "SYSTEMNA | All Users";
+include "../template/header.php"; 
+?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
  if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 <br>
@@ -19,10 +22,8 @@
         <th>Email</th>
         <th>Location</th>
         <th>SSN</th>
-        <th>Passport_ID</th>
         <th>Birthday</th>
         <th>Phone</th>
-        <th>Gender</th>
         <th>Salary</th>
         <th>Delete</th>
     </tr>
@@ -57,8 +58,6 @@
                 $ssn=check($x[$i]->ssn);
                 $bdate=check($x[$i]->bdate);
                 $salary=check($x[$i]->salary);
-                $passport_id=check($x[$i]->passport_id);
-                $gender=check($x[$i]->gender);
                 $fullname=check($x[$i]->fullname);
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
@@ -82,10 +81,8 @@
                 <td>{$email}</td>
                 <td>{$location}</td>
                 <td>{$ssn}</td>
-                <td>{$passport_id}</td>
                 <td>{$bdate}</td>
                 <td>{$phone}</td>
-                <td>{$gender}</td>
                 <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
                 ?>
     <td><a type='submit' onclick="return confirm('Delete this account?')"

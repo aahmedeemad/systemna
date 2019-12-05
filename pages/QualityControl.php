@@ -1,4 +1,7 @@
-<?php include "../template/header.php"; ?>
+<?php 
+$pageTitle = "SYSTEMNA | Users";
+include "../template/header.php"; 
+?>
 <link rel="stylesheet" href="../css/QC_style.css">
 <h1 style="text-align:center">Quality Control</h1>
 <input type="text" id='tblsearch' class='tblsearch' placeholder='Search' style="left:680px;">

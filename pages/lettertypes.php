@@ -1,4 +1,7 @@
-<?php include "../template/header.php"; ?>
+<?php 
+$pageTitle = "SYSTEMNA | Letters";
+include "../template/header.php"; 
+?>
 
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
   ?>

@@ -576,7 +576,7 @@ box-sizing: content-box;
 
 /* Abdelhamid's part */
 
-#question {
+#question ,#requested_by {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

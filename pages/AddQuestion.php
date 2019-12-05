@@ -26,6 +26,8 @@ if (isset($_POST['Question'])) {
         <h4>Answer : </h4>
         <textarea id="answer" name="Answer" placeholder="Question's Answer.." required></textarea>
         <br>
+        <h4>Requested by : </h4>
+        <input type="text" id="requested_by" name="requested_by" placeholder="Requested by.." required><br>
         <br>
         <br>
         <input type="submit" id = "btn1" value="Add Question">

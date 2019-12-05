@@ -85,8 +85,8 @@ include "../template/header.php";
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
 
-                <td><a type='submit' onclick="return confirm('Delete this Request?')"
-                      href="../operations/editrequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Edit</a></td>
+                <td><a type='submit' onclick="return confirm('Edit this Request?')"
+                      href="../operations/editrequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
 
 
     </tr>

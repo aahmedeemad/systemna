@@ -1,5 +1,6 @@
 <?php
 include "../DB/Database.php";
+if(isset($_GET['id'])){
 $DB2 = new Database();
 $d_id = $_GET['id'];
 $Status = $_GET['Status'];
@@ -9,4 +10,5 @@ $DB2->query($sql);
 $DB2->execute();
 
 header("Location: ../pages/viewRequest.php");
+}
 ?>

@@ -82,7 +82,7 @@
             }
         }
         else {
-          echo "You have no requests now !";
+          echo "<td>You have no requests for now !</td>";
         }
       }
       catch(Exception $e)

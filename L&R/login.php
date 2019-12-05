@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     try{
 
         $username = filter_var($_POST["Username"], FILTER_SANITIZE_STRING);
-        $sql="SELECT * FROM employee where username= '".$username."' and password = '".$_POST["Password"]."' ";
+        $sql="SELECT * FROM employee where username= '".$username."' and password = '".$_POST["Password"]."' and accepted = 1 ";
         $DB->query($sql);
         $DB->execute();
     }  catch (Exception $e){

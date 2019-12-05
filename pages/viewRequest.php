@@ -82,7 +82,7 @@
             }
         }
         else {
-          echo "<td>You have no requests for now !</td>";
+          echo"<tr><td colspan=6>No matches found </td></tr>";
         }
       }
       catch(Exception $e)

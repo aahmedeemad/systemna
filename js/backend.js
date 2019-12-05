@@ -455,4 +455,19 @@ $(document).ready(function() {
     var newHtml = pageText.replace(theRegEx, "<span>$1</span>");
     page.html(newHtml);
   });
+  $(document).on("click", "#EditFAQ", function(event) {
+    var row = $(this).closest("tr");
+    var rowIndex = row.index();
+    var Q = $("#Display")
+      .find("tr:eq(" + rowIndex + ")")
+      .find("td:eq(3)");
+    Q.closest("div");
+    Q.attr("contenteditable", "true");
+    var A = $("#Display")
+      .find("tr:eq(" + rowIndex + ")")
+      .find("td:eq(4)");
+    A.closest("div");
+    A.attr("contenteditable", "true");
+    A.addClass("input");
+  });
 });

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$SESSION['username']="Mark Refaat Ramzy";
+global $pageTitle;
 include('../DB/Database.php');
 $DB = new Database();
 ?>
@@ -13,7 +13,7 @@ $DB = new Database();
         <link rel="stylesheet" href="../css/all.min.css">
         <link rel="stylesheet" href="../css/popup.css">
         <link rel="icon" type="image/png" href="../template/logo.png">
-        <title>Systemna</title>
+        <title><?php echo $pageTitle;?></title>
     </head>
 
     <body>

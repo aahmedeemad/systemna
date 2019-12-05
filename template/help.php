@@ -65,16 +65,18 @@
     <body>
         <div class="popup" onmouseenter="fadingIn()" onmouseleave="fadingOut()" onclick="window.location.replace('faq.php')">
             <p style="margin: 0.5;">?</p>
-            <p class="popuptxt" id="myPopup" style="margin: 0.5;">Help & FAQ ?</p>
+            <p class="popuptxt hide" id="myPopup" style="margin: 0.5;">Help & FAQ ?</p>
         </div>
         <script>
             function fadingIn() {
                 var popup = document.getElementById("myPopup");
                 popup.classList.toggle("show");
+                popup.classList.toggle("hide");
             }
             function fadingOut() {
                 var popup = document.getElementById("myPopup");
                 popup.classList.toggle("hide");
+                popup.classList.toggle("show");
             }
         </script>
     </body>

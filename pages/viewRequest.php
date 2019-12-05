@@ -87,7 +87,10 @@ include "../template/header.php";
 
     </tr>
     <?php
-  }
+                 }
+                else 
+                 echo "<td></td>";
+
             }
         }
         else {

@@ -1,6 +1,6 @@
-<?php 
+<?php
 $pageTitle = "SYSTEMNA | Add Question";
-include "../template/header.php"; 
+include "../template/header.php";
 ?>
 
     <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
@@ -11,7 +11,7 @@ if (isset($_POST['Question'])) {
     $Question=$_POST['Question'];
     $Answer=$_POST['Answer'];
     $Added_by=$_SESSION['username'];
-    $Requested_by=null;
+    $Requested_by=$_POST['requested_by'];
     $sql="INSERT INTO faq (Question,Answer,Added_by,Requested_by) VALUES ('$Question','$Answer','$Added_by','$Requested_by') ";
     $DB->query($sql);
     $DB->execute();

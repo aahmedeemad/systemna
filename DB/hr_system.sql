@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 05, 2019 at 04:43 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 08, 2019 at 06:13 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -107,56 +107,6 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inquiries`
---
-
-CREATE TABLE `inquiries` (
-  `id` int(11) NOT NULL,
-  `subject` text NOT NULL,
-  `message` text NOT NULL,
-  `requester_name` varchar(250) NOT NULL,
-  `requester_email` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `inquiries`
---
-
-INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`) VALUES
-(1, 'testing subject', 'testing message', '1', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
-CREATE TABLE `notifications` (
-  `ID` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `notidata` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
-(1, 0, 8, 'Welcome to SYSTEMNA'),
-(2, 0, 8, 'This is notification number 2 for user number 8'),
-(3, 0, 8, 'This is notification number 3 for user number 8'),
-(4, 1, 7, 'This is notification number 1 for user number 7'),
-(5, 1, 7, 'This is notification number 2 for user number 7'),
-(6, 1, 1, 'This is notification number 1 for user number 1'),
-(7, 1, 2, 'This is notification number 1 for user number 2'),
-(8, 1, 2, 'Welcome to SYSTEMNA'),
-(9, 1, 1, 'Welcome to SYSTEMNA'),
-(10, 0, 3, 'Welcome to SYSTEMNA');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `requests`
 --
 
@@ -177,46 +127,19 @@ CREATE TABLE `requests` (
 
 CREATE TABLE `requests_types` (
   `Type_id` int(50) NOT NULL,
-  `Name` text NOT NULL
+  `Name` text NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requests_types`
 --
 
-INSERT INTO `requests_types` (`Type_id`, `Name`) VALUES
-(1, 'General HR Letter'),
-(2, 'Embassy HR Letter'),
-(3, 'HR Letter directed to specific organization'),
-(4, 'HR Letter to whom it may concern');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `update_info`
---
-
-CREATE TABLE `update_info` (
-  `ID` int(11) NOT NULL,
-  `UID` int(11) NOT NULL,
-  `val1` varchar(255) DEFAULT NULL,
-  `val2` varchar(255) DEFAULT NULL,
-  `val3` date DEFAULT NULL,
-  `type` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `update_info`
---
-
-INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`) VALUES
-(48, 1, 'islam@gmail.com', '0111251183000', NULL, 'contact-info', 0),
-(49, 1, 'Islam', NULL, NULL, 'fullname', 0),
-(50, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0),
-(51, 1, 'islam@gmail.com', '01112511830', NULL, 'contact-info', 0),
-(52, 1, 'Islam', '1234', NULL, 'company-info', 0),
-(53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0);
+INSERT INTO `requests_types` (`Type_id`, `Name`, `description`) VALUES
+(1, 'General HR Letter', 'This is a letter that could be submitted for any required paper'),
+(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling'),
+(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions '),
+(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter');
 
 --
 -- Indexes for dumped tables
@@ -244,18 +167,6 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `inquiries`
---
-ALTER TABLE `inquiries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -268,13 +179,6 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
-
---
--- Indexes for table `update_info`
---
-ALTER TABLE `update_info`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `UID` (`UID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -293,18 +197,6 @@ ALTER TABLE `faq`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `inquiries`
---
-ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `notifications`
---
-ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
@@ -315,12 +207,6 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `update_info`
---
-ALTER TABLE `update_info`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables

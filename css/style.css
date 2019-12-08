@@ -696,55 +696,39 @@ box-sizing: content-box;
 }
 /* THE POPULAR RED NOTIFICATIONS COUNTER. */
 #noti_Counter {
-  display: block;
-  position: absolute;
+  display: inline-block;
   background: #E1141E;
   color: #FFF;
   font-size: 0.8em;
   font-weight: normal;
   padding: 0.1em 0.3em;
-  margin: -3.5vh 0 0 9.5vw;
   border-radius: 0.2em;
   z-index: 1;
-  }
-        /* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
-        #notifications {
-            display: none;
-            width: 40vw;
-            position: absolute;
-            top: 10vh;
-            left: 18vw;
-            background: #FFF;
-            border: solid 0.1em #DAA520;
-            border-radius: 0.2em;
-            z-index: 1;
-            color: black !important;
-        }
-        /* AN ARROW LIKE STRUCTURE JUST OVER THE NOTIFICATIONS WINDOW */
-        #notifications:before {         
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            color: transparent;
-            border: 10px solid #CCC;
-            border-color: transparent transparent #FFF;
-            margin-top: -3.1vh;
-            margin-left: 1vw;
-        }
-        #notidata {
-            padding: 0.6em;
-        }
-        #markAll {
-            background: #F6F7F8;
-            font-size: 0.7em !important;
-            font-weight: bold;
-            border-top: solid 0.1em #DAA520;
-            text-align: center !important;
-            color: black !important;
-            padding: 0.7em !important;
-        }
-        #markAll:hover {
-            color: #DAA520 !important;
-            text-decoration: underline !important;
-        }
+}
+/* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
+#notifications {
+  display: none;
+  width: 40vw;
+  position: absolute;
+  background: #FFF;
+  border: solid 0.1em #DAA520;
+  border-radius: 0.2em;
+  z-index: 1;
+  color: black !important;
+}
+#notidata {
+  padding: 0.6em;
+}
+#markAll {
+  background: #F6F7F8;
+  font-size: 0.7em !important;
+  font-weight: bold;
+  border-top: solid 0.1em #DAA520;
+  text-align: center !important;
+  color: black !important;
+  padding: 0.7em !important;
+}
+#markAll:hover {
+  color: #DAA520 !important;
+  text-decoration: underline !important;
+}

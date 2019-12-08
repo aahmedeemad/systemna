@@ -19,100 +19,94 @@ $DB = new Database();
     <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>
-          $(document).ready(function () {
-            $('#usrs_Counter')
-            .text('<?php
-              $sql = "
-              SELECT *
-              FROM employee
-              WHERE accepted = 0
-              ";
-              $DB->query($sql);
-              $DB->execute();
-              echo ($DB->numRows());
-              ?>');
-            $('#noti_Counter')
-            .text('<?php
-              $uid = $_SESSION['id'];
-              $sql = "
-              SELECT *
-              FROM notifications
-              WHERE  userid = $uid AND status = 0
-              ";
-              $DB->query($sql);
-              $DB->execute();
-              echo ($DB->numRows());
-              ?>');
-            $('#notidata')
-            .html('<?php
-              $uid = $_SESSION['id'];
-              $sql = "
-              SELECT *
-              FROM notifications
-              WHERE userid = $uid AND status = 0
-              ";
-              $DB->query($sql);
-              $DB->execute();
-              for($i=$DB->numRows(); $i>0; --$i){
-                $x=$DB->getdata();
-                echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata ;
-              }
-              ?>')
-            .css('height', '20vw');
-            $('#noti_Button').click(function () {
-              // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
-              $('#notifications').fadeToggle('fast', 'linear');
-              return false;
+
+            $(document).ready(function () {
+                $('#usrs_Counter').text(
+                    '<?php
+                    $sql = "SELECT * FROM employee WHERE accepted = 0 ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
+
+                $('#noti_Counter').text(
+                    '<?php
+                    $uid = $_SESSION['id'];
+                    $sql = " SELECT * FROM notifications WHERE  userid = $uid AND status = 0 ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
+
+                $('#notidata').html(
+                    '<?php
+                    $uid = $_SESSION['id'];
+                    $sql = "SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    for($i=$DB->numRows(); $i>0; --$i){
+                        $x=$DB->getdata();
+                        echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata ;
+                    }
+                    ?>'
+                ).css('height', '20vw');
+
+                $('#noti_Button').click(function () {
+                    // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+                    $('#notifications').fadeToggle('fast', 'linear');
+                    return false;
+                });
+
+                //HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+                $(document).click(function () {
+                    $('#notifications').hide();
+                });
+
+                $('#notifications').click(function () {
+                    // DO NOTHING WHEN CONTAINER IS CLICKED.
+                    return false;
+                });
+
+
+                // MARK ALL AS READ AND RESET COUNTER
+                $('#markAll').click(function () {
+                    <?php
+                    $uid = $_SESSION['id'];
+                    $sql = " UPDATE notifications SET status = 1 WHERE userid = $uid AND status = 0 ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    ?>;
+                });
+
+                $('#noti_Counter').text(
+                    '<?php
+                    $uid = $_SESSION['id'];
+                    $sql = " SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
+
+                $('#notidata').html(
+                    '<?php
+                    $uid = $_SESSION['id'];
+                    $sql = "SELECT * FROM notifications WHERE userid = $uid AND status = 0";
+                    $DB->query($sql);
+                    $DB->execute();
+                    for($i=$DB->numRows(); $i>0; --$i){
+                        $x=$DB->getdata();
+                        echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata;
+                    }
+                    ?>'
+                );
             });
-            // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-            $(document).click(function () {
-              $('#notifications').hide();
-            });
-            $('#notifications').click(function () {
-              // DO NOTHING WHEN CONTAINER IS CLICKED.
-              return false;
-            });
-            // MARK ALL AS READ AND RESET COUNTER
-            $('#markAll').click(function () {
-              <?php
-              $uid = $_SESSION['id'];
-              $sql = "
-              UPDATE notifications
-              SET status = 1
-              WHERE userid = $uid AND status = 0
-              ";
-              $DB->query($sql);
-              $DB->execute();
-              ?>;
-              $('#noti_Counter')
-              .text('<?php
-                $uid = $_SESSION['id'];
-                $sql = "
-                SELECT *
-                FROM notifications
-                WHERE userid = $uid AND status = 0
-                ";
-                $DB->query($sql);
-                $DB->execute();
-                echo ($DB->numRows());
-                ?>');
-              $('#notidata')
-              .html('<?php
-                $uid = $_SESSION['id'];
-                $sql = "
-                SELECT *
-                FROM notifications
-                WHERE userid = $uid AND status = 0
-                ";
-                $DB->query($sql);
-                $DB->execute();
-                for($i=$DB->numRows(); $i>0; --$i){
-                  $x=$DB->getdata();
-                  echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata;
-                }
-                ?>');
-            });
-          });
+
         </script>
         <div class="container">
             <header class="header">
@@ -162,14 +156,14 @@ $DB = new Database();
                                 <div id="notidata"></div>
                                 <div id="markAll">Mark All as Read</div>
                             </div>
-                        </span></a></li>
+                            </span></a></li>
                         <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
 
                     </ul>
                 </div>
-                
+
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
 
                 <div class="sidenav">
@@ -200,6 +194,6 @@ $DB = new Database();
 
                     </ul>
                 </div>
-                
+
                 <?php } else header("Location:../index.php") ?>
                 <div class="content">

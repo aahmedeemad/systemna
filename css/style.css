@@ -259,6 +259,10 @@ tr:nth-child(even) {
   left: 31.7%;
   height: 5.5%;
 }
+.QCtblselect 
+{
+  
+}
 .tblsearch:focus ,.QCtblselect:focus {
   border-color: #3971ed !important;
 }

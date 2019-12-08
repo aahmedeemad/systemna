@@ -3,9 +3,10 @@ $pageTitle = "SYSTEMNA | Quality Control";
 include "../template/header.php"; 
 ?>
 <link rel="stylesheet" href="../css/QC_style.css">
+<link rel="stylesheet" href="../css/style.css">
 <h1>Quality Control</h1>
 <input type="search" id='QCtblsearch' class='QCtblsearch' placeholder='Search' style="left:500px;padding:25px;">
-<select id='choice' class='tblselect' style="left:510px;padding:15px">
+<select id='choice' class='QCtblselect' style="left:510px;padding:15px">
     <option value="empname">Employee Name</option>
     <option value="requestname">Request Name</option>
     <option value="empid">Employee ID</option>

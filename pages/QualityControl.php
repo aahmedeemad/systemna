@@ -60,9 +60,9 @@ include "../template/header.php";
 
                 if($salary == 1)
                 {
-                    $Boolsalray ="No Salary";
+                    $Boolsalray ="With Salary";
                 }
-                else $Boolsalray ="With Salary";
+                else $Boolsalray ="No Salary";
                 
                 if($priority == 1)
                 {

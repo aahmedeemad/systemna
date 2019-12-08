@@ -142,7 +142,7 @@ $DB = new Database();
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
                                 <div id="markAll">Mark All as Read</div>
-                            </div>
+                            </span>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/AddQuestion.php"><i class='fas fa-question fa-sm icon-button'></i><span class="button-text"> Add Question</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> Waiting Users</span></a></li><li class="sidenav-button"></li>

@@ -1,29 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 08, 2019 at 06:45 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: localhost
+-- Generation Time: Dec 08, 2019 at 07:24 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `hr_system`
 --
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `add_info`
 --
@@ -49,7 +42,6 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 (24, NULL, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `employee`
 --
@@ -81,7 +73,6 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `faq`
 --
@@ -105,7 +96,54 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `inquiries`
+--
 
+CREATE TABLE `inquiries` (
+  `id` int(11) NOT NULL,
+  `subject` text NOT NULL,
+  `message` text NOT NULL,
+  `requester_name` varchar(250) NOT NULL,
+  `requester_email` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inquiries`
+--
+
+INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`) VALUES
+(1, 'testing subject', 'testing message', '1', '1');
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `ID` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `notidata` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
+(1, 0, 8, 'Welcome to SYSTEMNA'),
+(2, 0, 8, 'This is notification number 2 for user number 8'),
+(3, 0, 8, 'This is notification number 3 for user number 8'),
+(4, 1, 7, 'This is notification number 1 for user number 7'),
+(5, 1, 7, 'This is notification number 2 for user number 7'),
+(6, 1, 1, 'This is notification number 1 for user number 1'),
+(7, 1, 2, 'This is notification number 1 for user number 2'),
+(8, 1, 2, 'Welcome to SYSTEMNA'),
+(9, 1, 1, 'Welcome to SYSTEMNA'),
+(10, 0, 3, 'Welcome to SYSTEMNA');
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `requests`
 --
@@ -120,7 +158,6 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `requests_types`
 --
@@ -140,6 +177,33 @@ INSERT INTO `requests_types` (`Type_id`, `Name`, `description`) VALUES
 (2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling'),
 (3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions '),
 (4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter');
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `update_info`
+--
+
+CREATE TABLE `update_info` (
+  `ID` int(11) NOT NULL,
+  `UID` int(11) NOT NULL,
+  `val1` varchar(255) DEFAULT NULL,
+  `val2` varchar(255) DEFAULT NULL,
+  `val3` date DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `update_info`
+--
+
+INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`) VALUES
+(48, 1, 'islam@gmail.com', '0111251183000', NULL, 'contact-info', 0),
+(49, 1, 'Islam', NULL, NULL, 'fullname', 0),
+(50, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0),
+(51, 1, 'islam@gmail.com', '01112511830', NULL, 'contact-info', 0),
+(52, 1, 'Islam', '1234', NULL, 'company-info', 0),
+(53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0);
 
 --
 -- Indexes for dumped tables
@@ -167,6 +231,18 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `inquiries`
+--
+ALTER TABLE `inquiries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -179,6 +255,13 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
+
+--
+-- Indexes for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UID` (`UID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -197,6 +280,18 @@ ALTER TABLE `faq`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `inquiries`
+--
+ALTER TABLE `inquiries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
@@ -207,6 +302,12 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `requests_types`
   MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `update_info`
+--
+ALTER TABLE `update_info`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables
@@ -224,8 +325,5 @@ ALTER TABLE `add_info`
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
   ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`Type_id`) REFERENCES `requests_types` (`Type_id`);
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+COMMIT;

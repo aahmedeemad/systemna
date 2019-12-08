@@ -332,9 +332,9 @@ $(document).ready(function() {
     });
   }
   $("#QCtblsearch").keyup(function() {
-    search_table($(this).val());
+    search_QCtable($(this).val());
   });
-  function search_table(value) {
+  function search_QCtable(value) {
     var selected = $("#choice")
       .children("option:selected")
       .val();

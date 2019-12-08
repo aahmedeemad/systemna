@@ -136,6 +136,7 @@ $DB = new Database();
                     </div>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Notifications
                             <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
@@ -144,10 +145,8 @@ $DB = new Database();
                             </div>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/AddQuestion.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Add Question</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Waiting Users</span></a></li><li class="sidenav-button"></li>
-
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
@@ -162,8 +161,8 @@ $DB = new Database();
                         </div>
                     </div>
                     <ul>
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container">
                             <a id="noti_Button"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Notifications
                                 <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
@@ -174,10 +173,9 @@ $DB = new Database();
                                 </span>
                             </a>
                         </li>
-                        <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Letters</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/inquiries.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Inquiries</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-users fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
 
                     </ul>
                 </div>

@@ -114,8 +114,5 @@
                 $('label').toggleClass('Light')
             })
         })
-
-
     </script>
 </html>
-

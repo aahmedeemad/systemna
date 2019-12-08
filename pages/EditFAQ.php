@@ -1,10 +1,9 @@
 <?php
+$pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 if(!isset($_SESSION['username'])){header('Location:../index.php');}
- if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
- ?>
-<?php
- ?>
+if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
+?>
 <h3> Edit Questions </h3>
 <hr>
 <br>
@@ -18,7 +17,6 @@ if(isset($_GET['id']))
         $DB->query($sql);
         $DB->execute();
         header('Location:viewFAQ.php');
-        
      }
     try
         {

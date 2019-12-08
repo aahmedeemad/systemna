@@ -27,10 +27,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $_SESSION['password']=$x[0]->password;
         $_SESSION['username']=$x[0]->username;
         $_SESSION['email']=$x[0]->email;
-        $_SESSION['ssn']=$x[0]->n_id;
+        $_SESSION['ssn']=$x[0]->ssn;
         $_SESSION['status']=$x[0]->accepted;
         $_SESSION['activity']=$x[0]->active;
-        $_SESSION['gender']=$x[0]->gender;
         $_SESSION['type']=$x[0]->privilege;
         $_SESSION['id']=$x[0]->id;
 
@@ -54,11 +53,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         else if($_SESSION['type']=='user'){
             header('Location:../pages/lettertypes.php');
         }
-        /*
+        
         else if($_SESSION['type']=='qc'){
+//            echo "aaa";
             header('Location:../pages/QualityControl.php');
         }
-        */
+        
     }
 }
 

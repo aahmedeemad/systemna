@@ -180,5 +180,37 @@ $DB = new Database();
 
                     </ul>
                 </div>
+                
+                <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
+
+                <div class="sidenav">
+
+                    <div class="sidenav-header">
+                        <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
+                        <div class="title">
+                            <a style="text-decoration: none;" href="../pages/profile.php"><h1 class="name"><?php echo $_SESSION['name']; ?></h1></a>
+                            <div class="position">QC</div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/lettertypes.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button" id="noti_Container">
+                            <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text"> Notifications
+                                <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                                <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
+                                    <div id="notidata"></div>
+                                    <div id="markAll">Mark All as Read</div>
+                                </div>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
+
+                    </ul>
+                </div>
+                
                 <?php } else header("Location:../index.php") ?>
                 <div class="content">

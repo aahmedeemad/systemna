@@ -246,7 +246,7 @@ tr:nth-child(even) {
   padding: 2px 3px;
   width: 50px;
 }
-.tblsearch {
+.tblsearch,.QCtblselect  {
   width: 270px;
   background: #fff;
   color: #222;
@@ -259,13 +259,13 @@ tr:nth-child(even) {
   left: 31.7%;
   height: 5.5%;
 }
-.tblsearch:focus {
+.tblsearch:focus ,.QCtblselect:focus {
   border-color: #3971ed !important;
 }
-.tblsearch:hover {
+.tblsearch:hover ,.QCtblselect:hover {
   border-color: #cecece;
 }
-.tblselect {
+.tblselect,.QCtblselect {
   width: 270px;
   background: #fff;
   color: #222;

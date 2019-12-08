@@ -246,7 +246,7 @@ tr:nth-child(even) {
   padding: 2px 3px;
   width: 50px;
 }
-.tblsearch,.QCtblselect  {
+.tblsearch {
   width: 270px;
   background: #fff;
   color: #222;
@@ -259,17 +259,13 @@ tr:nth-child(even) {
   left: 31.7%;
   height: 5.5%;
 }
-.QCtblselect 
-{
-  
-}
-.tblsearch:focus ,.QCtblselect:focus {
+.tblsearch:focus {
   border-color: #3971ed !important;
 }
-.tblsearch:hover ,.QCtblselect:hover {
+.tblsearch:hover {
   border-color: #cecece;
 }
-.tblselect,.QCtblselect {
+.tblselect {
   width: 270px;
   background: #fff;
   color: #222;
@@ -647,6 +643,16 @@ box-sizing: content-box;
   border: none;
   border-radius: 2px;
   cursor: pointer;
+}
+.Letterdiv {
+  float: left;
+  display: inline;
+  width: 55%;
+}
+.Priorityform {
+  float: right
+  display: inline;
+  width: 15%;
 }
 #newsearch {
   float: right;

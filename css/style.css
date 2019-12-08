@@ -691,9 +691,6 @@ box-sizing: content-box;
 #noti_Container {
   position:relative;
 }
-#noti_Button:hover {
-  color: white !important;
-}
 /* THE POPULAR RED NOTIFICATIONS COUNTER. */
 #noti_Counter {
   display: inline-block;
@@ -713,6 +710,7 @@ box-sizing: content-box;
   background: #FFF;
   border: solid 0.1em #DAA520;
   border-radius: 0.2em;
+  margin-left: 2em;
   z-index: 1;
   color: black !important;
 }

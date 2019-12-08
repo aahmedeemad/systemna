@@ -61,23 +61,12 @@ $DB = new Database();
                           .css('height', '20vw');
                 $('#noti_Button').click(function () {
                     // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
-                    $('#notifications').fadeToggle('fast', 'linear', function () {
-                        if ($('#notifications').is(':visible')) {
-                            $('#noti_Button').css('background-color', '#DAA520');
-                        }
-                        else $('#noti_Button').css('background-color', '#2d3035');
-                    });
-                    //$('#noti_Counter').fadeOut('slow'); // HIDE THE COUNTER.
+                    $('#notifications').fadeToggle('fast', 'linear');
                     return false;
                 });
                 // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
                 $(document).click(function () {
                     $('#notifications').hide();
-                    // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
-                    if ($('#noti_Counter').is(':hidden')) {
-                        // CHANGE BACKGROUND COLOR OF THE BUTTON.
-                        $('#noti_Button').css('background-color', '#2d3035');
-                    }
                 });
                 $('#notifications').click(function () {
                     // DO NOTHING WHEN CONTAINER IS CLICKED.

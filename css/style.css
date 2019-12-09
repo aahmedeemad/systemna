@@ -650,8 +650,8 @@ box-sizing: content-box;
   width: 100%;
 }
 .Priorityform {
-  float: right
-  display: inline;
+  float: left
+  display: inline-block;
   width: 15%;
 }
 #newsearch {
@@ -740,3 +740,15 @@ box-sizing: content-box;
   border-radius: 0.2em;
   z-index: 1;
 }
+#column1{
+  background-color: #f0e68c;
+  border: none;
+  color: black;
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  font-size: 19px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+

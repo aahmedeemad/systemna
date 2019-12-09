@@ -22,7 +22,7 @@ include "../template/header.php";
             ?>
             <div id="row1">
               <form>
-              <div id="column1" style="background-color:#EEE8AA;">
+              <div id="column2" style="background-color:#EEE8AA;">
             <br>  <br>
               <?php
             echo"<label><input type='radio' name='Letterbutton' value='$Name'> $Name ($desc) </label>" ;

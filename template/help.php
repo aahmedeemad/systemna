@@ -17,6 +17,7 @@
                 bottom: 0.5em;
                 z-index: 1;
                 border: 0;
+                margin: 0 !important;
                 border-radius: 2rem;
                 color: #fff;
                 padding: 0.3em 0.5em 0.3em 0.5em;
@@ -32,6 +33,7 @@
                 right: 1em;
                 bottom: 0.5em;
                 padding: 0.3em 0.5em 0.3em 0.5em;
+                margin: 0 !important;
             }
             .popup .show {
                 visibility: visible;
@@ -43,6 +45,9 @@
                 animation: fadeOut 1s;
                 transition-delay: 1s;
                 visibility: hidden;
+            }
+            * {
+                line-height: normal !important;
             }
             @-webkit-keyframes fadeIn {
                 from {opacity: 0;}
@@ -64,8 +69,8 @@
     </head>
     <body>
         <div class="popup" onmouseenter="fadingIn()" onmouseleave="fadingOut()" onclick="window.location.replace('faq.php')">
-            <p style="margin: 0.5;">?</p>
-            <p class="popuptxt hide" id="myPopup" style="margin: 0.5;">Help & FAQ ?</p>
+            <p style="margin: 0;">?</p>
+            <p class="popuptxt hide" id="myPopup">Help & FAQ ?</p>
         </div>
         <script>
             function fadingIn() {

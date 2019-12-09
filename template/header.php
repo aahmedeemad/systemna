@@ -9,6 +9,7 @@ $DB = new Database();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/all.min.css">
         <link rel="stylesheet" href="../css/popup.css">
@@ -108,7 +109,7 @@ $DB = new Database();
             });
 
         </script>
-        <div class="container">
+        <div class="container-custom">
             <header class="header">
                 <div class="navbar-toggle">
                     <i class="fas fa-bars"></i>
@@ -119,8 +120,7 @@ $DB = new Database();
             </header>
             <div class="mainPage">
                 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>
-                <div class="sidenav">
-
+                <div class="sidenav-custom">
                     <div class="sidenav-header">
                         <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
                         <div class="title">
@@ -138,7 +138,7 @@ $DB = new Database();
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
 
-                <div class="sidenav">
+                <div class="sidenav-custom">
 
                     <div class="sidenav-header">
                         <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
@@ -166,7 +166,7 @@ $DB = new Database();
 
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
 
-                <div class="sidenav">
+                <div class="sidenav-custom">
 
                     <div class="sidenav-header">
                         <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>

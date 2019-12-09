@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".navbar-toggle").on("click", function() {
-        $(".sidenav").animate({ width: "toggle" }, 350);
+        $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
     $(window).click(function(e) {

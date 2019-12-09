@@ -651,15 +651,15 @@ box-sizing: content-box;
     width: 100%;
 }
 .Priorityform {
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
   float: left
   display: inline-block;
   width: 15%;
-=======
+/*=======*/
     float: right
         display: inline;
     width: 15%;
->>>>>>> e39eba9859d0d28b640c21850e58025d56dc8041
+/*>>>>>>> e39eba9859d0d28b640c21850e58025d56dc8041*/
 }
 #newsearch {
     float: right;
@@ -738,7 +738,6 @@ box-sizing: content-box;
     text-decoration: underline !important;
 }
 #usrs_Counter {
-<<<<<<< HEAD
   display: inline-block;
   background: #E1141E;
   color: #FFF;
@@ -760,6 +759,7 @@ box-sizing: content-box;
   cursor: pointer;
 }
 
+/*
 =======
     display: inline-block;
     background: #E1141E;
@@ -771,3 +771,4 @@ box-sizing: content-box;
     z-index: 1;
 }
 >>>>>>> e39eba9859d0d28b640c21850e58025d56dc8041
+*/

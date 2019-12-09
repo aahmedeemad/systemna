@@ -1,22 +1,29 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2019 at 07:24 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Dec 09, 2019 at 01:31 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Database: `hr_system`
 --
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `add_info`
 --
@@ -26,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT '0',
-  `n_id_picture` tinyint(1) DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,9 +46,11 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 (1, '2019-11-04', 45454, '', 1, NULL, NULL),
 (2, '2019-11-11', 215487, '', 1, NULL, NULL),
 (6, NULL, 9999999, '', 0, NULL, NULL),
+(8, NULL, NULL, NULL, 0, 0, 0),
 (24, NULL, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `employee`
 --
@@ -69,10 +78,11 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (3, 'Fawler', 'Fawler', '123', 'FawlerMorgan@gmail.com', '', '444487', 1, 1, 'user'),
 (6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '123456', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
-(8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '', '12345678912377', 0, 1, 'admin'),
+(8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '', '12345678912377', 1, 1, 'admin'),
 (24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user');
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `faq`
 --
@@ -96,6 +106,7 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `inquiries`
 --
@@ -116,6 +127,7 @@ INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requeste
 (1, 'testing subject', 'testing message', '1', '1');
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `notifications`
 --
@@ -144,6 +156,7 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
 (10, 0, 3, 'Welcome to SYSTEMNA');
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `requests`
 --
@@ -158,6 +171,7 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `requests_types`
 --
@@ -179,6 +193,7 @@ INSERT INTO `requests_types` (`Type_id`, `Name`, `description`) VALUES
 (4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter');
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `update_info`
 --
@@ -326,4 +341,13 @@ ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
   ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`Type_id`) REFERENCES `requests_types` (`Type_id`);
 
+--
+-- Constraints for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD CONSTRAINT `update_info_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `employee` (`id`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

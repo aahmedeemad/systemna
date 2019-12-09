@@ -5,8 +5,9 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
     ?>
 
-
-
+<BR></BR>
+<h1 style="text-align:center">Your Requests</h1>
+<br><br>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>
@@ -48,6 +49,22 @@ include "../template/header.php";
                 $priority=check($x[$i]->priority);
                 $salary=check($x[$i]->salary);
 
+                
+                $Boolsalray = "Without Salary";
+                $BoolPriority = "Urgent";
+
+                if($salary == 1)
+                {
+                    $Boolsalray ="With Salary";
+                }
+                else $Boolsalray ="Without Salary";
+                
+                if($priority == 1)
+                {
+                    $BoolPriority ="Urgent";
+                }
+                else $BoolPriority="Normal";
+
                 echo  "<tr>";
                 echo "<td>{$id}</td>";
                 echo "<td>$emp_id</td>";
@@ -68,19 +85,21 @@ include "../template/header.php";
                   else{
                       echo "<td>HR Letter to whom it may concern</td>";
                     }
-
+                    echo "<td>{$BoolPriority}</td>";
+                    echo "<td>{$Boolsalray}</td>";
+/*              
 
                 if($x[$i]->priority==1){
                         echo "<td>Urgent</td>";}
                 else{
                         echo "<td>Normal</td>";}
 
-                if($x[$i]->salary==1){
+                if($x[$i]->salary==0){
                         echo "<td>With Salary</td>";}
                 else{
                         echo "<td>Without Salary</td>";}
 
-                if($x[$i]->Status==2){
+                if($x[$i]->Status==2){*/
                 ?>
                 <td><a type='submit' onclick="return confirm('Delete this Request?')"
                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
@@ -90,14 +109,14 @@ include "../template/header.php";
     </tr>
     <?php
                  }
-                else
+                /*else
                  echo "<td></td>";
                   echo "<td></td>";
-
-            }
+*/
+          
         }
         else {
-          echo"<tr><td colspan=8>No matches found </td></tr>";
+          echo"<tr><td colspan=8>You have no requests for now ! </td></tr>";
         }
       }
       catch(Exception $e)

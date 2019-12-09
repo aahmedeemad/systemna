@@ -651,15 +651,13 @@ box-sizing: content-box;
     width: 100%;
 }
 .Priorityform {
-<<<<<<< HEAD
-  float: left
+  float: left;
   display: inline-block;
+  /*
+  float: right;
+  display: inline;
+  */
   width: 15%;
-=======
-    float: right
-        display: inline;
-    width: 15%;
->>>>>>> e39eba9859d0d28b640c21850e58025d56dc8041
 }
 #newsearch {
     float: right;

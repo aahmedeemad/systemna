@@ -738,7 +738,6 @@ box-sizing: content-box;
     text-decoration: underline !important;
 }
 #usrs_Counter {
-<<<<<<< HEAD
   display: inline-block;
   background: #E1141E;
   color: #FFF;
@@ -759,15 +758,3 @@ box-sizing: content-box;
   margin: 4px 2px;
   cursor: pointer;
 }
-
-=======
-    display: inline-block;
-    background: #E1141E;
-    color: #FFF;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.1em 0.3em;
-    border-radius: 0.2em;
-    z-index: 1;
-}
->>>>>>> e39eba9859d0d28b640c21850e58025d56dc8041

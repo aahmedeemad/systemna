@@ -37,10 +37,9 @@ if($DB->numRows() > 0)
     <div class="profile-left">
         <div class="image-container">
             <img src="<?php echo $info[0]->profile_picture == 0 ? "../template/avatar.jpg" :  "../usersImages/". $info[0]->id . ".jpeg" ?>" class="profile-picture">
-            <input id="profile-image-upload" class="hidden" type="file" accept="image/*"> 
             <div class="p-image">
-                <i class="fa fa-camera upload-button"></i>
-                <input id="file-upload" class="file-upload hidden" type="file" accept="image/*"/>
+                <i class="fa fa-camera profile-camera-button"></i>
+                <input id="profile-picture-input" class="profile-picture-input hidden" type="file" accept="image/*"/>
             </div>
         </div>
 

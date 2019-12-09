@@ -1,4 +1,6 @@
-<?php include "../template/header.php"; ?>
+<?php 
+$pageTitle = "SYSTEMNA | ";
+include "../template/header.php"; ?>
 
 // Write Your Code Here
 

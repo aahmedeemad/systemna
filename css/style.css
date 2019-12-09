@@ -646,8 +646,8 @@ box-sizing: content-box;
 }
 .Letterdiv {
   float: left;
-  display: inline;
-  width: 55%;
+  display: inline-block;
+  width: 100%;
 }
 .Priorityform {
   float: right

@@ -11,7 +11,8 @@ include "../template/header.php";
 <table id='Display'>
     <tr id='must'>
         <th>#</th>
-        <th>User ID</th>
+        <th>Request ID</th>
+        <th>Employee ID</th>
         <th>Status</th>
         <th>Applied for Letter</th>
         <th>Priority</th>
@@ -66,6 +67,7 @@ include "../template/header.php";
                 else $BoolPriority="Normal";
 
                 echo  "<tr>";
+                echo "<td>{$y}</td>";
                 echo "<td>{$id}</td>";
                 echo "<td>$emp_id</td>";
 

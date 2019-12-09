@@ -12,7 +12,7 @@ include "../template/header.php";
     $emp_id=$_SESSION['id'];
     $priority=$_POST['priority'];
     $arr=$_POST['arr'];
-    $Type_id;
+    $Type_id=$_POST['Type_id'];
     $Status=2;
     $salary=$_POST['salary'];
     $length=count($arr);
@@ -51,10 +51,11 @@ include "../template/header.php";
         for($i=0; $i<$DB->numRows(); $i++){
           $x=$DB->getdata();
           $Name=$x[$i]->Name;
+          $btnid=$x[$i]->Type_id;
+          $desc=$x[$i]->description;
 
-            echo "<h4>" . $x[$i]->description . "</h4>" ;
-            echo "<input type='button' class= 'Letterbutton'  value='$Name' >";
             //echo "<h4>" . $x[$i]->description . "</h4>" ;
+            echo "<input type='button' class= 'Letterbutton' id='$btnid' value='($desc) $Name' >";
         }
         echo "<br><br>";
         ?>

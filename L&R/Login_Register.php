@@ -36,10 +36,8 @@
                             </div>
                         </div>
                         <label>
-
-                            <input type="checkbox" name="remember_me" id="remember_me">
+                            <input type="checkbox" name="remember_me" id="remember_me"   style="left:100px">
                             Remember Me</label>
-                        <a href="ForgotPass.php" class="FP" name='FP'>Forgot your password ?</a>
                         <button>Login</button>
                     </form>
                 </div>

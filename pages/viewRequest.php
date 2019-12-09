@@ -71,14 +71,14 @@ include "../template/header.php";
 
 
                 if($x[$i]->priority==1){
-                        echo "<td>URGENT</td>";}
+                        echo "<td>Urgent</td>";}
                 else{
-                        echo "<td>NORMAL</td>";}
+                        echo "<td>Normal</td>";}
 
-                if($x[$i]->priority==1){
-                        echo "<td>WITH Salary</td>";}
+                if($x[$i]->salary==1){
+                        echo "<td>With Salary</td>";}
                 else{
-                        echo "<td>WITHOUT SALARY</td>";}
+                        echo "<td>Without Salary</td>";}
 
                 if($x[$i]->Status==2){
                 ?>
@@ -87,8 +87,6 @@ include "../template/header.php";
 
                 <td><a type='submit' onclick="return confirm('Edit this Request?')"
                       href="../operations/editrequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
-
-
     </tr>
     <?php
                  }
@@ -99,7 +97,7 @@ include "../template/header.php";
             }
         }
         else {
-          echo"<tr><td colspan=7>No matches found </td></tr>";
+          echo"<tr><td colspan=8>No matches found </td></tr>";
         }
       }
       catch(Exception $e)

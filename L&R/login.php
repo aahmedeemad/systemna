@@ -53,7 +53,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         else if($_SESSION['type']=='user'){
             header('Location:../pages/lettertypes.php');
         }
-        
         else if($_SESSION['type']=='qc'){
 //            echo "aaa";
             header('Location:../pages/QualityControl.php');

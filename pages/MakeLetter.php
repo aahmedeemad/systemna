@@ -7,7 +7,7 @@ include "../template/header.php";
   <div>
       <?php echo "<br>
           <h1 style='color:#DAA520'> Choose the type of the letter that you want to apply for : </h1>
-          <br><hr><br><br>" ; ?>
+          <hr>" ; ?>
       <div class="Letterdiv" id="Letterdiv">
           <?php
           $sql = "SELECT *
@@ -26,7 +26,7 @@ include "../template/header.php";
             <br>  <br>
               <?php
             echo"<label><input type='radio' name='Letterbutton' value='$Name'> $Name ($desc) </label>" ;
-            echo "<br><br><br><br><br> ";
+            echo "<br><br><br><br> ";
           }
           echo "<br><br>";
           ?>

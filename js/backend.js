@@ -207,21 +207,8 @@ $(document).ready(function() {
         }
     );
 
-    $(".profile-picture").hover(
-        function() {
-            $(".addicon").css("display", "block");
-        },
-        function() {
-            $(".addicon").css("display", "none");
-        }
-    );
-
-    $(".addicon").on("click", function() {
-        $("#profile-image-upload").click();
-    });
-
-    function uploadFile() {
-        var input = document.getElementById("file-upload");
+    function uploadProfilePicture() {
+        var input = document.getElementById("profile-picture-input");
         file = input.files[0];
         if (file != undefined) {
             formData = new FormData();
@@ -246,12 +233,82 @@ $(document).ready(function() {
         }
     }
 
-    $(".file-upload").on("change", function() {
-        uploadFile();
+    $(".profile-picture-input").on("change", function() {
+        uploadProfilePicture();
     });
 
-    $(".upload-button").on("click", function() {
-        $(".file-upload").click();
+    $(".profile-camera-button").on("click", function() {
+        $(".profile-picture-input").click();
+    });
+
+    function uploadPassportPicture() {
+        var input = document.getElementById("passport-picture-input");
+        file = input.files[0];
+        if (file != undefined) {
+            formData = new FormData();
+            if (file.type.match(/.jpeg/)) {
+                formData.append("image", file);
+                $.ajax({
+                    url: "../operations/uploadPassportImage.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        console.log(data);
+                        $(".passport-picture").attr("src", data);
+                        window.location.reload();
+                    }
+                });
+            } else {
+                alert("Not a valid image!");
+            }
+        } else {
+            alert("Input something!");
+        }
+    }
+
+    $(".passport-picture-input").on("change", function() {
+        uploadPassportPicture();
+    });
+
+    $(".passport-camera-button").on("click", function() {
+        $(".passport-picture-input").click();
+    });
+
+    function uploadNationalIdPicture() {
+        var input = document.getElementById("national-picture-input");
+        file = input.files[0];
+        if (file != undefined) {
+            formData = new FormData();
+            if (file.type.match(/.jpeg/)) {
+                formData.append("image", file);
+                $.ajax({
+                    url: "../operations/uploadNationalImage.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        console.log(data);
+                        $(".national-picture").attr("src", data);
+                        window.location.reload();
+                    }
+                });
+            } else {
+                alert("Not a valid image!");
+            }
+        } else {
+            alert("Input something!");
+        }
+    }
+
+    $(".national-picture-input").on("change", function() {
+        uploadNationalIdPicture();
+    });
+
+    $(".national-camera-button").on("click", function() {
+        $(".national-picture-input").click();
     });
 
     $(".sal").on("click", function(event) {

@@ -3,7 +3,7 @@ $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
- if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
+if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 <br>
 <h1 style="text-align:center">Dashboard</h1>
 <input type=text id='tblsearch' class='tblsearch' placeholder='Search'>
@@ -28,22 +28,22 @@ include "../template/header.php";
         <th>Delete</th>
     </tr>
     <?php
-        function check($c){
-         if($c==null)
-          $c='-';
-         else if($c=='')
-          $c='-';
-          return $c;
-        }
+    function check($c){
+        if($c==null)
+            $c='-';
+        else if($c=='')
+            $c='-';
+        return $c;
+    }
 
-        $sql="
+    $sql="
         SELECT *
         FROM employee left join add_info
         on emp_id=id where employee.active = 1 AND privilege = 'user'
               ";
-        try
-        {
-              
+    try
+    {
+
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -84,21 +84,21 @@ include "../template/header.php";
                 <td>{$bdate}</td>
                 <td>{$phone}</td>
                 <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
-                ?>
+    ?>
     <td><a type='submit' onclick="return confirm('Delete this account?')"
-            href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+           href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
 
     </tr>
-    <?php
+<?php
             }
         }
-      }
-      catch(Exception $e)
-      {
-          $_SESSION['error'] = 'error in sql';
-      }
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 
-        ?>
+?>
 </table>
 
 <?php include "../template/footer.php"; ?>

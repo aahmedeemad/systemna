@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 09, 2019 at 01:31 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 10, 2019 at 04:54 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -76,7 +76,7 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (1, 'Islam', 'Islam', '123', 'islam@gmail.com', '', '225999999', 1, 1, 'admin'),
 (2, 'Zaky', 'Zaky', '123', 'zaky@gmail.com', '', '225585', 1, 1, 'user'),
 (3, 'Fawler', 'Fawler', '123', 'FawlerMorgan@gmail.com', '', '444487', 1, 1, 'user'),
-(6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
+(6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '', '00000000', 1, 1, 'user'),
 (7, 'fady', 'fady', '123456', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
 (8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '', '12345678912377', 1, 1, 'admin'),
 (24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user');
@@ -153,7 +153,10 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
 (7, 1, 2, 'This is notification number 1 for user number 2'),
 (8, 1, 2, 'Welcome to SYSTEMNA'),
 (9, 1, 1, 'Welcome to SYSTEMNA'),
-(10, 0, 3, 'Welcome to SYSTEMNA');
+(10, 0, 3, 'Welcome to SYSTEMNA'),
+(11, 1, 6, 'Welcome to SYSTEMNA'),
+(12, 1, 6, 'An action has been made to a letter request.'),
+(13, 0, 7, 'An action has been made to a letter request.');
 
 -- --------------------------------------------------------
 
@@ -165,10 +168,22 @@ CREATE TABLE `requests` (
   `Request_id` int(50) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `Type_id` int(11) NOT NULL,
-  `Status` tinyint(1) NOT NULL,
+  `Status` tinyint(100) NOT NULL,
   `priority` tinyint(1) NOT NULL,
-  `salary` tinyint(1) NOT NULL
+  `salary` tinyint(1) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`Request_id`, `emp_id`, `Type_id`, `Status`, `priority`, `salary`, `date`) VALUES
+(1, 2, 1, 2, 1, 1, '2019-12-10 09:05:36'),
+(2, 6, 1, 2, 1, 1, '2019-12-10 09:09:06'),
+(3, 7, 1, 2, 0, 0, '2019-12-10 09:09:06'),
+(4, 2, 3, 1, 0, 0, '2019-12-10 15:41:31'),
+(5, 2, 4, 0, 1, 1, '2019-12-10 15:42:04');
 
 -- --------------------------------------------------------
 
@@ -304,13 +319,13 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `requests_types`

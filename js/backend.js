@@ -58,7 +58,6 @@ $(document).ready(function() {
     $(".cancel-company-info").on("click", companyInfoToggle);
 
     $(".save-fullname").on("click", function() {
-        console.log("a");
         var fullname = $("#fullnameEdit").val();
         var id = $("#id").text();
         $.ajax({
@@ -84,7 +83,6 @@ $(document).ready(function() {
     });
 
     $(".save-basic-info").on("click", function() {
-        console.log("aa");
         var ssn = $("#ssnEdit").val();
         var bdate = $("#birthdateEdit").val();
         var loc = $("#locationEdit").val();
@@ -104,7 +102,6 @@ $(document).ready(function() {
             "&type=basic-info",
             success: function(html) {
                 if (html == "true") {
-                    console.log(html);
                     $("#ssn").toggleClass("hidden");
                     $("#birthdate").toggleClass("hidden");
                     $("#location").toggleClass("hidden");
@@ -157,11 +154,8 @@ $(document).ready(function() {
         });
     });
     $(".save-company-info").on("click", function() {
-        console.log("aaaa");
         var uname = $("#usernameEdit").val();
         var pass = $("#passwordEdit").val();
-        console.log(uname);
-        console.log(pass);
         var id = $("#id").text();
         $.ajax({
             type: "POST",
@@ -255,7 +249,6 @@ $(document).ready(function() {
                     processData: false,
                     contentType: false,
                     success: function(data) {
-                        console.log(data);
                         $(".passport-picture").attr("src", data);
                         window.location.reload();
                     }
@@ -290,7 +283,6 @@ $(document).ready(function() {
                     processData: false,
                     contentType: false,
                     success: function(data) {
-                        console.log(data);
                         $(".national-picture").attr("src", data);
                         window.location.reload();
                     }

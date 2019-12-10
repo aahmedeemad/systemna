@@ -66,12 +66,12 @@
                             <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
                             <div class="input">
                                 <input  onblur="validateNumber(this)" required  name="phone" placeholder="Telephone Number" type="text">
-                                <img src="L&R/img/phone-call.svg">
+                                <img src="L&R/img/phone-call.svg" style="bottom:20px;">
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>
                             <div class="input">
                                 <input onblur="checkssn()" id="SSN" required placeholder="Social Security Number" name="ssn"  type="text">
-                                <i class="fa fa-id-card-o" style="width: 16px; position: absolute; left: 19px;"></i>
+                                <i class="fa fa-id-card-o" style="width: 16px; position: absolute; left: 19px;bottom:20px;"></i>
                             </div>
                             <span style=" color:red; display:block; margin-bottom:20px;" id="ssn"></span>
                             <div class="input">
@@ -79,9 +79,6 @@
                                 <img src="L&R/img/pass.svg">
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="password"></span>
-                            <div class="input">
-                                <input  type="file" placeholder="Upload File">
-                            </div>
                         </div>
                         <input class ="submit"  type="submit" onclick="return check();"  value="Register">
                     </form>

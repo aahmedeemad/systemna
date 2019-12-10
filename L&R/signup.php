@@ -18,11 +18,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         
         $DB->query($sql);
         $DB->execute();
-        $Message="<h3 style='color:green;'>signup complete.<h3>";
+        $Message="<h3 style='color:green;'>Signup Complete.<h3>";
         header("Location:../index.php?Message={$Message}");
     }
     catch (Exception $e) {
-        $Message="opss.. something went wrong.";
+        $Message="<h3 style='color:red;'>Opss..Something went wrong !<h3>";
         header("Location:../index.php?Message={$Message}");
     }
 

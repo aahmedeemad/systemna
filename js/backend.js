@@ -57,128 +57,294 @@ $(document).ready(function() {
     $(".edit-company-info").on("click", companyInfoToggle);
     $(".cancel-company-info").on("click", companyInfoToggle);
 
+
+    /************************************ Updated ************************************/
     $(".save-fullname").on("click", function() {
         var fullname = $("#fullnameEdit").val();
+        var defaultFullname = $("#fullnameEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        $.ajax({
-            type: "POST",
-            url: "../operations/editProfile.php",
-            data: "id=" + id + "&fullname=" + fullname + "&type=fullname",
-            success: function(html) {
-                if (html == "true") {
-                    $("#fullname").toggleClass("hidden");
-                    $(".input-fullname").toggleClass("hidden");
-                    $(".save-fullname").toggleClass("hidden");
-                    $(".cancel-fullname").toggleClass("hidden");
+        if (fullname != defaultFullname)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultFullname +
+                "&value=" +
+                fullname +
+                "&type=fullname",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#fullname").toggleClass("hidden");
+                        $(".input-fullname").toggleClass("hidden");
+                        $(".save-fullname").toggleClass("hidden");
+                        $(".cancel-fullname").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
-                    $(".modal").css("display", "block");
                 }
-            },
-            beforeSend: function() {
-                $(".loading").toggleClass("hidden");
-                $(".profile").toggleClass("hidden");
-            }
-        });
+            });
+        }
     });
 
+    /************************************ Updated ************************************/
     $(".save-basic-info").on("click", function() {
         var ssn = $("#ssnEdit").val();
+        var defaultSSN = $("#ssnEdit")[0]['defaultValue'];
         var bdate = $("#birthdateEdit").val();
+        var defaultBdate = $("#birthdateEdit")[0]['defaultValue'];
         var loc = $("#locationEdit").val();
+        var defaultLoc = $("#locationEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        $.ajax({
-            type: "POST",
-            url: "../operations/editProfile.php",
-            data:
-            "id=" +
-            id +
-            "&ssn=" +
-            ssn +
-            "&bdate=" +
-            bdate +
-            "&loc=" +
-            loc +
-            "&type=basic-info",
-            success: function(html) {
-                if (html == "true") {
-                    $("#ssn").toggleClass("hidden");
-                    $("#birthdate").toggleClass("hidden");
-                    $("#location").toggleClass("hidden");
-                    $(".input-basic-info").toggleClass("hidden");
-                    $(".save-basic-info").toggleClass("hidden");
-                    $(".cancel-basic-info").toggleClass("hidden");
+        if (ssn != defaultSSN)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultSSN +
+                "&value=" +
+                ssn +
+                "&type=ssn",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#ssn").toggleClass("hidden");
+                        $("#birthdate").toggleClass("hidden");
+                        $("#location").toggleClass("hidden");
+                        $(".input-basic-info").toggleClass("hidden");
+                        $(".save-basic-info").toggleClass("hidden");
+                        $(".cancel-basic-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
-                    $(".modal").css("display", "block");
                 }
-            },
-            beforeSend: function() {
-                $(".loading").toggleClass("hidden");
-                $(".profile").toggleClass("hidden");
-            }
-        });
+            });
+        }
+        if (bdate != defaultBdate)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultBdate +
+                "&value=" +
+                bdate +
+                "&type=birthdate",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#ssn").toggleClass("hidden");
+                        $("#birthdate").toggleClass("hidden");
+                        $("#location").toggleClass("hidden");
+                        $(".input-basic-info").toggleClass("hidden");
+                        $(".save-basic-info").toggleClass("hidden");
+                        $(".cancel-basic-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
+                    $(".loading").toggleClass("hidden");
+                    $(".profile").toggleClass("hidden");
+                }
+            });
+        }
+
+        if (loc != defaultLoc)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultLoc +
+                "&value=" +
+                loc +
+                "&type=location",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#ssn").toggleClass("hidden");
+                        $("#birthdate").toggleClass("hidden");
+                        $("#location").toggleClass("hidden");
+                        $(".input-basic-info").toggleClass("hidden");
+                        $(".save-basic-info").toggleClass("hidden");
+                        $(".cancel-basic-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
+                    $(".loading").toggleClass("hidden");
+                    $(".profile").toggleClass("hidden");
+                }
+            });
+        }
+
     });
 
+    /************************************ Updated ************************************/
     $(".save-contact-info").on("click", function() {
         var email = $("#emailEdit").val();
+        var defaultEmail = $("#emailEdit")[0]['defaultValue'];
         var phone = $("#phoneEdit").val();
+        var defaultPhone = $("#phoneEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        $.ajax({
-            type: "POST",
-            url: "../operations/editProfile.php",
-            data:
-            "id=" +
-            id +
-            "&email=" +
-            email +
-            "&phone=" +
-            phone +
-            "&type=contact-info",
-            success: function(html) {
-                if (html == "true") {
-                    $("#mail").toggleClass("hidden");
-                    $("#phone").toggleClass("hidden");
-                    $(".input-contact-info").toggleClass("hidden");
-                    $(".save-contact-info").toggleClass("hidden");
-                    $(".cancel-contact-info").toggleClass("hidden");
+        if (email != defaultEmail)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultEmail +
+                "&value=" +
+                email +
+                "&type=email",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#mail").toggleClass("hidden");
+                        $("#phone").toggleClass("hidden");
+                        $(".input-contact-info").toggleClass("hidden");
+                        $(".save-contact-info").toggleClass("hidden");
+                        $(".cancel-contact-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
-                    $(".modal").css("display", "block");
                 }
-            },
-            beforeSend: function() {
-                $(".loading").toggleClass("hidden");
-                $(".profile").toggleClass("hidden");
-            }
-        });
+            });
+        }
+        if (phone != defaultPhone)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultPhone +
+                "&value=" +
+                phone +
+                "&type=phone",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#mail").toggleClass("hidden");
+                        $("#phone").toggleClass("hidden");
+                        $(".input-contact-info").toggleClass("hidden");
+                        $(".save-contact-info").toggleClass("hidden");
+                        $(".cancel-contact-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
+                    $(".loading").toggleClass("hidden");
+                    $(".profile").toggleClass("hidden");
+                }
+            });
+        }
     });
+
+    /************************************ Updated ************************************/
     $(".save-company-info").on("click", function() {
         var uname = $("#usernameEdit").val();
+        var defaultUname = $("#usernameEdit")[0]['defaultValue'];
         var pass = $("#passwordEdit").val();
+        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        $.ajax({
-            type: "POST",
-            url: "../operations/editProfile.php",
-            data:
-            "id=" + id + "&uname=" + uname + "&pass=" + pass + "&type=company-info",
-            success: function(html) {
-                if (html == "true") {
-                    $("#username").toggleClass("hidden");
-                    $("#password").toggleClass("hidden");
-                    $(".input-company-info").toggleClass("hidden");
-                    $(".save-company-info").toggleClass("hidden");
-                    $(".cancel-company-info").toggleClass("hidden");
+        if (uname != defaultUname)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultUname +
+                "&value=" +
+                uname +
+                "&type=username",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#username").toggleClass("hidden");
+                        $("#password").toggleClass("hidden");
+                        $(".input-company-info").toggleClass("hidden");
+                        $(".save-company-info").toggleClass("hidden");
+                        $(".cancel-company-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
-                    $(".modal").css("display", "block");
                 }
-            },
-            beforeSend: function() {
-                $(".loading").toggleClass("hidden");
-                $(".profile").toggleClass("hidden");
-            }
-        });
+            });
+        }
+
+        if (pass != defaultPass)
+        {
+            $.ajax({
+                type: "POST",
+                url: "../operations/editProfile.php",
+                data:
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultPass +
+                "&value=" +
+                pass +
+                "&type=password",
+                success: function(html) {
+                    if (html == "true") {
+                        $("#username").toggleClass("hidden");
+                        $("#password").toggleClass("hidden");
+                        $(".input-company-info").toggleClass("hidden");
+                        $(".save-company-info").toggleClass("hidden");
+                        $(".cancel-company-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }
+                },
+                beforeSend: function() {
+                    $(".loading").toggleClass("hidden");
+                    $(".profile").toggleClass("hidden");
+                }
+            });
+        }
     });
 
     $(".eye").hover(

@@ -15,19 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     {
         if(!filter_var($_POST['value'], FILTER_VALIDATE_INT))
         {
-            echo "ssnFormat";
+            echo "Invalid SSN Format";
             return;
         }
 
         if($_POST['value'][0] != '2')
         {
-            echo "start2";
+            echo "SSN must start with 2";
             return;
         }
 
         if(strlen($_POST['value']) != 14)
         {
-            echo "ssnLength";
+            echo "SSN number must be 14";
             return;
         }
     }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['value'] = filter_var($_POST['value'], FILTER_SANITIZE_EMAIL);
         if(!filter_var($_POST['value'], FILTER_VALIDATE_EMAIL))
         {
-            echo "emailFormat";
+            echo "Invalid Email Format";
             return;
         }
     }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['value'] = substr($_POST['value'] , 1);
         if(!filter_var($_POST['value'], FILTER_VALIDATE_INT))
         {
-            echo "phoneFormat";
+            echo "Invalid Phone Format";
             return;
         }
         else {
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         if(strlen($_POST['value']) != 11)
         {
-            echo "phoneLength";
+            echo "Phone number must be 11";
             return;
         }
     }

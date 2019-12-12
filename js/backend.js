@@ -119,7 +119,6 @@ $(document).ready(function() {
                 ssn +
                 "&type=ssn",
                 success: function(html) {
-                    console.log(html);
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
                         $("#birthdate").toggleClass("hidden");
@@ -127,6 +126,13 @@ $(document).ready(function() {
                         $(".input-basic-info").toggleClass("hidden");
                         $(".save-basic-info").toggleClass("hidden");
                         $(".cancel-basic-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
                         $(".modal").css("display", "block");
@@ -237,6 +243,13 @@ $(document).ready(function() {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
                         $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
                     }
                 },
                 beforeSend: function() {
@@ -266,6 +279,13 @@ $(document).ready(function() {
                         $(".input-contact-info").toggleClass("hidden");
                         $(".save-contact-info").toggleClass("hidden");
                         $(".cancel-contact-info").toggleClass("hidden");
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
                         $(".modal").css("display", "block");

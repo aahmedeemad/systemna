@@ -86,6 +86,14 @@ $DB = new Database();
                     }
                 };
 
+                var editFAQ = new XMLHttpRequest();
+                editFAQ.open('GET','../pages/EditFAQ.php');
+                editFAQ.onreadystatechange = function() {
+                    if (editFAQ.readyState === 4) {
+                        document.location.replace('../pages/viewFAQ.php');
+                    }
+                };
+
         </script>
         <div class="container-custom">
             <header class="header">
@@ -114,7 +122,7 @@ $DB = new Database();
                         
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> Letter Requests</span></a></li><li class="sidenav-button"></li>
                     
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div class="pages_edit" id="faq_edit" onclick="window.location.replace('../pages/EditFAQ.php')"></div> </span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div> </span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>

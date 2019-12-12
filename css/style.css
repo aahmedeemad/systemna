@@ -730,6 +730,8 @@ box-sizing: content-box;
     text-align: center !important;
     color: black !important;
     padding: 0.7em !important;
+    background-color: white !important;
+    z-index: 1 !important;
 }
 #markAll:hover {
     color: #DAA520 !important;
@@ -745,10 +747,21 @@ box-sizing: content-box;
     border-radius: 0.2em;
     z-index: 1;
 }
+.pages_edit {
+    display: inline-block;
+    background: yellow;
+    color: white;
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 0.1em 0.3em;
+    border-radius: 0.2em;
+    z-index: 1;
+}
+
 #column2{
     background-color: #f0e68c;
     border: none;
-    color: black;
+    color: white;
     width: 100%;
     height: 150px;
     text-align: center;

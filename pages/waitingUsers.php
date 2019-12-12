@@ -39,7 +39,7 @@ include "../template/header.php";
         $sql="
         SELECT *
         FROM employee left join add_info
-        on emp_id=id where employee.accepted = 0 AND privilege = 'user'";
+        on emp_id=id where employee.accepted = 2 AND privilege = 'user'";
         try
         {
               

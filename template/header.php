@@ -18,19 +18,24 @@ $DB = new Database();
     </head>
 
     <body>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
 
             $(document).ready(function () {
+                $('.pages_edit').text(
+                    '<?php
+                    echo ('Edit');
+                    ?>'
+                );
+
                 $('#usrs_Counter').text(
                     '<?php
-                    $sql = "SELECT * FROM employee WHERE accepted = 0 ";
+                    $sql = "SELECT * FROM employee WHERE accepted = 2 ";
                     $DB->query($sql);
                     $DB->execute();
                     echo ($DB->numRows());
                     ?>'
                 );
-
 
                 $('#noti_Counter').text(
                     '<?php
@@ -41,7 +46,6 @@ $DB = new Database();
                     echo ($DB->numRows());
                     ?>'
                 );
-
 
                 $('#notidata').html(
                     '<?php
@@ -71,42 +75,24 @@ $DB = new Database();
                     // DO NOTHING WHEN CONTAINER IS CLICKED.
                     return false;
                 });
-
-
-                // MARK ALL AS READ AND RESET COUNTER
-                $('#markAll').click(function () {
-                    <?php
-                    $uid = $_SESSION['id'];
-                    $sql = " UPDATE notifications SET status = 1 WHERE userid = $uid AND status = 0 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    ?>;
-                });
-
-                $('#noti_Counter').text(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = " SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-
-                $('#notidata').html(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = "SELECT * FROM notifications WHERE userid = $uid AND status = 0";
-                    $DB->query($sql);
-                    $DB->execute();
-                    for($i=$DB->numRows(); $i>0; --$i){
-                        $x=$DB->getdata();
-                        echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata;
-                    }
-                    ?>'
-                );
             });
+
+                var markRead = new XMLHttpRequest();
+                markRead.open('GET','../template/mark_read.php');
+                markRead.onreadystatechange = function() {
+                    if (markRead.readyState === 4) {
+                        document.getElementById('notidata').innerHTML = ' ';
+                        document.getElementById('noti_Counter').innerHTML = '0';
+                    }
+                };
+
+                var editFAQ = new XMLHttpRequest();
+                editFAQ.open('GET','../pages/EditFAQ.php');
+                editFAQ.onreadystatechange = function() {
+                    if (editFAQ.readyState === 4) {
+                        document.location.replace('../pages/viewFAQ.php');
+                    }
+                };
 
         </script>
         <div class="container-custom">
@@ -136,8 +122,7 @@ $DB = new Database();
                         
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> Letter Requests</span></a></li><li class="sidenav-button"></li>
                     
-                      
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div> </span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
@@ -158,7 +143,7 @@ $DB = new Database();
                             <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
-                                <div id="markAll">Mark All as Read</div>
+                                <div id="markAll" onclick="markRead.send()">Mark All as Read</div>
                             </div>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>

@@ -38,7 +38,7 @@ $(document).ready(function() {
     }
 
     function companyInfoToggle() {
-        $("#username").toggleClass("hidden");
+        //        $("#username").toggleClass("hidden");
         $("#password").toggleClass("hidden");
         $(".input-company-info").toggleClass("hidden");
         $(".save-company-info").toggleClass("hidden");
@@ -85,6 +85,17 @@ $(document).ready(function() {
                         $(".cancel-fullname").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
+                        $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+                        
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".modal").css("display", "block");
                     }
                 },
@@ -128,13 +139,17 @@ $(document).ready(function() {
                         $(".cancel-basic-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+                        
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
                     }else 
                     {
-                        $(".popup-notification h2").text("Failed");
-                        $(".popup-content").text(html);
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+                        
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".modal").css("display", "block");
                     }
                 },
@@ -167,6 +182,17 @@ $(document).ready(function() {
                         $(".cancel-basic-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
+                        $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".modal").css("display", "block");
                     }
                 },
@@ -191,6 +217,7 @@ $(document).ready(function() {
                 loc +
                 "&type=location",
                 success: function(html) {
+                    console.log(html);
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
                         $("#birthdate").toggleClass("hidden");
@@ -200,6 +227,17 @@ $(document).ready(function() {
                         $(".cancel-basic-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
+                        $(".modal").css("display", "block");
+                    }else 
+                    {
+                        $(".loading").toggleClass("hidden");
+                        $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Failed");
+                        $(".popup-content").text(html);
                         $(".modal").css("display", "block");
                     }
                 },
@@ -242,6 +280,9 @@ $(document).ready(function() {
                         $(".cancel-contact-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
                     }else 
                     {
@@ -281,6 +322,9 @@ $(document).ready(function() {
                         $(".cancel-contact-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
+
+                        $(".popup-notification h2").text("Success");
+                        $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
                     }else 
                     {
@@ -301,95 +345,62 @@ $(document).ready(function() {
 
     /************************************ Updated ************************************/
     $(".save-company-info").on("click", function() {
-        var uname = $("#usernameEdit").val();
-        var defaultUname = $("#usernameEdit")[0]['defaultValue'];
-        var pass = $("#passwordEdit").val();
-        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
-        var id = $("#id").text();
-        if (uname != defaultUname)
-        {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultUname +
-                "&value=" +
-                uname +
-                "&type=username",
-                success: function(html) {
-                    if (html == "true") {
-                        $("#username").toggleClass("hidden");
-                        $("#password").toggleClass("hidden");
-                        $(".input-company-info").toggleClass("hidden");
-                        $(".save-company-info").toggleClass("hidden");
-                        $(".cancel-company-info").toggleClass("hidden");
-                        $(".loading").toggleClass("hidden");
-                        $(".profile").toggleClass("hidden");
-                        $(".modal").css("display", "block");
-                    }
-                },
-                beforeSend: function() {
-                    $(".loading").toggleClass("hidden");
-                    $(".profile").toggleClass("hidden");
-                }
-            });
-        }
 
-        if (pass != defaultPass)
-        {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultPass +
-                "&value=" +
-                pass +
-                "&type=password",
-                success: function(html) {
-                    if (html == "true") {
-                        $("#username").toggleClass("hidden");
-                        $("#password").toggleClass("hidden");
-                        $(".input-company-info").toggleClass("hidden");
-                        $(".save-company-info").toggleClass("hidden");
-                        $(".cancel-company-info").toggleClass("hidden");
-                        $(".loading").toggleClass("hidden");
-                        $(".profile").toggleClass("hidden");
-                        $(".modal").css("display", "block");
-                    }
-                },
-                beforeSend: function() {
+        var pass = $("#passwordEdit").val();
+        //        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
+        var id = $("#id").text();
+
+
+        $.ajax({
+            type: "POST",
+            url: "../operations/editProfile.php",
+            data:
+            "id=" +
+            id +
+            "&value=" +
+            pass +
+            "&value=" +
+            pass +
+            "&type=password",
+            success: function(html) {
+                console.log(html);
+                if (html == "true") {
+
+                    //                    $("#username").toggleClass("hidden");
+                    $("#password").toggleClass("hidden");
+                    $(".input-company-info").toggleClass("hidden");
+                    $(".save-company-info").toggleClass("hidden");
+                    $(".cancel-company-info").toggleClass("hidden");
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
+
+                    $(".popup-notification h2").text("Success");
+                    $(".popup-content").text("Your Request Has Been Submitted Successfully");
+                    $(".modal").css("display", "block");
+                }else {
+                    $(".popup-notification h2").text("Failed");
+                    $(".popup-content").text(html);
+                    $(".loading").toggleClass("hidden");
+                    $(".profile").toggleClass("hidden");
+                    $(".modal").css("display", "block");
                 }
-            });
-        }
+            },
+            beforeSend: function() {
+                $(".loading").toggleClass("hidden");
+                $(".profile").toggleClass("hidden");
+            }
+        });
     });
 
-    $(".eye").hover(
-        function() {
-            $("#password .starts").toggleClass("hidden");
-            $("#password .pass").toggleClass("hidden");
-        },
-        function() {
-            $("#password .starts").toggleClass("hidden");
-            $("#password .pass").toggleClass("hidden");
-        }
-    );
 
-    $(".eyeedit").hover(
-        function() {
-            $("#passwordEdit").attr("type", "text");
-        },
-        function() {
+
+    $(".eyeedit").on('click', function() {
+        if ($("#passwordEdit").attr("type") == 'text')
             $("#passwordEdit").attr("type", "password");
+        else {
+            $("#passwordEdit").attr("type", "text");
         }
-    );
+    });
 
     function uploadProfilePicture() {
         var input = document.getElementById("profile-picture-input");

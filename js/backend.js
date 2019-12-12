@@ -77,6 +77,7 @@ $(document).ready(function() {
                 fullname +
                 "&type=fullname",
                 success: function(html) {
+                    console.log(html);
                     if (html == "true") {
                         $("#fullname").toggleClass("hidden");
                         $(".input-fullname").toggleClass("hidden");
@@ -118,6 +119,7 @@ $(document).ready(function() {
                 ssn +
                 "&type=ssn",
                 success: function(html) {
+                    console.log(html);
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
                         $("#birthdate").toggleClass("hidden");
@@ -225,6 +227,7 @@ $(document).ready(function() {
                 email +
                 "&type=email",
                 success: function(html) {
+                    console.log(html);
                     if (html == "true") {
                         $("#mail").toggleClass("hidden");
                         $("#phone").toggleClass("hidden");
@@ -256,6 +259,7 @@ $(document).ready(function() {
                 phone +
                 "&type=phone",
                 success: function(html) {
+                    console.log(html);
                     if (html == "true") {
                         $("#mail").toggleClass("hidden");
                         $("#phone").toggleClass("hidden");

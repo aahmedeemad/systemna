@@ -61,6 +61,7 @@ if($DB->numRows() > 0)
         <div id="location"><i class="fas fa-globe-europe fa-fw"></i> <?php echo $info[0]->location == NULL ? "--" : $info[0]->location; ?></div>
 
         <div class="input-edit input-basic-info hidden"  ><i class="fas fa-id-card fa-fw"></i><input id="ssnEdit" type="number" value="<?php echo $info[0]->ssn; ?>"></div>
+        <div class="ssnMessage"></div>
         <div class="input-edit input-basic-info hidden" ><i class="fas fa-birthday-cake fa-fw"></i><input id="birthdateEdit" type="date" value="<?php echo $info[0]->bdate; ?>"></div>
         <div class="input-edit input-basic-info hidden"><i class="fas fa-globe-europe fa-fw"></i><input  id="locationEdit" type="text" value="<?php echo $info[0]->location; ?>"></div>
 
@@ -76,7 +77,7 @@ if($DB->numRows() > 0)
             <div id="phone"><i class="fas fa-phone fa-fw"></i> <?php echo $info[0]->phone; ?></div>
 
             <div class="input-edit input-contact-info hidden"><i class="fas fa-envelope fa-fw"></i><input id="emailEdit" type="email" value="<?php echo $info[0]->email; ?>"></div>
-            <div class="input-edit input-contact-info hidden"><i class="fas fa-phone fa-fw"></i><input id="phoneEdit" type="number" value="<?php echo $info[0]->phone; ?>"></div>
+            <div class="input-edit input-contact-info hidden"><i class="fas fa-phone fa-fw"></i><input id="phoneEdit" type="text" value="<?php echo $info[0]->phone; ?>"></div>
 
             <div class="save save-contact-info hidden">Save</div>
             <div class="cancel cancel-contact-info hidden">Cancel</div>

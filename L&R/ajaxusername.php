@@ -7,7 +7,7 @@ if(isset($_POST['username'])){
 
     $username=$_POST['username'];
     $filteredname = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-    if($filteredname == $username && strlen($filteredname)>3){
+    if($filteredname == $username && strlen($filteredname)>2){
         try{
             $sql="SELECT * FROM employee where username= '".$filteredname."'  ";
             $DB->query($sql);

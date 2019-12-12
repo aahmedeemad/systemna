@@ -22,7 +22,7 @@ $DB = new Database();
         <script>
 
             $(document).ready(function () {
-                $('#faq_edit').text(
+                $('.pages_edit').text(
                     '<?php
                     echo ('Edit');
                     ?>'
@@ -46,7 +46,6 @@ $DB = new Database();
                     echo ($DB->numRows());
                     ?>'
                 );
-
 
                 $('#notidata').html(
                     '<?php
@@ -76,42 +75,16 @@ $DB = new Database();
                     // DO NOTHING WHEN CONTAINER IS CLICKED.
                     return false;
                 });
-
-
-                // MARK ALL AS READ AND RESET COUNTER
-                $('#markAll').click(function () {
-                    <?php
-                    $uid = $_SESSION['id'];
-                    $sql = " UPDATE notifications SET status = 1 WHERE userid = $uid AND status = 0 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    ?>;
-                });
-
-                $('#noti_Counter').text(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = " SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-
-                $('#notidata').html(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = "SELECT * FROM notifications WHERE userid = $uid AND status = 0";
-                    $DB->query($sql);
-                    $DB->execute();
-                    for($i=$DB->numRows(); $i>0; --$i){
-                        $x=$DB->getdata();
-                        echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata;
-                    }
-                    ?>'
-                );
             });
+
+                var markRead = new XMLHttpRequest();
+                markRead.open('GET','../template/mark_read.php');
+                markRead.onreadystatechange = function() {
+                    if (markRead.readyState === 4) {
+                        document.getElementById('notidata').innerHTML = ' ';
+                        document.getElementById('noti_Counter').innerHTML = '0';
+                    }
+                };
 
         </script>
         <div class="container-custom">
@@ -141,8 +114,7 @@ $DB = new Database();
                         
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> Letter Requests</span></a></li><li class="sidenav-button"></li>
                     
-                      
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div id="faq_edit"></div> </span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div class="pages_edit" id="faq_edit" onclick="window.location.replace('../pages/EditFAQ.php')"></div> </span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
@@ -163,7 +135,7 @@ $DB = new Database();
                             <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
-                                <div id="markAll">Mark All as Read</div>
+                                <div id="markAll" onclick="markRead.send()">Mark All as Read</div>
                             </div>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/lettertypes.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>

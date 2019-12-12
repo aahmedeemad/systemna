@@ -18,19 +18,24 @@ $DB = new Database();
     </head>
 
     <body>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
 
             $(document).ready(function () {
+                $('#faq_edit').text(
+                    '<?php
+                    echo ('Edit');
+                    ?>'
+                );
+
                 $('#usrs_Counter').text(
                     '<?php
-                    $sql = "SELECT * FROM employee WHERE accepted = 0 ";
+                    $sql = "SELECT * FROM employee WHERE accepted = 2 ";
                     $DB->query($sql);
                     $DB->execute();
                     echo ($DB->numRows());
                     ?>'
                 );
-
 
                 $('#noti_Counter').text(
                     '<?php
@@ -137,7 +142,7 @@ $DB = new Database();
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> Letter Requests</span></a></li><li class="sidenav-button"></li>
                     
                       
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div id="faq_edit"></div> </span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>

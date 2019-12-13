@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 11, 2019 at 11:57 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 13, 2019 at 10:23 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -167,7 +167,8 @@ CREATE TABLE `requests` (
   `Type_id` int(11) NOT NULL,
   `Status` tinyint(1) NOT NULL,
   `priority` tinyint(1) NOT NULL,
-  `salary` tinyint(1) NOT NULL
+  `salary` tinyint(1) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

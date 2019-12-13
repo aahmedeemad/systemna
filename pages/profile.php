@@ -92,14 +92,16 @@ if($DB->numRows() > 0)
             <div id="password">
                 <i class="fas fa-key fa-fw"></i> 
                 <span class="starts">********</span> 
-                <span class="pass hidden"><?php echo $info[0]->password; ?></span> 
+                <span class="pass hidden"><?php echo $_SESSION['password'] ?></span> 
+<!--
                 <span class="eye">
                     <i class="far fa-eye"></i>
                 </span>
+-->
             </div>
 
-            <div class="input-edit input-company-info hidden"><i class="fas fa-user fa-fw"></i><input id="usernameEdit" type="text" value="<?php echo $info[0]->username; ?>"></div>
-            <div class="input-edit input-company-info hidden"><i class="fas fa-key fa-fw"></i><input id="passwordEdit" type="password" value="<?php echo $info[0]->password; ?>"><span class="eye eyeedit"><i class="far fa-eye"></i></span></div>
+<!--            <div class="input-edit input-company-info hidden"><i class="fas fa-user fa-fw"></i><input id="usernameEdit" type="text" value="<?php echo $info[0]->username; ?>"></div>-->
+            <div class="input-edit input-company-info hidden"><i class="fas fa-key fa-fw"></i><input id="passwordEdit" type="password" ><span class="eye eyeedit"><i class="far fa-eye"></i></span></div>
 
             <!--            <div id="salary"><i class="fas fa-money-bill-alt"></i> 2000<span style="color : green;">$</span></div>-->
 

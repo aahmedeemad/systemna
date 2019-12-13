@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $username=$_POST['username'];
 
     try{
-        $sql="INSERT INTO employee VALUES (NULL, '" . $name . "' ,  '" . $username . "' , '" . $_POST["password"] . "' , '" . $email . "' , '" . $_POST['phone'] . "', '" . $_POST["ssn"] . "' , 2 , 1 , 'user')";
+        $sql="INSERT INTO employee VALUES (NULL, '" . $name . "' ,  '" . $username . "' , '" . sha1($_POST["password"]) . "' , '" . $email . "' , '" . $_POST['phone'] . "', '" . $_POST["ssn"] . "' , 2 , 1 , 'user')";
         $DB->query($sql);
         $DB->execute();
         $lid = $DB->lastInsertedId();

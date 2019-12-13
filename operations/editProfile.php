@@ -7,12 +7,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /**************** Done ************************/
     if ($_POST['type'] == "fullname")
     {
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your name";
+            return;
+        }
         $_POST['value'] = filter_var($_POST['value'], FILTER_SANITIZE_STRING);
     }
 
     /**************** Done ************************/
     if ($_POST['type'] == "ssn")
     {
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your ssn";
+            return;
+        }
         if(!filter_var($_POST['value'], FILTER_VALIDATE_INT))
         {
             echo "Invalid SSN Format";
@@ -32,10 +42,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    /**************** Done ************************/
+    if ($_POST['type'] == "birthdate")
+    {    
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your birthdate";
+            return;
+        }
+    }
+
+    /**************** Done ************************/
+    if ($_POST['type'] == "location")
+    {    
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your location";
+            return;
+        }
+        $_POST['value'] = filter_var($_POST['value'], FILTER_SANITIZE_STRING);
+    }
+
 
     /**************** Done ************************/
     if ($_POST['type'] == "email")
     {
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your email";
+            return;
+        }
         $_POST['value'] = filter_var($_POST['value'], FILTER_SANITIZE_STRING);
         $_POST['value'] = filter_var($_POST['value'], FILTER_SANITIZE_EMAIL);
         if(!filter_var($_POST['value'], FILTER_VALIDATE_EMAIL))
@@ -48,6 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /**************** Done ************************/
     if ($_POST['type'] == "phone")
     {    
+        if(strlen($_POST['value']) == 0)
+        {
+            echo "You must enter your phone";
+            return;
+        }
         $_POST['value'] = substr($_POST['value'] , 1);
         if(!filter_var($_POST['value'], FILTER_VALIDATE_INT))
         {
@@ -65,41 +106,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     /**************** Done ************************/
-    if ($_POST['type'] == "username")
+    if ($_POST['type'] == "password")
     {    
-        $_POST["value"] = filter_var($_POST["value"], FILTER_SANITIZE_STRING);
-        if(strlen($filteredname)>2){
-            try{
-                $sql="SELECT * FROM employee where username= '".$_POST["value"]."'  ";
-                $DB->query($sql);
-                $DB->execute();
-                if($DB->numRows()>0)
-                {
-                    echo"Username already exists";
-
-                }
-                else{
-                    $sql="UPDATE employess VALUES(NULL, :id , :oldvalue , :value, :type, 2)" ;
-                    $DB->query($sql);
-                    $DB->bind(':id',$_POST['id']);
-                    $DB->bind(':oldvalue',$_POST['oldvalue']);
-                    $DB->bind(':value',$_POST['value']);
-                    $DB->bind(':type',$_POST['type']);
-                    $DB->execute();
-                    if($DB->numRows() > 0)
-                    {
-                        echo "true";
-                    }
-                }
-            }catch (Exception $e) {
-                echo "Error!! please try after minutes";
-            }
+        if (strlen($_POST['value']) < 6)
+        {
+            echo "Password must be at least 6 digits";
+            return;
         }
-        else{
-            echo"Invalid username";
-        }
+        $sql="UPDATE employee SET password = :value WHERE ID = :id" ;
+        $DB->query($sql);
+        $DB->bind(':id',$_POST['id']);
+        $DB->bind(':value',sha1($_POST['value']));
+        $DB->execute();
+        echo "true";
+        return;
     }
-
 
 
     $sql="INSERT INTO update_info1 VALUES(NULL, :id , :oldvalue , :value, :type, 2)" ;

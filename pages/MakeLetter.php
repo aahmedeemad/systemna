@@ -14,7 +14,7 @@ include "../template/header.php";
     $Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
-    $date=date('d/m/Y h:i:s');
+    $date = date('m/d/Y h:i:s a', time());
   //  $length=count($arr);
 
 

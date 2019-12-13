@@ -699,7 +699,7 @@ $(document).ready(function() {
              document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
              document.getElementById("rdbtn4").checked) &&
-             (document.getElementById("letterbuttons").checked==true)
+             (document.getElementsByName("letterbuttons").checked)
 
         ) {
             alert("your request has been placed successfully");

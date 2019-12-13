@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     try{
 
         $username = filter_var($_POST["Username"], FILTER_SANITIZE_STRING);
-        $sql="SELECT * FROM employee where username= '".$username."' and password = '".sha1($_POST["Password"])."' and accepted = 1 ";
+        $sql="SELECT * FROM employee where username= '".$username."' and password = '".sha1($_POST["Password"])."'";
         $DB->query($sql);
         $DB->execute();
     }  catch (Exception $e){
@@ -45,8 +45,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             if(ISSET($_COOKIE['password'])){
                 setcookie("password", "");
             }
-
-
         }
         if($_SESSION['type']=='admin'){
             header('Location:../pages/index.php');}
@@ -57,7 +55,16 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 //            echo "aaa";
             header('Location:../pages/QualityControl.php');
         }
-        
+        if($_SESSION['status'] == 2)
+        {
+            $Message = "You aren't accepted yet";
+            header("Location:../index.php?Message={$Message}");
+        }
+        elseif($_SESSION['status'] == 0)
+        {
+            $Message = "Sorry you are rejected";
+            header("Location:../index.php?Message={$Message}");
+        }
     }
 }
 

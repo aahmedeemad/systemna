@@ -10,16 +10,16 @@ include "../template/header.php";
 
     $emp_id=$_SESSION['id'];
     $priority=$_POST['priority'];
-    $arr=$_POST['arr'];
+    //$arr=$_POST['arr'];
     $Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
     $date=date('d/m/Y h:i:s');
-    $length=count($arr);
+  //  $length=count($arr);
 
 
 
-      for ($i=0; $i <$length ; $i++) {
+      //for ($i=0; $i <$length ; $i++) {
 
       /*if($arr[$i]=="General HR letter" ){
         $Type_id=1;
@@ -37,7 +37,7 @@ include "../template/header.php";
       $sql="INSERT INTO requests (emp_id,Type_id,Status,priority,salary,date) VALUES ('$emp_id','$Type_id','$Status','$priority','$salary','$date') ";
       $DB->query($sql);
       $DB->execute();
-    }
+    //}
       header("location: .php");
   }
   ?>
@@ -62,7 +62,7 @@ include "../template/header.php";
               <div id="column2" style="background-color:#EEE8AA;">
             <br>  <br>
               <?php
-            echo"<label><input type='radio' name='Letterbutton' value='$Name'> $Name ($desc) </label>" ;
+            echo"<label><input type='radio' name='Letterbutton' id='letterbuttons' value='$Name'> $Name ($desc) </label>" ;
             echo "<br><br><br><br> ";
           }
           echo "<br><br>";

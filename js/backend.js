@@ -699,10 +699,10 @@ $(document).ready(function() {
              document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
              document.getElementById("rdbtn4").checked) &&
-            arr != "" &&
-            Boolean(counter)
+             (document.getElementById("letterbuttons").checked==true)
+
         ) {
-            alert("your request has been placed Successfully");
+            alert("your request has been placed successfully");
         } else {
             alert("you have an error completing your request");
         }
@@ -719,7 +719,7 @@ $(document).ready(function() {
         jQuery.ajax({
             method: "POST",
             url: "MakeLetter.php",
-            data: { arr: arr, salary: salary, priority: priority },
+            data: { salary: salary, priority: priority },
             success: function(data2) {}
         });
     });

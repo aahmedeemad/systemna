@@ -89,11 +89,11 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
-                        
+
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
                         $(".modal").css("display", "block");
@@ -139,15 +139,15 @@ $(document).ready(function() {
                         $(".cancel-basic-info").toggleClass("hidden");
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
-                        
+
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
-                        
+
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
                         $(".modal").css("display", "block");
@@ -186,7 +186,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
@@ -231,7 +231,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
@@ -284,7 +284,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
@@ -326,7 +326,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else 
+                    }else
                     {
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
@@ -645,7 +645,7 @@ $(document).ready(function() {
         }
     });
 
-    var arr = [];
+  /*  var arr = [];
     var counter = 0;
     var cntr1 = 0;
     var cntr2 = 0;
@@ -691,7 +691,7 @@ $(document).ready(function() {
             arr.splice(arr.indexOf("Letter to whom might concern"), 1);
             arr.splice(arr.indexOf("Letter to whom might concern"), 1);
         }
-    });
+    });*/
 
     $("#submitbtn").click(function() {
         if (
@@ -718,9 +718,8 @@ $(document).ready(function() {
         }
         jQuery.ajax({
             method: "POST",
-            url: "lettertypes.php",
+            url: "MakeLetter.php",
             data: { arr: arr, salary: salary, priority: priority },
-
             success: function(data2) {}
         });
     });

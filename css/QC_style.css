@@ -1,21 +1,25 @@
 input[type=submit]
 {
 	background:#DAA520;
-	padding: 14px 20px;
+	padding: 2px 2px;
 	border: 2px solid rgb(167, 163, 145);
 	border-color: #DAA520;
 	border-radius: 12px;
-    color: #000;
-	font-weight: 700;
-    font-size: 18px;
+    color: white;
+	font-weight:800;
+    font-size: 11px;
     cursor: pointer;
-    margin-left: 900px;
+    margin-left:20px;
 
 }
 input[type=submit]:hover
 {
     background:black;
 	color: #DAA520;
+}
+input[type=text]
+{
+    margin-left:auto;
 }
 textarea
 {

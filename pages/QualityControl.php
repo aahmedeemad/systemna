@@ -3,9 +3,10 @@ $pageTitle = "SYSTEMNA | Quality Control";
 include "../template/header.php"; 
 ?>
 <link rel="stylesheet" href="../css/QC_style.css">
+<br><br>
 <h1>Quality Control</h1>
-<input type="search" id='QCtblsearch' class='tblsearch' placeholder='Search' style="left:500px;padding:25px;">
-<select id='choice' class='tblselect' style="left:510px;padding:15px">
+<input type="search" id='QCtblsearch' class='tblsearch' placeholder='Search' style="left:500px;padding:0px;">
+<select id='choice' class='tblselect' style="left:510px;padding:18px">
     <option value="empname">Employee Name</option>
     <option value="requestname">Request Name</option>
     <option value="empid">Employee ID</option>
@@ -19,6 +20,7 @@ include "../template/header.php";
         <th>Employee ID</th>
         <th>Salary</th>
         <th>Priority</th>
+        <th>Comment</th>
     </tr>
     <?php
         function check($c){
@@ -78,7 +80,9 @@ include "../template/header.php";
                 <td>{$RequestName}</td>
                 <td>{$Empid}</td> 
                 <td>{$Boolsalray}</td>
-                <td>{$BoolPriority}</td>";
+                <td>{$BoolPriority}</td>
+                <td><input type='text'placeholder='Write your comment here...'size='30'><input type='submit' value='Submit Comment'>
+                </td>";
                 ?></tr>
     <?php
         }

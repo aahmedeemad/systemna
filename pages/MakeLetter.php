@@ -10,38 +10,20 @@ include "../template/header.php";
 
     $emp_id=$_SESSION['id'];
     $priority=$_POST['priority'];
-    //$arr=$_POST['arr'];
     $Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
-    $date = date('m/d/Y h:i:s a', time());
-  //  $length=count($arr);
+    $date = date('Y/m/d');
 
-
-
-      //for ($i=0; $i <$length ; $i++) {
-
-      /*if($arr[$i]=="General HR letter" ){
-        $Type_id=1;
-      }
-      if($arr[$i]=="Embassy HR letter"){
-        $Type_id=2;
-      }
-      if($arr[$i]=="Letter directed to specific organization"){
-        $Type_id=3;
-      }
-      if($arr[$i]=="Letter to whom might concern"){
-        $Type_id=4;
-      }
-      */
       $sql="INSERT INTO requests (emp_id,Type_id,Status,priority,salary,date) VALUES ('$emp_id','$Type_id','$Status','$priority','$salary','$date') ";
       $DB->query($sql);
       $DB->execute();
-    //}
+
       header("location: .php");
   }
   ?>
   <div>
+    <form id="Addletterform" method='post'>
       <?php echo "<br>
           <h1 style='color:#DAA520'> Choose the type of the letter that you want to apply for : </h1>
           <hr>" ; ?>
@@ -62,7 +44,7 @@ include "../template/header.php";
               <div id="column2" style="background-color:#EEE8AA;">
             <br>  <br>
               <?php
-            echo"<label><input type='radio' name='Letterbutton' id='letterbuttons' value='$Name'> $Name ($desc) </label>" ;
+            echo"<label><input type='radio' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>" ;
             echo "<br><br><br><br> ";
           }
           echo "<br><br>";
@@ -73,7 +55,8 @@ include "../template/header.php";
 <br>
 <hr>
 <br><br>
-  <div id="Priorityform">
+  <div >
+
     <h4> Please choose the Letter priority : </h4>
     <label><input type="radio" name="Option1" id ="rdbtn1" value="Urgent"
       required> Urgent Request</label><br>
@@ -90,7 +73,8 @@ include "../template/header.php";
     Without Salary</label><br>
     <br><br><br>
     <input type="submit" id="submitbtn" value="Apply!">
-</div>
+
   </form>
+  </div>
 
 <?php include "../template/footer.php"; ?>

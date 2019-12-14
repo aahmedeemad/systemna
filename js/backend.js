@@ -639,7 +639,7 @@ $(document).ready(function () {
       var cntr2 = 0;
       var cntr3 = 0;
       var cntr4 = 0;
-  
+
       $("#btn2").click(function() {
           $("#btn2").toggleClass("Letterbutton1");
           arr.push("General HR letter");
@@ -682,12 +682,14 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
+
+
         if (
             (document.getElementById("rdbtn1").checked ||
                 document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
                 document.getElementById("rdbtn4").checked) &&
-            (document.getElementsById("letterbuttons").checked == true)
+            !document.getElementsByClassName("Letterbuttonn").checked
 
         ) {
             alert("your request has been placed successfully");

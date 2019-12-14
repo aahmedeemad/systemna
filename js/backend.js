@@ -1,15 +1,15 @@
-$(document).ready(function() {
-    $(".navbar-toggle").on("click", function() {
+$(document).ready(function () {
+    $(".navbar-toggle").on("click", function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
-    $(window).click(function(e) {
+    $(window).click(function (e) {
         if (e.target == $(".modal")[0]) {
             $(".modal").css("display", "none");
         }
     });
 
-    $(".popup-close").on("click", function() {
+    $(".popup-close").on("click", function () {
         $(".modal").css("display", "none");
     });
 
@@ -59,24 +59,23 @@ $(document).ready(function() {
 
 
     /************************************ Updated ************************************/
-    $(".save-fullname").on("click", function() {
+    $(".save-fullname").on("click", function () {
         var fullname = $("#fullnameEdit").val();
         var defaultFullname = $("#fullnameEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        if (fullname != defaultFullname)
-        {
+        if (fullname != defaultFullname) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultFullname +
-                "&value=" +
-                fullname +
-                "&type=fullname",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultFullname +
+                    "&value=" +
+                    fullname +
+                    "&type=fullname",
+                success: function (html) {
                     console.log(html);
                     if (html == "true") {
                         $("#fullname").toggleClass("hidden");
@@ -89,8 +88,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
 
@@ -99,7 +97,7 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
@@ -108,7 +106,7 @@ $(document).ready(function() {
     });
 
     /************************************ Updated ************************************/
-    $(".save-basic-info").on("click", function() {
+    $(".save-basic-info").on("click", function () {
         var ssn = $("#ssnEdit").val();
         var defaultSSN = $("#ssnEdit")[0]['defaultValue'];
         var bdate = $("#birthdateEdit").val();
@@ -116,20 +114,19 @@ $(document).ready(function() {
         var loc = $("#locationEdit").val();
         var defaultLoc = $("#locationEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        if (ssn != defaultSSN)
-        {
+        if (ssn != defaultSSN) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultSSN +
-                "&value=" +
-                ssn +
-                "&type=ssn",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultSSN +
+                    "&value=" +
+                    ssn +
+                    "&type=ssn",
+                success: function (html) {
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
                         $("#birthdate").toggleClass("hidden");
@@ -143,8 +140,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
 
@@ -153,26 +149,25 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
             });
         }
-        if (bdate != defaultBdate)
-        {
+        if (bdate != defaultBdate) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultBdate +
-                "&value=" +
-                bdate +
-                "&type=birthdate",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultBdate +
+                    "&value=" +
+                    bdate +
+                    "&type=birthdate",
+                success: function (html) {
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
                         $("#birthdate").toggleClass("hidden");
@@ -186,8 +181,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
 
@@ -196,27 +190,26 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
             });
         }
 
-        if (loc != defaultLoc)
-        {
+        if (loc != defaultLoc) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultLoc +
-                "&value=" +
-                loc +
-                "&type=location",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultLoc +
+                    "&value=" +
+                    loc +
+                    "&type=location",
+                success: function (html) {
                     console.log(html);
                     if (html == "true") {
                         $("#ssn").toggleClass("hidden");
@@ -231,8 +224,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".loading").toggleClass("hidden");
                         $(".profile").toggleClass("hidden");
 
@@ -241,7 +233,7 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
@@ -251,26 +243,25 @@ $(document).ready(function() {
     });
 
     /************************************ Updated ************************************/
-    $(".save-contact-info").on("click", function() {
+    $(".save-contact-info").on("click", function () {
         var email = $("#emailEdit").val();
         var defaultEmail = $("#emailEdit")[0]['defaultValue'];
         var phone = $("#phoneEdit").val();
         var defaultPhone = $("#phoneEdit")[0]['defaultValue'];
         var id = $("#id").text();
-        if (email != defaultEmail)
-        {
+        if (email != defaultEmail) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultEmail +
-                "&value=" +
-                email +
-                "&type=email",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultEmail +
+                    "&value=" +
+                    email +
+                    "&type=email",
+                success: function (html) {
                     console.log(html);
                     if (html == "true") {
                         $("#mail").toggleClass("hidden");
@@ -284,8 +275,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
                         $(".loading").toggleClass("hidden");
@@ -293,26 +283,25 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
             });
         }
-        if (phone != defaultPhone)
-        {
+        if (phone != defaultPhone) {
             $.ajax({
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultPhone +
-                "&value=" +
-                phone +
-                "&type=phone",
-                success: function(html) {
+                    "id=" +
+                    id +
+                    "&oldvalue=" +
+                    defaultPhone +
+                    "&value=" +
+                    phone +
+                    "&type=phone",
+                success: function (html) {
                     console.log(html);
                     if (html == "true") {
                         $("#mail").toggleClass("hidden");
@@ -326,8 +315,7 @@ $(document).ready(function() {
                         $(".popup-notification h2").text("Success");
                         $(".popup-content").text("Your Request Has Been Submitted Successfully");
                         $(".modal").css("display", "block");
-                    }else
-                    {
+                    } else {
                         $(".popup-notification h2").text("Failed");
                         $(".popup-content").text(html);
                         $(".loading").toggleClass("hidden");
@@ -335,7 +323,7 @@ $(document).ready(function() {
                         $(".modal").css("display", "block");
                     }
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $(".loading").toggleClass("hidden");
                     $(".profile").toggleClass("hidden");
                 }
@@ -344,7 +332,7 @@ $(document).ready(function() {
     });
 
     /************************************ Updated ************************************/
-    $(".save-company-info").on("click", function() {
+    $(".save-company-info").on("click", function () {
 
         var pass = $("#passwordEdit").val();
         //        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
@@ -355,14 +343,14 @@ $(document).ready(function() {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-            "id=" +
-            id +
-            "&value=" +
-            pass +
-            "&value=" +
-            pass +
-            "&type=password",
-            success: function(html) {
+                "id=" +
+                id +
+                "&value=" +
+                pass +
+                "&value=" +
+                pass +
+                "&type=password",
+            success: function (html) {
                 console.log(html);
                 if (html == "true") {
 
@@ -377,7 +365,7 @@ $(document).ready(function() {
                     $(".popup-notification h2").text("Success");
                     $(".popup-content").text("Your Request Has Been Submitted Successfully");
                     $(".modal").css("display", "block");
-                }else {
+                } else {
                     $(".popup-notification h2").text("Failed");
                     $(".popup-content").text(html);
                     $(".loading").toggleClass("hidden");
@@ -385,7 +373,7 @@ $(document).ready(function() {
                     $(".modal").css("display", "block");
                 }
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".loading").toggleClass("hidden");
                 $(".profile").toggleClass("hidden");
             }
@@ -394,7 +382,7 @@ $(document).ready(function() {
 
 
 
-    $(".eyeedit").on('click', function() {
+    $(".eyeedit").on('click', function () {
         if ($("#passwordEdit").attr("type") == 'text')
             $("#passwordEdit").attr("type", "password");
         else {
@@ -415,7 +403,7 @@ $(document).ready(function() {
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {
+                    success: function (data) {
                         $(".profile-picture").attr("src", data);
                         window.location.reload();
                     }
@@ -428,11 +416,11 @@ $(document).ready(function() {
         }
     }
 
-    $(".profile-picture-input").on("change", function() {
+    $(".profile-picture-input").on("change", function () {
         uploadProfilePicture();
     });
 
-    $(".profile-camera-button").on("click", function() {
+    $(".profile-camera-button").on("click", function () {
         $(".profile-picture-input").click();
     });
 
@@ -449,7 +437,7 @@ $(document).ready(function() {
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {
+                    success: function (data) {
                         $(".passport-picture").attr("src", data);
                         window.location.reload();
                     }
@@ -462,11 +450,11 @@ $(document).ready(function() {
         }
     }
 
-    $(".passport-picture-input").on("change", function() {
+    $(".passport-picture-input").on("change", function () {
         uploadPassportPicture();
     });
 
-    $(".passport-camera-button").on("click", function() {
+    $(".passport-camera-button").on("click", function () {
         $(".passport-picture-input").click();
     });
 
@@ -483,7 +471,7 @@ $(document).ready(function() {
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {
+                    success: function (data) {
                         $(".national-picture").attr("src", data);
                         window.location.reload();
                     }
@@ -496,24 +484,24 @@ $(document).ready(function() {
         }
     }
 
-    $(".national-picture-input").on("change", function() {
+    $(".national-picture-input").on("change", function () {
         uploadNationalIdPicture();
     });
 
-    $(".national-camera-button").on("click", function() {
+    $(".national-camera-button").on("click", function () {
         $(".national-picture-input").click();
     });
 
-    $(".sal").on("click", function(event) {
+    $(".sal").on("click", function (event) {
         $(this)
             .closest("div")
             .attr("contenteditable", "true");
         $(this).focus();
         $(this).addClass("input");
-        $(this).keyup(function() {
+        $(this).keyup(function () {
             var test = $(this)
-            .html()
-            .replace("<br>", "");
+                .html()
+                .replace("<br>", "");
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -525,13 +513,13 @@ $(document).ready(function() {
         });
     });
 
-    $(".sal").on("focusout", function(event) {
+    $(".sal").on("focusout", function (event) {
         $(this).removeClass("input");
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-        .find("tr:eq(" + rowIndex + ")")
-        .find("td:eq(2)");
+            .find("tr:eq(" + rowIndex + ")")
+            .find("td:eq(2)");
         var test = $(this).html();
         test = test.replace("<br>", "");
 
@@ -543,32 +531,32 @@ $(document).ready(function() {
                 method: "POST",
                 url: "../operations/EditTable.php",
                 data: { test: test, id: c.text() },
-                success: function(msg) {
+                success: function (msg) {
                     alert("Salary Updated!");
                     window.location.replace("index.php");
                 }
             });
         }
     });
-    $("#tblsearch").keyup(function() {
+    $("#tblsearch").keyup(function () {
         search_table($(this).val());
     });
     function search_table(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "email") selection = 5;
         if (selected == "ssn") selection = 7;
         if (selected == "username") selection = 4;
-        $("#Display tr").each(function() {
+        $("#Display tr").each(function () {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -581,25 +569,25 @@ $(document).ready(function() {
             }
         });
     }
-    $("#QCtblsearch").keyup(function() {
+    $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });
     function search_QCtable(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
         if (selected == "empid") selection = 4;
-        $("#Display tr").each(function() {
+        $("#Display tr").each(function () {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -612,13 +600,13 @@ $(document).ready(function() {
             }
         });
     }
-    $("#btn1").click(function() {
+    $("#btn1").click(function () {
         function checkAvai() {
             jQuery.ajax({
                 url: "AddQuestion.php",
                 data: "question=" + $("#question").val(),
                 type: "POST",
-                success: function(data) {}
+                success: function (data) { }
             });
         }
         var a = document.getElementById("question").value;
@@ -629,13 +617,13 @@ $(document).ready(function() {
         }
     });
 
-    $("#faqsubmit").click(function() {
+    $("#faqsubmit").click(function () {
         function checkAvai() {
             jQuery.ajax({
                 url: "faq.php",
                 data: "faqinputtext=" + $("#faqinputtext").val(),
                 type: "POST",
-                success: function(data) {}
+                success: function (data) { }
             });
         }
         var a = document.getElementById("faqinputtext").value;
@@ -645,61 +633,61 @@ $(document).ready(function() {
         }
     });
 
-  /*  var arr = [];
-    var counter = 0;
-    var cntr1 = 0;
-    var cntr2 = 0;
-    var cntr3 = 0;
-    var cntr4 = 0;
+    /*  var arr = [];
+      var counter = 0;
+      var cntr1 = 0;
+      var cntr2 = 0;
+      var cntr3 = 0;
+      var cntr4 = 0;
+  
+      $("#btn2").click(function() {
+          $("#btn2").toggleClass("Letterbutton1");
+          arr.push("General HR letter");
+          counter++;
+          cntr1++;
+          if (cntr1 % 2 == 0) {
+              arr.splice(arr.indexOf("General HR letter"), 1);
+              arr.splice(arr.indexOf("General HR letter"), 1);
+          }
+      });
+      $("#btn3").click(function() {
+          $("#btn3").toggleClass("Letterbutton1");
+          arr.push("Embassy HR letter");
+          counter++;
+          cntr2++;
+          if (cntr2 % 2 == 0) {
+              arr.splice(arr.indexOf("Embassy HR letter"), 1);
+              arr.splice(arr.indexOf("Embassy HR letter"), 1);
+          }
+      });
+      $("#btn4").click(function() {
+          $("#btn4").toggleClass("Letterbutton1");
+          arr.push("Letter directed to specific organization");
+          counter++;
+          cntr3++;
+          if (cntr3 % 2 == 0) {
+              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
+              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
+          }
+      });
+      $("#btn5").click(function() {
+          $("#btn5").toggleClass("Letterbutton1");
+          arr.push("Letter to whom might concern");
+          counter++;
+          cntr4++;
+          if (cntr4 % 2 == 0) {
+              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
+              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
+          }
+      });*/
 
-    $("#btn2").click(function() {
-        $("#btn2").toggleClass("Letterbutton1");
-        arr.push("General HR letter");
-        counter++;
-        cntr1++;
-        if (cntr1 % 2 == 0) {
-            arr.splice(arr.indexOf("General HR letter"), 1);
-            arr.splice(arr.indexOf("General HR letter"), 1);
-        }
-    });
-    $("#btn3").click(function() {
-        $("#btn3").toggleClass("Letterbutton1");
-        arr.push("Embassy HR letter");
-        counter++;
-        cntr2++;
-        if (cntr2 % 2 == 0) {
-            arr.splice(arr.indexOf("Embassy HR letter"), 1);
-            arr.splice(arr.indexOf("Embassy HR letter"), 1);
-        }
-    });
-    $("#btn4").click(function() {
-        $("#btn4").toggleClass("Letterbutton1");
-        arr.push("Letter directed to specific organization");
-        counter++;
-        cntr3++;
-        if (cntr3 % 2 == 0) {
-            arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
-            arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
-        }
-    });
-    $("#btn5").click(function() {
-        $("#btn5").toggleClass("Letterbutton1");
-        arr.push("Letter to whom might concern");
-        counter++;
-        cntr4++;
-        if (cntr4 % 2 == 0) {
-            arr.splice(arr.indexOf("Letter to whom might concern"), 1);
-            arr.splice(arr.indexOf("Letter to whom might concern"), 1);
-        }
-    });*/
-
-    $("#submitbtn").click(function() {
+    $("#submitbtn").click(function () {
         if (
             (document.getElementById("rdbtn1").checked ||
-             document.getElementById("rdbtn2").checked) &&
+                document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
-             document.getElementById("rdbtn4").checked) &&
-             (document.getElementsByName("letterbutton").checked==true)
+                document.getElementById("rdbtn4").checked) &&
+            (document.getElementsById("letterbuttons").checked == true)
 
         ) {
             alert("your request has been placed successfully");
@@ -720,17 +708,17 @@ $(document).ready(function() {
             method: "POST",
             url: "MakeLetter.php",
             data: { salary: salary, priority: priority },
-            success: function(data2) {}
+            success: function (data2) { }
         });
     });
-    $("#submits").on( "click", function() {
+    $("#submits").on("click", function () {
         //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
         //      alert("error: Enter something to search for!");
         //      return false;
         //    }
         var page = $("#faqdiv");
         var pageText = page.html();
-        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g,"");
+        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, "");
         var searchedText = $("#searched").val();
         var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");
         newHtml = newHtml.replace(theRegEx, "<span>$1</span>");

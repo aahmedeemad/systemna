@@ -18,6 +18,7 @@ include "../template/header.php";
         <th>Applied for Letter</th>
         <th>Priority</th>
         <th>Salary</th>
+        <th>Date applied for</th>
         <th colspan="2">Actions</th>
 
 
@@ -54,6 +55,7 @@ include "../template/header.php";
     $emp_id=$_SESSION['id'];
     $priority=check($x[$i]->priority);
     $salary=check($x[$i]->salary);
+    $date=check($x[$i]->date);
 
 
     $Boolsalray = "Without Salary";
@@ -96,7 +98,7 @@ include "../template/header.php";
     }
     echo "<td>{$BoolPriority}</td>";
     echo "<td>{$Boolsalray}</td>";
-    /*              
+    /*
 
     if($x[$i]->priority==1){
     echo "<td>Urgent</td>";}
@@ -108,17 +110,21 @@ include "../template/header.php";
     else{
     echo "<td>Without Salary</td>";}
     */
+    echo "<td>$date</td>";
     if($x[$i]->Status==1){
     ?>
 
-    <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">view letter</button></td>    
-    
+    <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">view letter</button></td>
+
     <?php } else if ($x[$i]->Status==0){
-    ?>     
+    ?>
 
     <td colspan="2"><p style="color:red; font-weight:bold;">Rejected</p></td>
 
-    <?php } else   {                  
+    <?php }
+
+
+    else   {
     ?>
 
     <td><a type='submit' onclick="return confirm('Delete this Request?')"
@@ -138,7 +144,7 @@ include "../template/header.php";
 
     }
     else {
-        echo"<tr><td colspan=8>You have no requests for now ! </td></tr>";
+        echo"<tr><td colspan=9>You have no requests for now ! </td></tr>";
     }
     }
     catch(Exception $e)
@@ -185,31 +191,31 @@ function Export2Doc(element, filename = ''){
     var blob = new Blob(['\ufeff', html], {
         type: 'application/msword'
     });
-    
+
     // Specify link url
     var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-    
+
     // Specify file name
     filename = filename?filename+'.doc':'document.doc';
-    
+
     // Create download link element
     var downloadLink = document.createElement("a");
 
     document.body.appendChild(downloadLink);
-    
+
     if(navigator.msSaveOrOpenBlob ){
         navigator.msSaveOrOpenBlob(blob, filename);
     }else{
         // Create a link to the file
         downloadLink.href = url;
-        
+
         // Setting the file name
         downloadLink.download = filename;
-        
+
         //triggering the function
         downloadLink.click();
     }
-    
+
     document.body.removeChild(downloadLink);
 }
 </script>

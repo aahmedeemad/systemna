@@ -38,7 +38,7 @@ include "../template/header.php";
 
     $sql="  SELECT *
     FROM requests INNER join requests_types
-    on requests.Type_id=requests_types.Type_id where emp_id='".$_SESSION['id']."'";
+    on requests.type_name=requests_types.Name where emp_id='".$_SESSION['id']."'";
     try
     {
 
@@ -56,6 +56,7 @@ include "../template/header.php";
     $priority=check($x[$i]->priority);
     $salary=check($x[$i]->salary);
     $date=check($x[$i]->date);
+    $type_name=$x[$i]->type_name;
 
 
     $Boolsalray = "Without Salary";
@@ -87,15 +88,7 @@ include "../template/header.php";
     else{
     echo "<td style='color:#be800d; font-weight:bold;' >Pending</td>";
     }
-    if($x[$i]->Type_id==1){
-    echo "<td>General HR Letter</td>";}
-    else if($x[$i]->Type_id==2){
-    echo "<td>Embassy HR Letter</td>";}
-    else if($x[$i]->Type_id==3){
-    echo "<td>HR Letter directed to specific organization</td>";}
-    else{
-    echo "<td>HR Letter to whom it may concern</td>";
-    }
+    echo "<td>{$type_name}</td>";
     echo "<td>{$BoolPriority}</td>";
     echo "<td>{$Boolsalray}</td>";
     /*

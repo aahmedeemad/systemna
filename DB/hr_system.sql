@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2019 at 10:26 AM
+-- Generation Time: Dec 15, 2019 at 07:55 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -47,7 +47,9 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 (2, '2019-11-11', 215487, '', 1, 0, 0),
 (6, NULL, 9999999, '', 0, 0, 0),
 (8, NULL, NULL, NULL, 0, 0, 0),
-(24, NULL, NULL, NULL, 1, 1, 1);
+(24, NULL, NULL, NULL, 1, 1, 1),
+(25, NULL, NULL, NULL, 0, 0, 0),
+(26, NULL, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +81,9 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (6, 'Micah', 'MBell', '123', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '123456', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
 (8, 'Ahmed Emad', 'aahmedeemad', '123', 'ahmed3madeldin@gmail.com', '', '12345678912377', 1, 1, 'admin'),
-(24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user');
+(24, 'mark', 'mark', '123456', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user'),
+(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'eazy@gmail.com', '01115558792', '12345678912345', 1, 1, 'admin'),
+(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user');
 
 -- --------------------------------------------------------
 
@@ -100,7 +104,7 @@ CREATE TABLE `faq` (
 --
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUES
-(1, 'What is SYSTEMNA ?', 'SYSTEMNA is our company\'s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
+(1, 'What is SYSTEMNA', 'SYSTEMNA is our company&#39;s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
 (2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
 (3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
 (4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
@@ -164,11 +168,11 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
 CREATE TABLE `requests` (
   `Request_id` int(50) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `Type_id` int(11) NOT NULL,
-  `Status` tinyint(1) NOT NULL,
+  `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -296,8 +300,7 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`Request_id`),
-  ADD KEY `emp_id` (`emp_id`),
-  ADD KEY `Type_id` (`Type_id`);
+  ADD KEY `emp_id` (`emp_id`);
 
 --
 -- Indexes for table `requests_types`
@@ -326,7 +329,7 @@ ALTER TABLE `update_info1`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -350,7 +353,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `requests_types`
@@ -384,8 +387,7 @@ ALTER TABLE `add_info`
 -- Constraints for table `requests`
 --
 ALTER TABLE `requests`
-  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
-  ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`Type_id`) REFERENCES `requests_types` (`Type_id`);
+  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
 
 --
 -- Constraints for table `update_info`

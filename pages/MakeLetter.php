@@ -10,12 +10,14 @@ include "../template/header.php";
 
     $emp_id=$_SESSION['id'];
     $priority=$_POST['priority'];
-    $Type_id=1;
+    //$Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
     $date = date('Y/m/d');
+    $type_name=$_POST['type_name'];
 
-      $sql="INSERT INTO requests (emp_id,Type_id,Status,priority,salary,date) VALUES ('$emp_id','$Type_id','$Status','$priority','$salary','$date') ";
+      $sql="INSERT INTO requests (emp_id,Status,priority,salary,date,type_name)
+      VALUES ('$emp_id','$Status','$priority','$salary','$date','$type_name') ";
       $DB->query($sql);
       $DB->execute();
 

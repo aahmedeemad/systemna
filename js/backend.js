@@ -693,6 +693,7 @@ $(document).ready(function () {
 
         ) {
             alert("your request has been placed successfully");
+            type_name=$("input[name=Letterbuttonn]:checked").val();
         } else {
             alert("you have an error completing your request");
         }
@@ -706,10 +707,12 @@ $(document).ready(function () {
         } else if (document.getElementById("rdbtn4").checked) {
             salary = 0;
         }
+        var value;
+
         jQuery.ajax({
             method: "POST",
             url: "MakeLetter.php",
-            data: { salary: salary, priority: priority },
+            data: { salary: salary, priority: priority , type_name:type_name },
             success: function (data2) { }
         });
     });

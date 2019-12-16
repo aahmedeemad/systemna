@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2019 at 07:55 AM
+-- Generation Time: Dec 16, 2019 at 12:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -171,9 +171,22 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, `date`, `type_name`) VALUES
+(18, 26, 2, 0, 1, '2019-12-15 00:00:00', ''),
+(20, 26, 1, 0, 1, '2019-12-15 00:00:00', 'General HR Letter'),
+(21, 26, 2, 1, 1, '2019-12-15 00:00:00', 'General HR Letter'),
+(23, 26, 2, 0, 1, '2019-12-15 00:00:00', 'HR Letter directed to specific organization'),
+(24, 26, 2, 1, 0, '2019-12-15 00:00:00', 'HR Letter to whom it may concern'),
+(25, 26, 2, 0, 1, '2019-12-15 00:00:00', ''),
+(30, 26, 2, 0, 1, '2019-12-16 12:22:55', 'Embassy HR Letter');
 
 -- --------------------------------------------------------
 
@@ -353,7 +366,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `requests_types`

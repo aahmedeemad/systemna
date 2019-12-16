@@ -13,7 +13,7 @@ include "../template/header.php";
     //$Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
-    $date = date('Y/m/d');
+    $date=date('Y/m/d h:i:s');
     $type_name=$_POST['type_name'];
 
       $sql="INSERT INTO requests (emp_id,Status,priority,salary,date,type_name)

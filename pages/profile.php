@@ -25,15 +25,9 @@ if($DB->numRows() > 0)
             Your Request Has Been Submitted Successfully
         </div>
     </div>
-
 </div>
 
-
-
-
 <div class="profile">
-
-
     <div class="profile-left">
         <div class="image-container">
             <img src="<?php echo $info[0]->profile_picture == 0 ? "../template/avatar.jpg" :  "../usersImages/". $info[0]->id . ".jpeg" ?>" class="profile-picture">
@@ -51,7 +45,6 @@ if($DB->numRows() > 0)
         <div class="input-edit input-fullname hidden" ><input id="fullnameEdit" type="text" value="<?php echo $info[0]->fullname; ?>"></div>
         <div class="save save-fullname hidden"><span><i class="fas fa-check"></i></span></div>
         <div class="cancel cancel-fullname hidden"><span><i class="fas fa-times"></i></span></div>
-
 
         <div class="user-position"><?php echo $info[0]->privilege; ?></div>
         <div class="title-info">Basic Info <span class="edit edit-basic-info"><i class="fas fa-pen"></i></span></div>
@@ -81,13 +74,11 @@ if($DB->numRows() > 0)
 
             <div class="save save-contact-info hidden">Save</div>
             <div class="cancel cancel-contact-info hidden">Cancel</div>
-
         </div>
 
         <div class="profile-right-down">
             <div class="title-info">Company Info <span class="edit edit-company-info"><i class="fas fa-pen"></i></span></div>
             <hr>
-
             <div id="username"><i class="fas fa-user fa-fw"></i> <?php echo $info[0]->username; ?></div>
             <div id="password">
                 <i class="fas fa-key fa-fw"></i> 
@@ -110,6 +101,7 @@ if($DB->numRows() > 0)
         </div>
     </div>
 </div>
+<div style="margin-bottom: 5em;"></div>
 
 <?php
 } else {

@@ -5,13 +5,15 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
 if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 <br>
-<h1 style="text-align:center">Dashboard</h1>
-<input type=text id='tblsearch' class='tblsearch' placeholder='Search'>
+<div style="text-align: center;">
+<h1 style="font-family: sans-serif;">Dashboard</h1>
+<input type='text' class='tblsearch' placeholder='Search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>
     <option value="ssn">SSN</option>
     <option value="username">UserName</option>
 </select>
+</div>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>
@@ -43,7 +45,6 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
               ";
     try
     {
-
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -63,9 +64,6 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
                 $email = check($x[$i]->email);
                 $location = check($x[$i]->location);
 
-
-
-
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
                 if($x[$i]->accepted==1)
@@ -83,7 +81,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
                 <td>{$ssn}</td>
                 <td>{$bdate}</td>
                 <td>{$phone}</td>
-                <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
+                <td><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
     ?>
     <td><a type='submit' onclick="return confirm('Delete this account?')"
            href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>

@@ -134,28 +134,19 @@
 
 .content {
     flex: 1;
-    padding: 0.5rem 0 0 0.5rem;
+    padding: 0.5rem;
     background-color: #f5f5f5;
-    overflow-x: auto;
+    overflow: hidden;
 }
 
 /* All Users Table Content */
 
 #Dashboard {
-    overflow-x: auto;
-    width: 90%;
+    width: 99%;
     top: 200px;
     right: -23%;
 }
-#Display {
-    position: relative;
-    border-collapse: collapse;
-    width: 60%;
-    text-align: center;
-    border: 1px solid black;
-}
-td,
-th {
+td, th {
     text-align: center;
     padding: 11px 7px;
 }
@@ -213,13 +204,14 @@ tr:nth-child(even) {
 
 /* islam tables */
 #Display {
+    margin-top: 7vh;
     border-collapse: collapse;
-    border-spacing: 0;
     border: 1px solid black;
     width: 100%;
+    text-align: center;
+    display: block;
+    overflow-x: auto;
     position: relative;
-    top: 10%;
-    font-size: 0.7em;
 }
 .input {
     -moz-appearance: textfield;
@@ -247,18 +239,15 @@ tr:nth-child(even) {
     padding: 2px 3px;
     width: 50px;
 }
-.tblsearch {
-    width: 270px;
+.tblsearch,.tblselect {
+    width: 40vw;
     background: #fff;
     color: #222;
     border: 1px solid #eaeaea;
-    border-radius: 1px;
     padding: 8px 8px;
     font-size: 12pt;
-    position: relative;
-    top: 5%;
-    left: 31.7%;
-    height: 5.5%;
+    margin-top: 2vh;
+    display: inline;
 }
 .tblsearch:focus {
     border-color: #3971ed !important;
@@ -266,21 +255,8 @@ tr:nth-child(even) {
 .tblsearch:hover {
     border-color: #cecece;
 }
-.tblselect {
-    width: 270px;
-    background: #fff;
-    color: #222;
-    border: 1px solid #eaeaea;
-    border-radius: 1px;
-    padding: 8px 8px;
-    font-size: 12pt;
-    position: relative;
-    top: 5%;
-    left: 31.7%;
-}
 
 /* Profile Page */
-
 .loading {
     margin: auto;
     border: 16px solid #f3f3f3; /* Light grey */
@@ -302,7 +278,7 @@ tr:nth-child(even) {
 
 .profile-background {
     display: block;
-    width: 60%;
+    width: 99%;
     height: auto;
     max-height: 250px;
     border-radius: 20px;
@@ -315,7 +291,7 @@ tr:nth-child(even) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 60%;
+    width: 99%;
     height: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -509,6 +485,10 @@ box-sizing: content-box;
         margin-left: 5%;
     }
 
+    .profile .profile-left {
+        width: 85% !important;
+    }
+
     .profile .profile-right .profile-right-up {
         margin-bottom: 40px;
     }
@@ -577,16 +557,7 @@ box-sizing: content-box;
 
 /* Abdelhamid's part */
 
-#question ,#requested_by {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-#answer {
-    color: black;
+#question ,#requested_by, #answer {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -598,11 +569,12 @@ box-sizing: content-box;
     width: 100%;
     background-color: #daa520;
     color: white;
-    padding: 14px 20px;
+    padding: 14px 2px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    align-content: center;
 }
 #column {
     float: left;
@@ -770,9 +742,6 @@ box-sizing: content-box;
 }
 
 
-
-
-
 /* pn Page css */
 
 .pn {
@@ -796,8 +765,6 @@ box-sizing: content-box;
     padding-bottom: 25px;
 }
 
-
-
 .pn .pnleft img,
 .pn .pnright img{
     border-radius: 10px;
@@ -805,12 +772,10 @@ box-sizing: content-box;
     height: 450px;
 }
 
-
 .pn .pnline {
     border-left: 2px solid black;
     height: 93vh;
 } 
-
 
 .pn .passport-camera-button , 
 .pn .national-camera-button {
@@ -820,4 +785,3 @@ box-sizing: content-box;
     border: 3px solid #DAA520;
     cursor: pointer;
 } 
-

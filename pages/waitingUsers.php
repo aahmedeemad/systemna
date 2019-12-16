@@ -5,13 +5,15 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location: ../index.php');}
  if($_SESSION['type']=='user'){header('Location: lettertypes.php');}    ?>
 <br>
-<h1 style="text-align:center">Waiting Users</h1>
+<div style="text-align: center;">
+<h1 style="font-family: sans-serif;">Waiting Users</h1>
 <input type=text id='tblsearch' class='tblsearch' placeholder='Search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>
     <option value="ssn">SSN</option>
     <option value="username">UserName</option>
 </select>
+</div>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>

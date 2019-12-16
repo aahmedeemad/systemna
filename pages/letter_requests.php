@@ -5,8 +5,10 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
 ?>
 
-<BR></BR>
-<h1 style="text-align:center">All Requests</h1>
+<br>
+<div style="text-align: center;">
+<h1 style="font-family: sans-serif;">All Requests</h1>
+</div>
 <br><br>
 <table id='Display'>
     <tr id='must'>
@@ -19,9 +21,8 @@ include "../template/header.php";
         <th>Priority</th>
         <th>Salary</th>
         <th colspan="2">Actions</th>
-
-
     </tr>
+
     <?php
     function check($c){
 
@@ -118,8 +119,6 @@ include "../template/header.php";
 
     <td><a href="../operations/letter_request.php?id=<?php echo $id; ?> &status=1; &userid=<?php echo $emp_id; ?>" style="color:white" class="btn btn-success">Accept</a></td>
     <td><a   href="../operations/letter_request.php?id=<?php echo $id; ?> &status=0   &userid=<?php echo $emp_id; ?>" style="color:white" class="btn btn-danger">Reject</a></td>
-
-
     </tr>
 
 <?php
@@ -143,9 +142,6 @@ include "../template/header.php";
 ?>
 </table>
 
-
-
-
 <div class="modal fade bd-example-modal-xl" id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div id="body" class="modal-content">
@@ -153,13 +149,8 @@ include "../template/header.php";
       
       
     </div>
-  
-    
   </div>
-  
 </div>
-
-
 
 <!--<div class="modal fade " id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">

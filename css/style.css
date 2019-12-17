@@ -120,9 +120,8 @@
         width: 90px;
     }
     .sidenav-custom .sidenav-button .button-text {
-        display: none;
+        display: block;
     }
-
     .sidenav-custom .sidenav-button .icon-button {
         padding-left: 10px;
         border-right: none;
@@ -136,7 +135,8 @@
     flex: 1;
     padding: 0.5rem;
     background-color: #f5f5f5;
-    overflow: hidden;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 /* All Users Table Content */
@@ -211,6 +211,12 @@ tr:nth-child(even) {
     text-align: center;
     display: table;
     position: relative;
+}
+@media only screen and (max-width: 1000px) {
+    #Display{
+        display: block;
+        overflow: auto;
+    }
 }
 .input {
     -moz-appearance: textfield;
@@ -495,12 +501,20 @@ box-sizing: content-box;
     .profile .profile-left .p-image {
         right: 15%;
     }
-    
-}
-@media only screen and (max-width: 1400px) {
-    #Display{
-        display: block;
-        overflow-x: auto;
+    .askus #faqtextarea {
+        margin-right: 0.8em;
+    }
+    .sidenav-custom .sidenav-header {
+        padding-bottom: 0;
+    }
+    .sidenav-custom .sidenav-button a {
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.7em;
+    }
+    .sidenav-custom .sidenav-button .icon-button {
+        padding: 0;
+        margin-left: 1rem;
     }
 }
 
@@ -532,8 +546,14 @@ box-sizing: content-box;
         padding-right: 1vw;
     }
 }
+#searched{
+    width: 60%;
+}
+#submits{
+    width: 20%;
+}
 .askus #faqinputtext {
-    width: 90%;
+    width: 95%;
     padding: 1em 2em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
@@ -541,18 +561,17 @@ box-sizing: content-box;
     box-sizing: border-box;
 }
 .askus #faqtextarea {
-    width: 100%;
-    padding: 1em 2em;
+    width: 95%;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
 .askus #faqsubmit {
-    width: 80%;
+    width: 75%;
     background-color: #daa520;
     color: white;
-    padding: 1em 1em;
+    padding: 1em;
     border: none;
     border-radius: 0.4em;
     margin: auto;
@@ -735,15 +754,28 @@ box-sizing: content-box;
     border-radius: 0.2em;
     z-index: 1;
 }
+#faq_add {
+    width: 90%;
+    height: 5%;
+    padding: 0.5em;
+    background-color: #daa520;
+    color: white;
+    padding: 14px 2px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-content: center;
+    font-size: 1.5em;
+}
 
 #column2{
     background-color: #f0e68c;
     border: none;
     width: 100%;
-    height: 100px;
+    height: 150px;
     text-align: center;
     font-size: 19px;
-    margin: 4px 2px;
     cursor: pointer;
 }
 

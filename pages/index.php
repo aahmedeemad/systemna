@@ -7,7 +7,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>
-<input type='text' class='tblsearch' placeholder='Search'>
+<input type='text' id='tblsearch' class = 'tblsearch' placeholder='Search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>
     <option value="ssn">SSN</option>

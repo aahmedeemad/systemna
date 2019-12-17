@@ -693,7 +693,7 @@ $(document).ready(function () {
 
         ) {
             alert("your request has been placed successfully");
-            type_name=$("input[name=Letterbuttonn]:checked").val();
+            type_name = $("input[name=Letterbuttonn]:checked").val();
         } else {
             alert("you have an error completing your request");
         }
@@ -712,7 +712,7 @@ $(document).ready(function () {
         jQuery.ajax({
             method: "POST",
             url: "MakeLetter.php",
-            data: { salary: salary, priority: priority , type_name:type_name },
+            data: { salary: salary, priority: priority, type_name: type_name },
             success: function (data2) { }
         });
     });

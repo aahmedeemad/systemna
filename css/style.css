@@ -746,16 +746,16 @@ box-sizing: content-box;
 }
 .pages_edit {
     display: inline-block;
-    background: yellow;
+    background: #daa520;
     color: white;
     font-size: 0.8em;
-    font-weight: normal;
+    font-weight: bold;
     padding: 0.1em 0.3em;
     border-radius: 0.2em;
     z-index: 1;
 }
 #faq_add {
-    width: 90%;
+    width: 80%;
     height: 5%;
     padding: 0.5em;
     background-color: #daa520;
@@ -763,7 +763,7 @@ box-sizing: content-box;
     padding: 14px 2px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.4em;
     cursor: pointer;
     align-content: center;
     font-size: 1.5em;

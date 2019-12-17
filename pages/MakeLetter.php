@@ -27,7 +27,7 @@ include "../template/header.php";
   <div>
     <form id="Addletterform" method='post'>
       <?php echo "<br>
-          <h1 style='color:#DAA520'> Choose the type of the letter that you want to apply for : </h1>
+          <h1 style='color:#DAA520;'> Choose the type of the letter that you want to apply for: </h1>
           <hr>" ; ?>
       <div class="Letterdiv" id="Letterdiv">
           <?php
@@ -51,9 +51,7 @@ include "../template/header.php";
           }
           echo "<br><br>";
           ?>
-
       </div>
-
 <br>
 <hr>
 <br><br>

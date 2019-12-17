@@ -569,6 +569,7 @@ $(document).ready(function () {
             }
         });
     }
+    $(".modify").on('click', function () { $(this).hide(); });
     $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });

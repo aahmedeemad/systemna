@@ -14,7 +14,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
     <option value="username">UserName</option>
 </select>
 </div>
-<table id='Display'>
+<table id='Display' style="display: block; overflow: auto;">
     <tr id='must'>
         <th>#</th>
         <th>Status</th>

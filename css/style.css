@@ -209,8 +209,7 @@ tr:nth-child(even) {
     border: 1px solid black;
     width: 100%;
     text-align: center;
-    display: block;
-    overflow-x: auto;
+    display: table;
     position: relative;
 }
 .input {
@@ -495,6 +494,13 @@ box-sizing: content-box;
 
     .profile .profile-left .p-image {
         right: 15%;
+    }
+    
+}
+@media only screen and (max-width: 1400px) {
+    #Display{
+        display: block;
+        overflow-x: auto;
     }
 }
 

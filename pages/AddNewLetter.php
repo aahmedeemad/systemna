@@ -16,7 +16,7 @@ if (isset($_POST['Name'])) {
 
 <h3> Add New Type of Letter </h3>
 <hr>
-<br>
+
 <div>
     <form id="Addquestionform" method='post'>
         <h4>Letter Name: </h4>

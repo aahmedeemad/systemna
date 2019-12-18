@@ -133,7 +133,7 @@
 
 .content {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
     background-color: #f5f5f5;
     overflow: auto;
     overflow-x: hidden;
@@ -746,22 +746,23 @@ box-sizing: content-box;
 }
 .pages_edit {
     display: inline-block;
-    color: white;
-    font-weight: bold;
+    top: 0;
     z-index: 1;
-    width: 80%;
-    height: 5%;
-    padding: 0.5em;
     background-color: #daa520;
-    color: white;
-    padding: 14px 2px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 0.4em;
-    cursor: pointer;
     text-align: center;
     align-content: center;
+    cursor: pointer;
+    color: white;
     font-size: 1.5em;
+    font-weight: bold;
+    width: 30%;
+    height: 5%;
+    padding: 0.5em;
+    border: none;
+    border-top-right-radius: 0em;
+    border-top-right-radius: 0em;
+    border-bottom-right-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
 }
 #columnAddRequest{
     background-color: #f0e68c;

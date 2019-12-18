@@ -5,7 +5,6 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
  if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 
-<br>
 <div style="text-align: center; align-self: center;">
 <div class="pages_edit" id="faq_add" onclick="addFAQ.send()"></div>
 </div>

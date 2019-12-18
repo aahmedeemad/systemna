@@ -5,9 +5,10 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
 ?>
 
-<BR></BR>
-
+<br>
+<div style="text-align: center;">
 <h1 style="text-align:center">Your Requests</h1>
+</div>
 <br><br>
 <table id='Display'>
     <tr id='must'>

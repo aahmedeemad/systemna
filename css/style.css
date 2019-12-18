@@ -582,7 +582,7 @@ box-sizing: content-box;
 
 /* Abdelhamid's part */
 
-#question ,#requested_by, #answer {
+#question ,#requested_by, #answer , #Name , #description{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -590,7 +590,7 @@ box-sizing: content-box;
     border-radius: 4px;
     box-sizing: border-box;
 }
-#btn1 {
+#btn1, #btn2 {
     width: 100%;
     background-color: #daa520;
     color: white;

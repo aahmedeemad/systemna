@@ -617,6 +617,21 @@ $(document).ready(function () {
             alert("Data Saved Successfully");
         }
     });
+    $("#btn2").click(function () {
+        function checkAvai() {
+            jQuery.ajax({
+                url: "AddNewLetter.php",
+                data: "Name=" + $("#Name").val(),
+                type: "POST",
+                success: function (data) { }
+            });
+        }
+        var a = document.getElementById("Name").value;
+        var b = document.getElementById("description").value;
+        if (a != "" && b != "") {
+            alert("Letter Added Successfully");
+        }
+    });
 
     $("#faqsubmit").click(function () {
         function checkAvai() {

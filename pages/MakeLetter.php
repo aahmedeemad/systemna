@@ -43,7 +43,7 @@ include "../template/header.php";
             ?>
             <div id="row1">
               <form>
-              <div id="column2" style="background-color:#EEE8AA;">
+              <div id="columnAddRequest" style="background-color:#EEE8AA;">
             <br>  <br>
               <?php
             echo"<label><input type='radio' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>" ;

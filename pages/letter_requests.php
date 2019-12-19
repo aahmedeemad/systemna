@@ -25,7 +25,6 @@ include "../template/header.php";
 
     <?php
     function check($c){
-
         if($c==null)
             $c='-';
         else if($c=='')

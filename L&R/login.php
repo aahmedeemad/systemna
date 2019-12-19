@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($_SESSION['type']=='admin'){
             header('Location:../pages/index.php');}
         else if($_SESSION['type']=='user'){
-            header('Location:../pages/lettertypes.php');
+            header('Location:../pages/MakeLetter.php');
         }
         else if($_SESSION['type']=='qc'){
 //            echo "aaa";

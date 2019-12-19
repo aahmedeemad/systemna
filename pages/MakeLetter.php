@@ -27,7 +27,7 @@ include "../template/header.php";
   <div>
     <form id="Addletterform" method='post'>
       <?php echo "<br>
-          <h1 style='color:#DAA520'> Choose the type of the letter that you want to apply for : </h1>
+          <h1 style='color:#DAA520;'> Choose the type of the letter that you want to apply for: </h1>
           <hr>" ; ?>
       <div class="Letterdiv" id="Letterdiv">
           <?php
@@ -43,7 +43,7 @@ include "../template/header.php";
             ?>
             <div id="row1">
               <form>
-              <div id="column2" style="background-color:#EEE8AA;">
+              <div id="columnAddRequest" style="background-color:#EEE8AA;">
             <br>  <br>
               <?php
             echo"<label><input type='radio' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>" ;
@@ -51,9 +51,7 @@ include "../template/header.php";
           }
           echo "<br><br>";
           ?>
-
       </div>
-
 <br>
 <hr>
 <br><br>

@@ -1,6 +1,34 @@
 <?php
 include "../DB/Database.php";
 $DB2 = new Database();
+
+if(isset($_POST['type'])){
+   $id=$_POST['mid'];
+   $sql = "select * from employee where id = '$id';";
+   try 
+   {
+   $DB2->query($sql);
+   $DB2->execute();
+   if($DB2->numRows()>0)
+   {
+       for($i=0;$i<$DB2->numRows();$i++)
+       {$x = $DB2 ->getdata();
+        echo $x[$i]->accepted;
+        $acc = $x[$i]->accepted; }
+        if($acc == 1){
+         $type=$_POST['type'];
+         $sql = "update employee set privilege='$type' where id = '$id';";
+         $DB2->query($sql);
+         $DB2->execute();
+        }
+   }
+  }
+  catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
+   
+}
 if(isset($_POST['test'])){
     $sal=$_POST['test']; 
     $id=$_POST['id']; 

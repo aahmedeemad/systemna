@@ -45,7 +45,7 @@
 
 .sidenav-custom {
     display: none;
-    width: 250px;
+    width: 255px;
     background-color: #2d3035;
     padding-top: 1.5rem;
 }
@@ -64,6 +64,7 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 15px;
+    margin-left: 15px;
     padding: 4px;
     border: 3px solid #daa520;
 }
@@ -120,9 +121,8 @@
         width: 90px;
     }
     .sidenav-custom .sidenav-button .button-text {
-        display: none;
+        display: block;
     }
-
     .sidenav-custom .sidenav-button .icon-button {
         padding-left: 10px;
         border-right: none;
@@ -134,9 +134,10 @@
 
 .content {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
     background-color: #f5f5f5;
-    overflow: hidden;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 /* All Users Table Content */
@@ -153,7 +154,7 @@ td, th {
 tr:nth-child(even) {
     background: #e8e8e8;
 }
-.EditBtn,.EditBtn1 {
+.EditBtn,.EditBtn1,.modify {
     background-color: #1c87c9;
     border: none;
     color: white;
@@ -209,9 +210,14 @@ tr:nth-child(even) {
     border: 1px solid black;
     width: 100%;
     text-align: center;
-    display: block;
-    overflow-x: auto;
     position: relative;
+    display: table;
+}
+@media only screen and (max-width: 1000px) {
+    #Display{
+        display: block;
+        overflow: auto;
+    }
 }
 .input {
     -moz-appearance: textfield;
@@ -496,6 +502,21 @@ box-sizing: content-box;
     .profile .profile-left .p-image {
         right: 15%;
     }
+    .askus #faqtextarea {
+        margin-right: 0.8em;
+    }
+    .sidenav-custom .sidenav-header {
+        padding-bottom: 0;
+    }
+    .sidenav-custom .sidenav-button a {
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.7em;
+    }
+    .sidenav-custom .sidenav-button .icon-button {
+        padding: 0;
+        margin-left: 1rem;
+    }
 }
 
 /* Ahmed Emad's FAQ related Styles */
@@ -526,8 +547,14 @@ box-sizing: content-box;
         padding-right: 1vw;
     }
 }
+#searched{
+    width: 60%;
+}
+#submits{
+    width: 20%;
+}
 .askus #faqinputtext {
-    width: 90%;
+    width: 95%;
     padding: 1em 2em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
@@ -535,18 +562,17 @@ box-sizing: content-box;
     box-sizing: border-box;
 }
 .askus #faqtextarea {
-    width: 100%;
-    padding: 1em 2em;
+    width: 95%;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
 .askus #faqsubmit {
-    width: 80%;
+    width: 75%;
     background-color: #daa520;
     color: white;
-    padding: 1em 1em;
+    padding: 1em;
     border: none;
     border-radius: 0.4em;
     margin: auto;
@@ -557,7 +583,7 @@ box-sizing: content-box;
 
 /* Abdelhamid's part */
 
-#question ,#requested_by, #answer {
+#question ,#requested_by, #answer , #Name , #description{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -565,7 +591,7 @@ box-sizing: content-box;
     border-radius: 4px;
     box-sizing: border-box;
 }
-#btn1 {
+#btn1, #btn2 {
     width: 100%;
     background-color: #daa520;
     color: white;
@@ -721,23 +747,31 @@ box-sizing: content-box;
 }
 .pages_edit {
     display: inline-block;
-    background: yellow;
-    color: white;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.1em 0.3em;
-    border-radius: 0.2em;
+    top: 0;
     z-index: 1;
+    background-color: #daa520;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 30%;
+    height: 5%;
+    padding: 0.5em;
+    border: none;
+    border-top-right-radius: 0em;
+    border-top-right-radius: 0em;
+    border-bottom-right-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
 }
-
-#column2{
+#columnAddRequest{
     background-color: #f0e68c;
     border: none;
     width: 100%;
-    height: 100px;
+    height: 120px;
     text-align: center;
     font-size: 19px;
-    margin: 4px 2px;
     cursor: pointer;
 }
 

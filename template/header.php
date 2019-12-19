@@ -28,6 +28,12 @@ $DB = new Database();
                     ?>'
                 );
 
+                $('#faq_add').text(
+                    '<?php
+                    echo ('Add Question');
+                    ?>'
+                );
+
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
@@ -87,10 +93,18 @@ $DB = new Database();
                 };
 
                 var editFAQ = new XMLHttpRequest();
-                editFAQ.open('GET','../pages/EditFAQ.php');
+                editFAQ.open('GET','../pages/viewFAQ.php');
                 editFAQ.onreadystatechange = function() {
                     if (editFAQ.readyState === 4) {
                         document.location.replace('../pages/viewFAQ.php');
+                    }
+                };
+
+                var addFAQ = new XMLHttpRequest();
+                addFAQ.open('GET','../pages/AddQuestion.php');
+                addFAQ.onreadystatechange = function() {
+                    if (addFAQ.readyState === 4) {
+                        document.location.replace('../pages/AddQuestion.php');
                     }
                 };
 
@@ -115,20 +129,17 @@ $DB = new Database();
                         </div>
                     </div>
                     <ul>
-                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/AddQuestion.php"><i class='fas fa-question fa-sm icon-button'></i><span class="button-text"> Add Question</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> Waiting Users <div id="usrs_Counter"></div> </span></a></li><li class="sidenav-button"></li>
-
-                        <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> Letter Requests</span></a></li><li class="sidenav-button"></li>
-
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ <div class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div> </span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
+                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/AddNewLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Add New type of letter</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Pending Users <div id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Users Requests</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
-
                 <div class="sidenav-custom">
-
                     <div class="sidenav-header">
                         <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
                         <div class="title">
@@ -137,26 +148,21 @@ $DB = new Database();
                         </div>
                     </div>
                     <ul>
-                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text"> Notifications
+                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications 
                             <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
                                 <div id="markAll" onclick="markRead.send()">Mark All as Read</div>
                             </div>
                             </span></a></li>
-                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
 
                     </ul>
                 </div>
-
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
-
                 <div class="sidenav-custom">
-
                     <div class="sidenav-header">
                         <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
                         <div class="title">
@@ -165,10 +171,9 @@ $DB = new Database();
                         </div>
                     </div>
                     <ul>
-                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/QualityControl.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container">
-                            <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text"> Notifications
+                            <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications 
                                 <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                                 <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                     <div id="notidata"></div>
@@ -177,10 +182,8 @@ $DB = new Database();
                                 </span>
                             </a>
                         </li>
-                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text"> Request Letters</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text"> View Requests</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/faq.php"><i class='fas fa-question-circle fa-sm icon-button'></i><span class="button-text"> FAQ</span></a></li><li class="sidenav-button"></li>
-
+                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
 

@@ -2,10 +2,10 @@
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 ?>
-<?php// include "../template/searchbar.php"; ?>
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}?>
 
 <body>
+    <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div></div>');}?>
     <div>
         <form id="newsearch">
             <input type="text" id="searched" class="stextinput" size="21" maxlength="120"><input type="button" id="submits" value="search" class="sbutton">

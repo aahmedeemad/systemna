@@ -5,9 +5,10 @@ include "../template/header.php";
 <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
 ?>
 
-<BR></BR>
-
-<h1 style="text-align:center">Your Requests</h1>
+<br>
+<div style="text-align: center;">
+<h1 style="font-family: sans-serif;">Your Requests</h1>
+</div>
 <br><br>
 <table id='Display'>
     <tr id='must'>
@@ -21,17 +22,14 @@ include "../template/header.php";
         <th>Date applied for</th>
         <th colspan="2">Actions</th>
     </tr>
+
     <?php
-
-
-
     function check($c){
-
-    if($c==null)
-    $c='-';
-    else if($c=='')
-    $c='-';
-    return $c;
+        if($c==null)
+            $c='-';
+        else if($c=='')
+            $c='-';
+        return $c;
     }
 
     $sql="  SELECT *

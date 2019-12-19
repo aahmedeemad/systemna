@@ -7,14 +7,14 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>
-<input type='text' class='tblsearch' placeholder='Search'>
+<input type='text' id='tblsearch' class = 'tblsearch' placeholder='Search'>
 <select id='choice' class='tblselect'>
     <option value="email">Email</option>
     <option value="ssn">SSN</option>
     <option value="username">UserName</option>
 </select>
 </div>
-<table id='Display'>
+<table id='Display' style="display: block; overflow: auto;">
     <tr id='must'>
         <th>#</th>
         <th>Status</th>
@@ -27,6 +27,8 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
         <th>Birthday</th>
         <th>Phone</th>
         <th>Salary</th>
+        <th>Add QC</th>
+        <th>Add HR</th>
         <th>Delete</th>
     </tr>
     <?php
@@ -83,6 +85,10 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
                 <td>{$phone}</td>
                 <td><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
     ?>
+    <td><input type='submit'
+           href="" class='modify' value ='+QC'></td>
+    <td><input type='submit'
+           href="" class='modify' value ='+HR'></td>
     <td><a type='submit' onclick="return confirm('Delete this account?')"
            href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
 

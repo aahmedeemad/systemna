@@ -165,7 +165,7 @@ $DB = new Database();
                         </div>
                     </div>
                     <ul>
-                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
+                        <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/QualityControl.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text"> Home</span></a></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container">
                             <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text"> Notifications

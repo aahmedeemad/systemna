@@ -20,8 +20,6 @@ include "../template/header.php";
         <th>Salary</th>
         <th>Date applied for</th>
         <th colspan="2">Actions</th>
-
-
     </tr>
     <?php
 

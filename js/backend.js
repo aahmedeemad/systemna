@@ -169,7 +169,7 @@ $(document).ready(function() {
           defaultBdate +
           "&value=" +
           bdate +
-          "&type=birthdate",
+          "&type=bdate",
         success: function(html) {
           if (html == "true") {
             $("#ssn").toggleClass("hidden");

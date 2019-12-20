@@ -10,6 +10,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
         <th>#</th>
         <th>ID</th>
         <th>UserID</th>
+        <th>User</th>
         <th>OldValue</th>
         <th>Value</th>
         <th>Type</th>
@@ -17,10 +18,11 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
         <th>Reject</th>
     </tr>
     <?php
+    $sid = $_SESSION['id'];
     $sql="
         SELECT *
-        FROM update_info1
-        where Status = 2
+        FROM update_info1 left join employee on update_info1.UID = employee.id
+        where update_info1.Status = 2 and UID <> '$sid'
               ";
     try
     {
@@ -34,7 +36,8 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
                 //$x=$DB->getdata();
                 $y++;
                 $id=$x[$i]->ID;
-                $phone=$x[$i]->UID;
+                $userId=$x[$i]->UID;
+                $userName=$x[$i]->username;
                 $oValue=$x[$i]->OldValue;
                 $value=$x[$i]->Value;
                 $type=$x[$i]->Type;
@@ -43,7 +46,8 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
 
                 echo "
                 <td>{$id}</td>
-                <td>{$phone}</td>
+                <td>{$userId}</td>
+                <td>{$userName}</td>
                 <td>{$oValue}</td>
                 <td>{$value}</td>
                 <td>{$type}</td>";

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $pageTitle = "SYSTEMNA | Edit Letter";
 include "../template/header.php";
 ?>
@@ -6,31 +7,26 @@ include "../template/header.php";
 ?>
 <?php
 
-//if ($_SERVER['REQUEST_METHOD'] === 'POST')
+//if ($_SERVER['REQUEST_METHOD'] === 'GET')
 //{
-$requestId = 18;
+$requestId = $_GET['id'];
 $sql="SELECT * FROM requests WHERE Request_Id = " . $requestId;
 $DB->query($sql);
 $DB->execute();
 $selectedData = $DB ->getdata();
-
 //}
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $priority=$_POST['priority'];
     $salary=$_POST['salary'];
     $date=date('Y/m/d h:i:s');
     $type_name=$_POST['type_name'];
-    echo $_POST['priority'] . "<br>";
-    echo $_POST['salary'] . "<br>";
-    echo date('Y/m/d h:i:s') . "<br>";
-    echo $_POST['type_name'] . "<br>"   ;
     $sql="UPDATE requests SET priority = " . $priority .  " , salary = " . $salary . " , date = '" . $date . "' , type_name = '" . $type_name .  "' WHERE Request_id = " . $requestId;
-    echo $sql;
     $DB->query($sql);
     $DB->execute();
+    header('Location: viewRequest.php');
 }
 
 ?>
@@ -49,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $Name=$x[$i]->Name;
                 $btnid=$x[$i]->Type_id;
                 $desc=$x[$i]->description;
-            
+
             ?>
             <div id="row1">
                 <form>
@@ -88,4 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         </form>
                     </div>
-                <?php include "../template/footer.php"; ?>
+                <?php include "../template/footer.php"; 
+                ob_end_flush();
+                ?>

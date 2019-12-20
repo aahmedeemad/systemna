@@ -10,7 +10,6 @@ include "../template/header.php";
 
     $emp_id=$_SESSION['id'];
     $priority=$_POST['priority'];
-    //$Type_id=1;
     $Status=2;
     $salary=$_POST['salary'];
     $date=date('Y/m/d h:i:s');

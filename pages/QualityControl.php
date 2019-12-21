@@ -5,8 +5,8 @@ include "../template/header.php";
 <link rel="stylesheet" href="../css/QC_style.css">
 <br><br>
 <h1>Quality Control</h1>
-<input type="search" id='QCtblsearch' class='tblsearch' placeholder='Search' style="left:500px;padding:0px;">
-<select id='choice' class='tblselect' style="left:510px;padding:18px">
+<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search' style="margin-left:100px;padding:16px;">
+<select id='choice' class='tblselect' style="left:910px;padding:18px">
     <option value="empname">Employee Name</option>
     <option value="requestname">Request Name</option>
     <option value="empid">Employee ID</option>
@@ -35,7 +35,7 @@ include "../template/header.php";
         $sql="
         SELECT requests_types.Name , Employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
         FROM Requests INNER JOIN requests_types
-        ON Requests.Type_id = requests_types.Type_id 
+        ON Requests.type_name = requests_types.Name
         INNER JOIN employee 
         ON employee.id = emp_id
         ";
@@ -67,7 +67,7 @@ include "../template/header.php";
                     $Boolsalray ="With Salary";
                 }
                 else $Boolsalray ="No Salary";
-                echo "<td>{$date}</td>";
+                
                 if($priority == 1)
                 {
                     $BoolPriority ="Urgent";
@@ -82,6 +82,7 @@ include "../template/header.php";
                 <td>{$RequestName}</td>
                 <td>{$Empid}</td> 
                 <td>{$Boolsalray}</td>
+                <td>{$date}</td>
                 <td>{$BoolPriority}</td>
                 <td><input type='text'placeholder='Write your comment here...'size='30'><input type='submit' value='Submit Comment'>
                 </td>";

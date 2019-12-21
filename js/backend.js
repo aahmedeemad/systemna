@@ -491,18 +491,15 @@ $(document).ready(function() {
   $(".national-camera-button").on("click", function() {
     $(".national-picture-input").click();
   });
-
   $(".sal").on("click", function(event) {
     $(this)
       .closest("div")
       .attr("contenteditable", "true");
     $(this).focus();
     $(this).addClass("input");
-    $(this).keyup(function() {
-      var test = $(this)
-        .html()
-        .replace("<br>", "");
-
+    $(this).keyup(function(e) {
+      alert($(this).innerText);
+      var test = $(this).text();
       if (!test.match(/^[0-9]+$/)) {
         $(this).removeClass("input");
         $(this).addClass("wr");
@@ -512,6 +509,14 @@ $(document).ready(function() {
       }
     });
   });
+  /*jQuery.ajax({
+    url: "../pages/usersTable.php",
+    data: "term=" + $("#tblsearch").val(),
+    type: "POST",
+    success: function(data2) {
+      $("#ajaxTable").html(data2);
+    }
+  });*/
 
   $(".sal").on("focusout", function(event) {
     $(this).removeClass("input");
@@ -519,13 +524,12 @@ $(document).ready(function() {
     var rowIndex = row.index();
     var c = $("#Display")
       .find("tr:eq(" + rowIndex + ")")
-      .find("td:eq(2)");
-    var test = $(this).html();
+      .find("td:eq(1)");
+    var test = $(this).text();
     test = test.replace("<br>", "");
 
     if (!test.match(/^[0-9]+$/)) {
       alert("Salary must be a number");
-      window.location.replace("index.php");
     } else {
       $.ajax({
         method: "POST",
@@ -546,9 +550,9 @@ $(document).ready(function() {
       .children("option:selected")
       .val();
     var selection;
-    if (selected == "email") selection = 5;
-    if (selected == "ssn") selection = 7;
-    if (selected == "username") selection = 4;
+    if (selected == "email") selection = 3;
+    if (selected == "ssn") selection = 4;
+    if (selected == "username") selection = 2;
     $("#Display tr").each(function() {
       var found = "false";
       var x = $(this).find("td:eq(" + selection + ")");
@@ -576,16 +580,16 @@ $(document).ready(function() {
       .index();
     var idMod = $("#Display")
       .find("tr:eq(" + Eindex + ")")
-      .find("td:eq(2)")
+      .find("td:eq(1)")
       .text();
     var typeM;
     var otherButton;
     if ($(this).val() == "+HR") {
       typeM = "admin";
-      otherButton = 11;
+      otherButton = 6;
     } else if ($(this).val() == "+QC") {
       typeM = "qc";
-      otherButton = 12;
+      otherButton = 7;
     }
     $.ajax({
       method: "POST",

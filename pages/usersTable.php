@@ -1,37 +1,11 @@
-
-<?php
-$pageTitle = "SYSTEMNA | All Users";
-include "../template/header.php"; 
-?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<?php include "../DB/Database.php";
+session_start();
+$DB2 = new Database(); 
+if(!isset($_SESSION['username'])){header('Location:../index.php');}
+if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
+if(isset($_POST['search'])){    ?>
 <br>
-<div style="text-align: center;">
-<h1 style="font-family: sans-serif;">Dashboard</h1>
-<input type='text' id='tblsearch' class = 'tblsearch' placeholder='Search'>
-<select id='choice' class='tblselect'>
-    <option value="email">Email</option>
-    <option value="ssn">SSN</option>
-    <option value="username">UserName</option>
-</select>
-</div>
-<script>/*$("#tblsearch").keyup(function() {
-    
-    //search_table($(this).val());
-    var searchFor = $(this).val();
-    var selected = $("#choice")
-      .children("option:selected")
-      .val();
-    $.ajax({
-      method: "POST",
-      url: "../pages/usersTable.php",
-      data: { search: searchFor, by: selected },
-      success: function(msg) {
-        $("#ajaxTable").html(msg);
-      }
-    });
-  });*/</script>
-<!--<div id='ajaxTable'>-->
 <table id='Display' >
     <tr id='must'>
         <th>#</th>
@@ -43,10 +17,12 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
         <th>Add QC</th>
         <th>Add HR</th>
         <th>Delete</th>
-        <th>profile</th>
+        <th>Profile</th>
         <th>Status</th>
     </tr>
     <?php
+    $search = $_POST['search'];
+    $by = $_POST['by'];
     function check($c){
         if($c==null)
             $c='-';
@@ -58,16 +34,18 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
     $sql="
         SELECT *
         FROM employee left join add_info
-        on emp_id=id where employee.active = 1 AND privilege = 'user' AND accepted <> 2
-              ";
+        on emp_id=id where employee.active = 1 AND privilege = 'user' AND accepted <> 2 ";
+    if(!empty($search)){
+        $sql = $sql."AND ".$by." LIKE '%$search%'";
+    }
     try
     {
-        $DB->query($sql);
-        $DB->execute();
+        $DB2->query($sql);
+        $DB2->execute();
         $y=0;
-        if($DB->numRows()>0)
-        {   $x=$DB->getdata();
-            for($i=0;$i<$DB->numRows();$i++)
+        if($DB2->numRows()>0)
+        {   $x=$DB2->getdata();
+            for($i=0;$i<$DB2->numRows();$i++)
             {
                 //$x=$DB->getdata();
                 $y++;
@@ -126,6 +104,6 @@ echo "</tr>";
 
 ?>
 </table>
-</div>
-
-<?php include "../template/footer.php"; ?>
+<?php } ?>
+<script src="../js/backend.js"></script>
+        <script src="../js/bootstrap.min.js"></script>

@@ -525,6 +525,9 @@ box-sizing: content-box;
     padding: 0;
     margin-left: 1rem;
   }
+  .stextinput {
+    margin-top: 0.5em;
+}
 }
 
 /* Ahmed Emad's FAQ related Styles */
@@ -670,11 +673,9 @@ box-sizing: content-box;
     */
   width: 15%;
 }
-#newsearch {
-    float: right;
-}
 .stextinput {
-    width: 90%;
+    float: right;
+    margin-right: 1.7em;
     padding: 0.5em;
     font-size: 0.7em;
     border: 0.2em solid #daa520;

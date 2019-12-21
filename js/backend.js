@@ -4,13 +4,21 @@ $(document).ready(function() {
   });
 
   $("#darkmode").on("click", function() {
-    $(".content").css("background-color", "black");
+    $(".content").css("background-color", "#202020");
     $(".content").css("color", "white");
+    $(".profile").css("background-color", "#303030");
+    $(".profile-left").css("background-color", "#585858");
+    $(".profile-right-up").css("background-color", "#585858");
+    $(".profile-right-down").css("background-color", "#585858");
   });
 
   $("#lightmode").on("click", function() {
     $(".content").css("background-color", "#f5f5f5");
     $(".content").css("color", "black");
+    $(".profile").css("background-color", "#e0e0e0");
+    $(".profile-left").css("background-color", "#f5f5f5");
+    $(".profile-right-up").css("background-color", "#f5f5f5");
+    $(".profile-right-down").css("background-color", "#f5f5f5");
   });
 
   $(window).click(function(e) {

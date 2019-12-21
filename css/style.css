@@ -303,7 +303,6 @@ tr:nth-child(even) {
 }
 
 .profile {
-  color: black !important;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

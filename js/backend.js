@@ -592,7 +592,8 @@ $(document).ready(function() {
         var b = document.getElementById("answer").value;
         var c = document.getElementById("requested_by").value;
         if (a != "" && b != "") {
-            alert("Data Saved Successfully");
+          popup(true, "Your Data Has Been Submitted Successfully");
+            //alert("Data Saved Successfully");
         }
     });
     $("#btn2").click(function() {
@@ -607,7 +608,8 @@ $(document).ready(function() {
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
         if (a != "" && b != "") {
-            alert("Letter Added Successfully");
+          popup(true, "Letter Added Successfully");
+            //alert("Letter Added Successfully");
         }
     });
 
@@ -683,10 +685,12 @@ $(document).ready(function() {
              document.getElementById("rdbtn4").checked) &&
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
-            alert("your request has been placed successfully");
+          popup(true, "your request has been placed successfully");
+          //  alert("your request has been placed successfully");
             type_name = $("input[name=Letterbuttonn]:checked").val();
         } else {
-            alert("you have an error completing your request");
+          popup(false, "you have an error completing your request");
+          //  alert("you have an error completing your request");
         }
         if (document.getElementById("rdbtn1").checked) {
             priority = 1;

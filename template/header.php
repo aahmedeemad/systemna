@@ -115,6 +115,11 @@ $DB = new Database();
                     <i class="fas fa-bars"></i>
                 </div>
                 <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: white">na</strong></div></a>
+                <div class="right">
+                <span id="lightmode" style="text-decoration: none; color:white; cursor:pointer;">Light</span>
+                <span> / </span>
+                <span id="darkmode" style="text-decoration: none; color:white; cursor:pointer;">Dark</span>
+                </div>
                 <div class="right"><a style="text-decoration: none; color:white;" href="../pages/logout.php">Logout</a>
                 </div>
             </header>

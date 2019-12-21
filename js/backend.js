@@ -592,7 +592,7 @@ $(document).ready(function() {
       url: "../operations/EditTable.php",
       data: { type: typeM, mid: idMod },
       success: function(msg) {
-        if (msg != 1) alert("user needs to be accepted to do this action!");
+        if (msg != 1) alert("User needs to be accepted to do this action!");
         else {
           thisBtn.css("background-color", "grey");
           $("#Display")

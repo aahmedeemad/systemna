@@ -395,16 +395,17 @@ $(document).ready(function() {
         $(".national-picture-input").click();
     });
 
-
     $(".sal").on("click", function(event) {
         $(this)
             .closest("div")
             .attr("contenteditable", "true");
         $(this).focus();
         $(this).addClass("input");
-        $(this).keyup(function(e) {
-            alert($(this).innerText);
-            var test = $(this).text();
+        $(this).keyup(function() {
+            var test = $(this)
+            .html()
+            .replace("<br>", "");
+
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
                 $(this).addClass("wr");
@@ -414,14 +415,6 @@ $(document).ready(function() {
             }
         });
     });
-    /*jQuery.ajax({
-    url: "../pages/usersTable.php",
-    data: "term=" + $("#tblsearch").val(),
-    type: "POST",
-    success: function(data2) {
-      $("#ajaxTable").html(data2);
-    }
-  });*/
 
     $(".sal").on("focusout", function(event) {
         $(this).removeClass("input");
@@ -429,12 +422,13 @@ $(document).ready(function() {
         var rowIndex = row.index();
         var c = $("#Display")
         .find("tr:eq(" + rowIndex + ")")
-        .find("td:eq(1)");
-        var test = $(this).text();
+        .find("td:eq(2)");
+        var test = $(this).html();
         test = test.replace("<br>", "");
 
         if (!test.match(/^[0-9]+$/)) {
             alert("Salary must be a number");
+            window.location.replace("index.php");
         } else {
             $.ajax({
                 method: "POST",
@@ -455,9 +449,9 @@ $(document).ready(function() {
         .children("option:selected")
         .val();
         var selection;
-        if (selected == "email") selection = 3;
-        if (selected == "ssn") selection = 4;
-        if (selected == "username") selection = 2;
+        if (selected == "email") selection = 5;
+        if (selected == "ssn") selection = 7;
+        if (selected == "username") selection = 4;
         $("#Display tr").each(function() {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
@@ -485,23 +479,23 @@ $(document).ready(function() {
         .index();
         var idMod = $("#Display")
         .find("tr:eq(" + Eindex + ")")
-        .find("td:eq(1)")
+        .find("td:eq(2)")
         .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
             typeM = "admin";
-            otherButton = 6;
+            otherButton = 11;
         } else if ($(this).val() == "+QC") {
             typeM = "qc";
-            otherButton = 7;
+            otherButton = 12;
         }
         $.ajax({
             method: "POST",
             url: "../operations/EditTable.php",
             data: { type: typeM, mid: idMod },
             success: function(msg) {
-                if (msg != 1) alert("user needs to be accepted to do this action!");
+                if (msg != 1) alert("User needs to be accepted to do this action!");
                 else {
                     thisBtn.css("background-color", "grey");
                     $("#Display")
@@ -598,7 +592,9 @@ $(document).ready(function() {
         var b = document.getElementById("answer").value;
         var c = document.getElementById("requested_by").value;
         if (a != "" && b != "") {
-            alert("Data Saved Successfully");
+          loading(true);
+          popup(true, "Your Data Has Been Saved Successfully");
+            //alert("Data Saved Successfully");
         }
     });
     $("#btn2").click(function() {
@@ -613,7 +609,9 @@ $(document).ready(function() {
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
         if (a != "" && b != "") {
-            alert("Letter Added Successfully");
+          loading(true);
+          popup(true, "Letter Added Successfully");
+            //alert("Letter Added Successfully");
         }
     });
 
@@ -689,10 +687,12 @@ $(document).ready(function() {
              document.getElementById("rdbtn4").checked) &&
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
-            alert("your request has been placed successfully");
+          popup(true, "your request has been placed successfully");
+          //  alert("your request has been placed successfully");
             type_name = $("input[name=Letterbuttonn]:checked").val();
         } else {
-            alert("you have an error completing your request");
+          popup(false, "you have an error completing your request");
+          //  alert("you have an error completing your request");
         }
         if (document.getElementById("rdbtn1").checked) {
             priority = 1;
@@ -747,7 +747,7 @@ $(document).ready(function() {
     //        });
     //    });
 
-    $("#submits").on("click", function() {
+    $("#searched").keyup(function() {
         //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
         //      alert("error: Enter something to search for!");
         //      return false;

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 if(!isset($_SESSION['username'])){header('Location:../index.php');}
@@ -48,4 +49,5 @@ if(isset($_GET['id']))
      }
 }
 ?>
-<?php include "../template/footer.php"; ?>
+<?php include "../template/footer.php"; 
+ob_end_flush();?>

@@ -19,6 +19,7 @@ include "../template/header.php";
         <th>Request Name</th>
         <th>Employee ID</th>
         <th>Salary</th>
+        <th>Date</th>
         <th>Priority</th>
         <th>Comment</th>
     </tr>
@@ -32,7 +33,7 @@ include "../template/header.php";
         }
 
         $sql="
-        SELECT requests_types.Name , Employee.username , requests.Request_id , requests.status , requests.emp_id , priority , salary
+        SELECT requests_types.Name , Employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
         FROM Requests INNER JOIN requests_types
         ON Requests.Type_id = requests_types.Type_id 
         INNER JOIN employee 
@@ -56,7 +57,8 @@ include "../template/header.php";
                 $Empid = check($x[$i]->emp_id);
                 $salary = check($x[$i]->salary);
                 $priority = check($x[$i]->priority);
-
+                $date = check($x[$i]->date);
+                
                 $Boolsalray = "No Salary";
                 $BoolPriority = "Urgent";
 
@@ -65,7 +67,7 @@ include "../template/header.php";
                     $Boolsalray ="With Salary";
                 }
                 else $Boolsalray ="No Salary";
-                
+                echo "<td>{$date}</td>";
                 if($priority == 1)
                 {
                     $BoolPriority ="Urgent";
@@ -93,13 +95,5 @@ include "../template/header.php";
       $_SESSION['error'] = 'error in sql';
   }?>
 </table>
-<br><br><br><br><br><br><br><br>
-<div class="AddComment">
-<h2>Add a Comment !</h2>
-<br>
-<textarea placeholder="Add your comment here..." name="" id="" cols="60" rows="10"></textarea>
-<br><br>
-<input type="submit" value="Submit Comment">
-</div>
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/backend.js"></script>

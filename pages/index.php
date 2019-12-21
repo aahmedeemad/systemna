@@ -14,7 +14,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
     <option value="username">UserName</option>
 </select>
 </div>
-<table id='Display' style="display: block; overflow: auto;">
+<table id='Display' >
     <tr id='must'>
         <th>#</th>
         <th>Status</th>
@@ -51,10 +51,10 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
         $DB->execute();
         $y=0;
         if($DB->numRows()>0)
-        {
+        {   $x=$DB->getdata();
             for($i=0;$i<$DB->numRows();$i++)
             {
-                $x=$DB->getdata();
+                //$x=$DB->getdata();
                 $y++;
                 $id=$x[$i]->id;
                 $phone=check($x[$i]->phone);

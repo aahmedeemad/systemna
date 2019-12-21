@@ -169,7 +169,7 @@ $(document).ready(function() {
           defaultBdate +
           "&value=" +
           bdate +
-          "&type=birthdate",
+          "&type=bdate",
         success: function(html) {
           if (html == "true") {
             $("#ssn").toggleClass("hidden");
@@ -603,6 +603,48 @@ $(document).ready(function() {
       }
     });
   });
+  $(".accept").click(function() {
+    var Row = $(this).closest("tr");
+    var Did = $("#tblRequests")
+      .find("tr:eq(" + Row.index() + ")")
+      .find("td:eq(2)")
+      .text();
+    var Type = $("#tblRequests")
+      .find("tr:eq(" + Row.index() + ")")
+      .find("td:eq(5)")
+      .text();
+    var Rid = $("#tblRequests")
+      .find("tr:eq(" + Row.index() + ")")
+      .find("td:eq(1)")
+      .text();
+    var Value = $("#tblRequests")
+      .find("tr:eq(" + Row.index() + ")")
+      .find("td:eq(4)")
+      .text();
+    $.ajax({
+      method: "POST",
+      url: "../operations/editProfileTBL.php",
+      data: { type: Type, id: Did, rid: Rid, value: Value },
+      success: function(msg) {
+        Row.hide();
+      }
+    });
+  });
+  $(".reject").click(function() {
+    var Row = $(this).closest("tr");
+    var Rid = $("#tblRequests")
+      .find("tr:eq(" + Row.index() + ")")
+      .find("td:eq(1)")
+      .text();
+    $.ajax({
+      method: "POST",
+      url: "../operations/editProfileTBL.php",
+      data: { reqId: Rid },
+      success: function(msg) {
+        Row.hide();
+      }
+    });
+  });
   $("#QCtblsearch").keyup(function() {
     search_QCtable($(this).val());
   });
@@ -762,6 +804,40 @@ $(document).ready(function() {
       success: function(data2) {}
     });
   });
+
+  //    $("#editLetterButton").click(function() {
+  //        if (
+  //            (document.getElementById("rdbtn1").checked ||
+  //             document.getElementById("rdbtn2").checked) &&
+  //            (document.getElementById("rdbtn3").checked ||
+  //             document.getElementById("rdbtn4").checked) &&
+  //            !document.getElementsByClassName("Letterbuttonn").checked
+  //        ) {
+  //            alert("your request has been placed successfully");
+  //            type_name = $("input[name=Letterbuttonn]:checked").val();
+  //        } else {
+  //            alert("you have an error completing your request");
+  //        }
+  //        if (document.getElementById("rdbtn1").checked) {
+  //            priority = 1;
+  //        } else if (document.getElementById("rdbtn2").checked) {
+  //            priority = 0;
+  //        }
+  //        if (document.getElementById("rdbtn3").checked) {
+  //            salary = 1;
+  //        } else if (document.getElementById("rdbtn4").checked) {
+  //            salary = 0;
+  //        }
+  //        var value;
+  //
+  //        jQuery.ajax({
+  //            method: "POST",
+  //            url: "editLetter.php",
+  //            data: { salary: salary, priority: priority, type_name: type_name,  },
+  //            success: function(data2) {}
+  //        });
+  //    });
+
   $("#searched").keyup(function() {
     //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
     //      alert("error: Enter something to search for!");

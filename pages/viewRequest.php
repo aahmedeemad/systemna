@@ -103,6 +103,8 @@ include "../template/header.php";
     ?>
 
     <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">view letter</button></td>
+    <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">get by mail</button></td>
+
 
     <?php } else if ($x[$i]->Status==0){
     ?>

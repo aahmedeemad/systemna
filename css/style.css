@@ -547,12 +547,6 @@ box-sizing: content-box;
         padding-right: 1vw;
     }
 }
-#searched{
-    width: 60%;
-}
-#submits{
-    width: 20%;
-}
 .askus #faqinputtext {
     width: 95%;
     padding: 1em 2em;
@@ -659,32 +653,13 @@ box-sizing: content-box;
 }
 #newsearch {
     float: right;
-    padding: 0.5em;
 }
 .stextinput {
-    margin: 0;
+    width: 90%;
     padding: 0.5em;
     font-size: 0.7em;
-    border: 0.1em solid #daa520;
-    border-right: 0px;
-    border-top-left-radius: 0.5em 0.5em;
-    border-bottom-left-radius: 0.5em 0.5em;
-}
-.sbutton {
-    margin: 0;
-    padding: 0.5em;
-    margin-right: 0.8em;
-    font-size: 0.7em;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    border: solid 0.1em #daa520;
-    border-right: 0px;
-    background: #daa520;
-    border-top-right-radius: 0.5em 0.5em;
-    border-bottom-right-radius: 0.5em 0.5em;
+    border: 0.2em solid #daa520;
+    border-radius: 0.5em;
 }
 #faqdiv span {
     text-decoration: underline;

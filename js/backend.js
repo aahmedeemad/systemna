@@ -762,7 +762,7 @@ $(document).ready(function() {
       success: function(data2) {}
     });
   });
-  $("#submits").on("click", function() {
+  $("#searched").keyup(function() {
     //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
     //      alert("error: Enter something to search for!");
     //      return false;

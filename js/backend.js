@@ -592,7 +592,8 @@ $(document).ready(function() {
         var b = document.getElementById("answer").value;
         var c = document.getElementById("requested_by").value;
         if (a != "" && b != "") {
-          popup(true, "Your Data Has Been Submitted Successfully");
+          loading(true);
+          popup(true, "Your Data Has Been Saved Successfully");
             //alert("Data Saved Successfully");
         }
     });
@@ -608,6 +609,7 @@ $(document).ready(function() {
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
         if (a != "" && b != "") {
+          loading(true);
           popup(true, "Letter Added Successfully");
             //alert("Letter Added Successfully");
         }

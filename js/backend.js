@@ -3,6 +3,16 @@ $(document).ready(function() {
     $(".sidenav-custom").animate({ width: "toggle" }, 350);
   });
 
+  $("#darkmode").on("click", function() {
+    $(".content").css("background-color", "black");
+    $(".content").css("color", "white");
+  });
+
+  $("#lightmode").on("click", function() {
+    $(".content").css("background-color", "#f5f5f5");
+    $(".content").css("color", "black");
+  });
+
   $(window).click(function(e) {
     if (e.target == $(".modal")[0]) {
       $(".modal").css("display", "none");

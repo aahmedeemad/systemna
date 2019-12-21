@@ -18,23 +18,23 @@ if(isset($_GET['id']))
         $DB->query($sql);
         $DB->execute();
         header('Location:viewFAQ.php');
-     }
+    }
     try
-        {
-   $sql="select * from faq where ID='".$_GET['id']."' ";
-   $DB->query($sql);
-   $DB->execute();
-   $x = $DB->getdata();
+    {
+        $sql="select * from faq where ID='".$_GET['id']."' ";
+        $DB->query($sql);
+        $DB->execute();
+        $x = $DB->getdata();
 ?>
 <div>
     <form id="Addquestionform" method='post' action=''>
         <h4>Question : </h4>
         <input type="text" id="question" name="Question" placeholder="Your question.." required
-            value="<?php echo $x[0]->Question?>">
+               value="<?php echo $x[0]->Question?>">
         <br>
         <h4>Answer : </h4>
         <textarea id="answer" name="Answer" placeholder="Question's Answer.."
-            required><?php echo $x[0]->Answer ?></textarea>
+                  required><?php echo $x[0]->Answer ?></textarea>
         <br>
         <br>
         <br>
@@ -42,12 +42,14 @@ if(isset($_GET['id']))
     </form>
 </div>
 <?php
-     }
-     catch(Exception $e)
-     {
-         $_SESSION['error'] = 'error in sql';
-     }
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 }
 ?>
-<?php include "../template/footer.php"; 
-ob_end_flush();?>
+<?php 
+include "../template/footer.php"; 
+ob_end_flush();
+?>

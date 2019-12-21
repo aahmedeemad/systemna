@@ -83,30 +83,30 @@ $DB = new Database();
                 });
             });
 
-                var markRead = new XMLHttpRequest();
-                markRead.open('GET','../template/mark_read.php');
-                markRead.onreadystatechange = function() {
-                    if (markRead.readyState === 4) {
-                        document.getElementById('notidata').innerHTML = ' ';
-                        document.getElementById('noti_Counter').innerHTML = '0';
-                    }
-                };
+            var markRead = new XMLHttpRequest();
+            markRead.open('GET','../template/mark_read.php');
+            markRead.onreadystatechange = function() {
+                if (markRead.readyState === 4) {
+                    document.getElementById('notidata').innerHTML = ' ';
+                    document.getElementById('noti_Counter').innerHTML = '0';
+                }
+            };
 
-                var editFAQ = new XMLHttpRequest();
-                editFAQ.open('GET','../pages/viewFAQ.php');
-                editFAQ.onreadystatechange = function() {
-                    if (editFAQ.readyState === 4) {
-                        document.location.replace('../pages/viewFAQ.php');
-                    }
-                };
+            var editFAQ = new XMLHttpRequest();
+            editFAQ.open('GET','../pages/viewFAQ.php');
+            editFAQ.onreadystatechange = function() {
+                if (editFAQ.readyState === 4) {
+                    document.location.replace('../pages/viewFAQ.php');
+                }
+            };
 
-                var addFAQ = new XMLHttpRequest();
-                addFAQ.open('GET','../pages/AddQuestion.php');
-                addFAQ.onreadystatechange = function() {
-                    if (addFAQ.readyState === 4) {
-                        document.location.replace('../pages/AddQuestion.php');
-                    }
-                };
+            var addFAQ = new XMLHttpRequest();
+            addFAQ.open('GET','../pages/AddQuestion.php');
+            addFAQ.onreadystatechange = function() {
+                if (addFAQ.readyState === 4) {
+                    document.location.replace('../pages/AddQuestion.php');
+                }
+            };
 
         </script>
         <div class="container-custom">
@@ -116,9 +116,9 @@ $DB = new Database();
                 </div>
                 <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: white">na</strong></div></a>
                 <div class="right">
-                <span id="lightmode" style="text-decoration: none; color:white; cursor:pointer;">Light</span>
-                <span> / </span>
-                <span id="darkmode" style="text-decoration: none; color:white; cursor:pointer;">Dark</span>
+                    <span id="lightmode" style="text-decoration: none; color:white; cursor:pointer;">Light</span>
+                    <span> / </span>
+                    <span id="darkmode" style="text-decoration: none; color:white; cursor:pointer;">Dark</span>
                 </div>
                 <div class="right"><a style="text-decoration: none; color:white;" href="../pages/logout.php">Logout</a>
                 </div>
@@ -127,7 +127,7 @@ $DB = new Database();
                 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>
                 <div class="sidenav-custom">
                     <div class="sidenav-header">
-                        <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
+                        <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id']) . '.jpeg' ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg' ?>" alt="" class="rounded-circle-custom"></div>
                         <div class="title">
                             <a style="text-decoration: none;" href="../pages/profile.php"><h1 class="name"><?php echo $_SESSION['name']; ?></h1></a>
                             <div class="position">Admin</div>
@@ -193,4 +193,12 @@ $DB = new Database();
                 </div>
 
                 <?php } else header("Location:../index.php") ?>
+                <div id="myModal" class="modal">
+                    <div class="popup-notification" id='popup'>
+                        <h2></h2>
+                        <a class="popup-close" href="">&times;</a>
+                        <div class="popup-content"></div>
+                    </div>
+                </div>
+                <div class="loading hidden"></div>
                 <div class="content">

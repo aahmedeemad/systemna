@@ -15,16 +15,14 @@ if(isset($_POST['username'])){
             if($DB->numRows()>0)
             {
                 echo"username already exists.";
-
             }
-
-            else{
+            else
+            {
                 echo'valid username';
-
             }
         }catch (Exception $e) {
 
-            
+
         }
 
     }
@@ -46,10 +44,9 @@ if(isset($_POST['mail'])){
             if($DB->numRows()>0)
             {
                 echo"email already exists.";
-
             }
-
-            else{
+            else
+            {
                 echo'valid mail';
 
             }
@@ -59,14 +56,11 @@ if(isset($_POST['mail'])){
         }
 
     }
-
-
-    else{
+    else
+    {
 
         echo"invalid mail";
     }
-
-
 }
 
 

@@ -5,8 +5,8 @@ include "../template/header.php";
 
 <?php
 if (isset($_POST['Name'])) {
-    $Name=$_POST['Name'];
-    $description=$_POST['description'];
+    $Name=filter_var($_POST['Name'], FILTER_SANITIZE_STRING);
+    $description=filter_var($_POST['description'], FILTER_SANITIZE_STRING);
     $sql="INSERT INTO requests_types (Name,description) VALUES ('$Name','$description') ";
     $DB->query($sql);
     $DB->execute();

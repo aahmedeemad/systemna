@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $pageTitle = "SYSTEMNA | Letters";
 include "../template/header.php";
 ?>
@@ -75,4 +76,6 @@ if (isset($_POST['priority'])) {
                         </form>
                     </div>
 
-                <?php include "../template/footer.php"; ?>
+                <?php
+                ob_end_flush();
+                include "../template/footer.php"; ?>

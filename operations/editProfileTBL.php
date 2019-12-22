@@ -18,7 +18,7 @@ if(isset($_POST['type']))
      $sql = "UPDATE employee set ".$type."='$value' where id = '$id';"; 
     $DB2 ->query($sql);
     $DB2 ->execute();
-}
+} 
 if(isset($_POST['reqId'])){
     $rid = $_POST['reqId'];
     $sql = "UPDATE update_info1 set Status=0 where ID = '$rid';"; 

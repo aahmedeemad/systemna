@@ -1,8 +1,6 @@
 <?php 
-$pageTitle = "SYSTEMNA | Profile";
-include('../DB/Database.php');
-$DB = new Database();
-?>
+$pageTitle = "SYSTEMNA | Users Table";
+include "../template/header.php"; ?>
 <?php
 $sql="SELECT * FROM employee e , requests r ,add_info a WHERE e.id = r.emp_id AND r.Request_id = ".$_POST['id']." and a.emp_id=r.emp_id" ;
 $DB->query($sql);

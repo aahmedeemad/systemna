@@ -105,7 +105,7 @@ include "../template/header.php";
 <?php
 if($x[$i]->accepted == 1){
  echo "<td><a type='submit' 
- href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
+ href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
  echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
 }
 else if($x[$i]->accepted == 0)

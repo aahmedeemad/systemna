@@ -428,7 +428,7 @@ tr:nth-child(even) {
 .profile .profile-left .p-image {
     position: absolute;
     top: 140px;
-    right: 30%;
+    right: 37%;
     color: #666666;
 }
 
@@ -622,7 +622,7 @@ box-sizing: content-box;
 }
 #btn1,
 #btn2 {
-    width: 100%;
+    width: 60%;
     background-color: #daa520;
     color: white;
     padding: 14px 2px;

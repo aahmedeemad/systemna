@@ -37,7 +37,7 @@ if(isset($_GET['id']))
         <br>
         <br>
         <br>
-        <input type="submit" id="btn1" value="Add Question" name='EditFAQ'>
+        <input type="submit" id="btn1" value="Update Question" name='EditFAQ'>
     </form>
 </div>
 <?php
@@ -46,7 +46,7 @@ if(isset($_GET['id']))
     {
         $_SESSION['error'] = 'error in sql';
     }
-}
+} else header("location: index.php");
 ?>
 <?php 
 include "../template/footer.php"; 

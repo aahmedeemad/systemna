@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql="INSERT INTO requests_types (Name,description) VALUES ('$Name','$description') ";
     $DB->query($sql);
     $DB->execute();
-    header("location: ../pages/viewRequest.php");
+    header("location: ../pages/MakeLetter.php");
 } else { header("Location: ../index.php"); }
 
 ?>

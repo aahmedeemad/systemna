@@ -34,6 +34,12 @@ $DB = new Database();
                     ?>'
                 );
 
+                $('#add_letter').text(
+                    '<?php
+                    echo ('Add new type of letter');
+                    ?>'
+                );
+
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
@@ -108,6 +114,14 @@ $DB = new Database();
                 }
             };
 
+            var addletter = new XMLHttpRequest();
+            addletter.open('GET','../pages/AddNewLetter.php');
+            addletter.onreadystatechange = function() {
+                if (addletter.readyState === 4) {
+                    document.location.replace('../pages/AddNewLetter.php');
+                }
+            };
+
         </script>
         <div class="container-custom">
             <header class="header">
@@ -138,7 +152,6 @@ $DB = new Database();
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/AddNewLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Add New type of letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Pending Users <div id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Users Requests</span></a></li><li class="sidenav-button"></li>
                     </ul>

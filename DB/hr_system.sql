@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2019 at 12:24 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Generation Time: Dec 22, 2019 at 06:11 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT '0',
-  `n_id_picture` tinyint(1) DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -46,10 +46,32 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 (1, '2019-11-04', 45454, '', 1, 0, 0),
 (2, '2019-11-11', 215487, '', 1, 0, 0),
 (6, NULL, 9999999, '', 0, 0, 0),
+(7, NULL, 20, NULL, 0, 0, 0),
 (8, NULL, NULL, NULL, 0, 0, 0),
 (24, NULL, NULL, NULL, 1, 1, 1),
 (25, NULL, NULL, NULL, 0, 0, 0),
 (26, NULL, NULL, NULL, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `Value` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `Request_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `Value`, `user_id`, `Request_id`) VALUES
+(5, 'asds', 0, 20),
+(6, 'dsdasd', 0, 20);
 
 -- --------------------------------------------------------
 
@@ -76,7 +98,7 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `accepted`, `active`, `privilege`) VALUES
 (1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islam@gmail.com', '', '225999999', 1, 1, 'admin'),
-(2, 'Zaky', 'Zaky', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'zaky@gmail.com', '', '225585', 1, 1, 'user'),
+(2, 'Zaky', 'Zaky', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'zaky@gmail.com', '', '225585', 1, 1, 'qc'),
 (3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', 2, 1, 'user'),
 (6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
@@ -171,7 +193,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -180,13 +202,15 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, `date`, `type_name`) VALUES
-(18, 26, 2, 0, 1, '2019-12-15 00:00:00', ''),
-(20, 26, 1, 0, 1, '2019-12-15 00:00:00', 'General HR Letter'),
-(21, 26, 2, 1, 1, '2019-12-15 00:00:00', 'General HR Letter'),
-(23, 26, 2, 0, 1, '2019-12-15 00:00:00', 'HR Letter directed to specific organization'),
-(24, 26, 2, 1, 0, '2019-12-15 00:00:00', 'HR Letter to whom it may concern'),
-(25, 26, 2, 0, 1, '2019-12-15 00:00:00', ''),
-(30, 26, 2, 0, 1, '2019-12-16 12:22:55', 'Embassy HR Letter');
+(20, 26, 1, 0, 1, '2019-12-14 22:00:00', 'General HR Letter'),
+(21, 26, 2, 1, 1, '2019-12-14 22:00:00', 'General HR Letter'),
+(23, 26, 2, 0, 1, '2019-12-14 22:00:00', 'HR Letter directed to specific organization'),
+(24, 26, 2, 1, 0, '2019-12-14 22:00:00', 'HR Letter to whom it may concern'),
+(30, 26, 2, 0, 1, '2019-12-15 22:00:00', 'Embassy HR Letter'),
+(35, 2, 2, 0, 1, '2019-12-20 22:00:00', 'HR Letter to whom it may concern'),
+(36, 2, 2, 0, 0, '2019-12-21 00:15:31', 'Embassy HR Letter'),
+(37, 2, 2, 1, 0, '2019-12-21 00:16:25', 'General HR Letter'),
+(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'Embassy HR Letter');
 
 -- --------------------------------------------------------
 
@@ -282,6 +306,12 @@ ALTER TABLE `add_info`
   ADD PRIMARY KEY (`emp_id`);
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
@@ -339,6 +369,12 @@ ALTER TABLE `update_info1`
 --
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
@@ -366,7 +402,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `requests_types`

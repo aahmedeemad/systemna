@@ -717,7 +717,12 @@ box-sizing: content-box;
   color: black !important;
 }
 #notidata {
+  cursor: default;
+  font-size: 100%;
   padding: 0.6em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  button: 1em;
 }
 #markAll {
   background: #f6f7f8;

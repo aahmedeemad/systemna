@@ -4,17 +4,7 @@ $pageTitle = "SYSTEMNA | Edit Letter";
 include "../template/header.php";
 ?>
 <?php
-
-//if ($_SERVER['REQUEST_METHOD'] === 'GET')
-//{
-    $requestId = $_GET['id'];
-    $sql="SELECT * FROM requests WHERE Request_Id = " . $requestId;
-    $DB->query($sql);
-    $DB->execute();
-    $selectedData = $DB ->getdata();
-//}
-
-
+if($_SESSION['type'] != 'admin') header("location: index.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $priority=$_POST['priority'];
@@ -26,6 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $DB->execute();
     header('Location: viewRequest.php');
 }
+
+if (isset($_GET['id']))
+{
+    $requestId = $_GET['id'];
+    $sql="SELECT * FROM requests WHERE Request_Id = " . $requestId;
+    $DB->query($sql);
+    $DB->execute();
+    $selectedData = $DB ->getdata();
+    if ($selectedData == NULL) header('Location: viewRequest.php');
+} else { header('Location: viewRequest.php'); }
 
 ?>
 <div>

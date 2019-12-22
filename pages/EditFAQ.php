@@ -37,7 +37,7 @@ if(isset($_GET['id']))
         <br>
         <br>
         <br>
-        <input type="submit" id="btn1" value="Add Question" name='EditFAQ'>
+        <input type="submit" id="btn1" value="Update Question" name='EditFAQ'>
     </form>
 </div>
 <?php

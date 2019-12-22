@@ -172,7 +172,8 @@ tr:nth-child(even) {
   cursor: pointer;
 }
 #button-accepted,
-.accept {
+.accept,
+.user-accept {
   background-color: #00ff40;
   border: none;
   color: white;
@@ -186,7 +187,8 @@ tr:nth-child(even) {
   width: 80px;
 }
 #button-rejected,
-.reject {
+.reject,
+.user-reject {
   background-color: #ff0000;
   border: none;
   color: white;

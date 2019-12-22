@@ -17,17 +17,14 @@ include "../template/header.php";
 <table id='Display'>
     <tr id='must'>
         <th>#</th>
-        <th>Status</th>
         <th>ID</th>
-        <th>FullName</th>
         <th>Username</th>
         <th>Email</th>
-        <th>Location</th>
         <th>SSN</th>
-        <th>Birthday</th>
         <th>Phone</th>
-        <th>Salary</th>
         <th>Delete</th>
+        <th>Accept</th>
+        <th>Reject</th>
     </tr>
     <?php
         function check($c){
@@ -41,7 +38,7 @@ include "../template/header.php";
         $sql="
         SELECT *
         FROM employee left join add_info
-        on emp_id=id where employee.accepted = 2 AND privilege = 'user'";
+        on emp_id=id where employee.accepted = 2 AND privilege = 'user' AND active = 1";
         try
         {
               
@@ -57,37 +54,25 @@ include "../template/header.php";
                 $id=$x[$i]->id;
                 $phone=check($x[$i]->phone);
                 $ssn=check($x[$i]->ssn);
-                $bdate=check($x[$i]->bdate);
-                $salary=check($x[$i]->salary);
-                $fullname=check($x[$i]->fullname);
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
-                $location = check($x[$i]->location);
 
 
 
 
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
-                if($x[$i]->accepted==1)
-                    echo "<td><a type='submit' href='../operations/EditTable.php?accepted=1&id={$id}' id='button-accepted'>Accepted</a></td>";
-                else if($x[$i]->accepted==0)
-                    echo "<td><a type='submit' href='../operations/EditTable.php?accepted=0&id={$id}' id='button-rejected'>Rejected</a></td>";
-                else 
-                    echo "<td><a type='submit' href='../operations/EditTable.php?accepted=2&id={$id}' id='button-pending'>Pending</a></td>";
                 echo "
                 <td>{$id}</td>
-                <td>{$fullname}</td>
                 <td>{$username}</td>
                 <td>{$email}</td>
-                <td>{$location}</td>
                 <td>{$ssn}</td>
-                <td>{$bdate}</td>
-                <td>{$phone}</td>
-                <td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
+                <td>{$phone}</td>";
                 ?>
     <td><a type='submit' onclick="return confirm('Delete this account?')"
             href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+    <td><input type= submit class ='user-accept' value='Accept'></td>
+    <td><input type= submit class ='user-reject' value='Reject'></td>
 
     </tr>
     <?php

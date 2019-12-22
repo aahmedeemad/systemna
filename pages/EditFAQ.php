@@ -46,7 +46,7 @@ if(isset($_GET['id']))
     {
         $_SESSION['error'] = 'error in sql';
     }
-}
+} else header("location: index.php");
 ?>
 <?php 
 include "../template/footer.php"; 

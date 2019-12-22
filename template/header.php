@@ -126,13 +126,15 @@ $DB = new Database();
             <div class="mainPage">
                 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>
                 <div class="sidenav-custom">
-                    <div class="sidenav-header">
-                        <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id']) . '.jpeg' ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg' ?>" alt="" class="rounded-circle-custom"></div>
-                        <div class="title">
-                            <a style="text-decoration: none;" href="../pages/profile.php"><h1 class="name"><?php echo $_SESSION['name']; ?></h1></a>
-                            <div class="position">Admin</div>
+                    <a style="text-decoration: none;" href="../pages/profile.php">
+                        <div class="sidenav-header">
+                            <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
+                            <div class="title">
+                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <div class="position">Admin</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <ul>
                         <li class="sidenav-button"><a href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
@@ -145,13 +147,15 @@ $DB = new Database();
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
                 <div class="sidenav-custom">
-                    <div class="sidenav-header">
-                        <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
-                        <div class="title">
-                            <a style="text-decoration: none;" href="../pages/profile.php"><h1 class="name"><?php echo $_SESSION['name']; ?></h1></a>
-                            <div class="position">Employee</div>
+                    <a style="text-decoration: none;" href="../pages/profile.php">
+                        <div class="sidenav-header">
+                            <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
+                            <div class="title">
+                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <div class="position">Employee</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications 
@@ -168,13 +172,15 @@ $DB = new Database();
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
                 <div class="sidenav-custom">
-                    <div class="sidenav-header">
-                        <div class="avatar"><img src="../template/avatar.jpg" alt="" class="rounded-circle"></div>
-                        <div class="title">
-                            <a style="text-decoration: none;" href="../pages/profile.php"><h1 class="name"><?php echo $_SESSION['name']; ?></h1></a>
-                            <div class="position">QC</div>
+                    <a style="text-decoration: none;" href="../pages/profile.php">
+                        <div class="sidenav-header">
+                            <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
+                            <div class="title">
+                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <div class="position">QC</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container">

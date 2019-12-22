@@ -1,9 +1,13 @@
 <?php
-include "../DB/Database.php";
-$DB2 = new Database();
-$d_id = $_GET['id'];
-$sql = "update employee set active=0 where id = '$d_id;'";
-$DB2->query($sql);
-$DB2->execute();
-header("Location: ../pages/index.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    include "../DB/Database.php";
+    $DB2 = new Database();
+    $d_id = $_GET['id'];
+    $sql = "update employee set active=0 where id = '$d_id;'";
+    $DB2->query($sql);
+    $DB2->execute();
+    header("Location: ../pages/index.php");
+} else { header("Location: ../index.php"); }
 ?>

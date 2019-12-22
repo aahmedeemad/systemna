@@ -22,7 +22,6 @@ if (isset($_POST['priority'])) {
     header("location: .php");
 }
 ?>
-<?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="add_letter" onclick="addletter.send()"></div></div>');}?>
 <div>
     <form id="Addletterform" method='post'>
         <?php echo "<br>

@@ -1,7 +1,6 @@
 <?php 
 $pageTitle = "SYSTEMNA | Mass Messaging";
 include "../template/header.php"; ?>
-
 <style>
 	.vertical {
 		display: block;

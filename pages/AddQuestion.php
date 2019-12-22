@@ -3,8 +3,7 @@ $pageTitle = "SYSTEMNA | Add Question";
 include "../template/header.php";
 ?>
 
-    <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
- if($_SESSION['type']=='user'){header('Location:MakeLetter.php');}    ?>
+<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 
 <?php
 if (isset($_POST['Question'])) {

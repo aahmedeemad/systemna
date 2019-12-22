@@ -3,6 +3,7 @@ session_start();
 global $pageTitle;
 include('../DB/Database.php');
 $DB = new Database();
+if(!isset($_SESSION['type'])) header("Location:../index.php");
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -20,7 +21,6 @@ $DB = new Database();
     <body>
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
-
             $(document).ready(function () {
                 $('.pages_edit').text(
                     '<?php
@@ -212,7 +212,7 @@ $DB = new Database();
                     </ul>
                 </div>
 
-                <?php } else header("Location:../index.php") ?>
+                <?php } else header("Location:../index.php"); ?>
                 <div id="myModal" class="modal">
                     <div class="popup-notification" id='popup'>
                         <h2></h2>
@@ -222,3 +222,4 @@ $DB = new Database();
                 </div>
                 <div class="loading hidden"></div>
                 <div class="content">
+

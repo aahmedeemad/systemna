@@ -10,5 +10,5 @@ $DB2->query($sql);
 $DB2->execute();
 
 header("Location: ../pages/viewRequest.php");
-}
+} else { header("Location: ../index.php"); }
 ?>

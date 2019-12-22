@@ -29,7 +29,7 @@ try {
    $mail->setFrom('systemnamiu@gmail.com', 'A.Emad from SYSTEMNA');
 
    /* Add a recipient. */
-   $mail->addAddress('islammagdi1@gmail.com', 'xXxN00bMaster69xXx');
+   $mail->addAddress('abanoubLamie16@gmail.com', 'xXxN00bMaster69xXx');
 
    /* Set the subject. */
    $mail->Subject = 'SPAM TIME!';

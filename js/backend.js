@@ -549,6 +549,41 @@ $(document).ready(function () {
             }
         });
     });
+    $(".user-accept").click(function () {
+        var Row = $(this).closest("tr");
+        var Rid = $("#Display")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { aid: Rid },
+            success: function (msg) {
+                loading(false);
+                Row.hide();
+            }
+        });
+    });
+    $(".user-reject").click(function () {
+        var Row = $(this).closest("tr");
+        var Rid = $("#Display")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { rid: Rid },
+            success: function (msg) {
+                loading(false);
+                Row.hide();
+            }
+        });
+    });
+
     $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });

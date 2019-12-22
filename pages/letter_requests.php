@@ -2,8 +2,6 @@
 $pageTitle = "SYSTEMNA | Requested Letters";
 include "../template/header.php";
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-?>
 
 <br>
 <div style="text-align: center;">

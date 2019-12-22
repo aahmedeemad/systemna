@@ -1,11 +1,9 @@
-
 <?php
 $pageTitle = "SYSTEMNA | Add Letter";
 include "../template/header.php";
 ?>
 
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:MakeLetter.php');}    ?>
+<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 
 
 <h3> Add New Type of Letter </h3>

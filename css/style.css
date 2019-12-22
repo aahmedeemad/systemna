@@ -23,10 +23,11 @@
 
 .navbar-toggle {
     cursor: pointer;
+    margin-left: 8px;
 }
 
 .logo-name {
-    margin-left: 8px;
+    margin-left: 20px;
     text-transform: uppercase;
 }
 

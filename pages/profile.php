@@ -99,7 +99,6 @@ if($DB->numRows() > 0)
         </div>
     </div>
 </div>
-<div style="margin-bottom: 5em;"></div>
 
 <?php
 } else {

@@ -305,7 +305,7 @@ tr:nth-child(even) {
 
 .profile-background {
     display: block;
-    width: 99%;
+    width: 85%;
     height: auto;
     max-height: 250px;
     border-radius: 20px;
@@ -319,8 +319,8 @@ tr:nth-child(even) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 99%;
-    height: 100%;
+    width: 85%;
+    height: 70%;
     margin-left: auto;
     margin-right: auto;
     background-color: #e0e0e0;

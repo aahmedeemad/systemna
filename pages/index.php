@@ -43,7 +43,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
         <th>Add QC</th>
         <th>Add HR</th>
         <th>Delete</th>
-        <th>profile</th>
+        <th>Profile</th>
         <th>Status</th>
     </tr>
     <?php

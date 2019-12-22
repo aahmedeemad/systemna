@@ -63,8 +63,8 @@ include "../template/header.php";
                 //<td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
                 ?>
     <td><a type='submit' href="EditFAQ.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-            href="../operations/DeleteTable.php?id=<?php echo $id ;?>" class='EditBtn'>Delete</a></td>
+    <td><a type='submit' onclick="return confirm('Delete this question?')"
+            href="../operations/DeleteTable.php?qid=<?php echo $id ;?>" class='EditBtn'>Delete</a></td>
 
     </tr>
     <?php

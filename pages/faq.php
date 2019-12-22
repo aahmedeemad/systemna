@@ -38,8 +38,8 @@ include "../template/header.php";
             <br>
             <?php
             if (isset($_POST['subject'])) {
-                $subject=$_POST['subject'];
-                $message=$_POST['message'];
+                $subject=filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+                $message=filter_var($_POST['message'], FILTER_SANITIZE_STRING);
                 $requester_name=$_SESSION['username'];
                 $requester_email=$_SESSION['email'];
                 $sql="INSERT INTO inquiries (subject,message,requester_name,requester_email) VALUES ('$subject','$message','$requester_name','$requester_email') ";

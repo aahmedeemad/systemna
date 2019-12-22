@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $pageTitle = "SYSTEMNA | Add Letter";
 include "../template/header.php";
 ?>
@@ -24,4 +25,6 @@ include "../template/header.php";
     </form>
 </div>
 
-<?php include "../template/footer.php"; ?>
+<?php
+ob_end_flush();
+ include "../template/footer.php"; ?>

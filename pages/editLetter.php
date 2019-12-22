@@ -3,17 +3,15 @@ ob_start();
 $pageTitle = "SYSTEMNA | Edit Letter";
 include "../template/header.php";
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-?>
 <?php
 
 //if ($_SERVER['REQUEST_METHOD'] === 'GET')
 //{
-$requestId = $_GET['id'];
-$sql="SELECT * FROM requests WHERE Request_Id = " . $requestId;
-$DB->query($sql);
-$DB->execute();
-$selectedData = $DB ->getdata();
+    $requestId = $_GET['id'];
+    $sql="SELECT * FROM requests WHERE Request_Id = " . $requestId;
+    $DB->query($sql);
+    $DB->execute();
+    $selectedData = $DB ->getdata();
 //}
 
 

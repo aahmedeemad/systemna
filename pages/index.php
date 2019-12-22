@@ -3,8 +3,7 @@
 $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
+<?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>

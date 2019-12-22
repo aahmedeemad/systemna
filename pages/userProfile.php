@@ -2,7 +2,6 @@
 $pageTitle = "SYSTEMNA | Profile";
 include "../template/header.php"; 
 ?>
-
 <?php
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = ".$_GET['id']."" ;
 $DB->query($sql);

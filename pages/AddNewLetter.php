@@ -3,22 +3,14 @@ $pageTitle = "SYSTEMNA | Add Letter";
 include "../template/header.php";
 ?>
 
-<?php
-if (isset($_POST['Name'])) {
-    $Name=$_POST['Name'];
-    $description=$_POST['description'];
-    $sql="INSERT INTO requests_types (Name,description) VALUES ('$Name','$description') ";
-    $DB->query($sql);
-    $DB->execute();
-    header("location: viewRequest.php");
-}
-?>
+<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
+
 
 <h3> Add New Type of Letter </h3>
 <hr>
 
 <div>
-    <form id="Addquestionform" method='post'>
+    <form id="Addquestionform" method='post' action="../operations/newLetter.php">
         <h4>Letter Name: </h4>
         <input type="text" id="Name" name="Name" placeholder="new letter name.." required>
         <br>

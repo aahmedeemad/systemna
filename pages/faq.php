@@ -2,7 +2,6 @@
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}?>
 
 <body>
     <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div></div>');}?>
@@ -38,8 +37,8 @@ include "../template/header.php";
             <br>
             <?php
             if (isset($_POST['subject'])) {
-                $subject=$_POST['subject'];
-                $message=$_POST['message'];
+                $subject=filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+                $message=filter_var($_POST['message'], FILTER_SANITIZE_STRING);
                 $requester_name=$_SESSION['username'];
                 $requester_email=$_SESSION['email'];
                 $sql="INSERT INTO inquiries (subject,message,requester_name,requester_email) VALUES ('$subject','$message','$requester_name','$requester_email') ";

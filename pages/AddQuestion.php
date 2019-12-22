@@ -3,15 +3,14 @@ $pageTitle = "SYSTEMNA | Add Question";
 include "../template/header.php";
 ?>
 
-    <?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
- if($_SESSION['type']=='user'){header('Location:lettertypes.php');}    ?>
+<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 
 <?php
 if (isset($_POST['Question'])) {
-    $Question=$_POST['Question'];
-    $Answer=$_POST['Answer'];
+    $Question=filter_var($_POST['Question'], FILTER_SANITIZE_STRING);
+    $Answer=filter_var($_POST['Answer'], FILTER_SANITIZE_STRING);
     $Added_by=$_SESSION['username'];
-    $Requested_by=$_POST['requested_by'];
+    $Requested_by=filter_var($_POST['Requested_by'], FILTER_SANITIZE_STRING);
     $sql="INSERT INTO faq (Question,Answer,Added_by,Requested_by) VALUES ('$Question','$Answer','$Added_by','$Requested_by') ";
     $DB->query($sql);
     $DB->execute();

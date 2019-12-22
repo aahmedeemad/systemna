@@ -2,8 +2,7 @@
 <?php include "../DB/Database.php";
 session_start();
 $DB2 = new Database(); 
-if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
+if($_SESSION['type']=='user') header('Location:lettertypes.php');
 if(isset($_POST['search'])){    ?>
 <br>
 <table id='Display' >

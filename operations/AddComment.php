@@ -2,7 +2,7 @@
 include "../DB/Database.php";
 
 if(isset($_POST['AddC']) && isset($_GET['Request_id']))
-  {
+{
     $DataBase = new Database();
 
     $val = $_POST['Comment'];
@@ -14,5 +14,6 @@ if(isset($_POST['AddC']) && isset($_GET['Request_id']))
     $DataBase->execute();
 
     header("Location: ../pages/QualityControl.php");
-  }
+}
+else { header("Location: ../index.php"); }
 ?>

@@ -22,7 +22,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
-               
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
@@ -54,8 +53,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     }
                     ?>'
                 ).css('height', '20vw');
-
-                
             });
 
             var markRead = new XMLHttpRequest();

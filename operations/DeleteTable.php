@@ -8,6 +8,13 @@ if(isset($_GET['id'])){
     $DB->execute();
     header("Location: ../pages/index.php");
 }
+if(isset($_GET['wid'])){
+    $d_id = $_GET['wid'];
+    $sql = "update employee set active=0 where id = '$d_id;'";
+    $DB->query($sql);
+    $DB->execute();
+    header("Location: ../pages/waitingUsers.php");
+}
 else if(isset($_GET['qid'])){
     $qid = $_GET['qid'];
     $sql = "delete from faq where ID = '$qid';";
@@ -22,5 +29,5 @@ else if(isset($_GET['lid'])){
     $DB->execute();
     header("Location: ../pages/allLetters.php");
 } 
-else { header("Location: ../index.php"); }
+else { header("Location: ../pages/index.php"); }
 ?>

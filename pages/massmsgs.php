@@ -45,9 +45,10 @@ include "../template/header.php"; ?>
 				Select the user id/name: [for loop 3ala kol el user names mn db]
 			</div>
 			<br>
-			Write the notification content: [textbox]
-			<br>
-			Send button
+			Write the notification content:<br><br>
+			<textarea name="notification" rows="8" cols="50" class="massmsgfield" required></textarea>
+			<br><br>
+			<input type="submit" class="massmsgsendbtn" value="Send">
 		</td>
 		<td><div class = "vertical"></div><div class = "horizontal"></div></td>
 		<td>
@@ -67,13 +68,15 @@ include "../template/header.php"; ?>
 				Select the user id/name: [for loop 3ala kol el user emails mn db]
 			</div>
 			<br>
-			write "from" name (automatic mn session esm el admin + from systemna)
+			write and show "from" name (automatic mn session esm el admin + from systemna)
 			<br>
-			Write the mail subject: [textfield]
-			<br>
-			Write the mail content: [textbox]
-			<br>
-			Send button
+			Write the mail subject:<br><br>
+			<input type="text" class="massmsgfield" required>
+			<br><br>
+			Write the mail content:<br><br>
+			<textarea name="notification" rows="8" cols="50" class="massmsgfield" required></textarea>
+			<br><br>
+			<input type="submit" class="massmsgsendbtn" value="Send">
 		</td>
 	</tr>
 </table>

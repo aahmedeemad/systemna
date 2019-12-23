@@ -602,6 +602,28 @@ box-sizing: content-box;
     font-size: 0.8em;
 }
 
+/*mass messaging*/
+.massmsgfield{
+    width: 95%;
+    padding: 1em;
+    margin: 0.8em 0;
+    border: 0.1em sloid #ccc;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+}
+.massmsgsendbtn {
+    width: 40%;
+    background-color: #daa520;
+    color: white;
+    padding: 1em;
+    border: none;
+    border-radius: 0.4em;
+    margin: auto;
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
 /* Abdelhamid's part */
 
 #question,

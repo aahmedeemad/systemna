@@ -2,8 +2,7 @@
 ob_start();
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
-if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
+if($_SESSION['type']=='user') header('Location:lettertypes.php');
 ?>
 <h3> Edit Questions </h3>
 <hr>
@@ -38,7 +37,7 @@ if(isset($_GET['id']))
         <br>
         <br>
         <br>
-        <input type="submit" id="btn1" value="Add Question" name='EditFAQ'>
+        <input type="submit" id="btn1" value="Update Question" name='EditFAQ'>
     </form>
 </div>
 <?php
@@ -47,7 +46,7 @@ if(isset($_GET['id']))
     {
         $_SESSION['error'] = 'error in sql';
     }
-}
+} else header("location: index.php");
 ?>
 <?php 
 include "../template/footer.php"; 

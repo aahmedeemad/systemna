@@ -3,6 +3,7 @@ session_start();
 global $pageTitle;
 include('../DB/Database.php');
 $DB = new Database();
+if(!isset($_SESSION['type'])) header("Location:../index.php");
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -20,7 +21,6 @@ $DB = new Database();
     <body>
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
-
             $(document).ready(function () {
                 $('.pages_edit').text(
                     '<?php
@@ -157,6 +157,7 @@ $DB = new Database();
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Pending Users <div id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Users Requests</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/allLetters.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Letters</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
@@ -212,7 +213,7 @@ $DB = new Database();
                     </ul>
                 </div>
 
-                <?php } else header("Location:../index.php") ?>
+                <?php } else header("Location:../index.php"); ?>
                 <div id="myModal" class="modal">
                     <div class="popup-notification" id='popup'>
                         <h2></h2>

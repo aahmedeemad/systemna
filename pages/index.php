@@ -3,8 +3,7 @@
 $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
+<?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>
@@ -43,7 +42,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
         <th>Add QC</th>
         <th>Add HR</th>
         <th>Delete</th>
-        <th>profile</th>
+        <th>Profile</th>
         <th>Status</th>
     </tr>
     <?php
@@ -106,7 +105,7 @@ if($_SESSION['type']=='user'){header('Location:lettertypes.php');}?>
 <?php
 if($x[$i]->accepted == 1){
  echo "<td><a type='submit' 
- href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
+ href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
  echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
 }
 else if($x[$i]->accepted == 0)

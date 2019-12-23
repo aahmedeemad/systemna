@@ -23,10 +23,11 @@
 
 .navbar-toggle {
     cursor: pointer;
+    margin-left: 8px;
 }
 
 .logo-name {
-    margin-left: 8px;
+    margin-left: 20px;
     text-transform: uppercase;
 }
 
@@ -179,32 +180,35 @@ tr:nth-child(even) {
     cursor: pointer;
 }
 #button-accepted,
-.accept {
-    background-color: #00ff40;
-    border: none;
-    color: white;
-    padding: 3px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.9em;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 80px;
+.accept,
+.user-accept {
+  background-color: #00ff40;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9em;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 80px;
+
 }
 #button-rejected,
-.reject {
-    background-color: #ff0000;
-    border: none;
-    color: white;
-    padding: 3px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.9em;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 70px;
+.reject,
+.user-reject {
+  background-color: #ff0000;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9em;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 70px;
 }
 #button-pending {
     background-color: #fbff00;
@@ -301,7 +305,7 @@ tr:nth-child(even) {
 
 .profile-background {
     display: block;
-    width: 99%;
+    width: 85%;
     height: auto;
     max-height: 250px;
     border-radius: 20px;
@@ -315,8 +319,8 @@ tr:nth-child(even) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 99%;
-    height: 100%;
+    width: 85%;
+    height: 70%;
     margin-left: auto;
     margin-right: auto;
     background-color: #e0e0e0;
@@ -424,7 +428,7 @@ tr:nth-child(even) {
 .profile .profile-left .p-image {
     position: absolute;
     top: 140px;
-    right: 30%;
+    right: 37%;
     color: #666666;
 }
 
@@ -640,7 +644,7 @@ box-sizing: content-box;
 }
 #btn1,
 #btn2 {
-    width: 100%;
+    width: 99%;
     background-color: #daa520;
     color: white;
     padding: 14px 2px;

@@ -2,7 +2,6 @@
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 ?>
-<?php if(!isset($_SESSION['username'])){header('Location:../index.php');}?>
 
 <body>
     <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div></div>');}?>

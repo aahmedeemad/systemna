@@ -103,13 +103,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultFullname +
-                    "&value=" +
-                    fullname +
-                    "&type=fullname",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultFullname +
+                "&value=" +
+                fullname +
+                "&type=fullname",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -139,13 +139,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultSSN +
-                    "&value=" +
-                    ssn +
-                    "&type=ssn",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultSSN +
+                "&value=" +
+                ssn +
+                "&type=ssn",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -163,13 +163,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultBdate +
-                    "&value=" +
-                    bdate +
-                    "&type=bdate",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultBdate +
+                "&value=" +
+                bdate +
+                "&type=bdate",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -188,13 +188,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultLoc +
-                    "&value=" +
-                    loc +
-                    "&type=location",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultLoc +
+                "&value=" +
+                loc +
+                "&type=location",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -222,13 +222,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultEmail +
-                    "&value=" +
-                    email +
-                    "&type=email",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultEmail +
+                "&value=" +
+                email +
+                "&type=email",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -247,13 +247,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultPhone +
-                    "&value=" +
-                    phone +
-                    "&type=phone",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultPhone +
+                "&value=" +
+                phone +
+                "&type=phone",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -399,7 +399,7 @@ $(document).ready(function () {
         $(this).addClass("input");
         $(this).keyup(function () {
             var test = $(this)
-                .text();
+            .text();
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -416,8 +416,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test = $(this).html();
         test = test.replace("<br>", "");
 
@@ -441,8 +441,8 @@ $(document).ready(function () {
     });
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -452,9 +452,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -470,12 +470,12 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -506,21 +506,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(4)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(4)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -535,9 +535,9 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -549,13 +549,48 @@ $(document).ready(function () {
             }
         });
     });
+    $(".user-accept").click(function () {
+        var Row = $(this).closest("tr");
+        var Rid = $("#Display")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { aid: Rid },
+            success: function (msg) {
+                loading(false);
+                Row.hide();
+            }
+        });
+    });
+    $(".user-reject").click(function () {
+        var Row = $(this).closest("tr");
+        var Rid = $("#Display")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { rid: Rid },
+            success: function (msg) {
+                loading(false);
+                Row.hide();
+            }
+        });
+    });
+
     $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -565,9 +600,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -683,9 +718,9 @@ $(document).ready(function () {
     $("#submitbtn").click(function () {
         if (
             (document.getElementById("rdbtn1").checked ||
-                document.getElementById("rdbtn2").checked) &&
+             document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
-                document.getElementById("rdbtn4").checked) &&
+             document.getElementById("rdbtn4").checked) &&
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
@@ -753,12 +788,14 @@ $(document).ready(function () {
         //      alert("error: Enter something to search for!");
         //      return false;
         //    }
+        var searchedText = $("#searched").val();
         var page = $("#faqdiv");
         var pageText = page.html();
         var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, "");
-        var searchedText = $("#searched").val();
-        var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");
-        newHtml = newHtml.replace(theRegEx, "<span>$1</span>");
+        if(searchedText != ""){
+            var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");
+            newHtml = newHtml.replace(theRegEx, "<span>$1</span>");
+        }
         page.html(newHtml);
     });
     //  $("#searched").keyup(function() {

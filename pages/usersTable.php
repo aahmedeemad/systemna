@@ -1,9 +1,7 @@
-<script src="../js/jquery-3.4.1.min.js"></script>
-<?php include "../DB/Database.php";
-session_start();
-$DB2 = new Database(); 
-if(!isset($_SESSION['username'])){header('Location:../index.php');}
-if($_SESSION['type']=='user'){header('Location:lettertypes.php');}
+<?php 
+$pageTitle = "SYSTEMNA | Users Table";
+include "../template/header.php"; 
+if($_SESSION['type']=='user') header('Location:lettertypes.php');
 if(isset($_POST['search'])){    ?>
 <br>
 <table id='Display' >
@@ -40,12 +38,12 @@ if(isset($_POST['search'])){    ?>
     }
     try
     {
-        $DB2->query($sql);
-        $DB2->execute();
+        $DB->query($sql);
+        $DB->execute();
         $y=0;
-        if($DB2->numRows()>0)
-        {   $x=$DB2->getdata();
-            for($i=0;$i<$DB2->numRows();$i++)
+        if($DB->numRows()>0)
+        {   $x=$DB->getdata();
+            for($i=0;$i<$DB->numRows();$i++)
             {
                 //$x=$DB->getdata();
                 $y++;

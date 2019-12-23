@@ -46,28 +46,19 @@ if(isset($_POST['test'])){
      header("Location: ../pages/index.php");
     }
 }
-if(isset($_GET['accepted'])){
-    $accepted = $_GET['accepted'];
-    $ID = $_GET['id'];
-     if($accepted==0){
-        $sql = "update employee set accepted=1 where id = '$ID';";
-        $DB2->query($sql);
-        $DB2->execute();
-        $sql = "insert into notifications(status,userid,notidata) values (0,'$ID','Welcome to SYSTEMNA');";
-        $DB2->query($sql);
-        $DB2->execute();
-     }
-     else if($accepted==1){
-        $sql = "update employee set accepted=0 where id = '$ID';";
-        $DB2->query($sql);
-        $DB2->execute();
-     }
-     else if($accepted==2){
-        $sql = "update employee set accepted=0 where id = '$ID';";
-        $DB2->query($sql);
-        $DB2->execute();
-     }
-    header("Location: ../pages/index.php");
-
+if(isset($_POST['aid'])){
+    $ID = $_POST['aid'];
+    $sql = "update employee set accepted=1 where id = '$ID';";
+    $DB2->query($sql);
+    $DB2->execute();
+    $sql = "insert into notifications(status,userid,notidata) values (0,'$ID','Welcome to SYSTEMNA');";
+    $DB2->query($sql);
+    $DB2->execute();
+}
+if(isset($_POST['rid'])){
+    $ID = $_POST['rid'];
+    $sql = "update employee set accepted=0 where id = '$ID';";
+    $DB2->query($sql);
+    $DB2->execute();
 }
 ?>

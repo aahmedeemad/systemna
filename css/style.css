@@ -620,12 +620,18 @@ box-sizing: content-box;
     background-color: #daa520;
     color: white;
     padding: 1em;
+    margin: 0.2em;
     border: none;
     border-radius: 0.4em;
-    margin: auto;
-    display: block;
     text-transform: uppercase;
     font-size: 0.8em;
+}
+.massmsgdrpdwn{
+    width: 30%;
+    padding: 0.1em;
+    margin: 0.8em 0;
+    border: 0.1em sloid #ccc;
+    border-radius: 0.4em;
 }
 
 /* Abdelhamid's part */

@@ -90,7 +90,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
             });
 
             var markRead = new XMLHttpRequest();
-            markRead.open('GET','../template/mark_read.php');
+            markRead.open('GET','../operations/mark_read.php');
             markRead.onreadystatechange = function() {
                 if (markRead.readyState === 4) {
                     document.getElementById('notidata').innerHTML = ' ';

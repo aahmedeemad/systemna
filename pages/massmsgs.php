@@ -131,8 +131,10 @@ include "../template/header.php"; ?>
 			<br><legend>Mail subject:</legend>
 			<input type="text" class="massmsgfield" required>
 			<br><legend>Mail content:</legend>
-			<textarea name="notification" rows="8" cols="50" class="massmsgfield" required></textarea>
-			<br><br><input type="submit" class="massmsgsendbtn" value="Send">
+			<textarea name="mail" rows="8" cols="50" class="massmsgfield" required></textarea>
+			<br><br>
+			<input type="submit" class="massmsgsendbtn" id="mailsendone" onclick="" value="Send to selected user">
+			<input type="submit" class="massmsgsendbtn" id="mailsendall" onclick="" value="Send to all users">
 		</td>
 	</tr>
 </table>

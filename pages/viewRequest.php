@@ -18,7 +18,7 @@ include "../template/header.php";
         <th>Priority</th>
         <th>Salary</th>
         <th>Date applied for</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
 
     <?php
@@ -116,10 +116,10 @@ include "../template/header.php";
                 else   {
     ?>
 
-    <td><a type='submit' onclick="return confirm('Delete this Request?')"
+    <td colspan="2"><a type='submit' onclick="return confirm('Delete this Request?')"
            href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
 
-    <td><a type='submit' onclick="return confirm('Edit this Request?')"
+    <td colspan="2"><a type='submit' onclick="return confirm('Edit this Request?')"
            href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
     </tr>
 

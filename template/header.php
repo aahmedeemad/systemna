@@ -22,24 +22,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('.pages_edit').text(
-                    '<?php
-                    echo ('Edit');
-                    ?>'
-                );
-
-                $('#faq_add').text(
-                    '<?php
-                    echo ('Add Question');
-                    ?>'
-                );
-
-                $('#add_letter').text(
-                    '<?php
-                    echo ('Add new type of letter');
-                    ?>'
-                );
-
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
@@ -71,26 +53,10 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     }
                     ?>'
                 ).css('height', '20vw');
-
-                $('#noti_Button').click(function () {
-                    // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
-                    $('#notifications').fadeToggle('fast', 'linear');
-                    return false;
-                });
-
-                //HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-                $(document).click(function () {
-                    $('#notifications').hide();
-                });
-
-                $('#notifications').click(function () {
-                    // DO NOTHING WHEN CONTAINER IS CLICKED.
-                    return false;
-                });
             });
 
             var markRead = new XMLHttpRequest();
-            markRead.open('GET','../template/mark_read.php');
+            markRead.open('GET','../operations/mark_read.php');
             markRead.onreadystatechange = function() {
                 if (markRead.readyState === 4) {
                     document.getElementById('notidata').innerHTML = ' ';

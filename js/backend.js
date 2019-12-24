@@ -1,4 +1,25 @@
 $(document).ready(function () {
+
+    $('.pages_edit').text('Edit');
+    $('#faq_add').text('Add Question');
+    $('#add_letter').text('Add new type of letter');
+
+    $('#noti_Button').click(function () {
+        // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+        $('#notifications').fadeToggle('fast', 'linear');
+        return false;
+    });
+
+    //HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+    $(document).click(function () {
+        $('#notifications').hide();
+    });
+
+    $('#notifications').click(function () {
+        // DO NOTHING WHEN CONTAINER IS CLICKED.
+        return false;
+    });
+
     function loading(status) {
         if (status == true) {
             $(".loading").removeClass("hidden");

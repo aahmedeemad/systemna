@@ -1,8 +1,9 @@
 <?php
+ob_start();
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 ?>
-<?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
+<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 
 <div style="text-align: center; align-self: center;">
 <div class="pages_edit" id="faq_add" onclick="addFAQ.send()"></div>
@@ -78,4 +79,6 @@ include "../template/header.php";
         ?>
 </table>
 
-<?php include "../template/footer.php"; ?>
+<?php
+ob_end_flush();
+ include "../template/footer.php"; ?>

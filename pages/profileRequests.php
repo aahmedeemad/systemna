@@ -1,8 +1,9 @@
 <?php
-$pageTitle = "SYSTEMNA | All Users";
+ob_start();
+$pageTitle = "SYSTEMNA | Profile Requests";
 include "../template/header.php"; 
 ?>
-<?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
+<?php if($_SESSION['type']!='admin') header('Location:MakeLetter.php'); ?>
 <br>
 <table id='tblRequests'>
     <tr id='must'>
@@ -66,4 +67,6 @@ include "../template/header.php";
 ?>
 </table>
 
-<?php include "../template/footer.php"; ?>
+<?php
+ob_end_flush();
+ include "../template/footer.php"; ?>

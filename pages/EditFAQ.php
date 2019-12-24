@@ -1,8 +1,8 @@
 <?php
 ob_start();
-$pageTitle = "SYSTEMNA | FAQ";
+$pageTitle = "SYSTEMNA | Edit FAQ";
 include "../template/header.php"; 
-if($_SESSION['type']=='user') header('Location:lettertypes.php');
+if($_SESSION['type']=='user') header('Location:MakeLetter.php');
 ?>
 <h3> Edit Questions </h3>
 <hr>

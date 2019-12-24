@@ -1,10 +1,10 @@
 
-<?
+<?php
 ob_start();
 $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
-<?php if($_SESSION['type']!='admin') header('Location:MakeLetter.php'); ?>
+<?php if($_SESSION['type']!='admin')  header('Location:MakeLetter.php'); ?>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>

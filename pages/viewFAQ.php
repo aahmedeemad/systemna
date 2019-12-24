@@ -22,6 +22,7 @@ include "../template/header.php";
 
     </tr>
     <?php
+    echo $_SESSION['type'];
         function check($c){
          if($c==null)
           $c='-';

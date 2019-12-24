@@ -88,11 +88,11 @@ include "../template/header.php";
             
                 ?>
                 <td class ="Comment">
-                <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
-                <input type='text' name="Comment" placeholder='Write your comment here...'size='30'>
-                <br>
-                <input type='submit'onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
-                </form>    
+                    <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
+                        <input type='text' name="Comment" placeholder='Write your comment here...'size='30' required>
+                        <br>
+                        <input type='submit'onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
+                    </form>    
                 </td>
                 </tr>
     <?php

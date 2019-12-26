@@ -167,17 +167,17 @@ th {
     text-align: center;
     padding: 11px 7px;
 }
-tr {
+#Display tr {
     color: black;
+    border: 1px solid black;
 }
-tr:nth-child(1) {
+#Display tr:nth-child(1) {
     background: #DAA520;
     color: black;
 }
-tr:nth-child(even) {
+#Display tr:nth-child(even) {
     background: #e8e8e8;
     color: black;
-    border: 1px solid black;
 }
 .EditBtn,
 .EditBtn1,

@@ -52,6 +52,9 @@ $(document).ready(function () {
         $(".sidenav-custom .sidenav-button a").css("color", "white");
         $(".content").css("background-color", "#202020");
         $(".content").css("color", "white");
+        $("tr").css("color", "white");
+        $("tr:nth-child(even)").css("background", "black");
+        $("tr:nth-child(even)").css("color", "white");
         $(".profile").css("background-color", "#303030");
         $(".profile-left").css("background-color", "#585858");
         $(".profile-right-up").css("background-color", "#585858");
@@ -68,6 +71,9 @@ $(document).ready(function () {
         $(".sidenav-custom .sidenav-button a").css("color", "black");
         $(".content").css("background-color", "#f5f5f5");
         $(".content").css("color", "black");
+        $("tr").css("color", "black");
+        $("tr:nth-child(even)").css("background", "#e8e8e8");
+        $("tr:nth-child(even)").css("color", "black");
         $(".profile").css("background-color", "#e0e0e0");
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");

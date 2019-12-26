@@ -29,7 +29,7 @@ try {
    $mail->setFrom('systemnamiu@gmail.com', 'A.Emad from SYSTEMNA');
 
    /* Add a recipient. */
-   $mail->addAddress('abanoubLamie16@gmail.com', 'xXxN00bMaster69xXx');
+   $mail->addAddress('ahmed3madeldin@gmail.com', 'xXxN00bMaster69xXx');
 
    /* Set the subject. */
    $mail->Subject = 'SPAM TIME!';
@@ -56,7 +56,7 @@ try {
    /* Google account password. */
    $mail->Password = 'tpwvzpocyggbhmlr';
 
-   /* Finally send the mail. */
+   /* Send the mail. */
    $mail->send();
 
    /* Prints message after mail is sent. */

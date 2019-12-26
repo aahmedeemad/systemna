@@ -63,14 +63,14 @@ $(document).ready(function () {
 
     $("#lightmode").on("click", function () {
         $(".header").css("background-color", "white");
-        $(".header").css("color", "black");
-        $("#na").css("color", "black");
-        $("#alogout").css("color", "black");
+        $(".header").css("color", "#212529");
+        $("#na").css("color", "#212529");
+        $("#alogout").css("color", "#212529");
         $(".sidenav-custom").css("background-color", "white");
-        $(".sidenav-custom .sidenav-header .title .position").css("color", "black");
-        $(".sidenav-custom .sidenav-button a").css("color", "black");
+        $(".sidenav-custom .sidenav-header .title .position").css("color", "#212529");
+        $(".sidenav-custom .sidenav-button a").css("color", "#212529");
         $(".content").css("background-color", "#f5f5f5");
-        $(".content").css("color", "black");
+        $(".content").css("color", "#212529");
         $("tr").css("color", "black");
         $("tr:nth-child(even)").css("background", "#e8e8e8");
         $("tr:nth-child(even)").css("color", "black");
@@ -598,9 +598,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -615,9 +615,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -849,4 +849,46 @@ $(document).ready(function () {
     //      location.reload();
     //    }
     //  });
+
+
+
+    /********************** Send notfications and mails **********************/
+    $("#notisendall").on("click",function(){
+        var data = $(".massmsgfield").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "notification=" + data + "&type=notiall",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
+    $("#notisendone").on("click",function(){
+        var id = $("#notione").val();
+        var data = $(".massmsgfield").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "id=" + id + "&notification=" + data + "&type=notione",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
 });

@@ -861,7 +861,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "../operations/massnoti.php",
+            url: "../operations/massmsging.php",
             data: "notification=" + data + "&type=notiall",
             success: function (html) {
                 console.log(html);
@@ -888,7 +888,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "../operations/massnoti.php",
+            url: "../operations/massmsging.php",
             data: "id=" + id + "&notification=" + data + "&type=notione",
             success: function (html) {
                 console.log(html);
@@ -915,7 +915,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "../operations/massnoti.php",
+            url: "../operations/massmsging.php",
             data: "mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailall",
             success: function (html) {
                 console.log(html);
@@ -946,7 +946,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "../operations/massnoti.php",
+            url: "../operations/massmsging.php",
             data: "email=" + email + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailone",
             success: function (html) {
                 console.log(html);

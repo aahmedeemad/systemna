@@ -43,8 +43,18 @@ $(document).ready(function () {
     });
 
     $("#darkmode").on("click", function () {
+        $(".header").css("background-color", "#2d3035");
+        $(".header").css("color", "white");
+        $("#na").css("color", "white");
+        $("#alogout").css("color", "white");
+        $(".sidenav-custom").css("background-color", "#2d3035");
+        $(".sidenav-custom .sidenav-header .title .position").css("color", "white");
+        $(".sidenav-custom .sidenav-button a").css("color", "white");
         $(".content").css("background-color", "#202020");
         $(".content").css("color", "white");
+        $("tr").css("color", "white");
+        $("tr:nth-child(even)").css("background", "black");
+        $("tr:nth-child(even)").css("color", "white");
         $(".profile").css("background-color", "#303030");
         $(".profile-left").css("background-color", "#585858");
         $(".profile-right-up").css("background-color", "#585858");
@@ -52,8 +62,18 @@ $(document).ready(function () {
     });
 
     $("#lightmode").on("click", function () {
+        $(".header").css("background-color", "white");
+        $(".header").css("color", "#212529");
+        $("#na").css("color", "#212529");
+        $("#alogout").css("color", "#212529");
+        $(".sidenav-custom").css("background-color", "white");
+        $(".sidenav-custom .sidenav-header .title .position").css("color", "#212529");
+        $(".sidenav-custom .sidenav-button a").css("color", "#212529");
         $(".content").css("background-color", "#f5f5f5");
-        $(".content").css("color", "black");
+        $(".content").css("color", "#212529");
+        $("tr").css("color", "black");
+        $("tr:nth-child(even)").css("background", "#e8e8e8");
+        $("tr:nth-child(even)").css("color", "black");
         $(".profile").css("background-color", "#e0e0e0");
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");

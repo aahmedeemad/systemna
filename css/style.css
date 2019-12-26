@@ -15,10 +15,14 @@
 
 .header {
     display: flex;
-    background-color: #2d3035;
+    border: 1px solid black;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    background-color: white;
     padding: 16px;
     font-family: sans-serif;
-    color: white;
+    color: black;
 }
 
 .navbar-toggle {
@@ -48,8 +52,9 @@
 .sidenav-custom {
     display: none;
     width: 255px;
-    background-color: #2d3035;
+    background-color: white;
     padding-top: 1.5rem;
+    border-right: 1px solid black;
 }
 
 .sidenav-custom .sidenav-header {
@@ -88,7 +93,7 @@
 }
 
 .sidenav-custom .sidenav-header .title .position {
-    color: white;
+    color: black;
     font-size: 1.1rem;
 }
 
@@ -101,15 +106,15 @@
     text-decoration: none;
     display: flex;
     flex-direction: row;
-    color: white;
+    color: black;
     padding: 18px;
     font-size: 20px;
 }
 
 .sidenav-custom .sidenav-button a:hover {
-    background-color: #282b2f;
     cursor: pointer;
-    color: #daa520;
+    color: #282b2f;
+    background-color: #daa520;
 }
 
 .sidenav-custom .sidenav-button .icon-button {
@@ -228,7 +233,7 @@ tr:nth-child(even) {
 #tblRequests {
     margin-top: 7vh;
     border-collapse: collapse;
-    border: 1px solid #daa520;
+    border: 1px solid black;
     width: 100%;
     text-align: center;
     position: relative;

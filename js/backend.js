@@ -855,6 +855,10 @@ $(document).ready(function () {
     /********************** Send notfications and mails **********************/
     $("#notisendall").on("click",function(){
         var data = $("#massnoti").val();
+        if (data=="") {
+            popup(false, "Please enter notification content");
+            return 0;
+        }
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",
@@ -875,6 +879,13 @@ $(document).ready(function () {
     $("#notisendone").on("click",function(){
         var id = $("#notione").val();
         var data = $("#massnoti").val();
+        if (id<=0) {
+            popup(false, "Please choose a user from the list");
+            return 0;
+        } else if (data=="") {
+            popup(false, "Please enter notification content");
+            return 0;
+        }
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",
@@ -895,6 +906,13 @@ $(document).ready(function () {
     $("#mailsendall").on("click",function(){
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
+        if (mailsubject=="") {
+            popup(false, "Please enter mail subject");
+            return 0;
+        } else if (mailcontent=="") {
+            popup(false, "Please enter mail content");
+            return 0;
+        }
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",
@@ -916,6 +934,16 @@ $(document).ready(function () {
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
         var email = $("#mailone").val();
+        if (email<=0) {
+            popup(false, "Please choose a user from the list");
+            return 0;
+        } else if (mailsubject=="") {
+            popup(false, "Please enter mail subject");
+            return 0;
+        } else if (mailcontent=="") {
+            popup(false, "Please enter mail content");
+            return 0;
+        }
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",

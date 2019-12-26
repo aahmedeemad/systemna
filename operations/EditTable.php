@@ -31,7 +31,15 @@ if(isset($_POST['type'])){
 }
 if(isset($_POST['test'])){
     $sal=$_POST['test']; 
-    $id=$_POST['id']; 
+    $id=$_POST['id'];
+    $sql= "select * from employee where id = '$id'";
+    try{
+    $DB2->query($sql);
+    $DB2->execute();
+    $x = $DB2->getdata();
+    if($x[0]->accepted != 1)
+     echo $x[0]->accepted;
+    else {
     $sql = "update add_info set salary='$sal' where emp_id = '$id';";
     $DB2->query($sql);
     $DB2->execute();
@@ -45,6 +53,13 @@ if(isset($_POST['test'])){
      $DB2->execute();
      header("Location: ../pages/index.php");
     }
+    }
+}
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
+
 }
 if(isset($_POST['aid'])){
     $ID = $_POST['aid'];

@@ -48,7 +48,7 @@ include "../template/header.php"; ?>
             </fieldset>
             <form method='post'>
                 <br><legend>Notification content:</legend>
-                <textarea name="notification" rows="8" cols="50" class="massmsgfield" required></textarea>
+                <textarea name="notification" rows="8" cols="50" class="massmsgfield" id="massnoti" required></textarea>
                 <br><br>
                 <input type="button" class="massmsgsendbtn" id="notisendone" value="Send to selected user">
                 <input type="button" class="massmsgsendbtn" id="notisendall" value="Send to all users">
@@ -60,40 +60,30 @@ include "../template/header.php"; ?>
                 <h2>Send mail</h2>
                 <br>
             </div>
-            <div id="mailone">
-                <fieldset>
-                    <label>Select the user ID/Name/Email:</label>
-                    <select class="massmsgdrpdwn">
-                        <?php
-                        echo ('<option value = "$i" disabled selected>'." ".'</option>');
-                        $sql = "SELECT * FROM employee";
-                        $DB->query($sql);
-                        $DB->execute();
-                        $x=$DB->getdata();
-                        for ($i=0; $i<$DB->numRows(); $i++) { 
-                            echo ('<option value = "' . $x[$i]->email . '">' . $x[$i]->id . " - " . $x[$i]->fullname . " - " . $x[$i]->email . '</option>');
-                        } ?>
-                    </select>
-                </fieldset>
-            </div>
-            <div id="mailall">
-                <?php
-                $sql = "SELECT * FROM employee";
-                $DB->query($sql);
-                $DB->execute();
-                $x=$DB->getdata();
-                /*for ($i=0; $i<$DB->numRows(); $i++) {
-					echo ($x[$i]->email);
-				}*/ ?>
-            </div>
-            <br><legend>From: <?php echo($_SESSION["name"] . ' from SYSTEMNA');?></legend>
-            <br><legend>Mail subject:</legend>
-            <input type="text" class="massmsgfield" required>
-            <br><legend>Mail content:</legend>
-            <textarea name="mail" rows="8" cols="50" class="massmsgfield" required></textarea>
-            <br><br>
-            <input type="submit" class="massmsgsendbtn" id="mailsendone" onclick="" value="Send to selected user">
-            <input type="submit" class="massmsgsendbtn" id="mailsendall" onclick="" value="Send to all users">
+            <fieldset>
+                <label>Select the user ID/Name/Email:</label>
+                <select class="massmsgdrpdwn" id="mailone">
+                    <?php
+                    echo ('<option value = "$i" disabled selected>'." ".'</option>');
+                    $sql = "SELECT * FROM employee";
+                    $DB->query($sql);
+                    $DB->execute();
+                    $x=$DB->getdata();
+                    for ($i=0; $i<$DB->numRows(); $i++) { 
+                        echo ('<option value = "' . $x[$i]->email . '">' . $x[$i]->id . " - " . $x[$i]->fullname . " - " . $x[$i]->email . '</option>');
+                    } ?>
+                </select>
+            </fieldset>
+            <form method='post'>
+                <br><legend>From: <?php echo($_SESSION["name"] . ' from SYSTEMNA');?></legend>
+                <br><legend>Mail subject:</legend>
+                <input type="text" name="mailsubject" class="massmsgfield" id="mailsubject" required>
+                <br><legend>Mail content:</legend>
+                <textarea name="mailcontent" rows="8" cols="50" class="massmsgfield" id="mailcontent" required></textarea>
+                <br><br>
+                <input type="button" class="massmsgsendbtn" id="mailsendone" value="Send to selected user">
+                <input type="button" class="massmsgsendbtn" id="mailsendall" value="Send to all users">
+            </form>
         </td>
     </tr>
 </table>

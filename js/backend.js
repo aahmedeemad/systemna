@@ -854,7 +854,7 @@ $(document).ready(function () {
 
     /********************** Send notfications and mails **********************/
     $("#notisendall").on("click",function(){
-        var data = $(".massmsgfield").val();
+        var data = $("#massnoti").val();
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",
@@ -874,11 +874,52 @@ $(document).ready(function () {
 
     $("#notisendone").on("click",function(){
         var id = $("#notione").val();
-        var data = $(".massmsgfield").val();
+        var data = $("#massnoti").val();
         $.ajax({
             type: "POST",
             url: "../operations/massnoti.php",
             data: "id=" + id + "&notification=" + data + "&type=notione",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
+    $("#mailsendall").on("click",function(){
+        var mailsubject = $("#mailsubject").val();
+        var mailcontent = $("#mailcontent").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailall",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
+    $("#mailsendone").on("click",function(){
+        var mailsubject = $("#mailsubject").val();
+        var mailcontent = $("#mailcontent").val();
+        var email = $("#mailone").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "email=" + email + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailone",
             success: function (html) {
                 console.log(html);
                 loading(false);

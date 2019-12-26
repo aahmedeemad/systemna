@@ -692,7 +692,8 @@ box-sizing: content-box;
     cursor: pointer;
 }
 #submitbtn,
-#editLetterButton {
+#editLetterButton,
+#updateLetter {
     width: 25%;
     background-color: #daa520;
     color: white;

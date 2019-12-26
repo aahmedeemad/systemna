@@ -63,14 +63,14 @@ $(document).ready(function () {
 
     $("#lightmode").on("click", function () {
         $(".header").css("background-color", "white");
-        $(".header").css("color", "black");
-        $("#na").css("color", "black");
-        $("#alogout").css("color", "black");
+        $(".header").css("color", "#212529");
+        $("#na").css("color", "#212529");
+        $("#alogout").css("color", "#212529");
         $(".sidenav-custom").css("background-color", "white");
-        $(".sidenav-custom .sidenav-header .title .position").css("color", "black");
-        $(".sidenav-custom .sidenav-button a").css("color", "black");
+        $(".sidenav-custom .sidenav-header .title .position").css("color", "#212529");
+        $(".sidenav-custom .sidenav-button a").css("color", "#212529");
         $(".content").css("background-color", "#f5f5f5");
-        $(".content").css("color", "black");
+        $(".content").css("color", "#212529");
         $("tr").css("color", "black");
         $("tr:nth-child(even)").css("background", "#e8e8e8");
         $("tr:nth-child(even)").css("color", "black");

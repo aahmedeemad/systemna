@@ -94,13 +94,13 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                 <div class="navbar-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: black" id="na">na</strong></div></a>
+                <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: #212529" id="na">na</strong></div></a>
                 <div class="right">
                     <span id="lightmode" style="text-decoration: none; cursor:pointer;">Light</span>
                     <span> / </span>
                     <span id="darkmode" style="text-decoration: none; cursor:pointer;">Dark</span>
                 </div>
-                <div class="right"><a id="alogout" style="text-decoration: none; color: black;" href="../pages/logout.php">Logout</a>
+                <div class="right"><a id="alogout" style="text-decoration: none; color: #212529;" href="../pages/logout.php">Logout</a>
                 </div>
             </header>
             <div class="mainPage">

@@ -593,9 +593,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -610,9 +610,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -844,4 +844,46 @@ $(document).ready(function () {
     //      location.reload();
     //    }
     //  });
+
+
+
+    /********************** Send notfications and mails **********************/
+    $("#notisendall").on("click",function(){
+        var data = $(".massmsgfield").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "notification=" + data + "&type=notiall",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
+    $("#notisendone").on("click",function(){
+        var id = $("#notione").val();
+        var data = $(".massmsgfield").val();
+        $.ajax({
+            type: "POST",
+            url: "../operations/massnoti.php",
+            data: "id=" + id + "&notification=" + data + "&type=notione",
+            success: function (html) {
+                console.log(html);
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
 });

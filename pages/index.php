@@ -1,10 +1,18 @@
-
 <?php
 ob_start();
 $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
 <?php if($_SESSION['type']!='admin')  header('Location:MakeLetter.php'); ?>
+<style type="text/css">
+    @media only screen and (max-width: 1200px) {
+    #Display,
+    #tblRequests {
+        display: block;
+        overflow: auto;
+    }
+}
+</style>
 <br>
 <div style="text-align: center;">
 <h1 style="font-family: sans-serif;">Dashboard</h1>

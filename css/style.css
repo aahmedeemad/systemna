@@ -167,15 +167,18 @@ th {
     text-align: center;
     padding: 11px 7px;
 }
-#Display tr {
+#Display tr,
+#tblRequests tr {
     color: black;
     border: 1px solid black;
 }
-#Display tr:nth-child(1) {
+#Display tr:nth-child(1),
+#tblRequests tr:nth-child(1) {
     background: #DAA520;
     color: black;
 }
-#Display tr:nth-child(even) {
+#Display tr:nth-child(even),
+#tblRequests tr:nth-child(even) {
     background: #e8e8e8;
     color: black;
 }
@@ -248,7 +251,7 @@ th {
     position: relative;
     display: table;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 900px) {
     #Display,
     #tblRequests {
         display: block;

@@ -32,10 +32,10 @@ if(isset($_GET['id'])){
 </div>
 
 <?php } else { ?>
-
+<br>
 <h3> Add New Type of Letter </h3>
 <hr>
-
+<br>
 <div>
     <form id="Addquestionform" method='post' action="../operations/newLetter.php">
         <h4>Letter Name: </h4>
@@ -43,8 +43,6 @@ if(isset($_GET['id'])){
         <br>
         <h4>Letter description: </h4>
         <textarea id="description" name="description" placeholder="description of the new letter.." required></textarea>
-        <br>
-        <br>
         <br>
         <br>
         <input type="submit" name="addLetter" id = "btn2" value="Add Letter">

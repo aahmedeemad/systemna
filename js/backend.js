@@ -60,7 +60,6 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#585858");
         $(".profile-right-up").css("background-color", "#585858");
         $(".profile-right-down").css("background-color", "#585858");
-        console.log(themecookie);
     }
 
     function light() {
@@ -81,7 +80,6 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");
         $(".profile-right-down").css("background-color", "#f5f5f5");
-        console.log(themecookie);
     }
 
     $("#darkmode").on("click", dark);
@@ -93,7 +91,6 @@ $(document).ready(function () {
         if (parts.length == 2) return parts.pop().split(";").shift();
     };
     var themecookie = getCookie("theme");
-    console.log(themecookie);
     if (themecookie == "darktheme") { 
         dark();
     } else if (themecookie == "lighttheme") {
@@ -980,4 +977,26 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#add_letter").on("click",function(){
+        document.location.replace('../pages/AddNewLetter.php');;
+    });
+
+    $("#faq_edit").on("click",function(){
+        document.location.replace('../pages/viewFAQ.php');
+    });
+
+    $("#faq_add").on("click",function(){
+        document.location.replace('../pages/AddQuestion.php');
+    });
+
+    $("#letter_edit").on("click",function(){
+        document.location.replace('../pages/allLetters.php');
+    });
+
+    $("#markAll").on("click",function(){
+        document.getElementById('notidata').innerHTML = ' ';
+        document.getElementById('noti_Counter').innerHTML = '0';
+    });
+
 });

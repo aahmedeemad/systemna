@@ -6,7 +6,7 @@ include "../template/header.php";
 <?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 
 <div style="text-align: center; align-self: center;">
-<div class="pages_edit" id="faq_add" onclick="addFAQ.send()"></div>
+<div class="pages_edit" id="faq_add"></div>
 </div>
 <table id='Display'>
     <tr id='must'>

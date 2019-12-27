@@ -4,7 +4,7 @@ include "../template/header.php";
 ?>
 
 <body>
-    <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="faq_edit" onclick="editFAQ.send()"></div></div>');}?>
+    <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="faq_edit"></div></div>');}?>
     <div>
         <form style="float: right;">
             <input type="text" id="searched" class="stextinput" size="70" maxlength="120" placeholder="Search">

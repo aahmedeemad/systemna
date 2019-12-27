@@ -4,7 +4,7 @@ include "../template/header.php";
 ?>
 <?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
 
-<?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="add_letter" onclick="addletter.send()"></div></div>');}?>
+<?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="add_letter"></div></div>');}?>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>

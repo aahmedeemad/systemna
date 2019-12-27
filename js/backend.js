@@ -994,6 +994,17 @@ $(document).ready(function () {
         });
     });
 
+    function sendmail(userid, mailsubject, mailcontent){
+        $.ajax({
+            type: "POST",
+            url: "../operations/massmsging.php",
+            data: "uid=" + userid + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=sendmailfn",
+            success: function (html) {
+                console.log(html);
+            }
+        });
+    }
+
     $("#add_letter").on("click",function(){
         document.location.replace('../pages/AddNewLetter.php');;
     });

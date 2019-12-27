@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "SELECT * FROM employee";
         $DB->query($sql);
         $DB->execute();
-        $x=$DB->getdata();
-        $y=$DB->numRows();
+        $x = $DB->getdata();
+        $y = $DB->numRows();
         for ($i=0; $i<$y; $i++) {
             if (isset($_POST['notification'])) {
-                $notification=filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
-                $uid=$x[$i]->id;
-                $sql2="INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+                $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
+                $uid = $x[$i]->id;
+                $sql2 = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
                 $DB->query($sql2);
                 $DB->execute();
             }
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     {
         $uid = $_POST['id'];
         if (isset($_POST['notification'])) {
-            $notification=filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
-            $sql2="INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+            $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
+            $sql2 = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
             $DB->query($sql2);
             $DB->execute();
         }
@@ -40,16 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "SELECT * FROM employee";
         $DB->query($sql);
         $DB->execute();
-        $x=$DB->getdata();
-        $y=$DB->numRows();
+        $x = $DB->getdata();
+        $y = $DB->numRows();
         if (isset($_POST['mailsubject']) && isset($_POST['mailcontent'])) {
-            $mailsubject=filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
-            $mailcontent=filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
+            $mailsubject = filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
+            $mailcontent = filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
             $mail->Subject = "$mailsubject"; /* Set the subject. */
             $mail->Body = "$mailcontent"; /* Set the mail message body. */
             for ($i=0; $i<$y; $i++) {
-                $umail=$x[$i]->email;
-                $uname=$x[$i]->fullname;
+                $umail = $x[$i]->email;
+                $uname = $x[$i]->fullname;
                 $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
                 $mail->send(); /* Send the mail. */
                 $mail->ClearAddresses(); /* Removes the data after sending. */
@@ -59,20 +59,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else if ($_POST['type'] == "mailone")
     {
-        $umail=$_POST['email'];
+        $umail = $_POST['email'];
         $sql = "SELECT fullname FROM employee WHERE email='$umail' ";
         $DB->query($sql);
         $DB->execute();
         $x = $DB->getdata();
         $uname = $x[0]->fullname;
         if (isset($_POST['mailsubject']) && isset($_POST['mailcontent'])) {
-            $mailsubject=filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
-            $mailcontent=filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
+            $mailsubject = filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
+            $mailcontent = filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
             $mail->Subject = "$mailsubject"; /* Set the subject. */
             $mail->Body = "$mailcontent"; /* Set the mail message body. */
             $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
             $mail->send(); /* Send the mail. */
         }
+        echo "true";
+    }
+    else if ($_POST['type'] == "sendmailfn")
+    {
+        $uid = $_POST['uid'];
+        $sql = "SELECT * FROM employee WHERE id='$uid' ";
+        $DB->query($sql);
+        $DB->execute();
+        $x = $DB->getdata();
+        $uname = $x[0]->fullname;
+        $umail = $x[0]->email;
+        $mailsubject = $_POST['mailsubject'];
+        $mailcontent = $_POST['mailcontent'];
+        $mail->setFrom('systemnamiu@gmail.com', 'From SYSTEMNA'); /* Set the mail sender. */
+        $mail->Subject = "$mailsubject"; /* Set the subject. */
+        $mail->Body = "$mailcontent"; /* Set the mail message body. */
+        $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
+        $mail->send(); /* Send the mail. */
+
         echo "true";
     }
 }

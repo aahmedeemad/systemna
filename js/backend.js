@@ -766,6 +766,16 @@ $(document).ready(function () {
         if (a != "" && b != "") {
           loading(true);
           popup(true, "Message Sent Successfully");
+          jQuery.ajax({
+             type: "POST",
+             url: "../operations/getid.php",
+             data:{x:1},
+             success: function(data) {
+               sendnoti(data,"We recived your message successfully");
+               sendmail(data,"message recieved","We recived your message successfully and we are going to work on it , thank you");
+
+             }
+            });
             //alert("Message Sent Successfully");
         }
     });

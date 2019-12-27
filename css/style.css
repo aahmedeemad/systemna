@@ -633,7 +633,6 @@ box-sizing: content-box;
     box-sizing: border-box;
 }
 .massmsgsendbtn {
-    width: 60%;
     background-color: #daa520;
     color: white;
     padding: 1em;

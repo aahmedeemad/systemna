@@ -764,7 +764,9 @@ $(document).ready(function () {
         var a = document.getElementById("faqinputtext").value;
         var b = document.getElementById("faqtextarea").value;
         if (a != "" && b != "") {
-            alert("Message Sent Successfully");
+          loading(true);
+          popup(true, "Message Sent Successfully");
+            //alert("Message Sent Successfully");
         }
     });
 

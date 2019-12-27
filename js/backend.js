@@ -2,19 +2,6 @@ $(document).ready(function () {
 
     setcounters();
 
-    if ($('#profile_Counter').text() == "0") {
-        $('#profile_Counter').css("display", "none");
-    }
-    else if ($('#usrsletterrequests_Counter').text() == "0") {
-        $('#usrsletterrequests_Counter').css("display", "none");
-    }
-    else if ($('#ownletterrequests_Counter').text() == "0") {
-        $('#ownletterrequests_Counter').css("display", "none");
-    }
-    else if ($('#usrs_Counter').text() == "0") {
-        $('#usrs_Counter').css("display", "none");
-    }
-
     $('.pages_edit').text('Edit');
     $('#faq_add').text('Add Question');
     $('#add_letter').text('Add new type of letter');
@@ -1062,7 +1049,7 @@ $(document).ready(function () {
         });
     }
 
-    function setcounters(){
+    function setcounter1(){
         $.ajax({
             type: "POST",
             url: "../operations/counterops.php",
@@ -1074,6 +1061,66 @@ $(document).ready(function () {
                 }
             },
         });
+    }
+    function setcounter2(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setprofilecounter",
+            success: function (html) {
+                $('#profile_Counter').text(html);
+                if (html == "0") {
+                    $('#profile_Counter').css("display", "none");
+                }
+            },
+        });
+    }
+    function setcounter3(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setusrsletterrequestscounter",
+            success: function (html) {
+                $('#usrsletterrequests_Counter').text(html);
+                if (html == "0") {
+                    $('#usrsletterrequests_Counter').css("display", "none");
+                }
+            },
+        });
+    }
+    function setcounter4(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setownletterrequestscounter",
+            success: function (html) {
+                $('#ownletterrequests_Counter').text(html);
+                if (html == "0") {
+                    $('#ownletterrequests_Counter').css("display", "none");
+                }
+            },
+        });
+    }
+    function setcounter5(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setusrscounter",
+            success: function (html) {
+                $('#usrs_Counter').text(html);
+                if (html == "0") {
+                    $('#usrs_Counter').css("display", "none");
+                }
+            },
+        });
+    }
+
+    function setcounters(){
+        setcounter1();
+        setcounter2();
+        setcounter3();
+        setcounter4();
+        setcounter5();
     }
 
     $("#add_letter").on("click",function(){

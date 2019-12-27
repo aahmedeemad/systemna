@@ -25,51 +25,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('#profile_Counter').text(
-                    '<?php
-                    $sid = $_SESSION['id'];
-                    $sql="
-                    SELECT *
-                    FROM update_info1 left join employee on update_info1.UID = employee.id
-                    WHERE update_info1.Status = 2 and UID <> '$sid'
-                    ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-                $('#usrsletterrequests_Counter').text(
-                    '<?php
-                    $sql = "
-                    SELECT e.fullname, rt.Name, r.Request_id, r.emp_id, r.type_name, r.Status, r.priority, r.salary 
-                    FROM requests r, employee e, requests_types rt 
-                    WHERE e.id=r.emp_id AND r.type_name=rt.Name
-                    ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-                $('#ownletterrequests_Counter').text(
-                    '<?php
-                    $sql = "SELECT * FROM requests INNER join requests_types on requests.type_name=requests_types.Name WHERE emp_id='".$_SESSION['id']."'";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-                $('#usrs_Counter').text(
-                    '<?php
-                    $sql = "SELECT * FROM employee WHERE accepted = 2 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
                 $('#notidata').html(
                     '<?php
                     $uid = $_SESSION['id'];

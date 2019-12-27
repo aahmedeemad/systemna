@@ -1,5 +1,4 @@
 <?php
-
 SESSION_start();
 
 if(isset($_POST['x'])){
@@ -7,5 +6,4 @@ if(isset($_POST['x'])){
   echo $empp;
 }
 
-
- ?>
+?>

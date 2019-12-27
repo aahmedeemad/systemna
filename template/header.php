@@ -22,6 +22,15 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
+                $('#ownrequests_Counter').text(
+                    '<?php
+                    $sql="  SELECT * FROM requests INNER join requests_types on requests.type_name=requests_types.Name where emp_id='".$_SESSION['id']."'";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
@@ -84,7 +93,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa fa-id-card fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                            <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                            <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
                                 <div id="markAll">Mark All as Read</div>
@@ -92,8 +101,8 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         </span></a></li>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa fa-plus fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa fa-bell fa-sm icon-button'></i><span class="button-text">Pending Users <div id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa fa-bell fa-sm icon-button'></i><span class="button-text">Pending Users <div class="counter" id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa fa-users fa-sm icon-button'></i><span class="button-text">Users Requests</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fa fa-comments fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
@@ -113,14 +122,14 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                            <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                            <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                             <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                 <div id="notidata"></div>
                                 <div id="markAll">Mark All as Read</div>
                             </div>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
 
                     </ul>
                 </div>
@@ -139,7 +148,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button" id="noti_Container">
                             <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                                <div id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                                <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
                                 <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
                                     <div id="notidata"></div>
                                     <div id="markAll">Mark All as Read</div>
@@ -148,7 +157,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                             </a>
                         </li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
 

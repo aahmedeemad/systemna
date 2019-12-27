@@ -749,17 +749,6 @@ box-sizing: content-box;
 #noti_Container {
     position: relative;
 }
-/* THE POPULAR RED NOTIFICATIONS COUNTER. */
-#noti_Counter {
-    display: inline-block;
-    background: #e1141e;
-    color: #fff;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.1em 0.3em;
-    border-radius: 0.2em;
-    z-index: 1;
-}
 /* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
 #notifications {
     display: none;
@@ -795,7 +784,7 @@ box-sizing: content-box;
     color: #daa520 !important;
     text-decoration: underline !important;
 }
-#usrs_Counter {
+.counter {
     display: inline-block;
     background: #e1141e;
     color: #fff;

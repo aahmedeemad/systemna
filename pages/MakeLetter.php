@@ -4,6 +4,10 @@ $pageTitle = "SYSTEMNA | Letters";
 include "../template/header.php";
 ?>
 <?php
+if(isset($_POST['x'])){
+  $empp = $_SESSION['id'];
+  echo $empp;
+}
 
 if (isset($_POST['priority'])) {
 

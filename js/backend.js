@@ -710,7 +710,17 @@ $(document).ready(function () {
         var c = document.getElementById("requested_by").value;
         if (a != "" && b != "") {
             loading(true);
-            popup(true, "Your Data Has Been Saved Successfully");
+            popup(true, "Your Question Has Been Added Successfully");
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"Your Question Has Been Added Successfully");
+                 sendmail(data,"Letter placed","Your Question Has Been Added Successfully")
+
+               }
+              });
             //alert("Data Saved Successfully");
         }
     });
@@ -728,6 +738,16 @@ $(document).ready(function () {
         if (a != "" && b != "") {
             loading(true);
             popup(true, "Letter Added Successfully");
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"Your New Type of Letter Has Been Added Successfully");
+                 sendmail(data,"Letter placed","Your New Type of Letter Has Been Added Successfully")
+
+               }
+              });
             //alert("Letter Added Successfully");
         }
     });

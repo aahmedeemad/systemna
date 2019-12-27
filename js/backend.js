@@ -757,32 +757,38 @@ $(document).ready(function () {
         }
     });
 
-    $("#faqsubmit").click(function () {
-        function checkAvai() {
-            jQuery.ajax({
-                url: "faq.php",
-                data: "faqinputtext=" + $("#faqinputtext").val(),
-                type: "POST",
-                success: function (data) { }
-            });
+    $("#faqsubmit").on("click", function () {
+        var subject = $("#faqinputtext").val();
+        var content = $("#faqtextarea").val();
+        if (subject == "") {
+            popup(false, "Please enter the subject");
+            return 0;
+        } else if (content == "") {
+            popup(false, "Please enter the content");
+            return 0;
         }
-        var a = document.getElementById("faqinputtext").value;
-        var b = document.getElementById("faqtextarea").value;
-        if (a != "" && b != "") {
-            loading(true);
-            popup(true, "Message Sent Successfully");
-            jQuery.ajax({
-                type: "POST",
-                url: "../operations/getid.php",
-                data: { x: 1 },
-                success: function (data) {
-                    sendnoti(data, "We recived your message successfully");
-                    sendmail(data, "message recieved", "We recived your message successfully and we are going to work on it , thank you");
-
-                }
-            });
-            //alert("Message Sent Successfully");
-        }
+        $.ajax({
+            type: "POST",
+            url: "../operations/faqop.php",
+            data: "subject=" + subject + "&content=" + content + "&type=faqinq",
+            success: function (html) {
+                console.log(html);
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getid.php",
+                    data: { x: 1 },
+                    success: function (data) {
+                        sendnoti(data, "We recived your message successfully");
+                        sendmail(data, "Message recieved", "We recived your message successfully and we are going to work on it , thank you!");
+                    }
+                });
+                loading(false);
+                popup(true, "Sent");
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
     });
 
     /*  var arr = [];

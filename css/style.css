@@ -598,7 +598,7 @@ box-sizing: content-box;
 }
 .askus #faqinputtext {
     width: 95%;
-    padding: 1em 2em;
+    padding: 1em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;
@@ -606,6 +606,7 @@ box-sizing: content-box;
 }
 .askus #faqtextarea {
     width: 95%;
+    padding: 1em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;

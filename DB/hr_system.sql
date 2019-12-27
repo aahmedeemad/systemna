@@ -142,15 +142,16 @@ CREATE TABLE `inquiries` (
   `subject` text NOT NULL,
   `message` text NOT NULL,
   `requester_name` varchar(250) NOT NULL,
-  `requester_email` varchar(250) NOT NULL
+  `requester_email` varchar(250) NOT NULL,
+  `requester_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `inquiries`
 --
 
-INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`) VALUES
-(1, 'testing subject', 'testing message', '1', '1');
+INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`, `requester_id`) VALUES
+(1, 'testing subject', 'testing message', '1', '1', '1');
 
 -- --------------------------------------------------------
 

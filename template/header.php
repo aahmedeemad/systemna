@@ -22,6 +22,20 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
+                $('#profile_Counter').text(
+                    '<?php
+                    $sid = $_SESSION['id'];
+                    $sql="
+                    SELECT *
+                    FROM update_info1 left join employee on update_info1.UID = employee.id
+                    WHERE update_info1.Status = 2 and UID <> '$sid'
+                    ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
                 $('#usrsletterrequests_Counter').text(
                     '<?php
                     $sql = "
@@ -117,7 +131,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa fa-bell fa-sm icon-button'></i><span class="button-text">Pending Users <div class="counter" id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa fa-users fa-sm icon-button'></i><span class="button-text">Users Requests <div class="counter" id="usrsletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests <div class="counter" id="profile_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fa fa-comments fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>

@@ -5,7 +5,7 @@ include "../template/header.php"; ?>
     .vertical {
         display: block;
         border-left: 0.5vw solid #daa520;
-        height: 89vh;
+        height: 100vh;
     }
     .horizontal {
         display: none;
@@ -21,7 +21,10 @@ include "../template/header.php"; ?>
             padding-top: 5em;
         }
         table td {
-            display: inline-block;
+            display: inline;
+        }
+        .massmsgfield {
+            width: 80%;
         }
     }
 </style>

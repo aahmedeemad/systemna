@@ -22,9 +22,22 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('#ownrequests_Counter').text(
+                $('#usrsletterrequests_Counter').text(
                     '<?php
-                    $sql="  SELECT * FROM requests INNER join requests_types on requests.type_name=requests_types.Name where emp_id='".$_SESSION['id']."'";
+                    $sql = "
+                    SELECT e.fullname, rt.Name, r.Request_id, r.emp_id,/* r.Type_id,*/ r.Status, r.priority, r.salary 
+                    FROM requests r, employee e, requests_types rt 
+                    WHERE e.id=r.emp_id /*AND r.Type_id=rt.Type_id*/
+                    ";
+                    $DB->query($sql);
+                    $DB->execute();
+                    echo ($DB->numRows());
+                    ?>'
+                );
+
+                $('#ownletterrequests_Counter').text(
+                    '<?php
+                    $sql = "SELECT * FROM requests INNER join requests_types on requests.type_name=requests_types.Name WHERE emp_id='".$_SESSION['id']."'";
                     $DB->query($sql);
                     $DB->execute();
                     echo ($DB->numRows());
@@ -101,9 +114,9 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         </span></a></li>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa fa-plus fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa fa-bell fa-sm icon-button'></i><span class="button-text">Pending Users <div class="counter" id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa fa-users fa-sm icon-button'></i><span class="button-text">Users Requests</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa fa-users fa-sm icon-button'></i><span class="button-text">Users Requests <div class="counter" id="usrsletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fa fa-comments fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
                     </ul>
@@ -129,7 +142,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                             </div>
                             </span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
 
                     </ul>
                 </div>
@@ -157,7 +170,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                             </a>
                         </li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
 

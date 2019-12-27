@@ -765,6 +765,8 @@ box-sizing: content-box;
     overflow-y: auto;
     overflow-x: hidden;
     button: 1em;
+    height: 40vh;
+    width: 40vw;
 }
 #markAll {
     background: #f6f7f8;

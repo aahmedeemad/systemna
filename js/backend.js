@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     setcounters();
+    getnotifications();
 
     $('.pages_edit').text('Edit');
     $('#faq_add').text('Add Question');
@@ -1141,6 +1142,17 @@ $(document).ready(function () {
         setcounter3();
         setcounter4();
         setcounter5();
+    }
+
+    function getnotifications(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/notiop.php",
+            data: "type=setnotidata",
+            success: function (html) {
+                $('#notidata').text(html);
+            },
+        });
     }
 
     $("#add_letter").on("click", function () {

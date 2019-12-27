@@ -23,22 +23,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
 
     <body>
         <script src="../js/jquery-3.4.1.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#notidata').html(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = "SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    for($i=$DB->numRows(); $i>0; --$i){
-                        $x=$DB->getdata();
-                        echo ($i) . "- " . $x[$i-1]->notidata . "<hr>";
-                    }
-                    ?>'
-                ).css('height', '20vw');
-            });
-        </script>
         <div class="container-custom">
             <header class="header">
                 <div class="navbar-toggle">

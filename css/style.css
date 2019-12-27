@@ -55,6 +55,7 @@
     background-color: white;
     padding-top: 1.5rem;
     border-right: 1px solid black;
+    overflow: hidden;
 }
 
 .sidenav-custom .sidenav-header {
@@ -133,7 +134,9 @@
     }
     
     .sidenav-custom {
-        width: 90px;
+        width: 100px;
+        overflow-y: auto;
+
     }
     .sidenav-custom .sidenav-button .button-text {
         display: block;

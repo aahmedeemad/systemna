@@ -492,10 +492,11 @@ $(document).ready(function () {
                 url: "../operations/EditTable.php",
                 data: { test: test2, id: c.text() },
                 success: function (msg) {
-                    if (msg == 0) { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); }
+                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); }
                     else {
                         loading(false);
                         popup(true, "Salary Updated!");
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.");
                     }
                 }
             });
@@ -564,6 +565,10 @@ $(document).ready(function () {
                         .find("tr:eq(" + Eindex + ")")
                         .find("td:eq(" + otherButton + ")")
                         .html("");
+                    if (thisBtn.val() == "+HR")
+                        sendnoti(idMod, "Congratulations you have been promoted to an HR!");
+                    else if (thisBtn.val() == "+QC")
+                        sendnoti(idMod, "Congratulations you have been promoted to an QC!");
                 }
             }
         });
@@ -576,7 +581,7 @@ $(document).ready(function () {
             .text();
         var Type = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
+            .find("td:eq(6)")
             .text();
         var Rid = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
@@ -584,7 +589,7 @@ $(document).ready(function () {
             .text();
         var Value = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(4)")
+            .find("td:eq(5)")
             .text();
         loading(true);
         $.ajax({
@@ -594,10 +599,20 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendnoti(Did, "Your profile " + Type + " change request has been accepted!");
             }
         });
     });
     $(".reject").click(function () {
+        var Row = $(this).closest("tr");
+        var Did = $("#tblRequests")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(2)")
+            .text();
+        var Type = $("#tblRequests")
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq()")
+            .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
@@ -611,15 +626,16 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendnoti(Did, "Your profile " + Type + " change request has been rejected!");
             }
         });
     });
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -628,15 +644,17 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendmail(Rid, "SYSTEMNA", "Congratulations! You have been accepted at SYSTEMNA! you can now log in using your account");
+                sendnoti(Rid, "Welcome to SYSTEMNA!");
             }
         });
     });
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -645,6 +663,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendmail(Rid, "SYSTEMNA", "Unfortunely you didn't meet the requriments at systemna, if you want to reapply please fill the signup form again ");
             }
         });
     });
@@ -696,15 +715,16 @@ $(document).ready(function () {
             loading(true);
             popup(true, "Your Question Has Been Added Successfully");
             jQuery.ajax({
-               type: "POST",
-               url: "../operations/getid.php",
-               data:{x:1},
-               success: function(data) {
-                 sendnoti(data,"Your Question Has Been Added Successfully");
-                 sendmail(data,"Letter placed","Your Question Has Been Added Successfully");
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+                    sendnoti(data, "Your Question Has Been Added Successfully");
+                    sendmail(data, "Letter placed", "Your Question Has Been Added Successfully")
 
-               }
-              });
+                }
+            });
+
             //alert("Data Saved Successfully");
         }
     });
@@ -723,15 +743,15 @@ $(document).ready(function () {
             loading(true);
             popup(true, "Letter Added Successfully");
             jQuery.ajax({
-               type: "POST",
-               url: "../operations/getid.php",
-               data:{x:1},
-               success: function(data) {
-                 sendnoti(data,"Your New Type of Letter Has Been Added Successfully");
-                 sendmail(data,"Letter placed","Your New Type of Letter Has Been Added Successfully");
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully");
+                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully")
 
-               }
-              });
+                }
+            });
             //alert("Letter Added Successfully");
         }
     });
@@ -748,17 +768,17 @@ $(document).ready(function () {
         var a = document.getElementById("faqinputtext").value;
         var b = document.getElementById("faqtextarea").value;
         if (a != "" && b != "") {
-          loading(true);
-          popup(true, "Message Sent Successfully");
-          jQuery.ajax({
-             type: "POST",
-             url: "../operations/getid.php",
-             data:{x:1},
-             success: function(data) {
-               sendnoti(data,"We recived your message successfully");
-               sendmail(data,"message recieved","We recived your message successfully and we are going to work on it , thank you");
+            loading(true);
+            popup(true, "Message Sent Successfully");
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+                    sendnoti(data, "We recived your message successfully");
+                    sendmail(data, "message recieved", "We recived your message successfully and we are going to work on it , thank you");
 
-             }
+                }
             });
             //alert("Message Sent Successfully");
         }
@@ -822,17 +842,17 @@ $(document).ready(function () {
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
-              type_name = $("input[name=Letterbuttonn]:checked").val();
+            type_name = $("input[name=Letterbuttonn]:checked").val();
             jQuery.ajax({
-               type: "POST",
-               url: "../operations/getid.php",
-               data:{x:1},
-               success: function(data) {
-                 sendnoti(data,"your Letter request has been placed successfully");
-                 sendmail(data,"Letter placed","your Letter request has been placed successfully");
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+                    sendnoti(data, "your Letter request has been placed successfully");
+                    sendmail(data, "Letter placed", "your Letter request has been placed successfully")
 
-               }
-              });
+                }
+            });
 
             //  alert("your request has been placed successfully");
 
@@ -919,9 +939,9 @@ $(document).ready(function () {
 
 
     /********************** Send notfications and mails **********************/
-    $("#notisendall").on("click",function(){
+    $("#notisendall").on("click", function () {
         var data = $("#massnoti").val();
-        if (data=="") {
+        if (data == "") {
             popup(false, "Please enter notification content");
             return 0;
         }
@@ -942,13 +962,13 @@ $(document).ready(function () {
         });
     });
 
-    $("#notisendone").on("click",function(){
+    $("#notisendone").on("click", function () {
         var id = $("#notione").val();
         var data = $("#massnoti").val();
-        if (id<=0) {
+        if (id <= 0) {
             popup(false, "Please choose a user from the list");
             return 0;
-        } else if (data=="") {
+        } else if (data == "") {
             popup(false, "Please enter notification content");
             return 0;
         }
@@ -969,13 +989,13 @@ $(document).ready(function () {
         });
     });
 
-    $("#mailsendall").on("click",function(){
+    $("#mailsendall").on("click", function () {
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
-        if (mailsubject=="") {
+        if (mailsubject == "") {
             popup(false, "Please enter mail subject");
             return 0;
-        } else if (mailcontent=="") {
+        } else if (mailcontent == "") {
             popup(false, "Please enter mail content");
             return 0;
         }
@@ -996,17 +1016,17 @@ $(document).ready(function () {
         });
     });
 
-    $("#mailsendone").on("click",function(){
+    $("#mailsendone").on("click", function () {
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
         var email = $("#mailone").val();
-        if (email<=0) {
+        if (email <= 0) {
             popup(false, "Please choose a user from the list");
             return 0;
-        } else if (mailsubject=="") {
+        } else if (mailsubject == "") {
             popup(false, "Please enter mail subject");
             return 0;
-        } else if (mailcontent=="") {
+        } else if (mailcontent == "") {
             popup(false, "Please enter mail content");
             return 0;
         }
@@ -1027,7 +1047,7 @@ $(document).ready(function () {
         });
     });
 
-    function sendmail(userid, mailsubject, mailcontent){
+    function sendmail(userid, mailsubject, mailcontent) {
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
@@ -1038,7 +1058,7 @@ $(document).ready(function () {
         });
     }
 
-    function sendnoti(userid, noticontent){
+    function sendnoti(userid, noticontent) {
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
@@ -1123,23 +1143,23 @@ $(document).ready(function () {
         setcounter5();
     }
 
-    $("#add_letter").on("click",function(){
+    $("#add_letter").on("click", function () {
         document.location.replace('../pages/AddNewLetter.php');;
     });
 
-    $("#faq_edit").on("click",function(){
+    $("#faq_edit").on("click", function () {
         document.location.replace('../pages/viewFAQ.php');
     });
 
-    $("#faq_add").on("click",function(){
+    $("#faq_add").on("click", function () {
         document.location.replace('../pages/AddQuestion.php');
     });
 
-    $("#letter_edit").on("click",function(){
+    $("#letter_edit").on("click", function () {
         document.location.replace('../pages/allLetters.php');
     });
 
-    $("#markAll").on("click",function(){
+    $("#markAll").on("click", function () {
         $.ajax({
             type: "POST",
             url: "../operations/mark_read.php",

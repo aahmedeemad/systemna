@@ -73,6 +73,5 @@ catch (\Exception $e)
    echo $e->getMessage();
 }
 
-
 include "../template/footer.php";
 ?>

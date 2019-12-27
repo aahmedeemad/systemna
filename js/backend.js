@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    setcounters();
+
     if ($('#profile_Counter').text() == 0) {
         $('#profile_Counter').css("display", "none");
     }
@@ -1013,6 +1015,17 @@ $(document).ready(function () {
             success: function (html) {
                 console.log(html);
             }
+        });
+    }
+
+    function setcounters(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setnoticounter",
+            success: function (html) {
+                console.log(html);
+            },
         });
     }
 

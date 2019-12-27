@@ -55,7 +55,6 @@
     background-color: white;
     padding-top: 1.5rem;
     border-right: 1px solid black;
-    overflow: hidden;
 }
 
 .sidenav-custom .sidenav-header {
@@ -747,10 +746,6 @@ box-sizing: content-box;
 #faqdiv span {
     text-decoration: underline;
     background-color: #daa520;
-}
-/* NOTIFICATIONS */
-#noti_Container {
-    position: relative;
 }
 /* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
 #notifications {

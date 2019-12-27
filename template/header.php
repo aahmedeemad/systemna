@@ -85,7 +85,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     $DB->execute();
                     for($i=$DB->numRows(); $i>0; --$i){
                         $x=$DB->getdata();
-                        echo "<hr>" . ($i) . "- " . $x[$i-1]->notidata ;
+                        echo ($i) . "- " . $x[$i-1]->notidata . "<hr>";
                     }
                     ?>'
                 ).css('height', '20vw');

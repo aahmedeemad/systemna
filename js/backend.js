@@ -2,20 +2,17 @@ $(document).ready(function () {
 
     setcounters();
 
-    if ($('#profile_Counter').text() == 0) {
+    if ($('#profile_Counter').text() == "0") {
         $('#profile_Counter').css("display", "none");
     }
-    else if ($('#usrsletterrequests_Counter').text() == 0) {
+    else if ($('#usrsletterrequests_Counter').text() == "0") {
         $('#usrsletterrequests_Counter').css("display", "none");
     }
-    else if ($('#ownletterrequests_Counter').text() == 0) {
+    else if ($('#ownletterrequests_Counter').text() == "0") {
         $('#ownletterrequests_Counter').css("display", "none");
     }
-    else if ($('#usrs_Counter').text() == 0) {
+    else if ($('#usrs_Counter').text() == "0") {
         $('#usrs_Counter').css("display", "none");
-    }
-    else if ($('#noti_Counter').text() == 0) {
-        $('#noti_Counter').css("display", "none");
     }
 
     $('.pages_edit').text('Edit');
@@ -1024,7 +1021,10 @@ $(document).ready(function () {
             url: "../operations/counterops.php",
             data: "type=setnoticounter",
             success: function (html) {
-                console.log(html);
+                $('#noti_Counter').text(html);
+                if (html == "0") {
+                    $('#noti_Counter').css("display", "none");
+                }
             },
         });
     }

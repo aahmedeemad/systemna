@@ -16,6 +16,9 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <link rel="stylesheet" href="../css/popup.css">
         <link rel="icon" type="image/png" href="../template/logo.png">
         <title><?php echo $pageTitle;?></title>
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/backend.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -61,16 +64,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                 $('#usrs_Counter').text(
                     '<?php
                     $sql = "SELECT * FROM employee WHERE accepted = 2 ";
-                    $DB->query($sql);
-                    $DB->execute();
-                    echo ($DB->numRows());
-                    ?>'
-                );
-
-                $('#noti_Counter').text(
-                    '<?php
-                    $uid = $_SESSION['id'];
-                    $sql = " SELECT * FROM notifications WHERE  userid = $uid AND status = 0 ";
                     $DB->query($sql);
                     $DB->execute();
                     echo ($DB->numRows());

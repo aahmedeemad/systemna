@@ -717,7 +717,7 @@ $(document).ready(function () {
                data:{x:1},
                success: function(data) {
                  sendnoti(data,"Your Question Has Been Added Successfully");
-                 sendmail(data,"Letter placed","Your Question Has Been Added Successfully")
+                 sendmail(data,"Letter placed","Your Question Has Been Added Successfully");
 
                }
               });
@@ -744,7 +744,7 @@ $(document).ready(function () {
                data:{x:1},
                success: function(data) {
                  sendnoti(data,"Your New Type of Letter Has Been Added Successfully");
-                 sendmail(data,"Letter placed","Your New Type of Letter Has Been Added Successfully")
+                 sendmail(data,"Letter placed","Your New Type of Letter Has Been Added Successfully");
 
                }
               });
@@ -833,7 +833,7 @@ $(document).ready(function () {
                data:{x:1},
                success: function(data) {
                  sendnoti(data,"your Letter request has been placed successfully");
-                 sendmail(data,"Letter placed","your Letter request has been placed successfully")
+                 sendmail(data,"Letter placed","your Letter request has been placed successfully");
 
                }
               });

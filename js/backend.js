@@ -106,7 +106,7 @@ $(document).ready(function () {
         if (parts.length == 2) return parts.pop().split(";").shift();
     };
     var themecookie = getCookie("theme");
-    if (themecookie == "darktheme") { 
+    if (themecookie == "darktheme") {
         dark();
     } else if (themecookie == "lighttheme") {
         light();
@@ -707,7 +707,17 @@ $(document).ready(function () {
         var c = document.getElementById("requested_by").value;
         if (a != "" && b != "") {
             loading(true);
-            popup(true, "Your Data Has Been Saved Successfully");
+            popup(true, "Your Question Has Been Added Successfully");
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"Your Question Has Been Added Successfully");
+                 sendmail(data,"Letter placed","Your Question Has Been Added Successfully");
+
+               }
+              });
             //alert("Data Saved Successfully");
         }
     });
@@ -725,6 +735,16 @@ $(document).ready(function () {
         if (a != "" && b != "") {
             loading(true);
             popup(true, "Letter Added Successfully");
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"Your New Type of Letter Has Been Added Successfully");
+                 sendmail(data,"Letter placed","Your New Type of Letter Has Been Added Successfully");
+
+               }
+              });
             //alert("Letter Added Successfully");
         }
     });
@@ -741,7 +761,19 @@ $(document).ready(function () {
         var a = document.getElementById("faqinputtext").value;
         var b = document.getElementById("faqtextarea").value;
         if (a != "" && b != "") {
-            alert("Message Sent Successfully");
+          loading(true);
+          popup(true, "Message Sent Successfully");
+          jQuery.ajax({
+             type: "POST",
+             url: "../operations/getid.php",
+             data:{x:1},
+             success: function(data) {
+               sendnoti(data,"We recived your message successfully");
+               sendmail(data,"message recieved","We recived your message successfully and we are going to work on it , thank you");
+
+             }
+            });
+            //alert("Message Sent Successfully");
         }
     });
 
@@ -794,6 +826,7 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
+
         if (
             (document.getElementById("rdbtn1").checked ||
                 document.getElementById("rdbtn2").checked) &&
@@ -802,8 +835,21 @@ $(document).ready(function () {
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
+              type_name = $("input[name=Letterbuttonn]:checked").val();
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"your Letter request has been placed successfully");
+                 sendmail(data,"Letter placed","your Letter request has been placed successfully");
+
+               }
+              });
+
             //  alert("your request has been placed successfully");
-            type_name = $("input[name=Letterbuttonn]:checked").val();
+
+
         } else {
             popup(false, "you have an error completing your request");
             //  alert("you have an error completing your request");
@@ -826,6 +872,7 @@ $(document).ready(function () {
             data: { salary: salary, priority: priority, type_name: type_name },
             success: function (data2) { }
         });
+
     });
 
     //    $("#editLetterButton").click(function() {
@@ -1003,7 +1050,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     function sendnoti(userid, noticontent){
         $.ajax({
             type: "POST",

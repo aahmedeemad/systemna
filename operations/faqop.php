@@ -16,6 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $DB->query($sql);
             $DB->execute();
         }
+    } elseif ($_POST['type'] == "faqaddques")
+    {
+        if (isset($_POST['question']) && isset($_POST['answer'])) {
+            $Question = filter_var($_POST['question'], FILTER_SANITIZE_STRING);
+            $Answer = filter_var($_POST['answer'], FILTER_SANITIZE_STRING);
+            $Added_by = $_SESSION['username'];
+            $Requested_by = filter_var($_POST['Requested_by'], FILTER_SANITIZE_STRING);
+            $sql = "INSERT INTO faq (Question, Answer, Added_by, Requested_by) VALUES ('$Question', '$Answer', '$Added_by', '$Requested_by') ";
+            $DB->query($sql);
+            $DB->execute();
+        }
     }
 }
 else 

@@ -700,35 +700,43 @@ $(document).ready(function () {
             }
         });
     }
-    $("#btn1").click(function () {
-        function checkAvai() {
-            jQuery.ajax({
-                url: "AddQuestion.php",
-                data: "question=" + $("#question").val(),
-                type: "POST",
-                success: function (data) { }
-            });
-        }
-        var a = document.getElementById("question").value;
-        var b = document.getElementById("answer").value;
-        var c = document.getElementById("requested_by").value;
-        if (a != "" && b != "") {
-            loading(true);
-            popup(true, "Your Question Has Been Added Successfully");
-            jQuery.ajax({
-                type: "POST",
-                url: "../operations/getid.php",
-                data: { x: 1 },
-                success: function (data) {
-                    sendnoti(data, "Your Question Has Been Added Successfully");
-                    sendmail(data, "Letter placed", "Your Question Has Been Added Successfully")
 
-                }
-            });
-
-            //alert("Data Saved Successfully");
+    $("#faqaddques").on("click", function () {
+        var question = $("#question").val();
+        var answer = $("#answer").val();
+        var requested_by = $("#requested_by").val();
+        if (question == "") {
+            popup(false, "Please enter the question");
+            return 0;
+        } else if (answer == "") {
+            popup(false, "Please enter the answer");
+            return 0;
         }
+        $.ajax({
+            type: "POST",
+            url: "../operations/faqop.php",
+            data: "question=" + question + "&answer=" + answer + "&requested_by=" + requested_by + "&type=faqaddques",
+            success: function (html) {
+                console.log(html);
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getid.php",
+                    data: { x: 1 },
+                    success: function (data) {
+                        sendnoti(data, "Your Question Has Been Added Successfully!");
+                        //sendmail(data, "Question placed", "Your Question Has Been Added Successfully!");
+                    }
+                });
+                loading(false);
+                popup(true, "Your Question Has Been Added Successfully!");
+                setInterval(window.location("../pages/faq.php"),5000);
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
     });
+
     $("#btn2").click(function () {
         function checkAvai() {
             jQuery.ajax({

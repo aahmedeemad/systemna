@@ -42,7 +42,8 @@ $(document).ready(function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
-    $("#darkmode").on("click", function () {
+    function dark() {
+        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
         $(".header").css("background-color", "#2d3035");
         $(".header").css("color", "white");
         $("#na").css("color", "white");
@@ -59,9 +60,11 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#585858");
         $(".profile-right-up").css("background-color", "#585858");
         $(".profile-right-down").css("background-color", "#585858");
-    });
+        console.log(themecookie);
+    }
 
-    $("#lightmode").on("click", function () {
+    function light() {
+        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
         $(".header").css("background-color", "white");
         $(".header").css("color", "#212529");
         $("#na").css("color", "#212529");
@@ -78,7 +81,24 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");
         $(".profile-right-down").css("background-color", "#f5f5f5");
-    });
+        console.log(themecookie);
+    }
+
+    $("#darkmode").on("click", dark);
+    $("#lightmode").on("click", light);
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    };
+    var themecookie = getCookie("theme");
+    console.log(themecookie);
+    if (themecookie == "darktheme") { 
+        dark();
+    } else if (themecookie == "lighttheme") {
+        light();
+    };
 
     $(window).click(function (e) {
         if (e.target == $(".modal")[0]) {

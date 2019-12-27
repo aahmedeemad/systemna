@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['notification'])) {
                 $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
                 $uid = $x[$i]->id;
-                $sql2 = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
-                $DB->query($sql2);
+                $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+                $DB->query($sql);
                 $DB->execute();
             }
         }
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uid = $_POST['id'];
         if (isset($_POST['notification'])) {
             $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
-            $sql2 = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
-            $DB->query($sql2);
+            $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+            $DB->query($sql);
             $DB->execute();
         }
         echo "true";
@@ -91,6 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Body = "$mailcontent"; /* Set the mail message body. */
         $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
         $mail->send(); /* Send the mail. */
+
+        echo "true";
+    }
+    else if ($_POST['type'] == "sendnotifn")
+    {
+        $uid = $_POST['uid'];
+        $notification = $_POST['noticontent'];
+        $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+        $DB->query($sql);
+        $DB->execute();
 
         echo "true";
     }

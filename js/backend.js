@@ -1004,6 +1004,17 @@ $(document).ready(function () {
             }
         });
     }
+    
+    function sendnoti(userid, noticontent){
+        $.ajax({
+            type: "POST",
+            url: "../operations/massmsging.php",
+            data: "uid=" + userid + "&noticontent=" + noticontent + "&type=sendnotifn",
+            success: function (html) {
+                console.log(html);
+            }
+        });
+    }
 
     $("#add_letter").on("click",function(){
         document.location.replace('../pages/AddNewLetter.php');;

@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION['type']))  header('Location:../index.php');
+else if($_SESSION['type']!='admin')  header('Location:../pages/MakeLetter.php');
+else {
 include "../DB/Database.php";
 $DB = new Database();
 if(isset($_GET['id'])){
@@ -7,7 +11,7 @@ if(isset($_GET['id'])){
     $DB->query($sql);
     $DB->execute();
     header("Location: ../pages/index.php");
-}
+}   
 if(isset($_GET['wid'])){
     $d_id = $_GET['wid'];
     $sql = "update employee set active=0 where id = '$d_id;'";
@@ -30,4 +34,5 @@ else if(isset($_GET['lid'])){
     header("Location: ../pages/allLetters.php");
 } 
 else { header("Location: ../pages/index.php"); }
+}
 ?>

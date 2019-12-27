@@ -1,7 +1,6 @@
 * {
     margin: 0px;
     font-family: sans-serif;
-    box-sizing: content-box !important;
 }
 .container-custom {
     display: flex;
@@ -121,7 +120,7 @@
     width: 1em;
     text-align: center;
     font-size: 1.3rem;
-    padding-right: 20px;
+    padding-right: 35px;
     margin-right: 20px;
     border-right: 1px solid grey;
 }

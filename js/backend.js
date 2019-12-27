@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    if ($('.counter').text()==0) {
+        $('.counter').css("display", "none");
+    }
+
     $('.pages_edit').text('Edit');
     $('#faq_add').text('Add Question');
     $('#add_letter').text('Add new type of letter');
@@ -995,6 +999,11 @@ $(document).ready(function () {
     });
 
     $("#markAll").on("click",function(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/mark_read.php",
+            data: "&type=markread",
+        });
         document.getElementById('notidata').innerHTML = ' ';
         document.getElementById('noti_Counter').innerHTML = '0';
     });

@@ -797,15 +797,7 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
-      jQuery.ajax({
-         type: "POST",
-         url: "../pages/MakeLetter.php",
-         data:{x:1},
-         success: function(data) {
-           alert(data3);
 
-         }
-        });
         if (
             (document.getElementById("rdbtn1").checked ||
                 document.getElementById("rdbtn2").checked) &&
@@ -814,10 +806,21 @@ $(document).ready(function () {
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
+              type_name = $("input[name=Letterbuttonn]:checked").val();
+            jQuery.ajax({
+               type: "POST",
+               url: "../operations/getid.php",
+               data:{x:1},
+               success: function(data) {
+                 sendnoti(data,"your Letter request has been placed successfully");
+                 sendmail(data,"Letter placed","your Letter request has been placed successfully")
+
+               }
+              });
 
             //  alert("your request has been placed successfully");
-            type_name = $("input[name=Letterbuttonn]:checked").val();
-            sendnoti(emp_id,"your Letter request has been placed successfully");
+
+
         } else {
             popup(false, "you have an error completing your request");
             //  alert("you have an error completing your request");

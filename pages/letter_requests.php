@@ -30,8 +30,12 @@ include "../template/header.php";
         return $c;
     }
 
-    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.Type_id,r.Status,r.priority,r.salary 
-        FROM requests r ,employee e, requests_types rt where e.id=r.emp_id and r.Type_id=rt.Type_id order by r.date asc , r.priority desc ";
+    $sql = "SELECT e.fullname, rt.Name, r.Request_id, r.emp_id, r.type_name, r.Status, r.priority, r.salary 
+    FROM requests r, employee e, requests_types rt
+    WHERE e.id=r.emp_id AND r.type_name=rt.Name
+    order by r.date asc , r.priority desc
+    ";
+    
     try
     {
 

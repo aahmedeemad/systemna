@@ -39,9 +39,9 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                 $('#usrsletterrequests_Counter').text(
                     '<?php
                     $sql = "
-                    SELECT e.fullname, rt.Name, r.Request_id, r.emp_id,/* r.Type_id,*/ r.Status, r.priority, r.salary 
+                    SELECT e.fullname, rt.Name, r.Request_id, r.emp_id, r.type_name, r.Status, r.priority, r.salary 
                     FROM requests r, employee e, requests_types rt 
-                    WHERE e.id=r.emp_id /*AND r.Type_id=rt.Type_id*/
+                    WHERE e.id=r.emp_id AND r.type_name=rt.Name
                     ";
                     $DB->query($sql);
                     $DB->execute();

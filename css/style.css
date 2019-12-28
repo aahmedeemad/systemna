@@ -872,3 +872,28 @@ box-sizing: content-box;
     border: 3px solid #daa520;
     cursor: pointer;
 }
+
+/*********** Bony's QC Table ***********/
+#qcsubmit
+{
+    background:#DAA520;
+    padding: 2px 2px;
+    border: 2px solid rgb(167, 163, 145);
+    border-color: #DAA520;
+    border-radius: 5px;
+    color: white;
+    font-weight:700;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left:20px;
+
+}
+#qcsubmit:hover
+{
+    background:black;
+    color: #DAA520;
+}
+#qccomment
+{
+    margin-left:auto;
+}

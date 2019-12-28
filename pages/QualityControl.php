@@ -2,15 +2,16 @@
 $pageTitle = "SYSTEMNA | Quality Control";
 include "../template/header.php"; 
 ?>
-<link rel="stylesheet" href="../css/QC_style.css">
-<br><br>
-<h1>Quality Control</h1>
-<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search' style="margin-left:100px;padding:16px;">
-<select id='choice' class='tblselect' style="left:910px;padding:18px">
+<br>
+<div style="text-align: center;">
+<h1 style="font-family: sans-serif;">Quality Control</h1>
+<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search'>
+<select id='choice' class='tblselect'>
     <option value="empname">Employee Name</option>
     <option value="requestname">Request Name</option>
     <option value="empid">Employee ID</option>
 </select>
+</div>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>
@@ -89,9 +90,9 @@ include "../template/header.php";
                 ?>
                 <td class ="Comment">
                     <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
-                        <input type='text' name="Comment" placeholder='Write your comment here...'size='30' required>
+                        <input type='text' name="Comment" id="qccomment" placeholder='Write your comment here...'size='30' required>
                         <br>
-                        <input type='submit'onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
+                        <input type='submit' id="qcsubmit" onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
                     </form>    
                 </td>
                 </tr>
@@ -104,5 +105,4 @@ include "../template/header.php";
       $_SESSION['error'] = 'error in sql';
   }?>
 </table>
-<script src="../js/jquery-3.4.1.min.js"></script>
-<script src="../js/backend.js"></script>
+<?php include "../template/footer.php"; 

@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(!isset($_SESSION['type']))  header('Location:../index.php');
+else {
 include "../DB/Database.php";
 if(isset($_GET['id'])){
 $DB2 = new Database();
@@ -11,4 +14,5 @@ $DB2->execute();
 
 header("Location: ../pages/viewRequest.php");
 } else { header("Location: ../index.php"); }
+}
 ?>

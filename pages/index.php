@@ -134,7 +134,6 @@ echo "</tr>";
 
 ?>
 </table>
-</div>
 
 <?php
 ob_end_flush();

@@ -156,6 +156,15 @@
     overflow-x: hidden;
 }
 
+#footer {
+    display: inline-block;
+    font-size: 0.7em;
+    width: 100%;
+    padding: 1em;
+    z-index: 1;
+    float: none;
+}
+
 /* All Users Table Content */
 
 #Dashboard {

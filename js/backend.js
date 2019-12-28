@@ -57,7 +57,7 @@ $(document).ready(function () {
         $(".content").css("background-color", "#202020");
         $(".content").css("color", "white");
         $("tr").css("color", "white");
-        $("tr:nth-child(even)").css("background", "black");
+        $("tr:nth-child(even)").css("background", "#303030");
         $("tr:nth-child(even)").css("color", "white");
         $(".profile").css("background-color", "#303030");
         $(".profile-left").css("background-color", "#585858");

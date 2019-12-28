@@ -39,12 +39,8 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         </div>
                     </a>
                 </span>
-                <div class="right">
-                    <span id="lightmode" style="text-decoration: none; cursor:pointer;">Light</span>
-                    <span> / </span>
-                    <span id="darkmode" style="text-decoration: none; cursor:pointer;">Dark</span>
-                </div>
-                <div class="right"><a id="alogout" style="text-decoration: none; color: #212529;" href="../pages/logout.php">Logout</a>
+                <div class="right" id="themeToggle" style="cursor:pointer;"><button type="button" id="themeToggleBtn">🌛</button></div>
+                <div class="right"><a id="alogout" style="text-decoration:none; color: #212529;" href="../pages/logout.php">Logout</a>
                 </div>
             </header>
             <div class="mainPage">

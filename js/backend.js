@@ -45,8 +45,18 @@ $(document).ready(function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
+    $("#themeToggle").on("click", function toggleTheme() {
+        var themecookie = getCookie("theme");
+        if (themecookie == "darktheme") {
+            light();
+        }
+        else if (themecookie == "lighttheme") {
+            dark();
+        }
+    });
+    
     function dark() {
-        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
+        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
         $("#notifications").css("background-color", "#202020");
         $("#notifications").css("color", "white");
         $(".header").css("background-color", "#2d3035");
@@ -68,7 +78,7 @@ $(document).ready(function () {
     }
 
     function light() {
-        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
+        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
         $(".header").css("background-color", "white");
@@ -89,14 +99,12 @@ $(document).ready(function () {
         $(".profile-right-down").css("background-color", "#f5f5f5");
     }
 
-    $("#darkmode").on("click", dark);
-    $("#lightmode").on("click", light);
-
     function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
     };
+
     var themecookie = getCookie("theme");
     if (themecookie == "darktheme") {
         dark();

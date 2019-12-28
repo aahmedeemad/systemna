@@ -863,6 +863,7 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
+    
 
         if (
             (document.getElementById("rdbtn1").checked ||
@@ -873,6 +874,17 @@ $(document).ready(function () {
         ) {
             popup(true, "your request has been placed successfully");
             type_name = $("input[name=Letterbuttonn]:checked").val();
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+
+                    sendnoti(data, "Letter Request Added Successfully");
+                    sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
+
+                }
+            });
 
         } else {
             popup(false, "you have an error completing your request");
@@ -895,16 +907,7 @@ $(document).ready(function () {
             data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
             success: function (html) {
                 console.log(html);
-                jQuery.ajax({
-                    type: "POST",
-                    url: "../operations/getid.php",
-                    data: { x: 1 },
-                    success: function (data) {
-                      alert(data);
-                        sendnoti(data, "Letter Request Added Successfully");
-                        sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
-                    }
-                });
+
                 loading(false);
                 popup(true, "Added");
             },

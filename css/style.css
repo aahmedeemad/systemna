@@ -220,8 +220,6 @@ th {
   font-size: 0.9em;
   margin: 4px 2px;
   cursor: pointer;
-  width: 80px;
-
 }
 #button-rejected,
 .reject,
@@ -236,7 +234,6 @@ th {
   font-size: 0.9em;
   margin: 4px 2px;
   cursor: pointer;
-  width: 70px;
 }
 #button-pending {
     background-color: #fbff00;

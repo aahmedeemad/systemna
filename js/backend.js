@@ -770,6 +770,7 @@ $(document).ready(function () {
                 url: "../operations/getid.php",
                 data: { x: 1 },
                 success: function (data) {
+
                     sendnoti(data, "Your New Type of Letter Has Been Added Successfully");
                     sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully")
 
@@ -872,19 +873,6 @@ $(document).ready(function () {
         ) {
             popup(true, "your request has been placed successfully");
             type_name = $("input[name=Letterbuttonn]:checked").val();
-            jQuery.ajax({
-                type: "POST",
-                url: "../operations/getid.php",
-                data: { x: 1 },
-                success: function (data) {
-                    sendnoti(data, "your Letter request has been placed successfully");
-                    sendmail(data, "Letter placed", "your Letter request has been placed successfully")
-
-                }
-            });
-
-            //  alert("your request has been placed successfully");
-
 
         } else {
             popup(false, "you have an error completing your request");
@@ -900,13 +888,29 @@ $(document).ready(function () {
         } else if (document.getElementById("rdbtn4").checked) {
             salary = 0;
         }
-        var value;
 
-        jQuery.ajax({
-            method: "POST",
-            url: "MakeLetter.php",
-            data: { salary: salary, priority: priority, type_name: type_name },
-            success: function (data2) { }
+        $.ajax({
+            type: "POST",
+            url: "../operations/addletter.php",
+            data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
+            success: function (html) {
+                console.log(html);
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getid.php",
+                    data: { x: 1 },
+                    success: function (data) {
+                      alert(data);
+                        sendnoti(data, "Letter Added Successfully");
+                        sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
+                    }
+                });
+                loading(false);
+                popup(true, "Added");
+            },
+            beforeSend: function () {
+                loading(true);
+            }
         });
 
     });

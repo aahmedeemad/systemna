@@ -5,23 +5,6 @@ include "../template/header.php";
 ?>
 <?php
 
-
-if (isset($_POST['priority'])) {
-
-    $emp_id=$_SESSION['id'];
-    $priority=$_POST['priority'];
-    $Status=2;
-    $salary=$_POST['salary'];
-    $date=date('Y/m/d h:i:s');
-    $type_name=$_POST['type_name'];
-
-    $sql="INSERT INTO requests (emp_id,Status,priority,salary,date,type_name)
-      VALUES ('$emp_id','$Status','$priority','$salary','$date','$type_name') ";
-    $DB->query($sql);
-    $DB->execute();
-
-    header("location: .php");
-}
  if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div style="align: center;" class="pages_edit" id="letter_edit"></div></div>');}?>
 <div>
     <form id="Addletterform" method='post'>

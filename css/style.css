@@ -27,10 +27,11 @@
 .navbar-toggle {
     cursor: pointer;
     margin-left: 8px;
+    margin-right: 15px;
 }
 
 .logo-name {
-    margin-left: 20px;
+    margin-left: 5px;
     text-transform: uppercase;
 }
 
@@ -759,21 +760,20 @@ box-sizing: content-box;
 /* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
 #notifications {
     display: none;
-    width: 32vw;
     position: absolute;
     background: #fff;
     border: solid 0.1em #daa520;
     border-radius: 0.2em;
-    margin-left: 2em;
+    margin-left: 1em;
     z-index: 1;
+    width: 30vw;
 }
 #notidata {
     cursor: default;
     font-size: 100%;
     padding: 0.6em;
-    overflow-y: auto;
     overflow-x: hidden;
-    button: 1em;
+    overflow-y: auto;
     height: 40vh;
 }
 #markAll {
@@ -787,6 +787,7 @@ box-sizing: content-box;
 #markAll:hover {
     color: #daa520 !important;
     text-decoration: underline !important;
+    cursor: pointer;
 }
 .counter {
     display: inline-block;

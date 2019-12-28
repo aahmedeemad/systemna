@@ -1168,7 +1168,13 @@ $(document).ready(function () {
             url: "../operations/notiop.php",
             data: "type=setnotidata",
             success: function (html) {
-                $('#notidata').text(html);
+                if (html != '') {
+                    $('#notidata').text(html);
+                } else {
+                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+                    .css('text-align','center');
+                    $('#markAll').css('display','none');
+                }
             },
         });
     }
@@ -1179,8 +1185,8 @@ $(document).ready(function () {
             url: "../operations/notiop.php",
             data: "&type=markread",
         });
-        document.getElementById('notidata').innerHTML = ' ';
-        document.getElementById('noti_Counter').innerHTML = '0';
+        $('#notidata').text('');
+        $('#noti_Counter').text('0');
     });
     
     $("#add_letter").on("click", function () {

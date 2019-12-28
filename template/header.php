@@ -54,7 +54,13 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <div class="sidenav-header">
                             <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
                             <div class="title">
-                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <h1 class="name"><?php
+                                $fullname = $_SESSION["name"];
+                                $fLetter = substr($fullname, 0, 1).'.';
+                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
+                                $newname = $fLetter . $Lname;
+                                echo($newname);
+                                ?></h1>
                                 <div class="position">Admin</div>
                             </div>
                         </div>
@@ -77,7 +83,13 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <div class="sidenav-header">
                             <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
                             <div class="title">
-                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <h1 class="name"><?php
+                                $fullname = $_SESSION["name"];
+                                $fLetter = substr($fullname, 0, 1).'.';
+                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
+                                $newname = $fLetter . $Lname;
+                                echo($newname);
+                                ?></h1>
                                 <div class="position">Employee</div>
                             </div>
                         </div>
@@ -95,7 +107,13 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <div class="sidenav-header">
                             <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
                             <div class="title">
-                                <h1 class="name"><?php echo $_SESSION['name']; ?></h1>
+                                <h1 class="name"><?php
+                                $fullname = $_SESSION["name"];
+                                $fLetter = substr($fullname, 0, 1).'.';
+                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
+                                $newname = $fLetter . $Lname;
+                                echo($newname);
+                                ?></h1>
                                 <div class="position">QC</div>
                             </div>
                         </div>

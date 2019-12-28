@@ -766,7 +766,6 @@ box-sizing: content-box;
     border-radius: 0.2em;
     margin-left: 2em;
     z-index: 1;
-    color: black !important;
 }
 #notidata {
     cursor: default;
@@ -776,17 +775,14 @@ box-sizing: content-box;
     overflow-x: hidden;
     button: 1em;
     height: 40vh;
-    width: 40vw;
+    width: 39vw;
 }
 #markAll {
-    background: #f6f7f8;
     font-size: 0.7em !important;
     font-weight: bold;
     border-top: solid 0.1em #daa520;
     text-align: center !important;
-    color: black !important;
     padding: 0.7em !important;
-    background-color: white !important;
     z-index: 1 !important;
 }
 #markAll:hover {

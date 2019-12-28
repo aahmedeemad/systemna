@@ -45,12 +45,12 @@ if(isset($_GET['id'])){
         <textarea id="description" name="description" placeholder="description of the new letter.." required></textarea>
         <br>
         <br>
-        <input type="submit" name="addLetter" id = "btn2" value="Add Letter">
+        <input type="submit" name="addLetter" id = "AddLetterbtn" value="Add Letter">
     </form>
 </div>
 
-<?php 
+<?php
 }
 ob_end_flush();
-include "../template/footer.php"; 
+include "../template/footer.php";
 ?>

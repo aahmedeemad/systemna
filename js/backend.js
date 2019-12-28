@@ -54,7 +54,7 @@ $(document).ready(function () {
             dark();
         }
     });
-    
+
     function dark() {
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
@@ -751,7 +751,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#btn2").click(function () {
+    $("#AddLetterbtn").click(function () {
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",
@@ -1198,7 +1198,7 @@ $(document).ready(function () {
         $('#notidata').text('');
         $('#noti_Counter').text('0');
     });
-    
+
     $("#add_letter").on("click", function () {
         document.location.replace('../pages/AddNewLetter.php');;
     });

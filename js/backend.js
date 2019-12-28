@@ -1173,6 +1173,16 @@ $(document).ready(function () {
         });
     }
 
+    $("#markAll").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "../operations/notiop.php",
+            data: "&type=markread",
+        });
+        document.getElementById('notidata').innerHTML = ' ';
+        document.getElementById('noti_Counter').innerHTML = '0';
+    });
+    
     $("#add_letter").on("click", function () {
         document.location.replace('../pages/AddNewLetter.php');;
     });
@@ -1187,16 +1197,6 @@ $(document).ready(function () {
 
     $("#letter_edit").on("click", function () {
         document.location.replace('../pages/allLetters.php');
-    });
-
-    $("#markAll").on("click", function () {
-        $.ajax({
-            type: "POST",
-            url: "../operations/mark_read.php",
-            data: "&type=markread",
-        });
-        document.getElementById('notidata').innerHTML = ' ';
-        document.getElementById('noti_Counter').innerHTML = '0';
     });
 
 });

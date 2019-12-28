@@ -759,7 +759,7 @@ box-sizing: content-box;
 /* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
 #notifications {
     display: none;
-    width: 40vw;
+    width: 32vw;
     position: absolute;
     background: #fff;
     border: solid 0.1em #daa520;
@@ -775,7 +775,6 @@ box-sizing: content-box;
     overflow-x: hidden;
     button: 1em;
     height: 40vh;
-    width: 39vw;
 }
 #markAll {
     font-size: 0.7em !important;

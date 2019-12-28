@@ -15,6 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo ($i) . "- " . $x[$i-1]->notidata . "<hr>";
         }
     }
+    else if ($_POST['type'] == "markread")
+    {
+        $uid = $_SESSION['id'];
+        $sql = " UPDATE notifications SET status = 1 WHERE userid = $uid AND status = 0 ";
+        $DB->query($sql);
+        $DB->execute();
+    }
 }
 else 
 {

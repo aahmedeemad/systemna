@@ -29,6 +29,16 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     <i class="fas fa-bars"></i>
                 </div>
                 <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: #212529" id="na">na</strong></div></a>
+                <span id="noti_Container" style="padding-left: 1em;">
+                    <a id="noti_Button">
+                        <i class='fas fa fa-bell  fa-sm icon-button'></i>
+                        <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
+                        <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
+                            <div id="notidata"></div>
+                            <div id="markAll">Mark All as Read</div>
+                        </div>
+                    </a>
+                </span>
                 <div class="right">
                     <span id="lightmode" style="text-decoration: none; cursor:pointer;">Light</span>
                     <span> / </span>
@@ -51,13 +61,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     </a>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa fa-id-card fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                            <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
-                            <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                                <div id="notidata"></div>
-                                <div id="markAll">Mark All as Read</div>
-                            </div>
-                        </span></a></li>
                         <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa fa-plus fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
@@ -81,13 +84,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     </a>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button" id="noti_Container"><a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                            <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
-                            <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                                <div id="notidata"></div>
-                                <div id="markAll">Mark All as Read</div>
-                            </div>
-                            </span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
 
@@ -106,16 +102,6 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                     </a>
                     <ul>
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button" id="noti_Container">
-                            <a id="noti_Button"><i class='fas fa fa-bell  fa-sm icon-button'></i><span class="button-text">Notifications
-                                <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
-                                <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                                    <div id="notidata"></div>
-                                    <div id="markAll">Mark All as Read</div>
-                                </div>
-                                </span>
-                            </a>
-                        </li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
                     </ul>

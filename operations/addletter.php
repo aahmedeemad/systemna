@@ -25,6 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 else
 {
-    header("location: ../MakeLetter.php");
+    header("location: ../viewRequest.php");
 }
 ?>

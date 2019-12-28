@@ -901,7 +901,7 @@ $(document).ready(function () {
                     data: { x: 1 },
                     success: function (data) {
                       alert(data);
-                        sendnoti(data, "Letter Added Successfully");
+                        sendnoti(data, "Letter Request Added Successfully");
                         sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
                     }
                 });

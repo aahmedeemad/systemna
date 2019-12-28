@@ -97,14 +97,14 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `accepted`, `active`, `privilege`) VALUES
-(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islam@gmail.com', '', '225999999', 1, 1, 'admin'),
-(2, 'Zaky', 'Zaky', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'zaky@gmail.com', '', '225585', 1, 1, 'qc'),
+(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '', '225999999', 1, 1, 'admin'),
+(2, 'Zaky', 'Zaky', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', 1, 1, 'qc'),
 (3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', 2, 1, 'user'),
 (6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
-(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fady@hotmail.com', '', '12345678902332', 0, 1, 'user'),
+(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', 0, 1, 'user'),
 (8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', 1, 1, 'admin'),
-(24, 'mark', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.com', '01278249244', '29999999999999', 1, 1, 'user'),
-(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'eazy@gmail.com', '01115558792', '12345678912345', 1, 1, 'admin'),
+(24, 'mark', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark.refaat.ramzy@gmail.com', '01278249244', '29999999999999', 1, 1, 'user'),
+(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', 1, 1, 'admin'),
 (26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user');
 
 -- --------------------------------------------------------

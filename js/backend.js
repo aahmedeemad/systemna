@@ -1169,7 +1169,7 @@ $(document).ready(function () {
             data: "type=setnotidata",
             success: function (html) {
                 if (html != '') {
-                    $('#notidata').text(html);
+                    $('#notidata').html(html);
                 } else {
                     $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
                     .css('text-align','center');

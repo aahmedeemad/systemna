@@ -57,6 +57,7 @@ $(document).ready(function () {
     
     function dark() {
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
+        $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#202020");
         $("#notifications").css("color", "white");
         $(".header").css("background-color", "#2d3035");
@@ -79,6 +80,7 @@ $(document).ready(function () {
 
     function light() {
         document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
+        $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
         $(".header").css("background-color", "white");

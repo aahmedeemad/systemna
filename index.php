@@ -6,12 +6,12 @@
         <style>
             .vertical {
                 display: block;
-                border-left: 0.5vw solid black;
+                border-left: 0.5vw solid #DAA520;
                 height: 99.5vh;
             }
             .horizontal {
                 display: none;
-                border-bottom: 1vw solid black;
+                border-bottom: 1vw solid #DAA520;
                 width: 99.5vw;
             }
             .login {

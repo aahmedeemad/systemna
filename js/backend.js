@@ -58,7 +58,7 @@ $(document).ready(function () {
     function dark() {
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
-        $("#notifications").css("background-color", "#202020");
+        $("#notifications").css("background-color", "#2d3035");
         $("#notifications").css("color", "white");
         $(".header").css("background-color", "#2d3035");
         $(".header").css("color", "white");
@@ -1202,8 +1202,10 @@ $(document).ready(function () {
             url: "../operations/notiop.php",
             data: "&type=markread",
         });
-        $('#notidata').text('');
-        $('#noti_Counter').text('0');
+        $('#noti_Counter').css('display','none');
+        $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+        .css('text-align','center');
+        $('#markAll').css('display','none');
     });
 
     $("#add_letter").on("click", function () {

@@ -39,9 +39,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         </div>
                     </a>
                 </span>
-                <div class="right" id="themeToggle" style="cursor:pointer;"><button type="button" id="themeToggleBtn">🌛</button></div>
-                <div class="right"><a id="alogout" style="text-decoration:none; color: #212529;" href="../pages/logout.php">Logout</a>
-                </div>
+                <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌛</span></div>
             </header>
             <div class="mainPage">
                 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>
@@ -71,6 +69,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests <div class="counter" id="profile_Counter"></div></span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/inquiries.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Inquiries</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fa fa-comments fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out fa-sm icon-button'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
@@ -94,7 +93,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-
+                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
                     </ul>
                 </div>
                 <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
@@ -119,6 +118,8 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         <li class="sidenav-button"><a href="../pages/QualityControl.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
                         <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
                         <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
+                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
+                </div>
                     </ul>
                 </div>
 

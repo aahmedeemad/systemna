@@ -30,12 +30,8 @@ include "../template/header.php";
         return $c;
     }
 
-    $sql = "SELECT e.fullname, rt.Name, r.Request_id, r.emp_id, r.type_name, r.Status, r.priority, r.salary
-    FROM requests r, employee e, requests_types rt
-    WHERE e.id=r.emp_id AND r.type_name=rt.Name
-    order by r.date asc , r.priority desc
-    ";
-
+    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary 
+        FROM requests r ,employee e, requests_types rt where e.id=r.emp_id and r.Type_name=rt.Name order by r.date asc , r.priority desc ";
     try
     {
 
@@ -53,7 +49,6 @@ include "../template/header.php";
                 $priority=check($x[$i]->priority);
                 $salary=check($x[$i]->salary);
                 $name=$x[$i]->fullname;
-                $type_name=$x[$i]->type_name;
 
                 $Boolsalray = "Without Salary";
                 $BoolPriority = "Urgent";
@@ -72,7 +67,7 @@ include "../template/header.php";
 
                 echo  "<tr id='$id'  data-toggle='modal' onclick='showdata(this.id)' data-target='#exampleModalLong'>";
                 echo "<td>{$y}</td>";
-
+                
                 echo "<td>{$id}</td>";
                 echo "<td>$emp_id</td>";
                  echo "<td>$name</td>";
@@ -83,20 +78,12 @@ include "../template/header.php";
                     echo "<td style='color:red; font-weight:bold;' >Rejected</td>";}
                 else{
                     echo "<td style='color:#be800d; font-weight:bold;' >Pending</td>";
-                }/*
-                if($x[$i]->Type_id==1){
-                    echo "<td>General HR Letter</td>";}
-                else if($x[$i]->Type_id==2){
-                    echo "<td>Embassy HR Letter</td>";}
-                else if($x[$i]->Type_id==3){
-                    echo "<td>HR Letter directed to specific organization</td>";}
-                else{
-                    echo "<td>HR Letter to whom it may concern</td>";
-                }*/
-                echo "<td>{$type_name}</td>";
+                }
+               echo '<td>'.$x[$i]->type_name.'</td>';
+                
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
-                /*
+                /*              
 
                 if($x[$i]->priority==1){
                         echo "<td>Urgent</td>";}
@@ -113,11 +100,11 @@ include "../template/header.php";
 
     <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:#39d029;">accepted</p></td>
     <?php } else if ($x[$i]->Status==0){
-    ?>
+    ?>     
 
     <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:red;">Rejected</p></td>
 
-    <?php } else   {
+    <?php } else   {                  
     ?>
 
     <td><a href="../operations/letter_request.php?id=<?php echo $id; ?> &status=1; &userid=<?php echo $emp_id; ?>" style="color:white" class="btn btn-success">Accept</a></td>
@@ -149,8 +136,8 @@ include "../template/header.php";
   <div class="modal-dialog modal-xl">
     <div id="body" class="modal-content">
       ...
-
-
+      
+      
     </div>
   </div>
 </div>
@@ -191,7 +178,7 @@ function showdata(id){
         {
             $("#body").html(data);
 
-
+            
         }
     });
 }

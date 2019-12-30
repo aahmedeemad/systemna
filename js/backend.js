@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     setcounters();
+    setInterval(setcounters, 1000);
     getnotifications();
     sendcalmails();
 
@@ -1244,7 +1245,6 @@ $(document).ready(function () {
         setcounter3();
         setcounter4();
         setcounter5();
-        setInterval(setcounters, 1000);
     }
 
     function getnotifications(){

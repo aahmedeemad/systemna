@@ -37,16 +37,17 @@ if(isset($_GET['id'])){
 <hr>
 
 <div>
-   
+
         <h4>Letter Name: </h4>
         <input type="text" id="Name" name="Name" placeholder="new letter name.." >
+        <h4>Letter description : </h4>
          <textarea id="description" name="desc." placeholder="description of the new letter.." ></textarea>
         <br>
         <h4>Letter body: </h4>
 
         <p style="background-color:#dcdc6f">Please paste the letter body template and type NAME in capital letters where the employee name should be placed same thing with SALARY , POSITION ,DATE,START and name of hr as HRNAME. <br> Note:put in consederation that salary is going to be replaced with 'their current gross salary is EGP [amount] per annum.'  </p>
 
-       
+
         <textarea  rows="20"  id="body" name="body"  style="width:100%;" onkeyup="changetext()" placeholder="body of the new letter.." ></textarea>
 
         <br>
@@ -55,7 +56,7 @@ if(isset($_GET['id'])){
         <br>
         <input type="button" class="btn btn-info btn-sml" data-toggle="modal" data-target="#exampleModalLong" value="view letter">
         <input type="button" name="addLetter" id = "btn2" onclick="senddata()" value="Add Letter">
-   
+
 </div>
 
 
@@ -78,12 +79,12 @@ if(isset($_GET['id'])){
             </div>
             <div class="modal-body" id="body">
                 <div>
-                  <pre> 
-                   
+                  <pre>
+
                    <b>hello</b>
-                   <br>  
+                   <br>
                     this is a letter for fady
-                         sincerly, 
+                         sincerly,
                             hr tram
 
             </pre>
@@ -114,7 +115,7 @@ if(isset($_GET['id'])){
         if(n==true && !text.includes("(.NAME.)")){
             text=text.replace('NAME',"(.NAME.) ");
             document.getElementById('body').value=text;
-           
+
         }
 
         if(s==true && !text.includes("(.SALARY.)")){
@@ -137,7 +138,7 @@ if(isset($_GET['id'])){
             document.getElementById('body').value=text;
 
         }
-        
+
     };
 
 
@@ -150,20 +151,20 @@ function senddata(){
     dataa='<pre>'+dataa+'</pre>';
    if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
     jQuery.ajax({
-       
+
         url: "../operations/newLetter.php",
         data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
         type:"POST",
-        
+
             success:function(data)
         {
             alert(data);
         }
 
-       
+
     });
 } else {
-    
+
     alert('please fill name,salary and date');
 }
 }
@@ -174,9 +175,8 @@ function senddata(){
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-<?php 
+<?php
 }
 ob_end_flush();
-include "../template/footer.php"; 
+include "../template/footer.php";
 ?>
-

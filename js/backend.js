@@ -1350,4 +1350,24 @@ $(document).ready(function () {
         }
     });
 
+
+
+
+    /**************** LetterRequests ********************/
+
+    $(".letterstd").on("click", function(){
+        jQuery.ajax({
+            url: "view_employee.php",
+            data:'id='+this.id,
+            type:"POST",
+
+            success:function(data)
+            {
+                $("#body").html(data);
+
+
+            }
+        });
+    });
+
 });

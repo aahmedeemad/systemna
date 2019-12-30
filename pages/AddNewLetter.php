@@ -41,7 +41,7 @@ if(isset($_GET['id'])){
         <h4>Letter Name: </h4>
         <input type="text" id="Name" name="Name" placeholder="new letter name.." >
         <h4>Letter description : </h4>
-         <textarea id="description" name="desc." placeholder="description of the new letter.." ></textarea>
+         <textarea id="description" name="desc." placeholder="description of the new letter.."  ></textarea>
         <br>
         <h4>Letter body: </h4>
 
@@ -55,7 +55,7 @@ if(isset($_GET['id'])){
         <br>
         <br>
         <input type="button" class="btn btn-info btn-sml" data-toggle="modal" data-target="#exampleModalLong" value="view letter">
-        <input type="button" name="addLetter" id = "btn2" onclick="senddata()" value="Add Letter">
+        <input type="button" name="addLetter" id = "AddLetterbtn" onclick="senddata()" value="Add Letter">
 
 </div>
 

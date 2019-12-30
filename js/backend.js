@@ -762,6 +762,14 @@ $(document).ready(function () {
         }
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
+
+        if (a == "") {
+            popup(false, "Please enter the Letter Name");
+            return 0;
+        } else if (b == "") {
+            popup(false, "Please enter the Letter description");
+            return 0;
+        }
         if (a != "" && b != "") {
             loading(true);
             popup(true, "Letter Added Successfully");
@@ -863,7 +871,7 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
-    
+
 
         if (
             (document.getElementById("rdbtn1").checked ||

@@ -39,7 +39,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                         </div>
                     </a>
                 </span>
-                <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌛</span></div>
+                <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌚</span></div>
             </header>
             <div class="mainPage">
                 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>

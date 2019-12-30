@@ -2,6 +2,8 @@
 				</div>
             </div>
         </div>
-        <?php include "../template/help.php"; ?>
+        <?php include "../template/help.php"; 
+        ob_end_flush();
+        ?>
     </body>
 </html>

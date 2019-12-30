@@ -1,9 +1,43 @@
 <?php
+ob_start();
 session_start();
 global $pageTitle;
 include('../DB/Database.php');
 $DB = new Database();
 if(!isset($_SESSION['type'])) header("Location:../index.php");
+
+/* TEMP
+array( "name" => "", "href" => "../pages/.php", "class" => "fas fa-sm icon-button" ),
+*/
+
+$hrPages = array(
+    array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ),
+    array( "name" => "Dashboard", "href" => "../pages/index.php", "class" => "fas fa-home fa-sm icon-button" ), 
+    array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa fa-plus fa-sm icon-button" ),
+    array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-user fa-sm icon-button" ),
+    array( "name" => "Pending Users <div class='counter' id='usrs_Counter'></div>", "href" => "../pages/waitingUsers.php", "class" => "fas fa-bell fa-sm icon-button" ),
+    array( "name" => "Users Requests <div class='counter' id='usrsletterrequests_Counter'></div>", "href" => "../pages/letter_requests.php", "class" => "fas fa-users fa-sm icon-button" ),
+    array( "name" => "Profile Requests <div class='counter' id='profile_Counter'></div>", "href" => "../pages/profileRequests.php", "class" => "fas fa-clock fa-sm icon-button" ),
+    array( "name" => "Inquiries", "href" => "../pages/inquiries.php", "class" => "fas fa-envelope fa-sm icon-button" ),
+    array( "name" => "Mass Messaging", "href" => "../pages/massmsgs.php", "class" => "fas fa-comments fa-sm icon-button" ),
+    array( "name" => "Logout", "href" => "../pages/logout.php", "class" => "fa fa-sign-out-alt fa-sm icon-button" ),
+);
+
+$employeePages = array(
+    array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ), 
+    array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa-envelope fa-sm icon-button" ),
+    array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-clock fa-sm icon-button" ),
+    array( "name" => "Logout", "href" => "../pages/logout.php", "class" => "fa fa-sign-out-alt fa-sm icon-button" ),  
+);
+
+$qcPages = array(
+    array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ), 
+    array( "name" => "Dashboard", "href" => "../pages/QualityControl.php", "class" => "fas fa-home fa-sm icon-button" ),
+    array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa-envelope fa-sm icon-button" ),
+    array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-clock fa-sm icon-button" ),
+    array( "name" => "Logout", "href" => "../pages/logout.php", "class" => "fa fa-sign-out-alt fa-sm icon-button" ),  
+);                        
+
 ?>
 <!DOCTYPE html>
 <html lang="">
@@ -15,7 +49,7 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
         <link rel="stylesheet" href="../css/all.min.css">
         <link rel="stylesheet" href="../css/popup.css">
         <link rel="icon" type="image/png" href="../template/logo.png">
-        <title><?php echo $pageTitle;?></title>
+        <title><?php echo $pageTitle; ?></title>
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="../js/backend.js"></script>
         <script src="../js/bootstrap.min.js"></script>
@@ -42,88 +76,67 @@ if(!isset($_SESSION['type'])) header("Location:../index.php");
                 <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌛</span></div>
             </header>
             <div class="mainPage">
-                <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){ ?>
                 <div class="sidenav-custom">
                     <a style="text-decoration: none;" href="../pages/profile.php">
                         <div class="sidenav-header">
                             <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
                             <div class="title">
-                                <h1 class="name"><?php
-                                $fullname = $_SESSION["name"];
-                                $fLetter = substr($fullname, 0, 1).'.';
-                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
-                                $newname = $fLetter . $Lname;
-                                echo($newname);
-                                ?></h1>
-                                <div class="position">Admin</div>
+                                <h1 class="name">
+                                    <?php
+                                    $fullname = $_SESSION["name"];
+                                    $fLetter = substr($fullname, 0, 1).'.';
+                                    $Lname = substr($fullname, strpos($fullname, ' ', 0));
+                                    $newname = $fLetter . $Lname;
+                                    echo($newname);
+                                    ?>
+                                </h1>
+                                <div class="position">
+                                    <?php 
+                                    if($_SESSION['type'] == "admin")
+                                        echo "Admin";
+                                    else if ($_SESSION['type'] == "user")
+                                        echo "Employee";
+                                    else if ($_SESSION['type'] == "qc")
+                                        echo "QC";
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </a>
                     <ul>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa fa-id-card fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/index.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
-                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa fa-plus fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/waitingUsers.php"><i class='fas fa fa-bell fa-sm icon-button'></i><span class="button-text">Pending Users <div class="counter" id="usrs_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/letter_requests.php"><i class='fas fa fa-users fa-sm icon-button'></i><span class="button-text">Users Requests <div class="counter" id="usrsletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/profileRequests.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Profile Requests <div class="counter" id="profile_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/inquiries.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Inquiries</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/massmsgs.php"><i class='fa fa-comments fa-sm icon-button'></i><span class="button-text">Mass Messaging</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out fa-sm icon-button'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
-                    </ul>
-                </div>
-                <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){ ?>
-                <div class="sidenav-custom">
-                    <a style="text-decoration: none;" href="../pages/profile.php">
-                        <div class="sidenav-header">
-                            <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
-                            <div class="title">
-                                <h1 class="name"><?php
-                                $fullname = $_SESSION["name"];
-                                $fLetter = substr($fullname, 0, 1).'.';
-                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
-                                $newname = $fLetter . $Lname;
-                                echo($newname);
-                                ?></h1>
-                                <div class="position">Employee</div>
-                            </div>
-                        </div>
-                    </a>
-                    <ul>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text">Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
-                    </ul>
-                </div>
-                <?php }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){ ?>
-                <div class="sidenav-custom">
-                    <a style="text-decoration: none;" href="../pages/profile.php">
-                        <div class="sidenav-header">
-                            <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
-                            <div class="title">
-                                <h1 class="name"><?php
-                                $fullname = $_SESSION["name"];
-                                $fLetter = substr($fullname, 0, 1).'.';
-                                $Lname = substr($fullname, strpos($fullname, ' ', 0));
-                                $newname = $fLetter . $Lname;
-                                echo($newname);
-                                ?></h1>
-                                <div class="position">QC</div>
-                            </div>
-                        </div>
-                    </a>
-                    <ul>
-                        <li class="sidenav-button"><a href="../pages/profile.php"><i class='fas fa-user fa-sm icon-button'></i><span class="button-text"> Profile</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/QualityControl.php"><i class='fas fa-home fa-sm icon-button'></i><span class="button-text">Dashboard</span></a></li>
-                        <li class="sidenav-button"><a href="../pages/MakeLetter.php"><i class='fas fa-envelope fa-sm icon-button'></i><span class="button-text">Request Letter</span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/viewRequest.php"><i class='fas fa-clock fa-sm icon-button'></i><span class="button-text">Your Requests <div class="counter" id="ownletterrequests_Counter"></div></span></a></li><li class="sidenav-button"></li>
-                        <li class="sidenav-button"><a href="../pages/logout.php"><i class='fa fa-sign-out'></i><span class="button-text">Logout</span></a></li><li class="sidenav-button"></li>
-                </div>
-                    </ul>
-                </div>
+                        <?php 
+                        if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){
+                            for($i =0 ; $i<count($hrPages); $i++) {
+                                echo "<li class='sidenav-button'>";
+                                echo "<a href='" . $hrPages[$i]['href'] . "'>";
+                                echo "<i class='" . $hrPages[$i]['class'] . "'></i>";
+                                echo "<span class='button-text'>" . $hrPages[$i]['name'] . "</span>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
+                        }else if(isset($_SESSION['type']) && $_SESSION['type']=='user'){
+                            for($i =0 ; $i<count($qcPages); $i++) {
+                                echo "<li class='sidenav-button'>";
+                                echo "<a href='" . $qcPages[$i]['href'] . "'>";
+                                echo "<i class='" . $qcPages[$i]['class'] . "'></i>";
+                                echo "<span class='button-text'>" . $qcPages[$i]['name'] . "</span>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
+                        }else if(isset($_SESSION['type']) && $_SESSION['type']=='qc'){
 
-                <?php } else header("Location:../index.php"); ?>
+                            for($i =0 ; $i<count($qcPages); $i++) {
+                                echo "<li class='sidenav-button'>";
+                                echo "<a href='" . $qcPages[$i]['href'] . "'>";
+                                echo "<i class='" . $qcPages[$i]['class'] . "'></i>";
+                                echo "<span class='button-text'>" . $qcPages[$i]['name'] . "</span>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
+                        } else header("Location:../index.php");
+                        ?>
+                    </ul>
+                </div>
                 <div id="myModal" class="modal">
                     <div class="popup-notification" id='popup'>
                         <h2></h2>

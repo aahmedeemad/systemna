@@ -1,11 +1,6 @@
 $(document).ready(function () {
-
     setcounters();
     getnotifications();
-
-    $('.pages_edit').text('Edit');
-    $('#faq_add').text('Add Question');
-    $('#add_letter').text('Add new type of letter');
 
     $('#noti_Button').click(function () {
         // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
@@ -47,6 +42,7 @@ $(document).ready(function () {
 
     $("#themeToggle").on("click", function toggleTheme() {
         var themecookie = getCookie("theme");
+        console.log(themecookie);
         if (themecookie == "darktheme") {
             light();
         }
@@ -80,7 +76,7 @@ $(document).ready(function () {
 
     function light() {
         document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
-        $("#themeToggleBtn").html("🌚");
+        $("#themeToggleBtn").html("🌛");
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
         $(".header").css("background-color", "white");
@@ -178,13 +174,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultFullname +
-                    "&value=" +
-                    fullname +
-                    "&type=fullname",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultFullname +
+                "&value=" +
+                fullname +
+                "&type=fullname",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -214,13 +210,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultSSN +
-                    "&value=" +
-                    ssn +
-                    "&type=ssn",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultSSN +
+                "&value=" +
+                ssn +
+                "&type=ssn",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -238,13 +234,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultBdate +
-                    "&value=" +
-                    bdate +
-                    "&type=bdate",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultBdate +
+                "&value=" +
+                bdate +
+                "&type=bdate",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -263,13 +259,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultLoc +
-                    "&value=" +
-                    loc +
-                    "&type=location",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultLoc +
+                "&value=" +
+                loc +
+                "&type=location",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -297,13 +293,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultEmail +
-                    "&value=" +
-                    email +
-                    "&type=email",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultEmail +
+                "&value=" +
+                email +
+                "&type=email",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -322,13 +318,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultPhone +
-                    "&value=" +
-                    phone +
-                    "&type=phone",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultPhone +
+                "&value=" +
+                phone +
+                "&type=phone",
                 success: function (html) {
                     console.log(html);
                     loading(false);
@@ -475,7 +471,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function () {
             var test = $(this)
-                .text();
+            .text();
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -493,8 +489,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).html();
         test2 = test2.replace("<br>", "");
 
@@ -522,8 +518,8 @@ $(document).ready(function () {
     });
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -533,9 +529,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -551,12 +547,12 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -591,21 +587,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -621,18 +617,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq()")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -648,9 +644,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -667,9 +663,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -688,8 +684,8 @@ $(document).ready(function () {
     });
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -699,9 +695,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -875,9 +871,9 @@ $(document).ready(function () {
 
         if (
             (document.getElementById("rdbtn1").checked ||
-                document.getElementById("rdbtn2").checked) &&
+             document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
-                document.getElementById("rdbtn4").checked) &&
+             document.getElementById("rdbtn4").checked) &&
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
@@ -1197,7 +1193,7 @@ $(document).ready(function () {
                     $('#notidata').html(html);
                 } else {
                     $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
-                    .css('text-align','center');
+                        .css('text-align','center');
                     $('#markAll').css('display','none');
                 }
             },
@@ -1212,7 +1208,7 @@ $(document).ready(function () {
         });
         $('#noti_Counter').css('display','none');
         $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
-        .css('text-align','center');
+            .css('text-align','center');
         $('#markAll').css('display','none');
     });
 
@@ -1230,6 +1226,64 @@ $(document).ready(function () {
 
     $("#letter_edit").on("click", function () {
         document.location.replace('../pages/allLetters.php');
+    });
+
+
+    /************* ADD NEW LETTER ******************/
+
+
+    $("#letterBodyArea").on('keyup',function(){
+        var text= document.getElementById('letterBodyArea').value;
+        var n= text.includes('NAME');
+        var s= text.includes('SALARY');
+        var d= text.includes('DATE');
+        var p= text.includes('POSITION');
+        var startdate=text.includes('START');
+        var hr=text.includes('HR');
+        if(hr==true && !text.includes("(.HR.)")){
+            text=text.replace('HR',"(.HR.) ");
+            document.getElementById('letterBodyArea').value=text;
+        }
+        if(n==true && !text.includes("(.NAME.)")){
+            text=text.replace('NAME',"(.NAME.) ");
+            document.getElementById('letterBodyArea').value=text;
+        }
+        if(s==true && !text.includes("(.SALARY.)")){
+            text=text.replace('SALARY',"(.SALARY.)");
+            document.getElementById('letterBodyArea').value=text;
+        }
+        if(d==true && !text.includes("(.DATE.)")){
+            text=text.replace('DATE',"(.DATE.) ");
+            document.getElementById('letterBodyArea').value=text;
+        }  
+        if(p==true && !text.includes("(.POSITION.)")){
+            text=text.replace('POSITION',"(.POSITION.) ");
+            document.getElementById('letterBodyArea').value=text;
+        }  
+        if(startdate==true && !text.includes("(.START.)")){
+            text=text.replace('START',"(.START.) ");
+            document.getElementById('letterBodyArea').value=text;
+        }
+
+    });
+
+    $("#AddLetterbtn").on("click", function () {
+        console.log("Aaa");
+        var dataa=document.getElementById('body').value;
+        dataa='<pre>'+dataa+'</pre>';
+        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+            jQuery.ajax({
+                url: "../operations/newLetter.php",
+                data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
+                type:"POST",
+                success:function(data)
+                {
+                    popup(data);
+                }
+            });
+        } else {
+            popup('please fill name,salary and date');
+        }
     });
 
 });

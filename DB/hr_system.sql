@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2019 at 06:11 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Dec 30, 2019 at 06:01 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -47,7 +47,7 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 (2, '2019-11-11', 215487, '', 1, 0, 0),
 (6, NULL, 9999999, '', 0, 0, 0),
 (7, NULL, 20, NULL, 0, 0, 0),
-(8, NULL, NULL, NULL, 0, 0, 0),
+(8, NULL, 10000, NULL, 0, 0, 0),
 (24, NULL, NULL, NULL, 1, 1, 1),
 (25, NULL, NULL, NULL, 0, 0, 0),
 (26, NULL, NULL, NULL, 0, 0, 0);
@@ -193,7 +193,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -210,7 +210,7 @@ INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, 
 (35, 2, 2, 0, 1, '2019-12-20 22:00:00', 'HR Letter to whom it may concern'),
 (36, 2, 2, 0, 0, '2019-12-21 00:15:31', 'Embassy HR Letter'),
 (37, 2, 2, 1, 0, '2019-12-21 00:16:25', 'General HR Letter'),
-(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'Embassy HR Letter');
+(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'General HR Letter');
 
 -- --------------------------------------------------------
 
@@ -221,18 +221,19 @@ INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, 
 CREATE TABLE `requests_types` (
   `Type_id` int(50) NOT NULL,
   `Name` text NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `body` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requests_types`
 --
 
-INSERT INTO `requests_types` (`Type_id`, `Name`, `description`) VALUES
-(1, 'General HR Letter', 'This is a letter that could be submitted for any required paper'),
-(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling'),
-(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions '),
-(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter');
+INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`) VALUES
+(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', ''),
+(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', ''),
+(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter', ''),
+(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>');
 
 -- --------------------------------------------------------
 
@@ -408,7 +409,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `requests_types`
 --
 ALTER TABLE `requests_types`
-  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `update_info`

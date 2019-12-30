@@ -73,7 +73,7 @@ $qcPages = array(
                         </div>
                     </a>
                 </span>
-                <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌛</span></div>
+                <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌚</span></div>
             </header>
             <div class="mainPage">
                 <div class="sidenav-custom">

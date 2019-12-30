@@ -1,6 +1,70 @@
 $(document).ready(function () {
     setcounters();
+    setInterval(setcounters, 1000);
     getnotifications();
+    sendcalmails();
+
+    function sendcalmails(){
+        var CD = new Date();
+        var curdd = CD.getDate();
+        var curmm = CD.getMonth()+1;
+        var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
+        sendbdmail(curdd, curmm);
+        var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
+        var mailsubj = "Happy Holiday";
+        for (var i = 0; i < holidays.length; i++) {
+            holidd = holidays[i].slice(0, 2);
+            holimm = holidays[i].slice(3, 5);
+            if (curdd == holidd && curmm == holimm) {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/massmsging.php",
+                    data: "notification=" + content + "&type=notiall",
+                    success: function (html) {
+                        /*console.log(html);
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "../operations/massmsging.php",
+                            data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                            success: function (html) {
+                                console.log(html);
+                            }
+                        });*/
+                    }
+                });
+            }
+        }
+    }
+
+    function sendbdmail(curdd, curmm){
+        var content = "SYSTEMNA wishes you a happy birthday!";
+        var mailsubj = "Happy Birthday";
+        var birthday = "19/03";
+        bddd = birthday.slice(0, 2);
+        bdmm = birthday.slice(3, 5);
+        if (curdd == bddd && curmm == bdmm) {
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/massmsging.php",
+                data: "notification=" + content + "&type=notiall",
+                success: function (html) {
+                    /*console.log(html);
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "../operations/massmsging.php",
+                        data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                        success: function (html) {
+                            console.log(html);
+                        }
+                    });*/
+                }
+            });
+        }
+    }
+
+    $('.pages_edit').text('Edit');
+    $('#faq_add').text('Add Question');
+    $('#add_letter').text('Add new type of letter');
 
     $('#noti_Button').click(function () {
         // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
@@ -52,7 +116,7 @@ $(document).ready(function () {
     });
 
     function dark() {
-        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
+        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#2d3035");
         $("#notifications").css("color", "white");
@@ -75,8 +139,8 @@ $(document).ready(function () {
     }
 
     function light() {
-        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 20:00:00 UTC; path=/;";
-        $("#themeToggleBtn").html("🌛");
+        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
+        $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
         $(".header").css("background-color", "white");

@@ -1120,8 +1120,8 @@ $(document).ready(function () {
             data: "type=setnoticounter",
             success: function (html) {
                 $('#noti_Counter').text(html);
-                if (html == "0") {
-                    $('#noti_Counter').css("display", "none");
+                if (html > "0") {
+                    $('#noti_Counter').css("display", "inline-block");
                 }
             },
         });
@@ -1133,8 +1133,8 @@ $(document).ready(function () {
             data: "type=setprofilecounter",
             success: function (html) {
                 $('#profile_Counter').text(html);
-                if (html == "0") {
-                    $('#profile_Counter').css("display", "none");
+                if (html > "0") {
+                    $('#profile_Counter').css("display", "inline-block");
                 }
             },
         });
@@ -1146,8 +1146,8 @@ $(document).ready(function () {
             data: "type=setusrsletterrequestscounter",
             success: function (html) {
                 $('#usrsletterrequests_Counter').text(html);
-                if (html == "0") {
-                    $('#usrsletterrequests_Counter').css("display", "none");
+                if (html > "0") {
+                    $('#usrsletterrequests_Counter').css("display", "inline-block");
                 }
             },
         });
@@ -1159,8 +1159,8 @@ $(document).ready(function () {
             data: "type=setownletterrequestscounter",
             success: function (html) {
                 $('#ownletterrequests_Counter').text(html);
-                if (html == "0") {
-                    $('#ownletterrequests_Counter').css("display", "none");
+                if (html > "0") {
+                    $('#ownletterrequests_Counter').css("display", "inline-block");
                 }
             },
         });
@@ -1172,8 +1172,8 @@ $(document).ready(function () {
             data: "type=setusrscounter",
             success: function (html) {
                 $('#usrs_Counter').text(html);
-                if (html == "0") {
-                    $('#usrs_Counter').css("display", "none");
+                if (html > "0") {
+                    $('#usrs_Counter').css("display", "inline-block");
                 }
             },
         });

@@ -787,7 +787,7 @@ box-sizing: content-box;
     cursor: pointer;
 }
 .counter {
-    display: inline-block;
+    display: none;
     background: #e1141e;
     color: #fff;
     font-size: 0.8em;

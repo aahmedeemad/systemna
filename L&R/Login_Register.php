@@ -1,5 +1,3 @@
-
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -21,7 +19,6 @@
                     <div></div>
                 </div>
                 <div class="Logintab" id="Logintab" style="display: block;">
-
                     <form action="L&R/login.php" method="post">
                         <div class="inputs">
                             <h1 class="heading">Welcome back !</h1>
@@ -84,31 +81,8 @@
                         <input class ="submit"  type="submit" onclick="return check();"  value="Register">
                     </form>
                 </div>
-                <ul>
-                    <li>
-                        <span>Dark</span>
-                        <span>Light</span>
-                    </li>
-                </ul>
             </div>
         </div>
     </body>
-
     <script src="js/Login_Register-script.js"></script>
-
-    <script>
-
-        $(document).ready(function(){
-            $('ul').click(function(){
-                $('ul').toggleClass('active')
-                $('.card').toggleClass('Light')
-                $('button').toggleClass('Light')
-                $('a').toggleClass('Light')
-                $('.head').toggleClass('Light')
-                $('.heading').toggleClass('Light')
-                $('input').toggleClass('Light')
-                $('label').toggleClass('Light')
-            })
-        })
-    </script>
 </html>

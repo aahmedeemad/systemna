@@ -106,7 +106,6 @@ $(document).ready(function () {
 
     $("#themeToggle").on("click", function toggleTheme() { /* Adding the theme toggle function */
         var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
-        console.log(themecookie);
         /* Checking the cookie value and setting the theme opposite to it */
         if (themecookie == "darktheme") {
             light();
@@ -211,7 +210,6 @@ $(document).ready(function () {
     }
 
     function companyInfoToggle() {
-        //        $("#username").toggleClass("hidden");
         $("#password").toggleClass("hidden");
         $(".input-company-info").toggleClass("hidden");
         $(".save-company-info").toggleClass("hidden");
@@ -248,7 +246,6 @@ $(document).ready(function () {
                 fullname +
                 "&type=fullname",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         fullnameToggle();
@@ -333,7 +330,6 @@ $(document).ready(function () {
                 loc +
                 "&type=location",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         basicInfoToggle();
@@ -367,7 +363,6 @@ $(document).ready(function () {
                 email +
                 "&type=email",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -392,7 +387,6 @@ $(document).ready(function () {
                 phone +
                 "&type=phone",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -409,7 +403,6 @@ $(document).ready(function () {
     /************************************ Updated ************************************/
     $(".save-company-info").on("click", function () {
         var pass = $("#passwordEdit").val();
-        //        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
         var id = $("#id").text();
 
         $.ajax({
@@ -417,7 +410,6 @@ $(document).ready(function () {
             url: "../operations/editProfile.php",
             data: "id=" + id + "&value=" + pass + "&value=" + pass + "&type=password",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     companyInfoToggle();
@@ -727,7 +719,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
-                sendmail(Rid, "SYSTEMNA", "Congratulations! You have been accepted at SYSTEMNA! you can now log in using your account");
+                sendmail(Rid, "SYSTEMNA", "Congratulations! You have been accepted at SYSTEMNA! you can now log in using your account.");
                 sendnoti(Rid, "Welcome to SYSTEMNA!");
             }
         });
@@ -747,7 +739,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
-                sendmail(Rid, "SYSTEMNA", "Unfortunely you didn't meet the requriments at systemna, if you want to reapply please fill the signup form again ");
+                sendmail(Rid, "SYSTEMNA", "Unfortunely you didn't meet the requriments at SYSTEMNA, if you want to re-apply please fill the signup form again.");
             }
         });
     });
@@ -801,7 +793,6 @@ $(document).ready(function () {
             url: "../operations/faqop.php",
             data: "question=" + question + "&answer=" + answer + "&requested_by=" + requested_by + "&type=faqaddques",
             success: function (html) {
-                console.log(html);
                 jQuery.ajax({
                     type: "POST",
                     url: "../operations/getid.php",
@@ -849,8 +840,8 @@ $(document).ready(function () {
                 data: { x: 1 },
                 success: function (data) {
 
-                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully");
-                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully")
+                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!");
+                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
 
                 }
             });
@@ -875,13 +866,12 @@ $(document).ready(function () {
             url: "../operations/faqop.php",
             data: "subject=" + subject + "&content=" + content + "&type=faqinq",
             success: function (html) {
-                console.log(html);
                 jQuery.ajax({
                     type: "POST",
                     url: "../operations/getid.php",
                     data: { x: 1 },
                     success: function (data) {
-                        sendnoti(data, "We recived your message successfully");
+                        sendnoti(data, "We recived your message successfully!");
                         sendmail(data, "Message recieved", "We recived your message successfully and we are going to work on it , thank you!");
                     }
                 });
@@ -957,8 +947,8 @@ $(document).ready(function () {
                 url: "../operations/getid.php",
                 data: { x: 1 },
                 success: function (data) {
-                    sendnoti(data, "Letter Request Added Successfully");
-                    sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
+                    sendnoti(data, "Letter Request Added Successfully!");
+                    sendmail(data, "Letter Added", "You Letter Request has been Added Successfully!");
                 }
             });
         } else {
@@ -980,10 +970,8 @@ $(document).ready(function () {
             url: "../operations/addletter.php",
             data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
             success: function (html) {
-                console.log(html);
-
                 loading(false);
-                popup(true, "Added");
+                popup(true, "Letter Added Successfully");
             },
             beforeSend: function () {
                 loading(true);
@@ -1062,7 +1050,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "notification=" + data + "&type=notiall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1091,7 +1078,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "id=" + id + "&notification=" + data + "&type=notione",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1120,7 +1106,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1153,7 +1138,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "email=" + email + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailone",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1333,32 +1317,31 @@ $(document).ready(function () {
         var hr=text.includes('HR');
         if(hr==true && !text.includes("(.HR.)")){
             text=text.replace('HR',"(.HR.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(n==true && !text.includes("(.NAME.)")){
             text=text.replace('NAME',"(.NAME.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(s==true && !text.includes("(.SALARY.)")){
             text=text.replace('SALARY',"(.SALARY.)");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(d==true && !text.includes("(.DATE.)")){
             text=text.replace('DATE',"(.DATE.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }  
         if(p==true && !text.includes("(.POSITION.)")){
             text=text.replace('POSITION',"(.POSITION.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }  
         if(startdate==true && !text.includes("(.START.)")){
             text=text.replace('START',"(.START.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
     });
 
     $("#AddLetterbtn").on("click", function () {
-        console.log("Aaa");
         var dataa=document.getElementById('body').value;
         dataa='<pre>'+dataa+'</pre>';
         if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
@@ -1368,11 +1351,16 @@ $(document).ready(function () {
                 type:"POST",
                 success:function(data)
                 {
+                    loading(false);
                     popup(data);
+                },
+                beforeSend: function () {
+                    loading(true);
                 }
+
             });
         } else {
-            popup('please fill name,salary and date');
+            popup('please fill Name, Salary and Date');
         }
     });
 
@@ -1385,7 +1373,11 @@ $(document).ready(function () {
             type:"POST",
             success:function(data)
             {
+                loading(false);
                 $("#body").html(data);
+            },
+            beforeSend: function () {
+                loading(true);
             }
         });
     });

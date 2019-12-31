@@ -20,8 +20,8 @@ include "../template/header.php";
     $sid = $_SESSION['id'];
     $sql="
         SELECT *
-        FROM update_info1 left join employee on update_info1.UID = employee.id
-        where update_info1.Status = 2 and UID <> '$sid'
+        FROM update_info left join employee on update_info.UID = employee.id
+        where update_info.Status = 2 and UID <> '$sid'
               ";
     try
     {

@@ -123,12 +123,14 @@ form
 	background:white;
 	color: black;
 }
-.input img 
+
+i
 {
 	width: 16px;
 	position: absolute;
-	bottom: 15px;
+	bottom: 20px;
 	left: 19px;
+    color:grey;
 }
 
 .submit{

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 30, 2019 at 06:01 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: localhost
+-- Generation Time: Dec 31, 2019 at 01:41 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT '0',
-  `n_id_picture` tinyint(1) DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -103,7 +103,7 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', 0, 1, 'user'),
 (8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', 1, 1, 'admin'),
-(24, 'mark', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark.refaat.ramzy@gmail.com', '01278249244', '29999999999999', 1, 1, 'user'),
+(24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', 1, 1, 'admin'),
 (25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', 1, 1, 'admin'),
 (26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user');
 
@@ -129,7 +129,8 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUE
 (1, 'What is SYSTEMNA', 'SYSTEMNA is our company&#39;s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
 (2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
 (3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
-(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
+(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad'),
+(5, 'HAW ARE IUO', 'aa', '', 'Islam');
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,7 @@ CREATE TABLE `inquiries` (
 --
 
 INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`, `requester_id`) VALUES
-(1, 'testing subject', 'testing message', '1', '1', '1');
+(1, 'testing subject', 'testing message', '1', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,27 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
 (7, 1, 2, 'This is notification number 1 for user number 2'),
 (8, 1, 2, 'Welcome to SYSTEMNA'),
 (9, 1, 1, 'Welcome to SYSTEMNA'),
-(10, 0, 3, 'Welcome to SYSTEMNA');
+(10, 0, 3, 'Welcome to SYSTEMNA'),
+(11, 1, 24, 'Letter Request Added Successfully'),
+(12, 1, 24, 'Letter Request Added Successfully'),
+(13, 1, 24, 'Letter Request Added Successfully'),
+(14, 1, 24, 'Letter Request Added Successfully'),
+(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
+(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
+(17, 1, 1, 'Your Question Has Been Added Successfully!'),
+(18, 0, 26, 'An action has been made to a letter request.'),
+(19, 0, 26, 'An action has been made to a letter request.'),
+(20, 0, 26, 'An action has been made to a letter request.'),
+(21, 0, 26, 'An action has been made to a letter request.'),
+(22, 1, 24, 'Your profile email change request has been accepted!'),
+(23, 1, 24, 'Your profile fullname change request has been accepted!'),
+(24, 1, 24, 'Your profile phone change request has been accepted!'),
+(25, 1, 24, 'Your profile ssn change request has been accepted!'),
+(26, 0, 3, 'Welcome to SYSTEMNA!'),
+(27, 0, 3, 'Congratulations you have been promoted to an QC!'),
+(28, 0, 1, 'Letter Request Added Successfully'),
+(29, 0, 1, 'Letter Request Added Successfully'),
+(30, 1, 24, 'Letter Request Added Successfully');
 
 -- --------------------------------------------------------
 
@@ -194,7 +215,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -204,14 +225,17 @@ CREATE TABLE `requests` (
 
 INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, `date`, `type_name`) VALUES
 (20, 26, 1, 0, 1, '2019-12-14 22:00:00', 'General HR Letter'),
-(21, 26, 2, 1, 1, '2019-12-14 22:00:00', 'General HR Letter'),
-(23, 26, 2, 0, 1, '2019-12-14 22:00:00', 'HR Letter directed to specific organization'),
-(24, 26, 2, 1, 0, '2019-12-14 22:00:00', 'HR Letter to whom it may concern'),
-(30, 26, 2, 0, 1, '2019-12-15 22:00:00', 'Embassy HR Letter'),
+(21, 26, 1, 1, 1, '2019-12-14 22:00:00', 'General HR Letter'),
+(23, 26, 0, 0, 1, '2019-12-14 22:00:00', 'HR Letter directed to specific organization'),
+(24, 26, 0, 1, 0, '2019-12-14 22:00:00', 'HR Letter to whom it may concern'),
+(30, 26, 0, 0, 1, '2019-12-15 22:00:00', 'Embassy HR Letter'),
 (35, 2, 2, 0, 1, '2019-12-20 22:00:00', 'HR Letter to whom it may concern'),
 (36, 2, 2, 0, 0, '2019-12-21 00:15:31', 'Embassy HR Letter'),
 (37, 2, 2, 1, 0, '2019-12-21 00:16:25', 'General HR Letter'),
-(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'General HR Letter');
+(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'General HR Letter'),
+(41, 24, 2, 1, 1, '2019-12-30 08:09:26', 'HR Letter directed to specific organization'),
+(44, 1, 2, 1, 1, '2019-12-30 23:22:39', 'Embassy HR Letter'),
+(45, 24, 2, 1, 1, '2019-12-30 23:33:56', 'General HR Letter');
 
 -- --------------------------------------------------------
 
@@ -245,37 +269,6 @@ INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`) VALUES
 CREATE TABLE `update_info` (
   `ID` int(11) NOT NULL,
   `UID` int(11) NOT NULL,
-  `val1` varchar(255) DEFAULT NULL,
-  `val2` varchar(255) DEFAULT NULL,
-  `val3` date DEFAULT NULL,
-  `type` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `update_info`
---
-
-INSERT INTO `update_info` (`ID`, `UID`, `val1`, `val2`, `val3`, `type`, `status`) VALUES
-(48, 1, 'islam@gmail.com', '0111251183000', NULL, 'contact-info', 0),
-(49, 1, 'Islam', NULL, NULL, 'fullname', 0),
-(50, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0),
-(51, 1, 'islam@gmail.com', '01112511830', NULL, 'contact-info', 0),
-(52, 1, 'Islam', '1234', NULL, 'company-info', 0),
-(53, 1, '5454545415154', 'Cairo,egypt', '2019-11-04', 'basic-info', 0),
-(58, 24, 'mark@gmail.commmmm', '01278249244', NULL, 'contact-info', 0),
-(59, 24, 'mark refatt', NULL, NULL, 'fullname', 0),
-(60, 24, 'mark@gmail.commm', '01278249244', NULL, 'contact-info', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `update_info1`
---
-
-CREATE TABLE `update_info1` (
-  `ID` int(11) NOT NULL,
-  `UID` int(11) NOT NULL,
   `OldValue` varchar(255) NOT NULL,
   `Value` varchar(255) NOT NULL,
   `Type` varchar(255) NOT NULL,
@@ -283,17 +276,17 @@ CREATE TABLE `update_info1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `update_info1`
+-- Dumping data for table `update_info`
 --
 
-INSERT INTO `update_info1` (`ID`, `UID`, `OldValue`, `Value`, `Type`, `Status`) VALUES
-(2, 24, 'mark@gmail.com', 'mark@gmail.commm', 'email', 2),
-(3, 24, 'mark', 'markkkk', 'fullname', 2),
+INSERT INTO `update_info` (`ID`, `UID`, `OldValue`, `Value`, `Type`, `Status`) VALUES
+(2, 24, 'mark@gmail.com', 'mark@gmail.commm', 'email', 1),
+(3, 24, 'mark', 'markkkk', 'fullname', 1),
 (4, 24, 'mark@gmail.com', 'mark@gmail.comm', 'email', 2),
-(5, 24, '01278249244', '012782492442', 'phone', 2),
+(5, 24, '01278249244', '012782492442', 'phone', 1),
 (6, 24, 'mark', 'markk', 'username', 2),
 (7, 24, '123456', '123', 'password', 2),
-(8, 24, '29999999999999', '29999999999991', 'ssn', 2),
+(8, 24, '29999999999999', '29999999999991', 'ssn', 1),
 (9, 24, '', 'cairo', 'location', 2),
 (10, 24, '', '2019-12-19', 'birthdate', 2);
 
@@ -357,13 +350,6 @@ ALTER TABLE `requests_types`
 -- Indexes for table `update_info`
 --
 ALTER TABLE `update_info`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `UID` (`UID`);
-
---
--- Indexes for table `update_info1`
---
-ALTER TABLE `update_info1`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -386,7 +372,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
@@ -398,13 +384,13 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `requests_types`
@@ -416,12 +402,6 @@ ALTER TABLE `requests_types`
 -- AUTO_INCREMENT for table `update_info`
 --
 ALTER TABLE `update_info`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
---
--- AUTO_INCREMENT for table `update_info1`
---
-ALTER TABLE `update_info1`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
@@ -439,12 +419,6 @@ ALTER TABLE `add_info`
 --
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
-
---
--- Constraints for table `update_info`
---
-ALTER TABLE `update_info`
-  ADD CONSTRAINT `update_info_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `employee` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -31,7 +31,7 @@ if (isset($_POST['id'])){
         else {
             $body=str_replace('(.SALARY.)',"",$body);
         }
-        
+
         $body=str_replace('(.POSITION.)',"modeer amn",$body);
         $body=str_replace('(.START.)',"JAN 1940",$body);
         echo $body;
@@ -39,6 +39,7 @@ if (isset($_POST['id'])){
 
     catch(Exception $e)
     {
-        echo $e->getMessage();;
+        echo $e->getMessage();
+        error_log("Error while accessing view letter");
     }
 }

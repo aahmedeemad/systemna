@@ -1,7 +1,7 @@
 <?php
 ob_start();
 $pageTitle = "SYSTEMNA | FAQ";
-include "../template/header.php"; 
+include "../template/header.php";
 ?>
 <?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 <!--
@@ -85,6 +85,7 @@ console.log(a);
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        error_log("Error while viewing faqs");
     }
 
     ?>

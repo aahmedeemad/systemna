@@ -82,7 +82,9 @@ $(document).ready(function () {
         return false;
     });
 
-    function loading(status) {
+
+    /******* Loading circle when get data with ajax *******/
+    function loading(status) { 
         if (status == true) {
             $(".loading").removeClass("hidden");
             $(".content").addClass("hidden");
@@ -93,6 +95,7 @@ $(document).ready(function () {
         }
     }
 
+    /******* Popup to show result of ajax *******/
     function popup(head, body) {
         head = head == true ? "Success" : "Failed";
         $(".popup-notification h2").text(head);
@@ -100,11 +103,12 @@ $(document).ready(function () {
         $(".modal").css("display", "block");
     }
 
+
+    /******* Confirmation delete popup *******/
     function confirmation(body, url, data) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function(){
-            //            document.location.replace(action);
-            jQuery.ajax({ /* Send notifiation */
+            jQuery.ajax({
                 type: "GET",
                 url: url,
                 success: function (html) {
@@ -117,11 +121,13 @@ $(document).ready(function () {
         $(".modalConfirmation").css("display", "block");
     }
 
+    /******* Confirm delete popup *******/
     $(".deleteConfirmation").on("click", function(e){
-        e.preventDefault();
-        confirmation("Are you sure ?", this.href , $(this).closest('tr'));
+        e.preventDefault(); /* to prevent href action */
+        confirmation("Are you sure ?", this.href , $(this).closest('tr')); /* show to confirmation popup */
     });
 
+    /******* Show / Hide side navigation *******/
     $(".navbar-toggle").on("click", function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
@@ -209,16 +215,20 @@ $(document).ready(function () {
         }
     });
 
+    /* Close button in popup */
     $(".popup-close").on("click", function () {
         $(".modal").css("display", "none");
     });
 
 
-    // cancle button
+    /* Cancle button in confirmation popup */
     $(".confirmation-close").on("click", function () {
         $(".modalConfirmation").css("display", "none");
     });
 
+    /******************************************** START PROFILE ********************************************/
+
+    /* Show / Hide fullname and fullname input */
     function fullnameToggle() {
         $("#fullname").toggleClass("hidden");
         $(".input-fullname").toggleClass("hidden");
@@ -262,38 +272,37 @@ $(document).ready(function () {
     $(".edit-company-info").on("click", companyInfoToggle);
     $(".cancel-company-info").on("click", companyInfoToggle);
 
-    /************************************ Updated ************************************/
+    function submitEdit(id, type, oldValue, newValue){
+        $.ajax({
+            type: "POST",
+            url: "../operations/editProfile.php",
+            data:
+            "id=" + id +
+            "&oldvalue=" + oldValue +
+            "&value=" + newValue +
+            "&type=" + type,
+            success: function (html) {
+                loading(false);
+                if (html == "true") {
+                    if (type == "fullname") fullnameToggle();
+                    else if (type == "ssn" || type == "bdate" || type == "location") basicInfoToggle();
+                    else if (type == "email" || type == "phone") contactInfoToggle();
+                    popup(true, "Your Request Has Been Submitted Successfully");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    }
+
     $(".save-fullname").on("click", function () {
         var fullname = $("#fullnameEdit").val();
         var defaultFullname = $("#fullnameEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (fullname != defaultFullname) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultFullname +
-                "&value=" +
-                fullname +
-                "&type=fullname",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        fullnameToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
+        if (fullname != defaultFullname) submitEdit(id, "fullname" , defaultFullname, fullname);
     });
 
-    /************************************ Updated ************************************/
     $(".save-basic-info").on("click", function () {
         var ssn = $("#ssnEdit").val();
         var defaultSSN = $("#ssnEdit")[0]["defaultValue"];
@@ -302,147 +311,28 @@ $(document).ready(function () {
         var loc = $("#locationEdit").val();
         var defaultLoc = $("#locationEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (ssn != defaultSSN) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultSSN +
-                "&value=" +
-                ssn +
-                "&type=ssn",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        basicInfoToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
-        if (bdate != defaultBdate) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultBdate +
-                "&value=" +
-                bdate +
-                "&type=bdate",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        basicInfoToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
-
-        if (loc != defaultLoc) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultLoc +
-                "&value=" +
-                loc +
-                "&type=location",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        basicInfoToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
+        if (ssn != defaultSSN) submitEdit(id, "ssn" , defaultSSN, ssn);
+        if (bdate != defaultBdate) submitEdit(id, "bdate" , defaultBdate, bdate);
+        if (loc != defaultLoc) submitEdit(id, "location" , defaultLoc, loc);
     });
 
-    /************************************ Updated ************************************/
     $(".save-contact-info").on("click", function () {
         var email = $("#emailEdit").val();
         var defaultEmail = $("#emailEdit")[0]["defaultValue"];
         var phone = $("#phoneEdit").val();
         var defaultPhone = $("#phoneEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (email != defaultEmail) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultEmail +
-                "&value=" +
-                email +
-                "&type=email",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        contactInfoToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
-        if (phone != defaultPhone) {
-            $.ajax({
-                type: "POST",
-                url: "../operations/editProfile.php",
-                data:
-                "id=" +
-                id +
-                "&oldvalue=" +
-                defaultPhone +
-                "&value=" +
-                phone +
-                "&type=phone",
-                success: function (html) {
-                    loading(false);
-                    if (html == "true") {
-                        contactInfoToggle();
-                        popup(true, "Your Request Has Been Submitted Successfully");
-                    } else { popup(false, html); }
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-            });
-        }
+        if (email != defaultEmail) submitEdit(id, "email" , defaultEmail, email);
+        if (phone != defaultPhone) submitEdit(id, "phone" , defaultPhone, phone);
     });
 
-    /************************************ Updated ************************************/
     $(".save-company-info").on("click", function () {
         var pass = $("#passwordEdit").val();
         var id = $("#id").text();
-
         $.ajax({
             type: "POST",
             url: "../operations/editProfile.php",
-            data: "id=" + id + "&value=" + pass + "&value=" + pass + "&type=password",
+            data: "id=" + id + "&value=" + pass + "&type=password",
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -493,6 +383,12 @@ $(document).ready(function () {
     $(".profile-camera-button").on("click", function () {
         $(".profile-picture-input").click();
     });
+
+
+
+    /********************************************               END PROFILE           ********************************************/
+
+    /******************************************** START PN (Passport And National ID) ********************************************/
 
     function uploadPassportPicture() {
         var input = document.getElementById("passport-picture-input");
@@ -546,6 +442,7 @@ $(document).ready(function () {
         } else { popup(false, "Input something!"); }
     }
 
+
     $(".national-picture-input").on("change", function () {
         uploadNationalIdPicture();
     });
@@ -553,6 +450,8 @@ $(document).ready(function () {
     $(".national-camera-button").on("click", function () {
         $(".national-picture-input").click();
     });
+
+    /******************************************** END PN (Passport And National ID) ********************************************/
     var orig;
     $(".sal").on("click", function (event) {
         $(this)
@@ -853,13 +752,12 @@ $(document).ready(function () {
     });
 
     $("#AddLetterbtn").click(function () {
-
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",
                 data: "Name=" + $("#Name").val(),
                 type: "POST",
-                success: function (data) { }
+                success: function (data) {}
             });
         }
         var a = document.getElementById("Name").value;
@@ -870,20 +768,17 @@ $(document).ready(function () {
             return 0;
         }
         if (a != "" && b != "") {
-            loading(true);
-            popup(true, "Letter Added Successfully");
             jQuery.ajax({
                 type: "POST",
                 url: "../operations/getid.php",
                 data: { x: 1 },
                 success: function (data) {
-
                     sendnoti(data, "Your New Type of Letter Has Been Added Successfully!");
                     sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
-
+                    loading(true);
+                    popup(true, "Letter Added Successfully");
                 }
             });
-            //alert("Letter Added Successfully");
         }
         var dataa=document.getElementById('body').value;
         dataa='<pre>'+dataa+'</pre>';
@@ -1399,7 +1294,7 @@ $(document).ready(function () {
         }
     });
 
-  /*  $("#AddLetterbtn").on("click", function () {
+    /*  $("#AddLetterbtn").on("click", function () {
         var dataa=document.getElementById('body').value;
         dataa='<pre>'+dataa+'</pre>';
         if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){

@@ -59,7 +59,6 @@ $qcPages = array(
     </head>
 
     <body>
-        <script src="../js/jquery-3.4.1.min.js"></script>
         <div class="container-custom">
             <header class="header">
                 <div class="navbar-toggle">
@@ -69,13 +68,14 @@ $qcPages = array(
                 <span id="noti_Container" style="padding-left: 1em;">
                     <a id="noti_Button">
                         <i class='fas fa fa-bell  fa-sm icon-button'></i>
-                        <div class="counter" id="noti_Counter"></div><!--SHOW NOTIFICATIONS COUNT.-->
-                        <div id="notifications"><!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                            <div id="notidata"></div>
-                            <div id="markAll">Mark All as Read</div>
+                        <div class="counter" id="noti_Counter"></div> <!-- Show notifications count -->
+                        <div id="notifications"> <!-- Notifications box -->
+                            <div id="notidata"></div> <!-- Notifications Data -->
+                            <div id="markAll">Mark All as Read</div> <!-- Notifications mark all as read button -->
                         </div>
                     </a>
                 </span>
+                <!-- Theme toggle -->
                 <div class="right" id="themeToggle" style="cursor:pointer;"><span id="themeToggleBtn">🌚</span></div>
             </header>
             <div class="mainPage">
@@ -84,7 +84,7 @@ $qcPages = array(
                         <div class="sidenav-header">
                             <div class="avatar"><img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" alt="" class="rounded-circle-custom"></div>
                             <div class="title">
-                                <h1 class="name">
+                                <h1 class="name"><!-- Getting the first name initial then the lastname -->
                                     <?php
                                     $fullname = $_SESSION["name"];
                                     $fLetter = substr($fullname, 0, 1).'.';
@@ -148,7 +148,7 @@ $qcPages = array(
                     </div>
                 </div>
                 
-                <div id="myModal" class="modalConfirmation">
+                <div id="myModal" class="modalConfirmation" style="display: none;">
                     <div class="confirmation-notification" id='confirmation'>
                         <h2>Confirm ?</h2>
                         <div class="confirmation-content">Are you sure you want to </div>

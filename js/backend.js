@@ -743,7 +743,7 @@ $(document).ready(function () {
                 });
                 loading(false);
                 popup(true, "Your Question Has Been Added Successfully!");
-                setInterval(window.location("../pages/faq.php"),5000);
+                setInterval(window.location.replace("../pages/faq.php"),7000);
             },
             beforeSend: function () {
                 loading(true);
@@ -1122,7 +1122,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     function setCounter(type, tag)
     {
         $.ajax({
@@ -1146,7 +1146,7 @@ $(document).ready(function () {
         setCounter('setusrsletterrequestscounter', '#usrsletterrequests_Counter'); /* Function to set the users letter requests counter */
         setCounter('setownletterrequestscounter', '#ownletterrequests_Counter'); /* Function to set the own letter requests counter */
         setCounter('setownletterrequestscounter', '#ownletterrequests_Counter'); /* Function to set the own letter requests counter */
-        setCounter('setusrscounter', '#usrs_Counter'); /* Function to set the users counter */        
+        setCounter('setusrscounter', '#usrs_Counter'); /* Function to set the users counter */
     }
 
     /* Function to get the notifications */

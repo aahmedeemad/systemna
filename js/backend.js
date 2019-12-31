@@ -1,28 +1,30 @@
 $(document).ready(function () {
-    setcounters();
-    setInterval(setcounters, 1000);
-    getnotifications();
-    sendcalmails();
 
-    function sendcalmails(){
-        var CD = new Date();
-        var curdd = CD.getDate();
-        var curmm = CD.getMonth()+1;
+    setcounters(); /* Calling the function to set the numbers of counters on site starting*/
+    setInterval(setcounters, 1000); /* Calling the function to update the numbers of counters every 10 seconds */
+    getnotifications(); /* Calling the function to get the notifications data from DB */
+    sendcalmails(); /* Calling the function to send holiday emails */
+
+    function sendcalmails(){ /* A function to send holiday emails */
+        var CD = new Date(); /* Making a date object */
+        var curdd = CD.getDate(); /* Getting the current day */
+        var curmm = CD.getMonth()+1; /*Getting the current month */
         var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
-        sendbdmail(curdd, curmm);
+        sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
+        /* Setting the subject and content of mail and notification*/
         var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
         var mailsubj = "Happy Holiday";
-        for (var i = 0; i < holidays.length; i++) {
-            holidd = holidays[i].slice(0, 2);
-            holimm = holidays[i].slice(3, 5);
-            if (curdd == holidd && curmm == holimm) {
-                jQuery.ajax({
+        for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
+            holidd = holidays[i].slice(0, 2); /* Get the day part of date */
+            holimm = holidays[i].slice(3, 5); /* Get the month part of date */
+            if (curdd == holidd && curmm == holimm) { /* Checking if the current day is a holiday */
+                jQuery.ajax({ /* Send notifiation */
                     type: "POST",
                     url: "../operations/massmsging.php",
                     data: "notification=" + content + "&type=notiall",
                     success: function (html) {
                         /*console.log(html);
-                        jQuery.ajax({
+                        jQuery.ajax({ // Send mail //
                             type: "POST",
                             url: "../operations/massmsging.php",
                             data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
@@ -36,20 +38,21 @@ $(document).ready(function () {
         }
     }
 
-    function sendbdmail(curdd, curmm){
+    function sendbdmail(curdd, curmm){ /* A function to send birthday emails */
+        /* Setting the subject and content of mail and notification*/
         var content = "SYSTEMNA wishes you a happy birthday!";
         var mailsubj = "Happy Birthday";
         var birthday = "19/03";
-        bddd = birthday.slice(0, 2);
-        bdmm = birthday.slice(3, 5);
-        if (curdd == bddd && curmm == bdmm) {
-            jQuery.ajax({
+        bddd = birthday.slice(0, 2); /* Get the day part of date */
+        bdmm = birthday.slice(3, 5); /* Get the month part of date */
+        if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
+            jQuery.ajax({ /* Send notifiation */
                 type: "POST",
                 url: "../operations/massmsging.php",
                 data: "notification=" + content + "&type=notiall",
                 success: function (html) {
                     /*console.log(html);
-                    jQuery.ajax({
+                    jQuery.ajax({ // Send mail //
                         type: "POST",
                         url: "../operations/massmsging.php",
                         data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
@@ -62,23 +65,20 @@ $(document).ready(function () {
         }
     }
 
-    $('.pages_edit').text('Edit');
-    $('#faq_add').text('Add Question');
-    $('#add_letter').text('Add new type of letter');
+    $('.pages_edit').text('Edit'); /* Setting the text for admin's edit button */
+    $('#faq_add').text('Add Question'); /* Setting the text for admin's add question button */
+    $('#add_letter').text('Add new type of letter'); /* Setting the text for admin's add letter button */
 
-    $('#noti_Button').click(function () {
-        // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+    $('#noti_Button').click(function () { /* Toggle notification window */
         $('#notifications').fadeToggle('fast', 'linear');
         return false;
     });
 
-    //HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-    $(document).click(function () {
+    $(document).click(function () { /* Closes the notification window when clicked anywhere in the page */
         $('#notifications').hide();
     });
 
-    $('#notifications').click(function () {
-        // DO NOTHING WHEN CONTAINER IS CLICKED.
+    $('#notifications').click(function () { /* Do nothing when notifications are clicked */
         return false;
     });
 
@@ -104,9 +104,10 @@ $(document).ready(function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
-    $("#themeToggle").on("click", function toggleTheme() {
-        var themecookie = getCookie("theme");
+    $("#themeToggle").on("click", function toggleTheme() { /* Adding the theme toggle function */
+        var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
         console.log(themecookie);
+        /* Checking the cookie value and setting the theme opposite to it */
         if (themecookie == "darktheme") {
             light();
         }
@@ -115,7 +116,7 @@ $(document).ready(function () {
         }
     });
 
-    function dark() {
+    function dark() { /* Changing everything to dark */
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#2d3035");
@@ -138,7 +139,7 @@ $(document).ready(function () {
         $(".profile-right-down").css("background-color", "#585858");
     }
 
-    function light() {
+    function light() { /* Changing everything to light */
         document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
@@ -161,13 +162,14 @@ $(document).ready(function () {
         $(".profile-right-down").css("background-color", "#f5f5f5");
     }
 
-    function getCookie(name) {
+    function getCookie(name) { /* Getting the desiered cookie value by its name */
         var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        var parts = value.split("; " + name + "="); /* Splitting it into parts to get the value */
+        if (parts.length == 2) return parts.pop().split(";").shift(); /* Returning the value of the cookie only */
     };
 
-    var themecookie = getCookie("theme");
+    var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
+    /* Checking the cookie value and setting the theme according to it */
     if (themecookie == "darktheme") {
         dark();
     } else if (themecookie == "lighttheme") {
@@ -577,9 +579,11 @@ $(document).ready(function () {
             });
         }
     });
+
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
     });
+
     function search_table(value) {
         var selected = $("#choice")
         .children("option:selected")
@@ -608,6 +612,7 @@ $(document).ready(function () {
             }
         });
     }
+
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var Eindex = $(this)
@@ -648,6 +653,7 @@ $(document).ready(function () {
             }
         });
     });
+
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
@@ -678,6 +684,7 @@ $(document).ready(function () {
             }
         });
     });
+
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
@@ -705,6 +712,7 @@ $(document).ready(function () {
             }
         });
     });
+
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
@@ -724,6 +732,7 @@ $(document).ready(function () {
             }
         });
     });
+
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
@@ -746,6 +755,7 @@ $(document).ready(function () {
     $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });
+
     function search_QCtable(value) {
         var selected = $("#choice")
         .children("option:selected")
@@ -848,10 +858,12 @@ $(document).ready(function () {
         }
     });
 
+    /* Function to submit an inquiry in FAQ page */
     $("#faqsubmit").on("click", function () {
+        /* Getting the subject and content data */
         var subject = $("#faqinputtext").val();
         var content = $("#faqtextarea").val();
-        if (subject == "") {
+        if (subject == "") { /* Conditions */
             popup(false, "Please enter the subject");
             return 0;
         } else if (content == "") {
@@ -931,8 +943,6 @@ $(document).ready(function () {
       });*/
 
     $("#submitbtn").click(function () {
-
-
         if (
             (document.getElementById("rdbtn1").checked ||
              document.getElementById("rdbtn2").checked) &&
@@ -947,13 +957,10 @@ $(document).ready(function () {
                 url: "../operations/getid.php",
                 data: { x: 1 },
                 success: function (data) {
-
                     sendnoti(data, "Letter Request Added Successfully");
                     sendmail(data, "Letter Added", "You Letter Request has been Added Successfully");
-
                 }
             });
-
         } else {
             popup(false, "you have an error completing your request");
             //  alert("you have an error completing your request");
@@ -968,7 +975,6 @@ $(document).ready(function () {
         } else if (document.getElementById("rdbtn4").checked) {
             salary = 0;
         }
-
         $.ajax({
             type: "POST",
             url: "../operations/addletter.php",
@@ -983,7 +989,6 @@ $(document).ready(function () {
                 loading(true);
             }
         });
-
     });
 
     //    $("#editLetterButton").click(function() {
@@ -1019,18 +1024,19 @@ $(document).ready(function () {
     //        });
     //    });
 
+    /* Function to search in FAQ */
     $("#searched").keyup(function () {
         //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
         //      alert("error: Enter something to search for!");
         //      return false;
         //    }
-        var searchedText = $("#searched").val();
-        var page = $("#faqdiv");
-        var pageText = page.html();
-        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, "");
-        if (searchedText != "") {
-            var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");
-            newHtml = newHtml.replace(theRegEx, "<span>$1</span>");
+        var searchedText = $("#searched").val(); /* Getting the searched word */
+        var page = $("#faqdiv"); /* Getting the page */
+        var pageText = page.html(); /* Getting the page content */
+        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, ""); /* Replacing spaces with spans */
+        if (searchedText != "") {  /* Conditions */
+            var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");  /* Getting the searched text in the whole page */
+            newHtml = newHtml.replace(theRegEx, "<span>$1</span>");  /* Re adding the page content with the searched text highlighted */
         }
         page.html(newHtml);
     });
@@ -1043,9 +1049,11 @@ $(document).ready(function () {
 
 
     /********************** Send notfications and mails **********************/
+    /* Function to send notification to all users on mass messaging */
     $("#notisendall").on("click", function () {
+        /* Setting the content */
         var data = $("#massnoti").val();
-        if (data == "") {
+        if (data == "") { /* Conditions */
             popup(false, "Please enter notification content");
             return 0;
         }
@@ -1066,10 +1074,12 @@ $(document).ready(function () {
         });
     });
 
+    /* Function to send notification to specific user on mass messaging */
     $("#notisendone").on("click", function () {
+        /* Setting the user ID and content */
         var id = $("#notione").val();
         var data = $("#massnoti").val();
-        if (id <= 0) {
+        if (id <= 0) { /* Conditions */
             popup(false, "Please choose a user from the list");
             return 0;
         } else if (data == "") {
@@ -1093,10 +1103,12 @@ $(document).ready(function () {
         });
     });
 
+    /* Function to send mail to all users on mass messaging */
     $("#mailsendall").on("click", function () {
+        /* Setting the mail subject and content */
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
-        if (mailsubject == "") {
+        if (mailsubject == "") { /* Conditions */
             popup(false, "Please enter mail subject");
             return 0;
         } else if (mailcontent == "") {
@@ -1120,11 +1132,13 @@ $(document).ready(function () {
         });
     });
 
+    /* Function to send mail to specific user on mass messaging */
     $("#mailsendone").on("click", function () {
+        /* Setting the mail subject and content */
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
         var email = $("#mailone").val();
-        if (email <= 0) {
+        if (email <= 0) { /* Conditions */
             popup(false, "Please choose a user from the list");
             return 0;
         } else if (mailsubject == "") {
@@ -1151,6 +1165,7 @@ $(document).ready(function () {
         });
     });
 
+    /* Function to send mails to users */
     function sendmail(userid, mailsubject, mailcontent) {
         $.ajax({
             type: "POST",
@@ -1162,6 +1177,7 @@ $(document).ready(function () {
         });
     }
 
+    /* Function to send notifications to users */
     function sendnoti(userid, noticontent) {
         $.ajax({
             type: "POST",
@@ -1173,6 +1189,7 @@ $(document).ready(function () {
         });
     }
 
+    /* Function to set the notifications counter */
     function setcounter1(){
         $.ajax({
             type: "POST",
@@ -1180,12 +1197,14 @@ $(document).ready(function () {
             data: "type=setnoticounter",
             success: function (html) {
                 $('#noti_Counter').text(html);
-                if (html > "0") {
+                if (html > "0") { /* If there is data, show the counter. */
                     $('#noti_Counter').css("display", "inline-block");
                 }
             },
         });
     }
+
+    /* Function to set the users profile edits counter */
     function setcounter2(){
         $.ajax({
             type: "POST",
@@ -1193,12 +1212,14 @@ $(document).ready(function () {
             data: "type=setprofilecounter",
             success: function (html) {
                 $('#profile_Counter').text(html);
-                if (html > "0") {
+                if (html > "0") { /* If there is data, show the counter. */
                     $('#profile_Counter').css("display", "inline-block");
                 }
             },
         });
     }
+
+    /* Function to set the users letter requests counter */
     function setcounter3(){
         $.ajax({
             type: "POST",
@@ -1206,12 +1227,14 @@ $(document).ready(function () {
             data: "type=setusrsletterrequestscounter",
             success: function (html) {
                 $('#usrsletterrequests_Counter').text(html);
-                if (html > "0") {
+                if (html > "0") { /* If there is data, show the counter. */
                     $('#usrsletterrequests_Counter').css("display", "inline-block");
                 }
             },
         });
     }
+
+    /* Function to set the own letter requests counter */
     function setcounter4(){
         $.ajax({
             type: "POST",
@@ -1219,12 +1242,14 @@ $(document).ready(function () {
             data: "type=setownletterrequestscounter",
             success: function (html) {
                 $('#ownletterrequests_Counter').text(html);
-                if (html > "0") {
+                if (html > "0") { /* If there is data, show the counter. */
                     $('#ownletterrequests_Counter').css("display", "inline-block");
                 }
             },
         });
     }
+
+    /* Function to set the users counter */
     function setcounter5(){
         $.ajax({
             type: "POST",
@@ -1232,13 +1257,14 @@ $(document).ready(function () {
             data: "type=setusrscounter",
             success: function (html) {
                 $('#usrs_Counter').text(html);
-                if (html > "0") {
+                if (html > "0") { /* If there is data, show the counter. */
                     $('#usrs_Counter').css("display", "inline-block");
                 }
             },
         });
     }
 
+    /* Function to set all the counters */
     function setcounters(){
         setcounter1();
         setcounter2();
@@ -1247,54 +1273,55 @@ $(document).ready(function () {
         setcounter5();
     }
 
+    /* Function to get the notifications */
     function getnotifications(){
         $.ajax({
             type: "POST",
             url: "../operations/notiop.php",
             data: "type=setnotidata",
             success: function (html) {
-                if (html != '') {
+                if (html != '') { /* Print the notifications if not empty */
                     $('#notidata').html(html);
-                } else {
+                } else { /* Print this message if empty */
                     $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
                         .css('text-align','center');
-                    $('#markAll').css('display','none');
+                    $('#markAll').css('display','none'); /* Hide mark all button if no notifications */
                 }
             },
         });
     }
 
+    /* Notifications Mark All function */
     $("#markAll").on("click", function () {
         $.ajax({
             type: "POST",
             url: "../operations/notiop.php",
             data: "&type=markread",
         });
-        $('#noti_Counter').css('display','none');
+        $('#noti_Counter').css('display','none'); /* Hiding the counter when markall is clicked */
         $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
-            .css('text-align','center');
-        $('#markAll').css('display','none');
+            .css('text-align','center'); /* Replacing the data when markall is clicked */
+        $('#markAll').css('display','none'); /* Hiding the markall button when markall is clicked */
     });
 
-    $("#add_letter").on("click", function () {
+    $("#add_letter").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/AddNewLetter.php');;
     });
 
-    $("#faq_edit").on("click", function () {
+    $("#faq_edit").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/viewFAQ.php');
     });
 
-    $("#faq_add").on("click", function () {
+    $("#faq_add").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/AddQuestion.php');
     });
 
-    $("#letter_edit").on("click", function () {
+    $("#letter_edit").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/allLetters.php');
     });
 
 
     /************* ADD NEW LETTER ******************/
-
 
     $("#letterBodyArea").on('keyup',function(){
         var text= document.getElementById('letterBodyArea').value;
@@ -1328,7 +1355,6 @@ $(document).ready(function () {
             text=text.replace('START',"(.START.) ");
             document.getElementById('letterBodyArea').value=text;
         }
-
     });
 
     $("#AddLetterbtn").on("click", function () {
@@ -1350,9 +1376,6 @@ $(document).ready(function () {
         }
     });
 
-
-
-
     /**************** LetterRequests ********************/
 
     $(".letterstd").on("click", function(){
@@ -1360,14 +1383,10 @@ $(document).ready(function () {
             url: "view_employee.php",
             data:'id='+this.id,
             type:"POST",
-
             success:function(data)
             {
                 $("#body").html(data);
-
-
             }
         });
     });
-
 });

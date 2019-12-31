@@ -755,7 +755,7 @@ box-sizing: content-box;
     cursor: pointer;
 }
 
-#submitbtn,
+#applyForLetterBtn,
 #editLetterButton,
 #updateLetter {
     width: 25%;

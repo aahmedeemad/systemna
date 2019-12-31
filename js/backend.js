@@ -99,7 +99,7 @@ $(document).ready(function () {
     function popup(head, body) {
         head = head == true ? "Success" : "Failed";
         $(".popup-notification h2").text(head);
-        $(".popup-content").text(body);
+        $(".popup-content").html(body);
         $(".modal").css("display", "block");
     }
 
@@ -885,51 +885,48 @@ $(document).ready(function () {
           }
       });*/
 
-    $("#submitbtn").click(function () {
+    
+    /******************************************************************************************************************
+    * MakeLetter.php
+    * apply button
+    * revised by Mark
+    ******************************************************************************************************************/
+    $("#applyForLetterBtn").click(function () {
+        var salary;
+        var priority;
+        var type_name;
+        var id = $("#id").val();
         if (
-            (document.getElementById("rdbtn1").checked ||
-             document.getElementById("rdbtn2").checked) &&
-            (document.getElementById("rdbtn3").checked ||
-             document.getElementById("rdbtn4").checked) &&
-            !document.getElementsByClassName("Letterbuttonn").checked
+            ($('#rdbtn1').is(':checked') || $('#rdbtn2').is(':checked')) &&
+            ($('#rdbtn3').is(':checked') || $('#rdbtn4').is(':checked')) &&
+            $("input[name=Letterbuttonn]:checked")
         ) {
-            popup(true, "your request has been placed successfully");
+            if ($('#rdbtn1').is(':checked')) { priority = 1; }
+            else if ($('#rdbtn2').is(':checked')) { priority = 0; }
+            
+            if ($('#rdbtn3').is(':checked')) { salary = 1; }
+            else if ($('#rdbtn4').is(':checked')) { salary = 0; }
+            
             type_name = $("input[name=Letterbuttonn]:checked").val();
-            jQuery.ajax({
+            $.ajax({
                 type: "POST",
-                url: "../operations/getid.php",
-                data: { x: 1 },
-                success: function (data) {
-                    sendnoti(data, "Letter Request Added Successfully!");
-                    sendmail(data, "Letter Added", "You Letter Request has been Added Successfully!");
+                url: "../operations/addletter.php",
+                data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
+                success: function (html) {
+                    loading(false);
+                    if (html == "true")
+                        popup(true, "Letter Added Successfully");
+                    else 
+                        popup(false, html);
+                    sendnoti(id, "Letter Request Added Successfully!");
+                    sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
+                },
+                beforeSend: function () {
+                    loading(true);
                 }
             });
-        } else {
-            popup(false, "you have an error completing your request");
-            //  alert("you have an error completing your request");
-        }
-        if (document.getElementById("rdbtn1").checked) {
-            priority = 1;
-        } else if (document.getElementById("rdbtn2").checked) {
-            priority = 0;
-        }
-        if (document.getElementById("rdbtn3").checked) {
-            salary = 1;
-        } else if (document.getElementById("rdbtn4").checked) {
-            salary = 0;
-        }
-        $.ajax({
-            type: "POST",
-            url: "../operations/addletter.php",
-            data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
-            success: function (html) {
-                loading(false);
-                popup(true, "Letter Added Successfully");
-            },
-            beforeSend: function () {
-                loading(true);
-            }
-        });
+        } else { popup(false, "You have to select type, salary and priority"); }
+
     });
 
     //    $("#editLetterButton").click(function() {

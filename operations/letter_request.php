@@ -15,5 +15,5 @@ if(isset($_GET['id'])){
     $sql="insert into notifications (status,userid,notidata) values ('0','$userid','An action has been made to a letter request.')";
     $DB->query($sql);
     $DB->execute();
-  header("Location: ../pages/letter_requests.php");
+  header("Location: ../pages/letterRequests.php");
 }

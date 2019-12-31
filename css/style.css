@@ -365,7 +365,7 @@ th {
 .profile div > i.fas {
     box-sizing: content-box;
     color: #daa520;
-    background-color: #e0e0e0;
+/*    background-color: #e0e0e0;*/
     padding: 10px;
     margin: 10px;
     border-radius: 50%;

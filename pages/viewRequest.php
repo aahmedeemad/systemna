@@ -22,13 +22,13 @@ include "../template/header.php";
     </tr>
 
     <?php
-    function check($c){
+    /*function check($c){
         if($c==null)
             $c='-';
         else if($c=='')
             $c='-';
         return $c;
-    }
+    }*/
 
     $sql="  SELECT *
     FROM requests INNER join requests_types
@@ -47,9 +47,9 @@ include "../template/header.php";
                 $y++;
                 $id=$x[$i]->Request_id;
                 $emp_id=$_SESSION['id'];
-                $priority=check($x[$i]->priority);
-                $salary=check($x[$i]->salary);
-                $date=check($x[$i]->date);
+                $priority=$x[$i]->priority;
+                $salary=$x[$i]->salary;
+                $date=$x[$i]->date;
                 $type_name=$x[$i]->type_name;
 
 
@@ -84,18 +84,7 @@ include "../template/header.php";
                 echo "<td>{$type_name}</td>";
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
-                /*
 
-    if($x[$i]->priority==1){
-    echo "<td>Urgent</td>";}
-    else{
-    echo "<td>Normal</td>";}
-
-    if($x[$i]->salary==0){
-    echo "<td>With Salary</td>";}
-    else{
-    echo "<td>Without Salary</td>";}
-    */
                 echo "<td>$date</td>";
                 if($x[$i]->Status==1){
     ?>
@@ -124,11 +113,7 @@ include "../template/header.php";
                     echo "</tr>";
                 }
             }
-            /*else
-                 echo "<td></td>";
-                  echo "<td></td>";
-*/
-
+          
         }
         else {
             echo"<tr><td colspan=9>You have no requests for now ! </td></tr>";

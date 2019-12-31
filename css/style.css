@@ -754,7 +754,28 @@ box-sizing: content-box;
     text-decoration: underline;
     background-color: #daa520;
 }
-/* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
+.vertical {
+    display: block;
+    border-left: 0.5vw solid #daa520;
+    height: 100vh;
+}
+.horizontal {
+    display: none;
+    border-bottom: 1vw solid #daa520;
+    width: 99.5vw;
+}
+@media screen and (max-width: 800px) {
+    .vertical {
+        display: none;
+    }
+    .horizontal {
+        display: block;
+        padding-top: 5em;
+    }
+    .massmsgfield {
+        width: 80%;
+    }
+}
 #notifications {
     display: none;
     position: absolute;

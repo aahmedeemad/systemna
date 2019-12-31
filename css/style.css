@@ -51,8 +51,8 @@
 /* Side Nav */
 
 .sidenav-custom {
-    display: block;
-    width: 275px;
+    display: none;
+    width: 285px;
     background-color: white;
     padding-top: 1.5rem;
     border-right: 1px solid black;

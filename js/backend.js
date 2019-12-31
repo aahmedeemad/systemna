@@ -671,12 +671,14 @@ $(document).ready(function () {
                         .find("tr:eq(" + Eindex + ")")
                         .find("td:eq(" + otherButton + ")")
                         .html("");
-                    if (thisBtn.val() == "+HR")
+                    if (thisBtn.val() == "+HR") {
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!");
                         sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
-                    else if (thisBtn.val() == "+QC")
+                    }
+                    else if (thisBtn.val() == "+QC") {
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!");
                         sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
+                    }
                 }
             }
         });

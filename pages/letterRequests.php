@@ -22,9 +22,9 @@ include "../template/header.php";
     </tr>
 
     <?php
-
     $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary
-        FROM requests r ,employee e, requests_types rt where e.id=r.emp_id and r.Type_name=rt.Name order by r.date asc , r.priority desc ";
+        FROM requests r ,employee e, requests_types rt 
+        WHERE e.id=r.emp_id AND r.Type_name=rt.Name AND e.id <> " . $_SESSION['id'] . " ORDER BY r.date asc, r.priority desc";
     try
     {
 

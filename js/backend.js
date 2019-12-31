@@ -3,6 +3,7 @@ $(document).ready(function () {
     setcounters(); /* Calling the function to set the numbers of counters on site starting*/
     setInterval(setcounters, 1000); /* Calling the function to update the numbers of counters every 10 seconds */
     getnotifications(); /* Calling the function to get the notifications data from DB */
+    setInterval(getnotifications, 1000); /* Calling the function to update the content of notifications every 10 seconds */
     sendcalmails(); /* Calling the function to send holiday emails */
 
     function sendcalmails(){ /* A function to send holiday emails */

@@ -30,7 +30,7 @@ include "../template/header.php";
     //        return $c;
     //    }
 
-    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary 
+    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary
         FROM requests r ,employee e, requests_types rt where e.id=r.emp_id and r.Type_name=rt.Name order by r.date asc , r.priority desc ";
     try
     {
@@ -83,7 +83,7 @@ include "../template/header.php";
 
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
-                /*              
+                /*
 
                 if($x[$i]->priority==1){
                         echo "<td>Urgent</td>";
@@ -104,7 +104,7 @@ include "../template/header.php";
 
     <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:#39d029;">accepted</p></td>
 
-    <?php } else if ($x[$i]->Status==0){ ?>     
+    <?php } else if ($x[$i]->Status==0){ ?>
 
     <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:red;">Rejected</p></td>
 
@@ -131,6 +131,7 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        error_log("Error while using page letter Requests");
     }
 
     ?>
@@ -173,7 +174,7 @@ include "../template/header.php";
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
 <script>
-   
+
 </script>
 -->
 <?php include "../template/footer.php"; ?>

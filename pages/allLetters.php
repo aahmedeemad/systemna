@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "SYSTEMNA | Letters";
-include "../template/header.php"; 
+include "../template/header.php";
 ?>
 <?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
 
@@ -63,6 +63,7 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        error_log("Error while trying to open page all letters");
     }
 
     ?>

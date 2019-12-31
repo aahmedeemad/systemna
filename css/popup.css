@@ -1,5 +1,5 @@
 /* The Modal (background) */
-.modal {
+.modal , .modalConfirmation {
     display: none;
     position: fixed;
     z-index: 1;
@@ -13,7 +13,8 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.popup-notification 
+.popup-notification ,
+.confirmation-notification
 {
     margin: 20px auto;
     padding: 20px;
@@ -23,13 +24,14 @@
     transition: all 5s step-start;
     background-color: black;
 }  
-.popup-notification h2 
+.popup-notification h2 ,
+.confirmation-notification h2
 {
     margin-top: 0;
     color:gold;
     text-align: center;
 }
-.popup-notification .popup-close 
+.popup-notification .popup-close
 {
     position: absolute;
     top: 20px;
@@ -40,18 +42,20 @@
     text-decoration: none;
     color: #333;
 }
-.popup-notification .popup-close:hover 
+.popup-notification .popup-close:hover ,
 {
     color:gold;
 }
-.popup-notification .popup-content 
+.popup-notification .popup-content,
+.confirmation-notification .confirmation-content
 {
     text-align: center;
     max-height: 30%;
     overflow: auto;
     color: whitesmoke;
 }
-.popup-notification .popup-close:target 
+.popup-notification .popup-close:target, 
+.confirmation-notification .confirmation-close:target 
 {
     top:-100%;
     transition:all 5s step-end;
@@ -60,7 +64,8 @@
     .align{
         width: 80%;
     }
-    .popup-notification{
+    .popup-notification,
+    .confirmation-notification{
         width: 70%;
     }
 }

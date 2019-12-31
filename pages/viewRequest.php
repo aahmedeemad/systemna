@@ -12,7 +12,7 @@ include "../template/header.php";
     <tr id='must'>
         <th>#</th>
         <th>Request ID</th>
-<!--        <th>Employee ID</th>-->
+        <!--        <th>Employee ID</th>-->
         <th>Status</th>
         <th>Applied for Letter</th>
         <th>Priority</th>
@@ -67,12 +67,11 @@ include "../template/header.php";
                     $BoolPriority ="Urgent";
                 }
                 else $BoolPriority="Normal";
-
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
 
                 echo "<td>{$id}</td>";
-//                echo "<td>$emp_id</td>";
+                //                echo "<td>$emp_id</td>";
 
 
                 if($x[$i]->Status==1){
@@ -101,7 +100,7 @@ include "../template/header.php";
                 if($x[$i]->Status==1){
     ?>
 
-    <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">view letter</button></td>
+    <td colspan="2"><button id='<?php echo $x[$i]->type_name;?>' onclick="showdata(this.id,'<?php echo $x[$i]->salary;?>' ,'<?php echo $x[$i]->date;?>')" class="btn btn-info btn-sml" data-toggle="modal" data-target='#exampleModalLong'>view letter</button></td>
     <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">get by mail</button></td>
 
 
@@ -116,14 +115,13 @@ include "../template/header.php";
                 else   {
     ?>
 
-    <td colspan="2"><a type='submit' onclick="return confirm('Delete this Request?')"
-           href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
+    <td colspan="2"><a href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
 
-    <td colspan="2"><a type='submit' onclick="return confirm('Edit this Request?')"
-           href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
-    </tr>
+    <td colspan="2"><a href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
 
-<?php
+
+    <?php
+                    echo "</tr>";
                 }
             }
             /*else
@@ -141,38 +139,59 @@ include "../template/header.php";
         $_SESSION['error'] = 'error in sql';
     }
 
-?>
+    ?>
 </table>
 
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
+
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" id="exampleModalLong" role="dialog">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">letter content</h4>
+                <h5 class="modal-title">Letter View</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" id="body">
-                <h1  align='center'>astkly for fruit scented astyks </h1> <h2 align='center' > A new generation of asatyk </h2> <h3 align='center'> we make it you smell it. </h3> <br> this is an hr letter for an emplyee. <br> cheers.
+                <div>
+                    <p>sorry something went wrong</p>
+                </div>
             </div>
             <div class="modal-footer">
-                <div type="button" class="btn btn-default" data-dismiss="modal" onclick="Export2Doc('body')">download</div>
+                <button type="button" class="btn btn-primary" onclick="Export2Doc('body')">download</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
 
-<script src="../js/bootstrap.min.js"></script>
+<script>
+    function showdata(id,salary,date){
+        jQuery.ajax({
+            url: "view_letter.php",
+            data:'id='+id+'&salary='+salary+'&date='+date,
+            type:"POST",
 
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+            success:function(data)
+            {
+                $("#body").html(data);
+
+
+            }
+        });
+    }
+</script>
+
+
 <script>
 
 
     function Export2Doc(element, filename = ''){
+
         var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
         var postHtml = "</body></html>";
         var html = preHtml+document.getElementById(element).innerHTML+postHtml;
@@ -207,5 +226,27 @@ include "../template/header.php";
 
         document.body.removeChild(downloadLink);
     }
+    /*
+    function pdf(){
+        var doc = new jsPDF();
+        var elementHTML = document.getElementById('body').innerHTML;
+        var specialElementHandlers = {
+            '#elementH': function (element, renderer) {
+                return true;
+            }
+        };
+        doc.fromHTML(elementHTML, 15, 15, {
+            'width': 170,   
+            'elementHandlers': specialElementHandlers
+        });
+
+        // Save the PDF
+        doc.save('sample-document.pdf');
+    }*/
 </script>
+
+<script src="../js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 <?php include "../template/footer.php"; ?>

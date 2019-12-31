@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-    $sql="INSERT INTO update_info1 VALUES(NULL, :id , :oldvalue , :value, :type, 2)" ;
+    $sql="INSERT INTO update_info VALUES(NULL, :id , :oldvalue , :value, :type, 2)" ;
     $DB->query($sql);
     $DB->bind(':id',$_POST['id']);
     $DB->bind(':oldvalue',$_POST['oldvalue']);

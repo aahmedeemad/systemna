@@ -1,30 +1,29 @@
 <?php
-ob_start();
 $pageTitle = "SYSTEMNA | All Users";
 include "../template/header.php"; 
 ?>
 <?php if($_SESSION['type']!='admin')  header('Location:MakeLetter.php'); ?>
 <style type="text/css">
     @media only screen and (max-width: 1200px) {
-    #Display,
-    #tblRequests {
-        display: block;
-        overflow: auto;
+        #Display,
+        #tblRequests {
+            display: block;
+            overflow: auto;
+        }
     }
-}
 </style>
 <br>
 <div style="text-align: center;">
-<h1 style="font-family: sans-serif;">Dashboard</h1>
-<input type='text' id='tblsearch' class = 'tblsearch' placeholder='Search'>
-<select id='choice' class='tblselect'>
-    <option value="email">Email</option>
-    <option value="ssn">SSN</option>
-    <option value="username">UserName</option>
-</select>
+    <h1 style="font-family: sans-serif;">Dashboard</h1>
+    <input type='text' id='tblsearch' class = 'tblsearch' placeholder='Search'>
+    <select id='choice' class='tblselect'>
+        <option value="email">Email</option>
+        <option value="ssn">SSN</option>
+        <option value="username">UserName</option>
+    </select>
 </div>
 <script>/*$("#tblsearch").keyup(function() {
-    
+
     //search_table($(this).val());
     var searchFor = $(this).val();
     var selected = $("#choice")
@@ -52,6 +51,7 @@ include "../template/header.php";
         <th>Add HR</th>
         <th>Delete</th>
         <th>Profile</th>
+        <th>Doc</th>
         <th>Status</th>
     </tr>
     <?php
@@ -66,15 +66,16 @@ include "../template/header.php";
     $sql="
         SELECT *
         FROM employee left join add_info
-        on emp_id=id where employee.active = 1 AND privilege = 'user' AND accepted <> 2
-              ";
+        on emp_id=id where employee.active = 1 AND privilege = 'user' AND active = 1 AND accepted <> 2
+        ";
     try
     {
         $DB->query($sql);
         $DB->execute();
         $y=0;
         if($DB->numRows()>0)
-        {   $x=$DB->getdata();
+        {   
+            $x=$DB->getdata();
             for($i=0;$i<$DB->numRows();$i++)
             {
                 //$x=$DB->getdata();
@@ -103,27 +104,30 @@ include "../template/header.php";
                 <td>{$email}</td>
                 <td>{$ssn}</td>
                 <td><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
+                if($x[$i]->accepted == 1)
+                {
     ?>
-    <td><input type='submit'
-           href="" class='modify' value ='+QC'></td>
-    <td><input type='submit'
-           href="" class='modify' value ='+HR'></td>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-           href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
-    
-<?php
-if($x[$i]->accepted == 1){
- echo "<td><a type='submit' 
- href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
- echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
-}
-else if($x[$i]->accepted == 0)
-{
- echo "<td></td>";
- echo "<td><a type='submit' id='button-rejected'>Rejected</a></td>";
-}
+    <td><input type='submit' class='modify' value ='+QC'></td>
+    <td><input type='submit' class='modify' value ='+HR'></td>
+    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
 
-echo "</tr>";
+    <?php
+
+                    echo "<td><a href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
+                    echo "<td><a href='../pages/pn.php?id={$x[$i]->id}' class='EditBtn'>Doc</a></td>";
+                    echo "<td><a id='button-accepted'>Accepted</a></td>";
+                }
+                else if($x[$i]->accepted == 0)
+                {
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td><a id='button-rejected'>Rejected</a></td>";
+                }
+
+                echo "</tr>";
             }
         }
     }
@@ -132,10 +136,8 @@ echo "</tr>";
         $_SESSION['error'] = 'error in sql';
     }
 
-?>
+    ?>
 </table>
-</div>
 
 <?php
-ob_end_flush();
- include "../template/footer.php"; ?>
+include "../template/footer.php"; ?>

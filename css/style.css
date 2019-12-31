@@ -1,8 +1,8 @@
 * {
     margin: 0px;
     font-family: sans-serif;
-    box-sizing: content-box;
 }
+
 .container-custom {
     display: flex;
     flex-direction: column;
@@ -28,10 +28,11 @@
 .navbar-toggle {
     cursor: pointer;
     margin-left: 8px;
+    margin-right: 15px;
 }
 
 .logo-name {
-    margin-left: 20px;
+    margin-left: 5px;
     text-transform: uppercase;
 }
 
@@ -50,7 +51,7 @@
 /* Side Nav */
 
 .sidenav-custom {
-    display: none;
+    display: block;
     width: 275px;
     background-color: white;
     padding-top: 1.5rem;
@@ -121,7 +122,7 @@
     width: 1em;
     text-align: center;
     font-size: 1.3rem;
-    padding-right: 20px;
+    padding-right: 35px;
     margin-right: 20px;
     border-right: 1px solid grey;
 }
@@ -131,15 +132,16 @@
     .sidenav-custom .sidenav-header .avatar {
         margin-left: 0;
     }
-    
+
     .sidenav-custom {
         width: 100px;
         overflow-y: auto;
-
     }
+
     .sidenav-custom .sidenav-button .button-text {
         display: block;
     }
+
     .sidenav-custom .sidenav-button .icon-button {
         padding-left: 10px;
         border-right: none;
@@ -157,6 +159,15 @@
     overflow-x: hidden;
 }
 
+#footer {
+    display: inline-block;
+    font-size: 0.7em;
+    width: 100%;
+    padding: 1em;
+    z-index: 1;
+    float: none;
+}
+
 /* All Users Table Content */
 
 #Dashboard {
@@ -164,26 +175,31 @@
     top: 200px;
     right: -23%;
 }
+
 td,
 th {
     text-align: center;
     padding: 11px 7px;
 }
+
 #Display tr,
 #tblRequests tr {
     color: black;
     border: 1px solid black;
 }
+
 #Display tr:nth-child(1),
 #tblRequests tr:nth-child(1) {
     background: #DAA520;
     color: black;
 }
+
 #Display tr:nth-child(even),
 #tblRequests tr:nth-child(even) {
     background: #e8e8e8;
     color: black;
 }
+
 .EditBtn,
 .EditBtn1,
 .modify {
@@ -198,6 +214,7 @@ th {
     margin: 4px 2px;
     cursor: pointer;
 }
+
 #button-accepted,
 .accept,
 .user-accept {
@@ -211,9 +228,8 @@ th {
   font-size: 0.9em;
   margin: 4px 2px;
   cursor: pointer;
-  width: 80px;
-
 }
+
 #button-rejected,
 .reject,
 .user-reject {
@@ -227,8 +243,8 @@ th {
   font-size: 0.9em;
   margin: 4px 2px;
   cursor: pointer;
-  width: 70px;
 }
+
 #button-pending {
     background-color: #fbff00;
     border: none;
@@ -253,6 +269,7 @@ th {
     position: relative;
     display: table;
 }
+
 @media only screen and (max-width: 900px) {
     #Display,
     #tblRequests {
@@ -260,6 +277,7 @@ th {
         overflow: auto;
     }
 }
+
 .input {
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
@@ -273,6 +291,7 @@ th {
     padding: 2px 3px;
     width: 100px;
 }
+
 .wr {
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
@@ -284,6 +303,7 @@ th {
     padding: 2px 3px;
     width: 100px;
 }
+
 .tblsearch,
 .tblselect {
     width: 40vw;
@@ -295,9 +315,11 @@ th {
     margin-top: 2vh;
     display: inline;
 }
+
 .tblsearch:focus {
     border-color: #3971ed !important;
 }
+
 .tblsearch:hover {
     border-color: #cecece;
 }
@@ -324,7 +346,7 @@ th {
 
 .profile-background {
     display: block;
-    width: 85%;
+    width: 99%;
     height: auto;
     max-height: 250px;
     border-radius: 20px;
@@ -338,7 +360,7 @@ th {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 85%;
+    width: 99%;
     height: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -359,7 +381,7 @@ th {
 .profile div > i.fas {
     box-sizing: content-box;
     color: #daa520;
-    background-color: #e0e0e0;
+/*    background-color: #e0e0e0;*/
     padding: 10px;
     margin: 10px;
     border-radius: 50%;
@@ -370,7 +392,7 @@ th {
     font-size: 1.2rem;
     margin-top: -10px;
     padding: 12px;
-    background-color: #e0e0e0;
+/*    background-color: #e0e0e0;*/
     border-radius: 50%;
     cursor: pointer;
 }
@@ -484,6 +506,7 @@ box-sizing: content-box;
 .hidden {
     display: none !important ;
 }
+
 .profile .profile-left .user-position {
     font-size: 1.3rem;
     font-weight: bold;
@@ -543,21 +566,22 @@ box-sizing: content-box;
     .profile .profile-left .p-image {
         right: 15%;
     }
-    .askus #faqtextarea {
-        margin-right: 0.8em;
-    }
+
     .sidenav-custom .sidenav-header {
         padding-bottom: 0;
     }
+
     .sidenav-custom .sidenav-button a {
         flex-direction: column;
         text-align: center;
         font-size: 0.7em;
     }
+
     .sidenav-custom .sidenav-button .icon-button {
         padding: 0;
         margin-left: 1rem;
     }
+
     .stextinput {
         margin-top: 0.5em;
     }
@@ -569,6 +593,7 @@ box-sizing: content-box;
     display: inline;
     width: 45%;
 }
+
 .askus {
     float: right;
     display: inline;
@@ -579,39 +604,51 @@ box-sizing: content-box;
     padding: 1em;
     margin: 0em 1em 1em 1em;
 }
+
 @media screen and (max-width: 800px) {
     .faqdiv {
         width: 100%;
         display: block;
         padding: 1vw;
     }
+
     .askus {
         width: 80%;
         display: block;
         padding-right: 1vw;
     }
+
+    .askus #faqtextarea {
+        margin-right: 0.8em;
+    }
 }
+
 #searched {
     width: 60%;
 }
+
 #submits {
     width: 20%;
 }
+
 .askus #faqinputtext {
     width: 95%;
-    padding: 1em 2em;
+    padding: 1em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .askus #faqtextarea {
     width: 95%;
+    padding: 1em;
     margin: 0.8em 0;
     border: 0.1em sloid #ccc;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .askus #faqsubmit {
     width: 75%;
     background-color: #daa520;
@@ -634,6 +671,7 @@ box-sizing: content-box;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .massmsgsendbtn {
     background-color: #daa520;
     color: white;
@@ -644,6 +682,7 @@ box-sizing: content-box;
     text-transform: uppercase;
     font-size: 0.8em;
 }
+
 .massmsgdrpdwn{
     width: 30%;
     padding: 0.1em;
@@ -666,8 +705,9 @@ box-sizing: content-box;
     border-radius: 4px;
     box-sizing: border-box;
 }
-#btn1,
-#btn2 {
+
+#faqaddques,
+#AddLetterbtn {
     width: 99%;
     background-color: #daa520;
     color: white;
@@ -678,15 +718,18 @@ box-sizing: content-box;
     cursor: pointer;
     align-content: center;
 }
+
 #column {
     float: left;
     width: 35%;
     padding: 10px;
     height: 200px;
 }
+
 #optionsform {
     float: left;
 }
+
 .Letterbutton {
     background-color: #f0e68c;
     border: none;
@@ -698,6 +741,7 @@ box-sizing: content-box;
     margin: 4px 2px;
     cursor: pointer;
 }
+
 .Letterbutton1 {
     background-color: #f1c40f;
     border: none;
@@ -709,6 +753,7 @@ box-sizing: content-box;
     margin: 4px 2px;
     cursor: pointer;
 }
+
 #submitbtn,
 #editLetterButton,
 #updateLetter {
@@ -721,11 +766,13 @@ box-sizing: content-box;
     border-radius: 2px;
     cursor: pointer;
 }
+
 .Letterdiv {
     float: left;
     display: inline-block;
     width: 100%;
 }
+
 .Priorityform {
     float: left;
     display: inline-block;
@@ -735,6 +782,7 @@ box-sizing: content-box;
     */
     width: 15%;
 }
+
 .stextinput {
     float: right;
     margin-right: 1.7em;
@@ -743,47 +791,79 @@ box-sizing: content-box;
     border: 0.2em solid #daa520;
     border-radius: 0.5em;
 }
+
 #faqdiv span {
     text-decoration: underline;
     background-color: #daa520;
 }
-/* THE NOTIFICAIONS WINDOW. THIS REMAINS HIDDEN WHEN THE PAGE LOADS. */
+
+/* Style for vertical and horizontal lines used in mass messaging */
+.vertical {
+    display: block;
+    border-left: 0.5vw solid #daa520;
+    height: 100vh;
+}
+
+.horizontal {
+    display: none;
+    border-bottom: 1vw solid #daa520;
+    width: 99.5vw;
+}
+
+@media screen and (max-width: 800px) {
+    .vertical {
+        display: none;
+    }
+
+    .horizontal {
+        display: block;
+        padding-top: 5em;
+    }
+    
+    .massmsgfield {
+        width: 80%;
+    }
+}
+
+/* Notifications window*/
 #notifications {
     display: none;
-    width: 40vw;
     position: absolute;
     background: #fff;
     border: solid 0.1em #daa520;
     border-radius: 0.2em;
-    margin-left: 2em;
+    margin-left: 1em;
     z-index: 1;
-    color: black !important;
+    width: 30vw;
 }
+
 #notidata {
     cursor: default;
     font-size: 100%;
     padding: 0.6em;
-    overflow-y: auto;
     overflow-x: hidden;
-    button: 1em;
+    overflow-y: auto;
+    height: 40vh;
 }
+
 #markAll {
-    background: #f6f7f8;
     font-size: 0.7em !important;
     font-weight: bold;
     border-top: solid 0.1em #daa520;
     text-align: center !important;
-    color: black !important;
     padding: 0.7em !important;
-    background-color: white !important;
     z-index: 1 !important;
 }
+
 #markAll:hover {
     color: #daa520 !important;
     text-decoration: underline !important;
+    cursor: pointer;
 }
+
+/* Counters */
 .counter {
-    display: inline-block;
+    display: none;
     background: #e1141e;
     color: #fff;
     font-size: 0.8em;
@@ -792,6 +872,8 @@ box-sizing: content-box;
     border-radius: 0.2em;
     z-index: 1;
 }
+
+/* Admin's edit button in pages top*/
 .pages_edit {
     display: inline-block;
     top: 0;
@@ -812,11 +894,13 @@ box-sizing: content-box;
     border-bottom-right-radius: 0.4em;
     border-bottom-left-radius: 0.4em;
 }
+
 #columnAddRequest {
     background-color: #f0e68c;
     border: none;
-    width: 100%;
+    width: 70%;
     height: 120px;
+display: inline-block;
     text-align: center;
     font-size: 19px;
     cursor: pointer;
@@ -864,4 +948,31 @@ box-sizing: content-box;
     border-radius: 50%;
     border: 3px solid #daa520;
     cursor: pointer;
+}
+
+/*********** Bony's QC Table ***********/
+#qcsubmit
+{
+    background:#DAA520;
+    padding: 2px 2px;
+    border: 2px solid rgb(167, 163, 145);
+    border-color: #DAA520;
+    border-radius: 5px;
+    color: white;
+    font-weight:700;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left:20px;
+
+}
+
+#qcsubmit:hover
+{
+    background:black;
+    color: #DAA520;
+}
+
+#qccomment
+{
+    margin-left:auto;
 }

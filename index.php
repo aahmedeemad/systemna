@@ -1,17 +1,17 @@
     <html>
     <head>
-        <title>Welcome to SYSTEMNA</title>
-        <link rel="icon" href="template/logo.png">
+        <title>Welcome to SYSTEMNA</title> <!-- Setting the title -->
+        <link rel="icon" href="template/logo.png"> <!-- Adding the tab icon -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             .vertical {
                 display: block;
-                border-left: 0.5vw solid black;
+                border-left: 0.5vw solid #DAA520;
                 height: 99.5vh;
             }
             .horizontal {
                 display: none;
-                border-bottom: 1vw solid black;
+                border-bottom: 1vw solid #DAA520;
                 width: 99.5vw;
             }
             .login {
@@ -40,13 +40,11 @@
             }
         </style>
     </head>
-    
     <body>
-    
         <table style="width: 100%; text-align: center;">
             <tr>
                 <td>
-                    <div class="paddingview">
+                    <div class="paddingview"> <!-- Adding the logo, mission & vision. -->
                         <img src="template/logo.png" alt="SYSTEMNA Logo" style="align:center; width: 200px; height:200px;">
                         <h1 style="font-size: 3em;">Welcome to <strong style="color: #DAA520">SYSTEM</strong><strong class="NA">NA</strong>!</h1>
                         <br><br><br>
@@ -59,9 +57,9 @@
                         <p style="font-size: 1.5em;" class="Vpara">Making the HR papers process easier and accessible for everyone and going toward a sustainable goal of reducing(and eliminating) paperwork in the company.</p>
                     </div>
                 </td>
-                <td><div class = "vertical"></div></td>
-                <td><div class = "horizontal"></div></td>
-                <td><div class = "login"><?php include "L&R/Login_Register.php"; ?></div></td>
+                <td><div class = "vertical"></div></td> <!-- Vertical line shown on large screens -->
+                <td><div class = "horizontal"></div></td> <!-- Horizontal line shown on small screens -->
+                <td><div class = "login"><?php include "L&R/Login_Register.php"; ?></div></td> <!-- Including the login form -->
             </tr>
         </table>
     </body>

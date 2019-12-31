@@ -2,16 +2,15 @@
 $pageTitle = "SYSTEMNA | Quality Control";
 include "../template/header.php"; 
 ?>
-<link rel="stylesheet" href="../css/QC_style.css">
-<br><br>
+<br>
 <div style="text-align: center;">
-<h1>Quality Control</h1>
-<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search' >
-<select id='choice' class='tblselect' style="padding:10px">
-    <option value="empname">Employee Name</option>
-    <option value="requestname">Request Name</option>
-    <option value="empid">Employee ID</option>
-</select>
+    <h1 style="font-family: sans-serif;">Quality Control</h1>
+    <input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search'>
+    <select id='choice' class='tblselect'>
+        <option value="empname">Employee Name</option>
+        <option value="requestname">Request Name</option>
+        <option value="empid">Employee ID</option>
+    </select>
 </div>
 <table id='Display'>
     <tr id='must'>
@@ -26,24 +25,24 @@ include "../template/header.php";
         <th>Comment</th>
     </tr>
     <?php
-        function check($c){
-         if($c==null)
-          $c='-';
-         else if($c=='')
-          $c='-';
-          return $c;
-        }
+    function check($c){
+        if($c==null)
+            $c='-';
+        else if($c=='')
+            $c='-';
+        return $c;
+    }
 
-        $sql="
+    $sql="
         SELECT requests_types.Name , Employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
         FROM Requests INNER JOIN requests_types
         ON Requests.type_name = requests_types.Name
         INNER JOIN employee 
         ON employee.id = emp_id
         ";
-        try
-        {
-              
+    try
+    {
+
         $DB->query($sql);
         $DB->execute();
         $y = 0;
@@ -60,7 +59,7 @@ include "../template/header.php";
                 $salary = check($x[$i]->salary);
                 $priority = check($x[$i]->priority);
                 $date = check($x[$i]->date);
-                
+
                 $Boolsalray = "No Salary";
                 $BoolPriority = "Urgent";
 
@@ -69,7 +68,7 @@ include "../template/header.php";
                     $Boolsalray ="With Salary";
                 }
                 else $Boolsalray ="No Salary";
-                
+
                 if($priority == 1)
                 {
                     $BoolPriority ="Urgent";
@@ -87,24 +86,24 @@ include "../template/header.php";
                 <td>{$date}</td>
                 <td>{$BoolPriority}</td>
                 ";
-            
-                ?>
-                <td class ="Comment">
-                    <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
-                        <input type='text' name="Comment" placeholder='Write your comment here...'size='30' required>
-                        <br>
-                        <input type='submit'onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
-                    </form>    
-                </td>
-                </tr>
+
+    ?>
+    <td class ="Comment">
+        <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
+            <input type='text' name="Comment" id="qccomment" placeholder='Write your comment here...'size='30' required>
+            <br>
+            <input type='submit' id="qcsubmit" onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
+        </form>    
+    </td>
+
     <?php
+        echo "</tr>";
+            }
         }
     }
-  }
-  catch(Exception $e)
-  {
-      $_SESSION['error'] = 'error in sql';
-  }?>
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }?>
 </table>
-<script src="../js/jquery-3.4.1.min.js"></script>
-<script src="../js/backend.js"></script>
+<?php include "../template/footer.php"; 

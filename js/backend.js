@@ -1,40 +1,84 @@
 $(document).ready(function () {
 
-    setcounters();
+    setcounters(); /* Calling the function to set the numbers of counters on site starting*/
+    setInterval(setcounters, 1000); /* Calling the function to update the numbers of counters every 10 seconds */
+    getnotifications(); /* Calling the function to get the notifications data from DB */
+    sendcalmails(); /* Calling the function to send holiday emails */
 
-    if ($('#profile_Counter').text() == 0) {
-        $('#profile_Counter').css("display", "none");
-    }
-    else if ($('#usrsletterrequests_Counter').text() == 0) {
-        $('#usrsletterrequests_Counter').css("display", "none");
-    }
-    else if ($('#ownletterrequests_Counter').text() == 0) {
-        $('#ownletterrequests_Counter').css("display", "none");
-    }
-    else if ($('#usrs_Counter').text() == 0) {
-        $('#usrs_Counter').css("display", "none");
-    }
-    else if ($('#noti_Counter').text() == 0) {
-        $('#noti_Counter').css("display", "none");
+    function sendcalmails(){ /* A function to send holiday emails */
+        var CD = new Date(); /* Making a date object */
+        var curdd = CD.getDate(); /* Getting the current day */
+        var curmm = CD.getMonth()+1; /*Getting the current month */
+        var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
+        sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
+        /* Setting the subject and content of mail and notification*/
+        var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
+        var mailsubj = "Happy Holiday";
+        for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
+            holidd = holidays[i].slice(0, 2); /* Get the day part of date */
+            holimm = holidays[i].slice(3, 5); /* Get the month part of date */
+            if (curdd == holidd && curmm == holimm) { /* Checking if the current day is a holiday */
+                jQuery.ajax({ /* Send notifiation */
+                    type: "POST",
+                    url: "../operations/massmsging.php",
+                    data: "notification=" + content + "&type=notiall",
+                    success: function (html) {
+                        /*console.log(html);
+                        jQuery.ajax({ // Send mail //
+                            type: "POST",
+                            url: "../operations/massmsging.php",
+                            data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                            success: function (html) {
+                                console.log(html);
+                            }
+                        });*/
+                    }
+                });
+            }
+        }
     }
 
-    $('.pages_edit').text('Edit');
-    $('#faq_add').text('Add Question');
-    $('#add_letter').text('Add new type of letter');
+    function sendbdmail(curdd, curmm){ /* A function to send birthday emails */
+        /* Setting the subject and content of mail and notification*/
+        var content = "SYSTEMNA wishes you a happy birthday!";
+        var mailsubj = "Happy Birthday";
+        var birthday = "19/03";
+        bddd = birthday.slice(0, 2); /* Get the day part of date */
+        bdmm = birthday.slice(3, 5); /* Get the month part of date */
+        if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
+            jQuery.ajax({ /* Send notifiation */
+                type: "POST",
+                url: "../operations/massmsging.php",
+                data: "notification=" + content + "&type=notiall",
+                success: function (html) {
+                    /*console.log(html);
+                    jQuery.ajax({ // Send mail //
+                        type: "POST",
+                        url: "../operations/massmsging.php",
+                        data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                        success: function (html) {
+                            console.log(html);
+                        }
+                    });*/
+                }
+            });
+        }
+    }
 
-    $('#noti_Button').click(function () {
-        // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+    $('.pages_edit').text('Edit'); /* Setting the text for admin's edit button */
+    $('#faq_add').text('Add Question'); /* Setting the text for admin's add question button */
+    $('#add_letter').text('Add new type of letter'); /* Setting the text for admin's add letter button */
+
+    $('#noti_Button').click(function () { /* Toggle notification window */
         $('#notifications').fadeToggle('fast', 'linear');
         return false;
     });
 
-    //HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-    $(document).click(function () {
+    $(document).click(function () { /* Closes the notification window when clicked anywhere in the page */
         $('#notifications').hide();
     });
 
-    $('#notifications').click(function () {
-        // DO NOTHING WHEN CONTAINER IS CLICKED.
+    $('#notifications').click(function () { /* Do nothing when notifications are clicked */
         return false;
     });
 
@@ -56,12 +100,48 @@ $(document).ready(function () {
         $(".modal").css("display", "block");
     }
 
+    function confirmation(body, url, data) {
+        $(".confirmation-content").text(body);
+        $("#confirmationButton").on("click", function(){
+            //            document.location.replace(action);
+            jQuery.ajax({ /* Send notifiation */
+                type: "GET",
+                url: url,
+                success: function (html) {
+                    $(".modalConfirmation").css("display", "none");
+                    popup(true,"Deleted");
+                    $(data).hide();
+                }
+            });
+        })
+        $(".modalConfirmation").css("display", "block");
+    }
+
+    $(".deleteConfirmation").on("click", function(e){
+        e.preventDefault();
+        confirmation("Are you sure ?", this.href , $(this).closest('tr'));
+    });
+
     $(".navbar-toggle").on("click", function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
     });
 
-    function dark() {
-        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
+    $("#themeToggle").on("click", function toggleTheme() { /* Adding the theme toggle function */
+        var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
+        /* Checking the cookie value and setting the theme opposite to it */
+        if (themecookie == "darktheme") {
+            light();
+        }
+        else if (themecookie == "lighttheme") {
+            dark();
+        }
+    });
+
+    function dark() { /* Changing everything to dark */
+        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
+        $("#themeToggleBtn").html("🌝");
+        $("#notifications").css("background-color", "#2d3035");
+        $("#notifications").css("color", "white");
         $(".header").css("background-color", "#2d3035");
         $(".header").css("color", "white");
         $("#na").css("color", "white");
@@ -72,16 +152,22 @@ $(document).ready(function () {
         $(".content").css("background-color", "#202020");
         $(".content").css("color", "white");
         $("tr").css("color", "white");
-        $("tr:nth-child(even)").css("background", "black");
+        $("tr:nth-child(even)").css("background", "#303030");
         $("tr:nth-child(even)").css("color", "white");
         $(".profile").css("background-color", "#303030");
-        $(".profile-left").css("background-color", "#585858");
-        $(".profile-right-up").css("background-color", "#585858");
+        $(".profile-left").css("background-color", "#424242");
+        $(".profile-right-up").css("background-color", "#424242");
         $(".profile-right-down").css("background-color", "#585858");
+        $(".profile-left").css("box-shadow", "5px 5px #000");
+        $(".profile-right-up").css("box-shadow", "5px 5px #000");
+        $(".profile-right-down").css("box-shadow", "5px 5px #000");
     }
 
-    function light() {
-        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2050 20:00:00 UTC; path=/;";
+    function light() { /* Changing everything to light */
+        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
+        $("#themeToggleBtn").html("🌚");
+        $("#notifications").css("background-color", "white");
+        $("#notifications").css("color", "#212529");
         $(".header").css("background-color", "white");
         $(".header").css("color", "#212529");
         $("#na").css("color", "#212529");
@@ -98,18 +184,20 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");
         $(".profile-right-down").css("background-color", "#f5f5f5");
+        $(".profile-left").css("box-shadow", "5px 5px #aaa");
+        $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
+        $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
     }
 
-    $("#darkmode").on("click", dark);
-    $("#lightmode").on("click", light);
-
-    function getCookie(name) {
+    function getCookie(name) { /* Getting the desiered cookie value by its name */
         var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        var parts = value.split("; " + name + "="); /* Splitting it into parts to get the value */
+        if (parts.length == 2) return parts.pop().split(";").shift(); /* Returning the value of the cookie only */
     };
-    var themecookie = getCookie("theme");
-    if (themecookie == "darktheme") { 
+
+    var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
+    /* Checking the cookie value and setting the theme according to it */
+    if (themecookie == "darktheme") {
         dark();
     } else if (themecookie == "lighttheme") {
         light();
@@ -123,6 +211,12 @@ $(document).ready(function () {
 
     $(".popup-close").on("click", function () {
         $(".modal").css("display", "none");
+    });
+
+    
+    // cancle button
+    $(".confirmation-close").on("click", function () {
+        $(".modalConfirmation").css("display", "none");
     });
 
     function fullnameToggle() {
@@ -150,7 +244,6 @@ $(document).ready(function () {
     }
 
     function companyInfoToggle() {
-        //        $("#username").toggleClass("hidden");
         $("#password").toggleClass("hidden");
         $(".input-company-info").toggleClass("hidden");
         $(".save-company-info").toggleClass("hidden");
@@ -179,15 +272,14 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultFullname +
-                    "&value=" +
-                    fullname +
-                    "&type=fullname",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultFullname +
+                "&value=" +
+                fullname +
+                "&type=fullname",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         fullnameToggle();
@@ -215,13 +307,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultSSN +
-                    "&value=" +
-                    ssn +
-                    "&type=ssn",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultSSN +
+                "&value=" +
+                ssn +
+                "&type=ssn",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -239,13 +331,13 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultBdate +
-                    "&value=" +
-                    bdate +
-                    "&type=bdate",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultBdate +
+                "&value=" +
+                bdate +
+                "&type=bdate",
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -264,15 +356,14 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultLoc +
-                    "&value=" +
-                    loc +
-                    "&type=location",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultLoc +
+                "&value=" +
+                loc +
+                "&type=location",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         basicInfoToggle();
@@ -298,15 +389,14 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultEmail +
-                    "&value=" +
-                    email +
-                    "&type=email",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultEmail +
+                "&value=" +
+                email +
+                "&type=email",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -323,15 +413,14 @@ $(document).ready(function () {
                 type: "POST",
                 url: "../operations/editProfile.php",
                 data:
-                    "id=" +
-                    id +
-                    "&oldvalue=" +
-                    defaultPhone +
-                    "&value=" +
-                    phone +
-                    "&type=phone",
+                "id=" +
+                id +
+                "&oldvalue=" +
+                defaultPhone +
+                "&value=" +
+                phone +
+                "&type=phone",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -348,7 +437,6 @@ $(document).ready(function () {
     /************************************ Updated ************************************/
     $(".save-company-info").on("click", function () {
         var pass = $("#passwordEdit").val();
-        //        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
         var id = $("#id").text();
 
         $.ajax({
@@ -356,7 +444,6 @@ $(document).ready(function () {
             url: "../operations/editProfile.php",
             data: "id=" + id + "&value=" + pass + "&value=" + pass + "&type=password",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     companyInfoToggle();
@@ -476,7 +563,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function () {
             var test = $(this)
-                .text();
+            .text();
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -494,8 +581,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).html();
         test2 = test2.replace("<br>", "");
 
@@ -508,22 +595,25 @@ $(document).ready(function () {
                 url: "../operations/EditTable.php",
                 data: { test: test2, id: c.text() },
                 success: function (msg) {
-                    if (msg == 0) { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); }
+                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); }
                     else {
                         loading(false);
                         popup(true, "Salary Updated!");
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.");
                     }
                 }
             });
         }
     });
+
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
     });
+
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -533,9 +623,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -548,15 +638,16 @@ $(document).ready(function () {
             }
         });
     }
+
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -580,28 +671,33 @@ $(document).ready(function () {
                         .find("tr:eq(" + Eindex + ")")
                         .find("td:eq(" + otherButton + ")")
                         .html("");
+                    if (thisBtn.val() == "+HR")
+                        sendnoti(idMod, "Congratulations you have been promoted to an HR!");
+                    else if (thisBtn.val() == "+QC")
+                        sendnoti(idMod, "Congratulations you have been promoted to an QC!");
                 }
             }
         });
     });
+
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(4)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -610,15 +706,26 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendnoti(Did, "Your profile " + Type + " change request has been accepted!");
             }
         });
     });
+
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
+        var Did = $("#tblRequests")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
+        var Type = $("#tblRequests")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
+        var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -627,9 +734,11 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendnoti(Did, "Your profile " + Type + " change request has been rejected!");
             }
         });
     });
+
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
@@ -644,9 +753,12 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendmail(Rid, "SYSTEMNA", "Congratulations! You have been accepted at SYSTEMNA! you can now log in using your account.");
+                sendnoti(Rid, "Welcome to SYSTEMNA!");
             }
         });
     });
+
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
@@ -661,6 +773,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
+                sendmail(Rid, "SYSTEMNA", "Unfortunely you didn't meet the requriments at SYSTEMNA, if you want to re-apply please fill the signup form again.");
             }
         });
     });
@@ -668,10 +781,11 @@ $(document).ready(function () {
     $("#QCtblsearch").keyup(function () {
         search_QCtable($(this).val());
     });
+
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -681,9 +795,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -696,25 +810,43 @@ $(document).ready(function () {
             }
         });
     }
-    $("#btn1").click(function () {
-        function checkAvai() {
-            jQuery.ajax({
-                url: "AddQuestion.php",
-                data: "question=" + $("#question").val(),
-                type: "POST",
-                success: function (data) { }
-            });
+
+    $("#faqaddques").on("click", function () {
+        var question = $("#question").val();
+        var answer = $("#answer").val();
+        var requested_by = $("#requested_by").val();
+        if (question == "") {
+            popup(false, "Please enter the question");
+            return 0;
+        } else if (answer == "") {
+            popup(false, "Please enter the answer");
+            return 0;
         }
-        var a = document.getElementById("question").value;
-        var b = document.getElementById("answer").value;
-        var c = document.getElementById("requested_by").value;
-        if (a != "" && b != "") {
-            loading(true);
-            popup(true, "Your Data Has Been Saved Successfully");
-            //alert("Data Saved Successfully");
-        }
+        $.ajax({
+            type: "POST",
+            url: "../operations/faqop.php",
+            data: "question=" + question + "&answer=" + answer + "&requested_by=" + requested_by + "&type=faqaddques",
+            success: function (html) {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getid.php",
+                    data: { x: 1 },
+                    success: function (data) {
+                        sendnoti(data, "Your Question Has Been Added Successfully!");
+                        //sendmail(data, "Question placed", "Your Question Has Been Added Successfully!");
+                    }
+                });
+                loading(false);
+                popup(true, "Your Question Has Been Added Successfully!");
+                setInterval(window.location("../pages/faq.php"),5000);
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
     });
-    $("#btn2").click(function () {
+
+    $("#AddLetterbtn").click(function () {
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",
@@ -725,27 +857,65 @@ $(document).ready(function () {
         }
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
+
+        if (a == "") {
+            popup(false, "Please enter the Letter Name");
+            return 0;
+        } else if (b == "") {
+            popup(false, "Please enter the Letter description");
+            return 0;
+        }
         if (a != "" && b != "") {
             loading(true);
             popup(true, "Letter Added Successfully");
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+
+                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!");
+                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
+
+                }
+            });
             //alert("Letter Added Successfully");
         }
     });
 
-    $("#faqsubmit").click(function () {
-        function checkAvai() {
-            jQuery.ajax({
-                url: "faq.php",
-                data: "faqinputtext=" + $("#faqinputtext").val(),
-                type: "POST",
-                success: function (data) { }
-            });
+    /* Function to submit an inquiry in FAQ page */
+    $("#faqsubmit").on("click", function () {
+        /* Getting the subject and content data */
+        var subject = $("#faqinputtext").val();
+        var content = $("#faqtextarea").val();
+        if (subject == "") { /* Conditions */
+            popup(false, "Please enter the subject");
+            return 0;
+        } else if (content == "") {
+            popup(false, "Please enter the content");
+            return 0;
         }
-        var a = document.getElementById("faqinputtext").value;
-        var b = document.getElementById("faqtextarea").value;
-        if (a != "" && b != "") {
-            alert("Message Sent Successfully");
-        }
+        $.ajax({
+            type: "POST",
+            url: "../operations/faqop.php",
+            data: "subject=" + subject + "&content=" + content + "&type=faqinq",
+            success: function (html) {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getid.php",
+                    data: { x: 1 },
+                    success: function (data) {
+                        sendnoti(data, "We recived your message successfully!");
+                        sendmail(data, "Message recieved", "We recived your message successfully and we are going to work on it , thank you!");
+                    }
+                });
+                loading(false);
+                popup(true, "Sent");
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
     });
 
     /*  var arr = [];
@@ -799,14 +969,22 @@ $(document).ready(function () {
     $("#submitbtn").click(function () {
         if (
             (document.getElementById("rdbtn1").checked ||
-                document.getElementById("rdbtn2").checked) &&
+             document.getElementById("rdbtn2").checked) &&
             (document.getElementById("rdbtn3").checked ||
-                document.getElementById("rdbtn4").checked) &&
+             document.getElementById("rdbtn4").checked) &&
             !document.getElementsByClassName("Letterbuttonn").checked
         ) {
             popup(true, "your request has been placed successfully");
-            //  alert("your request has been placed successfully");
             type_name = $("input[name=Letterbuttonn]:checked").val();
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/getid.php",
+                data: { x: 1 },
+                success: function (data) {
+                    sendnoti(data, "Letter Request Added Successfully!");
+                    sendmail(data, "Letter Added", "You Letter Request has been Added Successfully!");
+                }
+            });
         } else {
             popup(false, "you have an error completing your request");
             //  alert("you have an error completing your request");
@@ -821,13 +999,17 @@ $(document).ready(function () {
         } else if (document.getElementById("rdbtn4").checked) {
             salary = 0;
         }
-        var value;
-
-        jQuery.ajax({
-            method: "POST",
-            url: "MakeLetter.php",
-            data: { salary: salary, priority: priority, type_name: type_name },
-            success: function (data2) { }
+        $.ajax({
+            type: "POST",
+            url: "../operations/addletter.php",
+            data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
+            success: function (html) {
+                loading(false);
+                popup(true, "Letter Added Successfully");
+            },
+            beforeSend: function () {
+                loading(true);
+            }
         });
     });
 
@@ -864,18 +1046,19 @@ $(document).ready(function () {
     //        });
     //    });
 
+    /* Function to search in FAQ */
     $("#searched").keyup(function () {
         //    if ($("#searched").val() == "" || $("#searched").val() == " ") {
         //      alert("error: Enter something to search for!");
         //      return false;
         //    }
-        var searchedText = $("#searched").val();
-        var page = $("#faqdiv");
-        var pageText = page.html();
-        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, "");
-        if (searchedText != "") {
-            var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");
-            newHtml = newHtml.replace(theRegEx, "<span>$1</span>");
+        var searchedText = $("#searched").val(); /* Getting the searched word */
+        var page = $("#faqdiv"); /* Getting the page */
+        var pageText = page.html(); /* Getting the page content */
+        var newHtml = pageText.replace(/<span>/g, "").replace(/<\/span>/g, ""); /* Replacing spaces with spans */
+        if (searchedText != "") {  /* Conditions */
+            var theRegEx = new RegExp("(" + searchedText + ")(?!([^<]+)?>)", "gi");  /* Getting the searched text in the whole page */
+            newHtml = newHtml.replace(theRegEx, "<span>$1</span>");  /* Re adding the page content with the searched text highlighted */
         }
         page.html(newHtml);
     });
@@ -888,9 +1071,11 @@ $(document).ready(function () {
 
 
     /********************** Send notfications and mails **********************/
-    $("#notisendall").on("click",function(){
+    /* Function to send notification to all users on mass messaging */
+    $("#notisendall").on("click", function () {
+        /* Setting the content */
         var data = $("#massnoti").val();
-        if (data=="") {
+        if (data == "") { /* Conditions */
             popup(false, "Please enter notification content");
             return 0;
         }
@@ -899,7 +1084,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "notification=" + data + "&type=notiall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -911,13 +1095,15 @@ $(document).ready(function () {
         });
     });
 
-    $("#notisendone").on("click",function(){
+    /* Function to send notification to specific user on mass messaging */
+    $("#notisendone").on("click", function () {
+        /* Setting the user ID and content */
         var id = $("#notione").val();
         var data = $("#massnoti").val();
-        if (id<=0) {
+        if (id <= 0) { /* Conditions */
             popup(false, "Please choose a user from the list");
             return 0;
-        } else if (data=="") {
+        } else if (data == "") {
             popup(false, "Please enter notification content");
             return 0;
         }
@@ -926,7 +1112,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "id=" + id + "&notification=" + data + "&type=notione",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -938,13 +1123,15 @@ $(document).ready(function () {
         });
     });
 
-    $("#mailsendall").on("click",function(){
+    /* Function to send mail to all users on mass messaging */
+    $("#mailsendall").on("click", function () {
+        /* Setting the mail subject and content */
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
-        if (mailsubject=="") {
+        if (mailsubject == "") { /* Conditions */
             popup(false, "Please enter mail subject");
             return 0;
-        } else if (mailcontent=="") {
+        } else if (mailcontent == "") {
             popup(false, "Please enter mail content");
             return 0;
         }
@@ -953,7 +1140,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -965,17 +1151,19 @@ $(document).ready(function () {
         });
     });
 
-    $("#mailsendone").on("click",function(){
+    /* Function to send mail to specific user on mass messaging */
+    $("#mailsendone").on("click", function () {
+        /* Setting the mail subject and content */
         var mailsubject = $("#mailsubject").val();
         var mailcontent = $("#mailcontent").val();
         var email = $("#mailone").val();
-        if (email<=0) {
+        if (email <= 0) { /* Conditions */
             popup(false, "Please choose a user from the list");
             return 0;
-        } else if (mailsubject=="") {
+        } else if (mailsubject == "") {
             popup(false, "Please enter mail subject");
             return 0;
-        } else if (mailcontent=="") {
+        } else if (mailcontent == "") {
             popup(false, "Please enter mail content");
             return 0;
         }
@@ -984,7 +1172,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "email=" + email + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailone",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -996,7 +1183,8 @@ $(document).ready(function () {
         });
     });
 
-    function sendmail(userid, mailsubject, mailcontent){
+    /* Function to send mails to users */
+    function sendmail(userid, mailsubject, mailcontent) {
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
@@ -1006,8 +1194,9 @@ $(document).ready(function () {
             }
         });
     }
-    
-    function sendnoti(userid, noticontent){
+
+    /* Function to send notifications to users */
+    function sendnoti(userid, noticontent) {
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
@@ -1018,41 +1207,212 @@ $(document).ready(function () {
         });
     }
 
-    function setcounters(){
+    /* Function to set the notifications counter */
+    function setcounter1(){
         $.ajax({
             type: "POST",
             url: "../operations/counterops.php",
             data: "type=setnoticounter",
             success: function (html) {
-                console.log(html);
+                $('#noti_Counter').text(html);
+                if (html > "0") { /* If there is data, show the counter. */
+                    $('#noti_Counter').css("display", "inline-block");
+                }
             },
         });
     }
 
-    $("#add_letter").on("click",function(){
+    /* Function to set the users profile edits counter */
+    function setcounter2(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setprofilecounter",
+            success: function (html) {
+                $('#profile_Counter').text(html);
+                if (html > "0") { /* If there is data, show the counter. */
+                    $('#profile_Counter').css("display", "inline-block");
+                }
+            },
+        });
+    }
+
+    /* Function to set the users letter requests counter */
+    function setcounter3(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setusrsletterrequestscounter",
+            success: function (html) {
+                $('#usrsletterrequests_Counter').text(html);
+                if (html > "0") { /* If there is data, show the counter. */
+                    $('#usrsletterrequests_Counter').css("display", "inline-block");
+                }
+            },
+        });
+    }
+
+    /* Function to set the own letter requests counter */
+    function setcounter4(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setownletterrequestscounter",
+            success: function (html) {
+                $('#ownletterrequests_Counter').text(html);
+                if (html > "0") { /* If there is data, show the counter. */
+                    $('#ownletterrequests_Counter').css("display", "inline-block");
+                }
+            },
+        });
+    }
+
+    /* Function to set the users counter */
+    function setcounter5(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/counterops.php",
+            data: "type=setusrscounter",
+            success: function (html) {
+                $('#usrs_Counter').text(html);
+                if (html > "0") { /* If there is data, show the counter. */
+                    $('#usrs_Counter').css("display", "inline-block");
+                }
+            },
+        });
+    }
+
+    /* Function to set all the counters */
+    function setcounters(){
+        setcounter1();
+        setcounter2();
+        setcounter3();
+        setcounter4();
+        setcounter5();
+    }
+
+    /* Function to get the notifications */
+    function getnotifications(){
+        $.ajax({
+            type: "POST",
+            url: "../operations/notiop.php",
+            data: "type=setnotidata",
+            success: function (html) {
+                if (html != '') { /* Print the notifications if not empty */
+                    $('#notidata').html(html);
+                } else { /* Print this message if empty */
+                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+                        .css('text-align','center');
+                    $('#markAll').css('display','none'); /* Hide mark all button if no notifications */
+                }
+            },
+        });
+    }
+
+    /* Notifications Mark All function */
+    $("#markAll").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "../operations/notiop.php",
+            data: "&type=markread",
+        });
+        $('#noti_Counter').css('display','none'); /* Hiding the counter when markall is clicked */
+        $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+            .css('text-align','center'); /* Replacing the data when markall is clicked */
+        $('#markAll').css('display','none'); /* Hiding the markall button when markall is clicked */
+    });
+
+    $("#add_letter").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/AddNewLetter.php');;
     });
 
-    $("#faq_edit").on("click",function(){
+    $("#faq_edit").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/viewFAQ.php');
     });
 
-    $("#faq_add").on("click",function(){
+    $("#faq_add").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/AddQuestion.php');
     });
 
-    $("#letter_edit").on("click",function(){
+    $("#letter_edit").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/allLetters.php');
     });
 
-    $("#markAll").on("click",function(){
-        $.ajax({
-            type: "POST",
-            url: "../operations/mark_read.php",
-            data: "&type=markread",
-        });
-        document.getElementById('notidata').innerHTML = ' ';
-        document.getElementById('noti_Counter').innerHTML = '0';
+
+    /************* ADD NEW LETTER ******************/
+
+    $("#letterBodyArea").on('keyup',function(){
+        var text= document.getElementById('letterBodyArea').value;
+        var n= text.includes('NAME');
+        var s= text.includes('SALARY');
+        var d= text.includes('DATE');
+        var p= text.includes('POSITION');
+        var startdate=text.includes('START');
+        var hr=text.includes('HR');
+        if(hr==true && !text.includes("(.HR.)")){
+            text=text.replace('HR',"(.HR.) ");
+            $("#letterBodyArea").val() = text;
+        }
+        if(n==true && !text.includes("(.NAME.)")){
+            text=text.replace('NAME',"(.NAME.) ");
+            $("#letterBodyArea").val() = text;
+        }
+        if(s==true && !text.includes("(.SALARY.)")){
+            text=text.replace('SALARY',"(.SALARY.)");
+            $("#letterBodyArea").val() = text;
+        }
+        if(d==true && !text.includes("(.DATE.)")){
+            text=text.replace('DATE',"(.DATE.) ");
+            $("#letterBodyArea").val() = text;
+        }  
+        if(p==true && !text.includes("(.POSITION.)")){
+            text=text.replace('POSITION',"(.POSITION.) ");
+            $("#letterBodyArea").val() = text;
+        }  
+        if(startdate==true && !text.includes("(.START.)")){
+            text=text.replace('START',"(.START.) ");
+            $("#letterBodyArea").val() = text;
+        }
     });
 
+    $("#AddLetterbtn").on("click", function () {
+        var dataa=document.getElementById('body').value;
+        dataa='<pre>'+dataa+'</pre>';
+        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+            jQuery.ajax({
+                url: "../operations/newLetter.php",
+                data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
+                type:"POST",
+                success:function(data)
+                {
+                    loading(false);
+                    popup(data);
+                },
+                beforeSend: function () {
+                    loading(true);
+                }
+
+            });
+        } else {
+            popup('please fill Name, Salary and Date');
+        }
+    });
+
+    /**************** LetterRequests ********************/
+
+    $(".letterstd").on("click", function(){
+        jQuery.ajax({
+            url: "view_employee.php",
+            data:'id='+this.id,
+            type:"POST",
+            success:function(data)
+            {
+                loading(false);
+                $("#body").html(data);
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
 });

@@ -1,9 +1,9 @@
-               </div>
-            </div>   
+				<div id="footer"><hr><center>All rights reserved to SYSTEMNA© 2020</center></div>
+				</div>
+            </div>
         </div>
-        <?php include "../template/help.php"; ?>
-        <script src="../js/jquery-3.4.1.min.js"></script>
-        <script src="../js/backend.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+        <?php include "../template/help.php"; 
+        ob_end_flush();
+        ?>
     </body>
 </html>

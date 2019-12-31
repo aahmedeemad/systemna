@@ -6,13 +6,13 @@ include "../template/header.php";
 <?php if($_SESSION['type']!='admin') header('Location:MakeLetter.php'); ?>
 <br>
 <div style="text-align: center;">
-<h1 style="font-family: sans-serif;">Waiting Users</h1>
-<input type=text id='tblsearch' class='tblsearch' placeholder='Search'>
-<select id='choice' class='tblselect'>
-    <option value="email">Email</option>
-    <option value="ssn">SSN</option>
-    <option value="username">UserName</option>
-</select>
+    <h1 style="font-family: sans-serif;">Waiting Users</h1>
+    <input type=text id='tblsearch' class='tblsearch' placeholder='Search'>
+    <select id='choice' class='tblselect'>
+        <option value="email">Email</option>
+        <option value="ssn">SSN</option>
+        <option value="username">UserName</option>
+    </select>
 </div>
 <table id='Display'>
     <tr id='must'>
@@ -27,21 +27,21 @@ include "../template/header.php";
         <th>Reject</th>
     </tr>
     <?php
-        function check($c){
-         if($c==null)
-          $c='-';
-         else if($c=='')
-          $c='-';
-          return $c;
-        }
+    function check($c){
+        if($c==null)
+            $c='-';
+        else if($c=='')
+            $c='-';
+        return $c;
+    }
 
-        $sql="
+    $sql="
         SELECT *
         FROM employee left join add_info
         on emp_id=id where employee.accepted = 2 AND privilege = 'user' AND active = 1";
-        try
-        {
-              
+    try
+    {
+
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -68,24 +68,24 @@ include "../template/header.php";
                 <td>{$email}</td>
                 <td>{$ssn}</td>
                 <td>{$phone}</td>";
-                ?>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-            href="../operations/DeleteTable.php?wid=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+    ?>
+    <td><a href="../operations/DeleteTable.php?wid=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
     <td><input type= submit class ='user-accept' value='Accept'></td>
     <td><input type= submit class ='user-reject' value='Reject'></td>
 
-    </tr>
+
     <?php
+                echo "</tr>";
             }
         }
-      }
-      catch(Exception $e)
-      {
-          $_SESSION['error'] = 'error in sql';
-      }
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 
-        ?>
+    ?>
 </table>
 
 <?php ob_end_flush();
- include "../template/footer.php"; ?>
+include "../template/footer.php"; ?>

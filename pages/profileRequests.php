@@ -1,5 +1,4 @@
 <?php
-ob_start();
 $pageTitle = "SYSTEMNA | Profile Requests";
 include "../template/header.php"; 
 ?>
@@ -21,8 +20,8 @@ include "../template/header.php";
     $sid = $_SESSION['id'];
     $sql="
         SELECT *
-        FROM update_info1 left join employee on update_info1.UID = employee.id
-        where update_info1.Status = 2 and UID <> '$sid'
+        FROM update_info left join employee on update_info.UID = employee.id
+        where update_info.Status = 2 and UID <> '$sid'
               ";
     try
     {
@@ -30,7 +29,8 @@ include "../template/header.php";
         $DB->execute();
         $y=0;
         if($DB->numRows()>0)
-        {   $x=$DB->getdata();
+        {   
+            $x=$DB->getdata();
             for($i=0;$i<$DB->numRows();$i++)
             {
                 //$x=$DB->getdata();
@@ -51,11 +51,12 @@ include "../template/header.php";
                 <td>{$oValue}</td>
                 <td>{$value}</td>
                 <td>{$type}</td>";
-                echo "<td><input type= submit class ='accept' value='Accept'></td>";
-                echo "<td><input type= submit class ='reject' value= 'Reject'></td>";
+                echo "<td><input type= 'submit' class ='accept' value='Accept'></td>";
+                echo "<td><input type= 'submit' class ='reject' value= 'Reject'></td>";
     ?>
-    </tr>
-<?php
+
+    <?php
+                echo "</tr>";
             }
         }
     }
@@ -64,9 +65,8 @@ include "../template/header.php";
         $_SESSION['error'] = 'error in sql';
     }
 
-?>
+    ?>
 </table>
 
 <?php
-ob_end_flush();
- include "../template/footer.php"; ?>
+include "../template/footer.php"; ?>

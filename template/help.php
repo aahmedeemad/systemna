@@ -67,17 +67,17 @@
             }
         </style>
     </head>
-    <body>
+    <body> <!-- Replacing the page when the help button is clicked -->
         <div class="popup" onmouseenter="fadingIn()" onmouseleave="fadingOut()" onclick="window.location.replace('faq.php')">
             <p style="margin: 0;">?</p>
             <p class="popuptxt hide" id="myPopup">Help & FAQ ?</p>
         </div>
-        <script>
+        <script> /* Fading in the rest of the button when hovered */
             function fadingIn() {
                 var popup = document.getElementById("myPopup");
                 popup.classList.toggle("show");
                 popup.classList.toggle("hide");
-            }
+            }  /* Fading out the rest of the button when mouse leaves */
             function fadingOut() {
                 var popup = document.getElementById("myPopup");
                 popup.classList.toggle("hide");

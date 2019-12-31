@@ -51,6 +51,7 @@ include "../template/header.php";
         <th>Add HR</th>
         <th>Delete</th>
         <th>Profile</th>
+        <th>Doc</th>
         <th>Status</th>
     </tr>
     <?php
@@ -114,10 +115,12 @@ include "../template/header.php";
     <?php
 
                     echo "<td><a href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
+                    echo "<td><a href='../pages/pn.php?id={$x[$i]->id}' class='EditBtn'>Doc</a></td>";
                     echo "<td><a id='button-accepted'>Accepted</a></td>";
                 }
                 else if($x[$i]->accepted == 0)
                 {
+                    echo "<td></td>";
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td></td>";

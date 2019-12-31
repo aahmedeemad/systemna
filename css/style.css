@@ -646,7 +646,7 @@ box-sizing: content-box;
     box-sizing: border-box;
 }
 
-.askus #faqsubmit {
+.askus #faqsubmit , .EditFAQ {
     width: 75%;
     background-color: #daa520;
     color: white;

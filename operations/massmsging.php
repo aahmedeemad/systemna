@@ -1,11 +1,15 @@
 <?php
-session_start();
-include('../DB/Database.php');
-$DB = new Database();
+session_start(); /* Starting the session */
+include('../DB/Database.php'); /* Including the DB */
+$DB = new Database(); /* Making a DB object */
+
 use PHPMailer\PHPMailer\PHPMailer; /* Namespace alias. */
 use PHPMailer\PHPMailer\Exception; /* Namespace alias. */
+
 require '../composer/vendor/autoload.php'; /* Include the Composer generated autoload.php file. */
+
 date_default_timezone_set('Etc/UTC'); /* Set the script time zone to UTC. */
+
 $mail = new PHPMailer(TRUE); /* Create a new PHPMailer object. Passing TRUE to the constructor enables exceptions. */
 $mail->SMTPOptions = array('ssl'=>array('verify_peer'=>false, 'verify_peer_name'=>false, 'allow_self_signed'=>true));
 $mail->isSMTP(); /* Use SMTP. */
@@ -22,18 +26,19 @@ $mail->isHTML(true);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['type'] == "notiall")
     {
-        $sql = "SELECT * FROM employee";
-        $DB->query($sql);
-        $DB->execute();
-        $x = $DB->getdata();
+        $sql = "SELECT * FROM employee"; /* SQL query to get the data from the DB */
+        $DB->query($sql); /* Using the query function made in DB/Database.php */
+        $DB->execute(); /* Using the excute function made in DB/Database.php */
+        $x = $DB->getdata(); /* creates an array of the output result */
         $y = $DB->numRows();
         for ($i=0; $i<$y; $i++) {
             if (isset($_POST['notification'])) {
                 $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
                 $uid = $x[$i]->id;
+                 /* SQL query to set the data into the DB */
                 $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
-                $DB->query($sql);
-                $DB->execute();
+                $DB->query($sql); /* Using the query function made in DB/Database.php */
+                $DB->execute(); /* Using the excute function made in DB/Database.php */
             }
         }
         echo "true";
@@ -43,19 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uid = $_POST['id'];
         if (isset($_POST['notification'])) {
             $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
+            /* SQL query to set the data into the DB */
             $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
-            $DB->query($sql);
-            $DB->execute();
+            $DB->query($sql); /* Using the query function made in DB/Database.php */
+            $DB->execute(); /* Using the excute function made in DB/Database.php */
         }
         echo "true";
     }
     else if ($_POST['type'] == "mailall")
     {
-        $sql = "SELECT * FROM employee";
-        $DB->query($sql);
-        $DB->execute();
-        $x = $DB->getdata();
-        $y = $DB->numRows();
+        $sql = "SELECT * FROM employee"; /* SQL query to get the data from the DB */
+        $DB->query($sql); /* Using the query function made in DB/Database.php */
+        $DB->execute(); /* Using the excute function made in DB/Database.php */
+        $x = $DB->getdata(); /* creates an array of the output result */
+        $y = $DB->numRows(); /* getting the num of rows */
         if (isset($_POST['mailsubject']) && isset($_POST['mailcontent'])) {
             $mailsubject = filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
             $mailcontent = filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
@@ -68,9 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'name' => $uname,
                     'content' => $mailcontent,
                 );
+                /* Importing the mail template */
                 $body = file_get_contents('../template/htmlemail.html');
                 if(isset($email_vars)){
                     foreach($email_vars as $k=>$v){
+                        /* Replace the values in {} in template to vars in function */
                         $body = str_replace('{'.strtoupper($k).'}', $v, $body);
                     }
                 }
@@ -84,11 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else if ($_POST['type'] == "mailone")
     {
-        $umail = $_POST['email'];
+        $umail = $_POST['email']; /* Getting the user email */
+        /* SQL query to get the data from the DB */
         $sql = "SELECT fullname FROM employee WHERE email='$umail' ";
-        $DB->query($sql);
-        $DB->execute();
-        $x = $DB->getdata();
+        $DB->query($sql); /* Using the query function made in DB/Database.php */
+        $DB->execute(); /* Using the excute function made in DB/Database.php */
+        $x = $DB->getdata(); /* creates an array of the output result */
         $uname = $x[0]->fullname;
         if (isset($_POST['mailsubject']) && isset($_POST['mailcontent'])) {
             $mailsubject = filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
@@ -98,9 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'name' => $uname,
                 'content' => $mailcontent,
             );
+            /* Importing the mail template */
             $body = file_get_contents('../template/htmlemail.html');
             if(isset($email_vars)){
                 foreach($email_vars as $k=>$v){
+                    /* Replace the values in {} in template to vars in function */
                     $body = str_replace('{'.strtoupper($k).'}', $v, $body);
                 }
             }
@@ -113,11 +124,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else if ($_POST['type'] == "sendmailfn")
     {
-        $uid = $_POST['uid'];
-        $sql = "SELECT * FROM employee WHERE id='$uid' ";
-        $DB->query($sql);
-        $DB->execute();
-        $x = $DB->getdata();
+        $uid = $_POST['uid']; /* Getting the user ID */
+        $sql = "SELECT * FROM employee WHERE id='$uid' "; /* SQL query to get the data from the DB */
+        $DB->query($sql); /* Using the query function made in DB/Database.php */
+        $DB->execute(); /* Using the excute function made in DB/Database.php */
+        $x = $DB->getdata(); /* creates an array of the output result */
         $uname = $x[0]->fullname;
         $umail = $x[0]->email;
         $mailsubject = $_POST['mailsubject'];
@@ -128,9 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'name' => $uname,
             'content' => $mailcontent,
         );
+        /* Importing the mail template */
         $body = file_get_contents('../template/htmlemail.html');
         if(isset($email_vars)){
             foreach($email_vars as $k=>$v){
+                /* Replace the values in {} in template to vars in function */
                 $body = str_replace('{'.strtoupper($k).'}', $v, $body);
             }
         }
@@ -143,17 +156,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else if ($_POST['type'] == "sendnotifn")
     {
-        $uid = $_POST['uid'];
+        $uid = $_POST['uid']; /* Getting the user ID */ /* Getting the user ID */
         $notification = $_POST['noticontent'];
+        /* SQL query to set the data into the DB */
         $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
-        $DB->query($sql);
-        $DB->execute();
+        $DB->query($sql); /* Using the query function made in DB/Database.php */
+        $DB->execute(); /* Using the excute function made in DB/Database.php */
 
         echo "true";
     }
 }
 else 
 {
-    header("location: ../index.php");
+    header("location: ../index.php"); /* Redirecting to mainpage if the user tried to get into this page without 'POST' method */
 }
 ?>

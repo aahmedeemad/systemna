@@ -121,7 +121,9 @@ include "../template/header.php";
                 {
                     echo "<td></td>";
                     echo "<td></td>";
-                    echo "<td></td>";
+                    ?>
+                    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+                    <?php
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td><a id='button-rejected'>Rejected</a></td>";
@@ -129,6 +131,10 @@ include "../template/header.php";
 
                 echo "</tr>";
             }
+        }
+        else if($DB->numRows() ==0)
+        {
+          echo "<tr><td colspan=12 >No Data to show</td></tr>";
         }
     }
     catch(Exception $e)

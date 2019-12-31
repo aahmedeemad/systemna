@@ -148,7 +148,7 @@ $qcPages = array(
                     </div>
                 </div>
                 
-                <div id="myModal" class="modalConfirmation" style="display: none;">
+                <div id="myModal" class="modalConfirmation">
                     <div class="confirmation-notification" id='confirmation'>
                         <h2>Confirm ?</h2>
                         <div class="confirmation-content">Are you sure you want to </div>

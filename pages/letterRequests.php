@@ -131,7 +131,7 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
-        error_log("Error while using page letter Requests")
+        error_log("Error while using page letter Requests");
     }
 
     ?>

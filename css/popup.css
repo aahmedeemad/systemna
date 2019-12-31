@@ -24,6 +24,12 @@
     transition: all 5s step-start;
     background-color: black;
 }  
+
+.confirmation-notification {
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
 .popup-notification h2 ,
 .confirmation-notification h2
 {

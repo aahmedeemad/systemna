@@ -1122,89 +1122,31 @@ $(document).ready(function () {
             }
         });
     }
-
-    /* Function to set the notifications counter */
-    function setcounter1(){
+    
+    function setCounter(type, tag)
+    {
         $.ajax({
             type: "POST",
             url: "../operations/counterops.php",
-            data: "type=setnoticounter",
+            data: "type=" + type,
             success: function (html) {
-                $('#noti_Counter').text(html);
+                $(tag).text(html);
                 if (html > "0") { /* If there is data, show the counter. */
-                    $('#noti_Counter').css("display", "inline-block");
+                    $(tag).css("display", "inline-block");
                 }
             },
         });
     }
 
-    /* Function to set the users profile edits counter */
-    function setcounter2(){
-        $.ajax({
-            type: "POST",
-            url: "../operations/counterops.php",
-            data: "type=setprofilecounter",
-            success: function (html) {
-                $('#profile_Counter').text(html);
-                if (html > "0") { /* If there is data, show the counter. */
-                    $('#profile_Counter').css("display", "inline-block");
-                }
-            },
-        });
-    }
-
-    /* Function to set the users letter requests counter */
-    function setcounter3(){
-        $.ajax({
-            type: "POST",
-            url: "../operations/counterops.php",
-            data: "type=setusrsletterrequestscounter",
-            success: function (html) {
-                $('#usrsletterrequests_Counter').text(html);
-                if (html > "0") { /* If there is data, show the counter. */
-                    $('#usrsletterrequests_Counter').css("display", "inline-block");
-                }
-            },
-        });
-    }
-
-    /* Function to set the own letter requests counter */
-    function setcounter4(){
-        $.ajax({
-            type: "POST",
-            url: "../operations/counterops.php",
-            data: "type=setownletterrequestscounter",
-            success: function (html) {
-                $('#ownletterrequests_Counter').text(html);
-                if (html > "0") { /* If there is data, show the counter. */
-                    $('#ownletterrequests_Counter').css("display", "inline-block");
-                }
-            },
-        });
-    }
-
-    /* Function to set the users counter */
-    function setcounter5(){
-        $.ajax({
-            type: "POST",
-            url: "../operations/counterops.php",
-            data: "type=setusrscounter",
-            success: function (html) {
-                $('#usrs_Counter').text(html);
-                if (html > "0") { /* If there is data, show the counter. */
-                    $('#usrs_Counter').css("display", "inline-block");
-                }
-            },
-        });
-    }
 
     /* Function to set all the counters */
     function setcounters(){
-        setcounter1();
-        setcounter2();
-        setcounter3();
-        setcounter4();
-        setcounter5();
+        setCounter('setnoticounter', '#noti_Counter'); /* Function to set the notifications counter */
+        setCounter('setprofilecounter', '#profile_Counter'); /* Function to set the users profile edits counter */
+        setCounter('setusrsletterrequestscounter', '#usrsletterrequests_Counter'); /* Function to set the users letter requests counter */
+        setCounter('setownletterrequestscounter', '#ownletterrequests_Counter'); /* Function to set the own letter requests counter */
+        setCounter('setownletterrequestscounter', '#ownletterrequests_Counter'); /* Function to set the own letter requests counter */
+        setCounter('setusrscounter', '#usrs_Counter'); /* Function to set the users counter */        
     }
 
     /* Function to get the notifications */

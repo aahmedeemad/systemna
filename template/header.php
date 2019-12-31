@@ -140,6 +140,7 @@ $qcPages = array(
                         ?>
                     </ul>
                 </div>
+                <!-- Popup -->
                 <div id="myModal" class="modal">
                     <div class="popup-notification" id='popup'>
                         <h2></h2>
@@ -147,14 +148,21 @@ $qcPages = array(
                         <div class="popup-content"></div>
                     </div>
                 </div>
-                
+
+
+                <!--  Confirmation Popup  -->
                 <div id="myModal" class="modalConfirmation">
                     <div class="confirmation-notification" id='confirmation'>
                         <h2>Confirm ?</h2>
-                        <div class="confirmation-content">Are you sure you want to </div>
-                        <input type="button" value="Confirm" class="accept" id="confirmationButton">
-                        <input type="button" value="Cancle" class="reject confirmation-close">
+                        <div class="confirmation-content"></div>
+                        <div style="float: right; padding:5px;">
+                            <input type="button" value="Confirm" id="confirmationButton">
+                            <input type="button" value="Cancle" class="confirmation-close">
+                        </div>
                     </div>
                 </div>
+
+                <!-- Loading -->
                 <div class="loading hidden"></div>
+
                 <div class="content">

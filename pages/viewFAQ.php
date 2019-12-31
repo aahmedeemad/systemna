@@ -4,9 +4,16 @@ $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php"; 
 ?>
 <?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
+<!--
+<script>
 
+function confirmatio(a, b){
+console.log(a);
+}
+</script>
+-->
 <div style="text-align: center; align-self: center;">
-<div class="pages_edit" id="faq_add">Add Question</div>
+    <div class="pages_edit" id="faq_add">Add Question</div>
 </div>
 <table id='Display'>
     <tr id='must'>
@@ -22,21 +29,21 @@ include "../template/header.php";
 
     </tr>
     <?php
-        function check($c){
-         if($c==null)
-          $c='-';
-         else if($c=='')
-          $c='-';
-          return $c;
-        }
+    function check($c){
+        if($c==null)
+            $c='-';
+        else if($c=='')
+            $c='-';
+        return $c;
+    }
 
-        $sql="
+    $sql="
         SELECT *
         FROM faq
               ";
-        try
-        {
-              
+    try
+    {
+
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -61,24 +68,28 @@ include "../template/header.php";
                       <td>{$add_by}</td>";
 
                 //<td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
-                ?>
+    ?>
     <td><a type='submit' href="EditFAQ.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
-    <td><a type='submit' onclick="return confirm('Delete this question?')"
-            href="../operations/DeleteTable.php?qid=<?php echo $id ;?>" class='EditBtn'>Delete</a></td>
 
-    </tr>
+    <td>
+        <a type='submit' id="<?php echo $id ;?>" class="deleteFAQ EditBtn" href="../operations/DeleteTable.php?qid=<?php echo $id ;?>">Delete</a>
+    </td>
+
+
+
     <?php
+                echo "</tr>";
             }
         }
-      }
-      catch(Exception $e)
-      {
-          $_SESSION['error'] = 'error in sql';
-      }
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 
-        ?>
+    ?>
 </table>
 
 <?php
 ob_end_flush();
- include "../template/footer.php"; ?>
+include "../template/footer.php"; ?>

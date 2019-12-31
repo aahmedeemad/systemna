@@ -12,6 +12,7 @@ array( "name" => "", "href" => "../pages/.php", "class" => "fas fa-sm icon-butto
 
 $hrPages = array(
     array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ),
+    array( "name" => "Documents", "href" => "../pages/pn.php", "class" => "fas fa-file-upload fa-sm icon-button" ),
     array( "name" => "Dashboard", "href" => "../pages/index.php", "class" => "fas fa-home fa-sm icon-button" ), 
     array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa fa-plus fa-sm icon-button" ),
     array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-user fa-sm icon-button" ),
@@ -24,7 +25,8 @@ $hrPages = array(
 );
 
 $employeePages = array(
-    array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ), 
+    array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ),
+    array( "name" => "Documents", "href" => "../pages/pn.php", "class" => "fas fa-file-upload fa-sm icon-button" ),
     array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa-envelope fa-sm icon-button" ),
     array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-clock fa-sm icon-button" ),
     array( "name" => "Logout", "href" => "../pages/logout.php", "class" => "fa fa-sign-out-alt fa-sm icon-button" ),  
@@ -32,6 +34,7 @@ $employeePages = array(
 
 $qcPages = array(
     array( "name" => "Profile", "href" => "../pages/profile.php", "class" => "fas fa-id-card fa-sm icon-button" ), 
+    array( "name" => "Documents", "href" => "../pages/pn.php", "class" => "fas fa-file-upload fa-sm icon-button" ),
     array( "name" => "Dashboard", "href" => "../pages/QualityControl.php", "class" => "fas fa-home fa-sm icon-button" ),
     array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa-envelope fa-sm icon-button" ),
     array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-clock fa-sm icon-button" ),
@@ -142,6 +145,15 @@ $qcPages = array(
                         <h2></h2>
                         <a class="popup-close" href="">&times;</a>
                         <div class="popup-content"></div>
+                    </div>
+                </div>
+                
+                <div id="myModal" class="modalConfirmation">
+                    <div class="confirmation-notification" id='confirmation'>
+                        <h2>Confirm ?</h2>
+                        <div class="confirmation-content">Are you sure you want to </div>
+                        <input type="button" value="Confirm" id="confirmationButton">
+                        <input type="button" value="Cancle" class="confirmation-close">
                     </div>
                 </div>
                 <div class="loading hidden"></div>

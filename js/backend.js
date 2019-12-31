@@ -99,6 +99,28 @@ $(document).ready(function () {
         $(".popup-content").text(body);
         $(".modal").css("display", "block");
     }
+    
+    function confirmation(body, url) {
+        $(".confirmation-content").text(body);
+        $("#confirmationButton").on("click", function(){
+//            document.location.replace(action);
+            jQuery.ajax({ /* Send notifiation */
+                type: "GET",
+                url: url,
+//                data: "notification=" + content + "&type=notiall",
+                success: function (html) {
+                    $(".modalConfirmation").css("display", "none");
+                    popup(true,"Deleted");
+                }
+            });
+        })
+        $(".modalConfirmation").css("display", "block");
+    }
+    
+    $(".deleteFAQ").on("click", function(e){
+        e.preventDefault();
+        confirmation("Are you sure ?", this.href);
+    });
 
     $(".navbar-toggle").on("click", function () {
         $(".sidenav-custom").animate({ width: "toggle" }, 350);
@@ -114,7 +136,7 @@ $(document).ready(function () {
             dark();
         }
     });
-
+    
     function dark() { /* Changing everything to dark */
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
@@ -133,9 +155,12 @@ $(document).ready(function () {
         $("tr:nth-child(even)").css("background", "#303030");
         $("tr:nth-child(even)").css("color", "white");
         $(".profile").css("background-color", "#303030");
-        $(".profile-left").css("background-color", "#585858");
-        $(".profile-right-up").css("background-color", "#585858");
+        $(".profile-left").css("background-color", "#424242");
+        $(".profile-right-up").css("background-color", "#424242");
         $(".profile-right-down").css("background-color", "#585858");
+        $(".profile-left").css("box-shadow", "5px 5px #000");
+        $(".profile-right-up").css("box-shadow", "5px 5px #000");
+        $(".profile-right-down").css("box-shadow", "5px 5px #000");
     }
 
     function light() { /* Changing everything to light */
@@ -159,6 +184,9 @@ $(document).ready(function () {
         $(".profile-left").css("background-color", "#f5f5f5");
         $(".profile-right-up").css("background-color", "#f5f5f5");
         $(".profile-right-down").css("background-color", "#f5f5f5");
+        $(".profile-left").css("box-shadow", "5px 5px #aaa");
+        $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
+        $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
     }
 
     function getCookie(name) { /* Getting the desiered cookie value by its name */
@@ -183,6 +211,10 @@ $(document).ready(function () {
 
     $(".popup-close").on("click", function () {
         $(".modal").css("display", "none");
+    });
+    
+    $(".confirmation-close").on("click", function () {
+        $(".modalConfirmation").css("display", "none");
     });
 
     function fullnameToggle() {

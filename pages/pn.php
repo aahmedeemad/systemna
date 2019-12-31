@@ -27,7 +27,7 @@ if($DB->numRows() > 0)
 <div class="pn">
     <div class="pnleft">
         <div class="pntitle">Passport <span style="color: #DAA520">Photo</span></div>
-        <img src="<?php echo $info[0]->passport_picture == 0 ? "../template/avatar.jpg" :  "../passportImages/". $info[0]->id . ".jpeg" ?>" class="passport-picture">
+        <img src="<?php echo $info[0]->passport_picture == 0 ? "../template/noImage.png" :  "../passportImages/". $info[0]->id . ".jpeg" ?>" class="passport-picture">
         <?php if($noEdit == false) { ?>
         <div class="passport-image">
             <i class="fa fa-camera passport-camera-button"></i>
@@ -39,7 +39,7 @@ if($DB->numRows() > 0)
     <div class="pnline"></div>
     <div class="pnright">
         <div class="pntitle">National ID <span style="color: #DAA520">Photo</span></div>
-        <img src="<?php echo $info[0]->passport_picture == 0 ? "../template/avatar.jpg" :  "../nationalImages/". $info[0]->id . ".jpeg" ?>" class="national-picture">
+        <img src="<?php echo $info[0]->passport_picture == 0 ? "../template/noImage.png" :  "../nationalImages/". $info[0]->id . ".jpeg" ?>" class="national-picture">
         <?php if($noEdit == false) { ?>
         <div class="national-image">
             <i class="fa fa-camera national-camera-button"></i>

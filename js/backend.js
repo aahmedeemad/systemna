@@ -853,26 +853,7 @@ $(document).ready(function () {
     });
 
     $("#AddLetterbtn").click(function () {
-      var dataa=document.getElementById('body').value;
-      dataa='<pre>'+dataa+'</pre>';
-      if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
-          jQuery.ajax({
-              url: "../operations/newLetter.php",
-              data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
-              type:"POST",
-              success:function(data)
-              {
-                  loading(false);
-                  popup(data);
-              },
-              beforeSend: function () {
-                  loading(true);
-              }
 
-          });
-      } else {
-          popup('please fill Name, Salary and Date');
-      }
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",
@@ -884,11 +865,8 @@ $(document).ready(function () {
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
 
-        if (a == "") {
-            popup(false, "Please enter the Letter Name");
-            return 0;
-        } else if (b == "") {
-            popup(false, "Please enter the Letter description");
+        if (a == ""||b == "") {
+            popup(false, "Please enter the Letter data correctly !");
             return 0;
         }
         if (a != "" && b != "") {
@@ -906,6 +884,26 @@ $(document).ready(function () {
                 }
             });
             //alert("Letter Added Successfully");
+        }
+        var dataa=document.getElementById('body').value;
+        dataa='<pre>'+dataa+'</pre>';
+        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+            jQuery.ajax({
+                url: "../operations/newLetter.php",
+                data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
+                type:"POST",
+                success:function(data)
+                {
+                    loading(false);
+                    popup(data);
+                },
+                beforeSend: function () {
+                    loading(true);
+                }
+
+            });
+        } else {
+            popup('please fill Name, Salary and Date');
         }
     });
 

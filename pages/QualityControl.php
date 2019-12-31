@@ -4,13 +4,15 @@ include "../template/header.php";
 ?>
 <link rel="stylesheet" href="../css/QC_style.css">
 <br><br>
+<div style="text-align: center;">
 <h1>Quality Control</h1>
-<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search' style="margin-left:100px;padding:16px;">
-<select id='choice' class='tblselect' style="left:910px;padding:18px">
+<input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search' >
+<select id='choice' class='tblselect' style="padding:10px">
     <option value="empname">Employee Name</option>
     <option value="requestname">Request Name</option>
     <option value="empid">Employee ID</option>
 </select>
+</div>
 <table id='Display'>
     <tr id='must'>
         <th>#</th>

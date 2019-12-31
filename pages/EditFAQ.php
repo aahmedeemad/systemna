@@ -14,9 +14,16 @@ if(isset($_GET['id']))
         $Question = filter_var($_POST["Question"], FILTER_SANITIZE_STRING);
         $Answer = filter_var($_POST["Answer"], FILTER_SANITIZE_STRING);
         $sql="update faq set Question = '$Question', Answer = '$Answer' where ID='".$_GET['id']."' ";
-        $DB->query($sql);
-        $DB->execute();
+        try{
+         $DB->query($sql);
+         $DB->execute();
+        }
+        catch(Exception $e)
+        {
+         $_SESSION['error'] = 'error in sql';
+        }
         header('Location:viewFAQ.php');
+
     }
     try
     {
@@ -37,7 +44,7 @@ if(isset($_GET['id']))
         <br>
         <br>
         <br>
-        <input type="submit" id="btn1" value="Update Question" name='EditFAQ'>
+        <input type="submit"  class='EditFAQ' value="Update Question" name='EditFAQ'>
     </form>
 </div>
 <?php

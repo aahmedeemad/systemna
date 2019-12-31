@@ -9,10 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $uid = $_SESSION['id'];
             /* SQL query to get the data from the DB */
-            $sql = " SELECT * FROM notifications WHERE userid = $uid AND status = 0 ";
+            $sql = " SELECT COUNT(*) AS num FROM notifications WHERE userid = $uid AND status = 0 ";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
-            echo($DB->numRows()); /* Printing the output */
+            $x=$DB->getdata(); /* creates an array of the output result */
+            echo($x[0]->num); /* Printing the output */
         }
         catch(Exception $e)
         {
@@ -25,10 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $uid = $_SESSION['id'];
             /* SQL query to get the data from the DB */
-            $sql= " SELECT * FROM update_info left join employee on update_info.UID = employee.id WHERE update_info.Status = 2 and UID <> '$uid' ";
+            $sql= " SELECT COUNT(*) AS num FROM update_info left join employee on update_info.UID = employee.id WHERE update_info.Status = 2 and UID <> '$uid' ";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
-            echo ($DB->numRows()); /* Printing the output */
+            $x=$DB->getdata(); /* creates an array of the output result */
+            echo($x[0]->num); /* Printing the output */
         }
         catch(Exception $e)
         {
@@ -55,10 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         try {
             /* SQL query to get the data from the DB */
-            $sql = " SELECT * FROM requests INNER join requests_types on requests.type_name=requests_types.Name WHERE emp_id='".$_SESSION['id']."' ";
+            $sql = " SELECT COUNT(*) AS num FROM requests INNER join requests_types on requests.type_name=requests_types.Name WHERE emp_id='".$_SESSION['id']."' ";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
-            echo ($DB->numRows()); /* Printing the output */
+            $x=$DB->getdata(); /* creates an array of the output result */
+            echo($x[0]->num); /* Printing the output */
         }
         catch(Exception $e)
         {
@@ -70,10 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         try {
             /* SQL query to get the data from the DB */
-            $sql = " SELECT * FROM employee WHERE accepted = 2 ";
+            $sql = " SELECT COUNT(*) AS num FROM employee WHERE accepted = 2 ";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
-            echo ($DB->numRows()); /* Printing the output */
+            $x=$DB->getdata(); /* creates an array of the output result */
+            echo($x[0]->num); /* Printing the output */
         }
         catch(Exception $e)
         {

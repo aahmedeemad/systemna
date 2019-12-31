@@ -1158,7 +1158,8 @@ $(document).ready(function () {
             data: "type=setnotidata",
             success: function (html) {
                 if (html != '') { /* Print the notifications if not empty */
-                    $('#notidata').html(html);
+                    $('#notidata').html(html).css('text-align','left');
+                    $('#markAll').css('display','block');
                 } else { /* Print this message if empty */
                     $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
                         .css('text-align','center');

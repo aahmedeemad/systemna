@@ -1,6 +1,6 @@
-<?php 
+<?php
 $pageTitle = "SYSTEMNA | Users Table";
-include "../template/header.php"; 
+include "../template/header.php";
 if($_SESSION['type']=='user') header('Location:lettertypes.php');
 if(isset($_POST['search'])){    ?>
 <br>
@@ -63,7 +63,7 @@ if(isset($_POST['search'])){    ?>
                     echo "<td><a type='submit' href='../operations/EditTable.php?accepted=1&id={$id}' id='button-accepted'>Accepted</a></td>";
                 else if($x[$i]->accepted==0)
                     echo "<td><a type='submit' href='../operations/EditTable.php?accepted=0&id={$id}' id='button-rejected'>Rejected</a></td>";
-                else 
+                else
                     echo "<td><a type='submit' href='../operations/EditTable.php?accepted=2&id={$id}' id='button-pending'>Pending</a></td>";*/
                 echo "
                 <td>{$id}</td>
@@ -77,10 +77,10 @@ if(isset($_POST['search'])){    ?>
     <td><input type='submit'
            href="" class='modify' value ='+HR'></td>
     <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
-    
+
 <?php
 if($x[$i]->accepted == 1){
- echo "<td><a type='submit' 
+ echo "<td><a type='submit'
  href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
  echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
 }
@@ -97,6 +97,7 @@ echo "</tr>";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        error_log("error while accessing page user table");
     }
 
 ?>

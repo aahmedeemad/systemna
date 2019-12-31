@@ -898,8 +898,9 @@ box-sizing: content-box;
 #columnAddRequest {
     background-color: #f0e68c;
     border: none;
-    width: 100%;
+    width: 70%;
     height: 120px;
+display: inline-block;
     text-align: center;
     font-size: 19px;
     cursor: pointer;

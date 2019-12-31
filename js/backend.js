@@ -43,27 +43,27 @@ $(document).ready(function () {
         /* Setting the subject and content of mail and notification*/
         var content = "SYSTEMNA wishes you a happy birthday!";
         var mailsubj = "Happy Birthday";
-        var birthday = "19/03";
-        bddd = birthday.slice(0, 2); /* Get the day part of date */
-        bdmm = birthday.slice(3, 5); /* Get the month part of date */
-        if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
-            jQuery.ajax({ /* Send notifiation */
-                type: "POST",
-                url: "../operations/massmsging.php",
-                data: "notification=" + content + "&type=notiall",
-                success: function (html) {
-                    /*console.log(html);
-                    jQuery.ajax({ // Send mail //
-                        type: "POST",
-                        url: "../operations/massmsging.php",
-                        data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
-                        success: function (html) {
-                            console.log(html);
+        jQuery.ajax({
+            type: "POST",
+            url: "../operations/getudata.php",
+            data: { getbd: 1 },
+            success: function (data) {
+                birthday = data;
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getudata.php",
+                    data: { getid: 1 },
+                    success: function (data) {
+                        bddd = birthday.slice(8, 10); /* Get the day part of date */
+                        bdmm = birthday.slice(5, 7); /* Get the month part of date */
+                        if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
+                            sendmail(data, mailsubj, content);
+                            sendnoti(data, content);
                         }
-                    });*/
-                }
-            });
-        }
+                    }
+                });
+            }
+        });
     }
 
     $('.pages_edit').text('Edit'); /* Setting the text for admin's edit button */
@@ -735,8 +735,8 @@ $(document).ready(function () {
             success: function (html) {
                 jQuery.ajax({
                     type: "POST",
-                    url: "../operations/getid.php",
-                    data: { x: 1 },
+                    url: "../operations/getudata.php",
+                    data: { getid: 1 },
                     success: function (data) {
                         sendnoti(data, "Your Question Has Been Added Successfully!");
                         //sendmail(data, "Question placed", "Your Question Has Been Added Successfully!");
@@ -771,8 +771,8 @@ $(document).ready(function () {
         if (a != "" && b != "") {
             jQuery.ajax({
                 type: "POST",
-                url: "../operations/getid.php",
-                data: { x: 1 },
+                url: "../operations/getudata.php",
+                data: { getid: 1 },
                 success: function (data) {
                     sendnoti(data, "Your New Type of Letter Has Been Added Successfully!");
                     sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
@@ -822,8 +822,8 @@ $(document).ready(function () {
             success: function (html) {
                 jQuery.ajax({
                     type: "POST",
-                    url: "../operations/getid.php",
-                    data: { x: 1 },
+                    url: "../operations/getudata.php",
+                    data: { getid: 1 },
                     success: function (data) {
                         sendnoti(data, "We recived your message successfully!");
                         sendmail(data, "Message recieved", "We recived your message successfully and we are going to work on it , thank you!");

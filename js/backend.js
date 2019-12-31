@@ -106,7 +106,6 @@ $(document).ready(function () {
 
     $("#themeToggle").on("click", function toggleTheme() {
         var themecookie = getCookie("theme");
-        console.log(themecookie);
         if (themecookie == "darktheme") {
             light();
         }
@@ -209,7 +208,6 @@ $(document).ready(function () {
     }
 
     function companyInfoToggle() {
-        //        $("#username").toggleClass("hidden");
         $("#password").toggleClass("hidden");
         $(".input-company-info").toggleClass("hidden");
         $(".save-company-info").toggleClass("hidden");
@@ -246,7 +244,6 @@ $(document).ready(function () {
                 fullname +
                 "&type=fullname",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         fullnameToggle();
@@ -331,7 +328,6 @@ $(document).ready(function () {
                 loc +
                 "&type=location",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         basicInfoToggle();
@@ -365,7 +361,6 @@ $(document).ready(function () {
                 email +
                 "&type=email",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -390,7 +385,6 @@ $(document).ready(function () {
                 phone +
                 "&type=phone",
                 success: function (html) {
-                    console.log(html);
                     loading(false);
                     if (html == "true") {
                         contactInfoToggle();
@@ -407,7 +401,6 @@ $(document).ready(function () {
     /************************************ Updated ************************************/
     $(".save-company-info").on("click", function () {
         var pass = $("#passwordEdit").val();
-        //        var defaultPass = $("#passwordEdit")[0]['defaultValue'];
         var id = $("#id").text();
 
         $.ajax({
@@ -415,7 +408,6 @@ $(document).ready(function () {
             url: "../operations/editProfile.php",
             data: "id=" + id + "&value=" + pass + "&value=" + pass + "&type=password",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     companyInfoToggle();
@@ -791,7 +783,6 @@ $(document).ready(function () {
             url: "../operations/faqop.php",
             data: "question=" + question + "&answer=" + answer + "&requested_by=" + requested_by + "&type=faqaddques",
             success: function (html) {
-                console.log(html);
                 jQuery.ajax({
                     type: "POST",
                     url: "../operations/getid.php",
@@ -863,7 +854,6 @@ $(document).ready(function () {
             url: "../operations/faqop.php",
             data: "subject=" + subject + "&content=" + content + "&type=faqinq",
             success: function (html) {
-                console.log(html);
                 jQuery.ajax({
                     type: "POST",
                     url: "../operations/getid.php",
@@ -974,10 +964,8 @@ $(document).ready(function () {
             url: "../operations/addletter.php",
             data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
             success: function (html) {
-                console.log(html);
-
                 loading(false);
-                popup(true, "Added");
+                popup(true, "Letter Added Successfully");
             },
             beforeSend: function () {
                 loading(true);
@@ -1054,7 +1042,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "notification=" + data + "&type=notiall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1081,7 +1068,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "id=" + id + "&notification=" + data + "&type=notione",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1108,7 +1094,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailall",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1139,7 +1124,6 @@ $(document).ready(function () {
             url: "../operations/massmsging.php",
             data: "email=" + email + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=mailone",
             success: function (html) {
-                console.log(html);
                 loading(false);
                 if (html == "true") {
                     popup(true, "Sent");
@@ -1306,33 +1290,32 @@ $(document).ready(function () {
         var hr=text.includes('HR');
         if(hr==true && !text.includes("(.HR.)")){
             text=text.replace('HR',"(.HR.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(n==true && !text.includes("(.NAME.)")){
             text=text.replace('NAME',"(.NAME.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(s==true && !text.includes("(.SALARY.)")){
             text=text.replace('SALARY',"(.SALARY.)");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
         if(d==true && !text.includes("(.DATE.)")){
             text=text.replace('DATE',"(.DATE.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }  
         if(p==true && !text.includes("(.POSITION.)")){
             text=text.replace('POSITION',"(.POSITION.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }  
         if(startdate==true && !text.includes("(.START.)")){
             text=text.replace('START',"(.START.) ");
-            document.getElementById('letterBodyArea').value=text;
+            $("#letterBodyArea").val() = text;
         }
 
     });
 
     $("#AddLetterbtn").on("click", function () {
-        console.log("Aaa");
         var dataa=document.getElementById('body').value;
         dataa='<pre>'+dataa+'</pre>';
         if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
@@ -1342,11 +1325,16 @@ $(document).ready(function () {
                 type:"POST",
                 success:function(data)
                 {
+                    loading(false);
                     popup(data);
+                },
+                beforeSend: function () {
+                    loading(true);
                 }
+
             });
         } else {
-            popup('please fill name,salary and date');
+            popup('please fill Name, Salary and Date');
         }
     });
 
@@ -1360,12 +1348,13 @@ $(document).ready(function () {
             url: "view_employee.php",
             data:'id='+this.id,
             type:"POST",
-
             success:function(data)
             {
+                loading(false);
                 $("#body").html(data);
-
-
+            },
+            beforeSend: function () {
+                loading(true);
             }
         });
     });

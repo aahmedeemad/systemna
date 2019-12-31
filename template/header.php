@@ -16,7 +16,7 @@ $hrPages = array(
     array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa fa-plus fa-sm icon-button" ),
     array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-user fa-sm icon-button" ),
     array( "name" => "Pending Users <div class='counter' id='usrs_Counter'></div>", "href" => "../pages/waitingUsers.php", "class" => "fas fa-bell fa-sm icon-button" ),
-    array( "name" => "Users Requests <div class='counter' id='usrsletterrequests_Counter'></div>", "href" => "../pages/letter_requests.php", "class" => "fas fa-users fa-sm icon-button" ),
+    array( "name" => "Users Requests <div class='counter' id='usrsletterrequests_Counter'></div>", "href" => "../pages/letterRequests.php", "class" => "fas fa-users fa-sm icon-button" ),
     array( "name" => "Profile Requests <div class='counter' id='profile_Counter'></div>", "href" => "../pages/profileRequests.php", "class" => "fas fa-clock fa-sm icon-button" ),
     array( "name" => "Inquiries", "href" => "../pages/inquiries.php", "class" => "fas fa-envelope fa-sm icon-button" ),
     array( "name" => "Mass Messaging", "href" => "../pages/massmsgs.php", "class" => "fas fa-comments fa-sm icon-button" ),

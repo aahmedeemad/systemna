@@ -3,7 +3,7 @@ session_start();
 include('../DB/Database.php');
 $DB = new Database();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['type'] == "setnoticounter")
     {
         $uid = $_SESSION['id'];
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else if ($_POST['type'] == "setprofilecounter")
     {
         $uid = $_SESSION['id'];
-        $sql=" SELECT * FROM update_info1 left join employee on update_info1.UID = employee.id WHERE update_info1.Status = 2 and UID <> '$uid' ";
+        $sql=" SELECT * FROM update_info left join employee on update_info.UID = employee.id WHERE update_info.Status = 2 and UID <> '$uid' ";
         $DB->query($sql);
         $DB->execute();
         echo ($DB->numRows());

@@ -1,8 +1,7 @@
 <?php
 include "../DB/Database.php";
 
-if(isset($_POST['AddC']) && isset($_GET['Request_id']))
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['AddC']) && isset($_GET['Request_id'])) {
     $DataBase = new Database();
 
     $val = $_POST['Comment'];

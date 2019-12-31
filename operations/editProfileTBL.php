@@ -8,7 +8,7 @@ if(isset($_POST['type']))
     $rid = $_POST['rid'];
     $id = $_POST['id'];
     $value = $_POST['value'];
-    $sql = "UPDATE update_info1 set Status=1 where ID = '$rid';"; 
+    $sql = "UPDATE update_info set Status=1 where ID = '$rid';"; 
     $DB2 ->query($sql);
     $DB2 ->execute();
 
@@ -21,7 +21,7 @@ if(isset($_POST['type']))
 } 
 if(isset($_POST['reqId'])){
     $rid = $_POST['reqId'];
-    $sql = "UPDATE update_info1 set Status=0 where ID = '$rid';"; 
+    $sql = "UPDATE update_info set Status=0 where ID = '$rid';"; 
     $DB2 ->query($sql);
     $DB2 ->execute();
 

@@ -99,27 +99,27 @@ $(document).ready(function () {
         $(".popup-content").text(body);
         $(".modal").css("display", "block");
     }
-    
-    function confirmation(body, url) {
+
+    function confirmation(body, url, data) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function(){
-//            document.location.replace(action);
+            //            document.location.replace(action);
             jQuery.ajax({ /* Send notifiation */
                 type: "GET",
                 url: url,
-//                data: "notification=" + content + "&type=notiall",
                 success: function (html) {
                     $(".modalConfirmation").css("display", "none");
                     popup(true,"Deleted");
+                    $(data).hide();
                 }
             });
         })
         $(".modalConfirmation").css("display", "block");
     }
-    
-    $(".deleteFAQ").on("click", function(e){
+
+    $(".deleteConfirmation").on("click", function(e){
         e.preventDefault();
-        confirmation("Are you sure ?", this.href);
+        confirmation("Are you sure ?", this.href , $(this).closest('tr'));
     });
 
     $(".navbar-toggle").on("click", function () {
@@ -136,7 +136,7 @@ $(document).ready(function () {
             dark();
         }
     });
-    
+
     function dark() { /* Changing everything to dark */
         document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
@@ -212,7 +212,9 @@ $(document).ready(function () {
     $(".popup-close").on("click", function () {
         $(".modal").css("display", "none");
     });
+
     
+    // cancle button
     $(".confirmation-close").on("click", function () {
         $(".modalConfirmation").css("display", "none");
     });

@@ -51,7 +51,7 @@ include "../template/header.php";
                 $salary=check($x[$i]->salary);
                 $date=check($x[$i]->date);
                 $type_name=$x[$i]->type_name;
-                   
+
 
                 $Boolsalray = "Without Salary";
                 $BoolPriority = "Urgent";
@@ -69,7 +69,7 @@ include "../template/header.php";
                 else $BoolPriority="Normal";
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
-               
+
                 echo "<td>{$id}</td>";
                 //                echo "<td>$emp_id</td>";
 
@@ -115,14 +115,13 @@ include "../template/header.php";
                 else   {
     ?>
 
-    <td colspan="2"><a type='submit' onclick="return confirm('Delete this Request?')"
-                       href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn'>Delete</a></td>
+    <td colspan="2"><a href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
 
-    <td colspan="2"><a type='submit' onclick="return confirm('Edit this Request?')"
-                       href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
-    </tr>
+    <td colspan="2"><a href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
 
-<?php
+
+    <?php
+                    echo "</tr>";
                 }
             }
             /*else
@@ -140,7 +139,7 @@ include "../template/header.php";
         $_SESSION['error'] = 'error in sql';
     }
 
-?>
+    ?>
 </table>
 
 
@@ -158,8 +157,8 @@ include "../template/header.php";
             </div>
             <div class="modal-body" id="body">
                 <div>
-                 <p>sorry something went wrong</p>
-</div>
+                    <p>sorry something went wrong</p>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="Export2Doc('body')">download</button>
@@ -171,20 +170,20 @@ include "../template/header.php";
 
 
 <script>
-function showdata(id,salary,date){
-  jQuery.ajax({
-        url: "view_letter.php",
-        data:'id='+id+'&salary='+salary+'&date='+date,
-        type:"POST",
+    function showdata(id,salary,date){
+        jQuery.ajax({
+            url: "view_letter.php",
+            data:'id='+id+'&salary='+salary+'&date='+date,
+            type:"POST",
 
-        success:function(data)
-        {
-            $("#body").html(data);
+            success:function(data)
+            {
+                $("#body").html(data);
 
-            
-        }
-    });
-}
+
+            }
+        });
+    }
 </script>
 
 
@@ -227,7 +226,7 @@ function showdata(id,salary,date){
 
         document.body.removeChild(downloadLink);
     }
-/*
+    /*
     function pdf(){
         var doc = new jsPDF();
         var elementHTML = document.getElementById('body').innerHTML;

@@ -69,10 +69,10 @@ console.log(a);
 
                 //<td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
     ?>
-    <td><a type='submit' href="EditFAQ.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
+    <td><a href="EditFAQ.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
 
     <td>
-        <a type='submit' id="<?php echo $id ;?>" class="deleteFAQ EditBtn" href="../operations/DeleteTable.php?qid=<?php echo $id ;?>">Delete</a>
+        <a class="deleteConfirmation EditBtn" href="../operations/DeleteTable.php?qid=<?php echo $id ;?>">Delete</a>
     </td>
 
 

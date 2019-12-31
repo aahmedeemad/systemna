@@ -69,8 +69,7 @@ include "../template/header.php";
                 <td>{$ssn}</td>
                 <td>{$phone}</td>";
     ?>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-           href="../operations/DeleteTable.php?wid=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+    <td><a href="../operations/DeleteTable.php?wid=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
     <td><input type= submit class ='user-accept' value='Accept'></td>
     <td><input type= submit class ='user-reject' value='Reject'></td>
 

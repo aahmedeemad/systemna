@@ -109,8 +109,7 @@ include "../template/header.php";
     ?>
     <td><input type='submit' class='modify' value ='+QC'></td>
     <td><input type='submit' class='modify' value ='+HR'></td>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-           href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='EditBtn'>Delete</a></td>
+    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
 

@@ -51,8 +51,10 @@ include "../template/header.php";
                 //<td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
     ?>
     <td><a href="AddNewLetter.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
-    <td><a onclick="return confirm('Delete this letter?')"
-           href="../operations/DeleteTable.php?lid=<?php echo $id ;?>" class='EditBtn'>Delete</a></td>
+
+    <td>
+        <a href="../operations/DeleteTable.php?lid=<?php echo $id ;?>" class='deleteConfirmation EditBtn'>Delete</a>
+    </td>
     <?php
                 echo "</tr>";
             }

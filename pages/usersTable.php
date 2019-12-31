@@ -76,8 +76,7 @@ if(isset($_POST['search'])){    ?>
            href="" class='modify' value ='+QC'></td>
     <td><input type='submit'
            href="" class='modify' value ='+HR'></td>
-    <td><a type='submit' onclick="return confirm('Delete this account?')"
-           href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='EditBtn'>Delete</a></td>
+    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
     
 <?php
 if($x[$i]->accepted == 1){

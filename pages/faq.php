@@ -1,4 +1,4 @@
-<?php 
+<?php
 $pageTitle = "SYSTEMNA | FAQ"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
 ?>
@@ -19,15 +19,24 @@ include "../template/header.php"; /* Including the header file */
             SELECT *
             FROM faq
             ";
-        $DB->query($sql); /* Using the query function made in DB/Database.php */
-        $DB->execute(); /* Using the excute function made in DB/Database.php */
-        for($i=0; $i<$DB->numRows(); $i++){ /* iterating the results by the num of rows */
-            $x=$DB->getdata(); /* creates an array of the output result */
-            /* Printing the output */
-            echo "<h2>" . ($i+1) . "- " . $x[$i]->Question . "</h2>" . "<br>";
-            echo "<h4>" . $x[$i]->Answer . "</h4>" . "<br>";
-        }
-        echo "<br><br>";
+            try {
+              $DB->query($sql); /* Using the query function made in DB/Database.php */
+              $DB->execute(); /* Using the excute function made in DB/Database.php */
+              for($i=0; $i<$DB->numRows(); $i++){ /* iterating the results by the num of rows */
+                  $x=$DB->getdata(); /* creates an array of the output result */
+                  /* Printing the output */
+                  echo "<h2>" . ($i+1) . "- " . $x[$i]->Question . "</h2>" . "<br>";
+                  echo "<h4>" . $x[$i]->Answer . "</h4>" . "<br>";
+              }
+              echo "<br><br>";
+
+            } catch (\Exception $e) {
+              $_SESSION['error'] = 'error in sql';
+              error_log("Error while trying to access faq page");
+
+            }
+
+
         ?>
     </div>
     <div class="askus">

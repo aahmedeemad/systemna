@@ -84,7 +84,7 @@ $(document).ready(function () {
 
 
     /******* Loading circle when get data with ajax *******/
-    function loading(status) { 
+    function loading(status) {
         if (status == true) {
             $(".loading").removeClass("hidden");
             $(".content").addClass("hidden");
@@ -715,7 +715,7 @@ $(document).ready(function () {
             }
         });
     }
-
+// function to add new question to faq
     $("#faqaddques").on("click", function () {
         var question = $("#question").val();
         var answer = $("#answer").val();
@@ -885,7 +885,7 @@ $(document).ready(function () {
           }
       });*/
 
-    
+
     /******************************************************************************************************************
     * MakeLetter.php
     * apply button
@@ -903,10 +903,10 @@ $(document).ready(function () {
         ) {
             if ($('#rdbtn1').is(':checked')) { priority = 1; }
             else if ($('#rdbtn2').is(':checked')) { priority = 0; }
-            
+
             if ($('#rdbtn3').is(':checked')) { salary = 1; }
             else if ($('#rdbtn4').is(':checked')) { salary = 0; }
-            
+
             type_name = $("input[name=Letterbuttonn]:checked").val();
             $.ajax({
                 type: "POST",
@@ -916,7 +916,7 @@ $(document).ready(function () {
                     loading(false);
                     if (html == "true")
                         popup(true, "Letter Added Successfully");
-                    else 
+                    else
                         popup(false, html);
                     sendnoti(id, "Letter Request Added Successfully!");
                     sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");

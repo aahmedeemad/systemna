@@ -46,15 +46,15 @@
                 <td>
                     <div class="paddingview"> <!-- Adding the logo, mission & vision. -->
                         <img src="template/logo.png" alt="SYSTEMNA Logo" style="align:center; width: 200px; height:200px;">
-                        <h1 style="font-size: 3em;">Welcome to <strong style="color: #DAA520">SYSTEM</strong><strong>NA</strong>!</h1>
+                        <h1 style="font-size: 3em;">Welcome to <strong style="color: #DAA520">SYSTEM</strong><strong class="NA">NA</strong>!</h1>
                         <br><br><br>
-                        <h2 style="text-decoration: underline; font-size: 2em;">-Mission-</h2>
+                        <h2 style="text-decoration: underline; font-size: 2em;" class="Mission">-Mission-</h2>
                         <br>
-                        <p style="font-size: 1.5em;">Delivering HR papers in ease for both the employer and the HR staff, also aiming for greener environment reducing paperwork going towards a sustainable goal.</p>
+                        <p style="font-size: 1.5em;" class="Mpara">Delivering HR papers in ease for both the employer and the HR staff, also aiming for greener environment reducing paperwork going towards a sustainable goal.</p>
                         <br><br>
-                        <h2 style="text-decoration: underline; font-size: 2em;">-Vision-</h2>
+                        <h2 style="text-decoration: underline; font-size: 2em;" class="Vision">-Vision-</h2>
                         <br>
-                        <p style="font-size: 1.5em;">Making the HR papers process easier and accessible for everyone and going toward a sustainable goal of reducing(and eliminating) paperwork in the company.</p>
+                        <p style="font-size: 1.5em;" class="Vpara">Making the HR papers process easier and accessible for everyone and going toward a sustainable goal of reducing(and eliminating) paperwork in the company.</p>
                     </div>
                 </td>
                 <td><div class = "vertical"></div></td> <!-- Vertical line shown on large screens -->

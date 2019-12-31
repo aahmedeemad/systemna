@@ -280,8 +280,6 @@ th {
 }
 
 .input {
-    -moz-appearance: textfield;
-    -webkit-appearance: textfield;
     background-color: white;
     background-color: -moz-field;
     border: 1px solid darkgray;
@@ -294,8 +292,6 @@ th {
 }
 
 .wr {
-    -moz-appearance: textfield;
-    -webkit-appearance: textfield;
     background-color: #da5555;
     box-shadow: 1px 1px 1px 0 lightgray inset;
     overflow: auto;

@@ -122,17 +122,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
 
-
-    $sql="INSERT INTO update_info VALUES(NULL, :id , :oldvalue , :value, :type, 2)" ;
-    $DB->query($sql);
-    $DB->bind(':id',$_POST['id']);
-    $DB->bind(':oldvalue',$_POST['oldvalue']);
-    $DB->bind(':value',$_POST['value']);
-    $DB->bind(':type',$_POST['type']);
-    $DB->execute();
-    if($DB->numRows() > 0)
-    {
-        echo "true";
+    try {
+        $sql = "SELECT * FROM update_info WHERE UID = " .  $_POST['id'] . " AND Type = '" . $_POST['type'] . "' AND Status = 2";
+        $DB->query($sql);
+        $DB->execute();
+        if($DB->numRows() > 0)
+        {
+            $sql = "UPDATE update_info SET Value = '" . $_POST['value'] . "' WHERE UID = " .  $_POST['id'] . " AND Type = '" . $_POST['type'] . "' AND Status = 2";
+            $DB->query($sql);
+            $DB->execute();
+            if($DB->numRows() > 0)
+                echo "true";
+        }
+        else {
+            $sql="INSERT INTO update_info VALUES(NULL, " . $_POST['id'] . ", '" . $_POST['oldvalue'] . "', '" . $_POST['value'] . "', '" . $_POST['type'] . "', 2)" ;
+            $DB->query($sql);
+            $DB->execute();
+            if($DB->numRows() > 0)
+                echo "true";
+        }
+    } catch (Exception $e) {
+        echo "<div class='alert alert-danger'>Error please try again later</div>";
+        error_log("Error while edit profile");
     }
 
 

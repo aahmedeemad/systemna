@@ -14,8 +14,11 @@ else {
     $id = $_SESSION['id'];
 }
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = " . $id;
+try
+{
 $DB->query($sql);
 $DB->execute();
+
 $info=$DB->getdata();
 
 ?>
@@ -113,8 +116,15 @@ if($DB->numRows() > 0)
 </div>
 
 <?php
-} else {
+}
+else {
     echo "<div>ERROR!! Please Logout And Login Again</div>";
+}
+}
+catch(Exception $e)
+{
+    echo "<div>ERROR!! Please Logout And Login Again</div>";
+    $_SESSION['error'] = 'error in sql';
 }
 ?>
 

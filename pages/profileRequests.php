@@ -59,6 +59,10 @@ include "../template/header.php";
                 echo "</tr>";
             }
         }
+        else if($DB->numRows() ==0)
+        {
+          echo "<tr><td colspan=12 >No Data to show</td></tr>";
+        }
     }
     catch(Exception $e)
     {

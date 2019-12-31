@@ -281,7 +281,6 @@ th {
 
 .input {
     background-color: white;
-    background-color: -moz-field;
     border: 1px solid darkgray;
     box-shadow: 1px 1px 1px 0 lightgray inset;
     overflow: auto;
@@ -289,6 +288,7 @@ th {
     margin-left: 20px;
     padding: 2px 3px;
     width: 100px;
+    color: black;
 }
 
 .wr {
@@ -299,6 +299,7 @@ th {
     margin-left: 20px;
     padding: 2px 3px;
     width: 100px;
+    color: black;
 }
 
 .tblsearch,

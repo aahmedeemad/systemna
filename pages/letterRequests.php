@@ -22,13 +22,6 @@ include "../template/header.php";
     </tr>
 
     <?php
-    //    function check($c){
-    //        if($c==null)
-    //            $c='-';
-    //        else if($c=='')
-    //            $c='-';
-    //        return $c;
-    //    }
 
     $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary
         FROM requests r ,employee e, requests_types rt where e.id=r.emp_id and r.Type_name=rt.Name order by r.date asc , r.priority desc ";
@@ -64,7 +57,7 @@ include "../template/header.php";
                     $BoolPriority ="Urgent";
                 }
                 else $BoolPriority="Normal";
-//onclick='showdata(this.id)'
+
                 echo  "<tr id='$id'  data-toggle='modal' class='letterstd'  data-target='#exampleModalLong'>";
                 echo "<td>{$y}</td>";
 
@@ -83,22 +76,7 @@ include "../template/header.php";
 
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
-                /*
 
-                if($x[$i]->priority==1){
-                        echo "<td>Urgent</td>";
-                        }
-                else{
-                        echo "<td>Normal</td>";
-                        }
-
-                if($x[$i]->salary==0){
-                        echo "<td>With Salary</td>";
-                        }
-                else{
-                        echo "<td>Without Salary</td>";
-                        }
-                        */
                 if($x[$i]->Status==1){
     ?>
 
@@ -118,11 +96,7 @@ include "../template/header.php";
                     echo "</tr>";
                    }
             }
-            /*else
-                 echo "<td></td>";
-                  echo "<td></td>";
-*/
-
+            
         }
         else {
             echo"<tr><td colspan=8>You have no requests for now ! </td></tr>";

@@ -1399,7 +1399,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#AddLetterbtn").on("click", function () {
+  /*  $("#AddLetterbtn").on("click", function () {
         var dataa=document.getElementById('body').value;
         dataa='<pre>'+dataa+'</pre>';
         if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
@@ -1420,7 +1420,7 @@ $(document).ready(function () {
         } else {
             popup('please fill Name, Salary and Date');
         }
-    });
+    });*/
 
     /**************** LetterRequests ********************/
 

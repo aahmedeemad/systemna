@@ -2,6 +2,7 @@
     margin: 0px;
     font-family: sans-serif;
 }
+
 .container-custom {
     display: flex;
     flex-direction: column;
@@ -131,15 +132,16 @@
     .sidenav-custom .sidenav-header .avatar {
         margin-left: 0;
     }
-    
+
     .sidenav-custom {
         width: 100px;
         overflow-y: auto;
-
     }
+
     .sidenav-custom .sidenav-button .button-text {
         display: block;
     }
+
     .sidenav-custom .sidenav-button .icon-button {
         padding-left: 10px;
         border-right: none;
@@ -173,26 +175,31 @@
     top: 200px;
     right: -23%;
 }
+
 td,
 th {
     text-align: center;
     padding: 11px 7px;
 }
+
 #Display tr,
 #tblRequests tr {
     color: black;
     border: 1px solid black;
 }
+
 #Display tr:nth-child(1),
 #tblRequests tr:nth-child(1) {
     background: #DAA520;
     color: black;
 }
+
 #Display tr:nth-child(even),
 #tblRequests tr:nth-child(even) {
     background: #e8e8e8;
     color: black;
 }
+
 .EditBtn,
 .EditBtn1,
 .modify {
@@ -207,6 +214,7 @@ th {
     margin: 4px 2px;
     cursor: pointer;
 }
+
 #button-accepted,
 .accept,
 .user-accept {
@@ -221,6 +229,7 @@ th {
   margin: 4px 2px;
   cursor: pointer;
 }
+
 #button-rejected,
 .reject,
 .user-reject {
@@ -235,6 +244,7 @@ th {
   margin: 4px 2px;
   cursor: pointer;
 }
+
 #button-pending {
     background-color: #fbff00;
     border: none;
@@ -259,6 +269,7 @@ th {
     position: relative;
     display: table;
 }
+
 @media only screen and (max-width: 900px) {
     #Display,
     #tblRequests {
@@ -266,6 +277,7 @@ th {
         overflow: auto;
     }
 }
+
 .input {
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
@@ -279,6 +291,7 @@ th {
     padding: 2px 3px;
     width: 100px;
 }
+
 .wr {
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
@@ -290,6 +303,7 @@ th {
     padding: 2px 3px;
     width: 100px;
 }
+
 .tblsearch,
 .tblselect {
     width: 40vw;
@@ -301,9 +315,11 @@ th {
     margin-top: 2vh;
     display: inline;
 }
+
 .tblsearch:focus {
     border-color: #3971ed !important;
 }
+
 .tblsearch:hover {
     border-color: #cecece;
 }
@@ -490,6 +506,7 @@ box-sizing: content-box;
 .hidden {
     display: none !important ;
 }
+
 .profile .profile-left .user-position {
     font-size: 1.3rem;
     font-weight: bold;
@@ -549,21 +566,22 @@ box-sizing: content-box;
     .profile .profile-left .p-image {
         right: 15%;
     }
-    .askus #faqtextarea {
-        margin-right: 0.8em;
-    }
+
     .sidenav-custom .sidenav-header {
         padding-bottom: 0;
     }
+
     .sidenav-custom .sidenav-button a {
         flex-direction: column;
         text-align: center;
         font-size: 0.7em;
     }
+
     .sidenav-custom .sidenav-button .icon-button {
         padding: 0;
         margin-left: 1rem;
     }
+
     .stextinput {
         margin-top: 0.5em;
     }
@@ -575,6 +593,7 @@ box-sizing: content-box;
     display: inline;
     width: 45%;
 }
+
 .askus {
     float: right;
     display: inline;
@@ -585,24 +604,33 @@ box-sizing: content-box;
     padding: 1em;
     margin: 0em 1em 1em 1em;
 }
+
 @media screen and (max-width: 800px) {
     .faqdiv {
         width: 100%;
         display: block;
         padding: 1vw;
     }
+
     .askus {
         width: 80%;
         display: block;
         padding-right: 1vw;
     }
+
+    .askus #faqtextarea {
+        margin-right: 0.8em;
+    }
 }
+
 #searched {
     width: 60%;
 }
+
 #submits {
     width: 20%;
 }
+
 .askus #faqinputtext {
     width: 95%;
     padding: 1em;
@@ -611,6 +639,7 @@ box-sizing: content-box;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .askus #faqtextarea {
     width: 95%;
     padding: 1em;
@@ -619,6 +648,7 @@ box-sizing: content-box;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .askus #faqsubmit {
     width: 75%;
     background-color: #daa520;
@@ -641,6 +671,7 @@ box-sizing: content-box;
     border-radius: 0.4em;
     box-sizing: border-box;
 }
+
 .massmsgsendbtn {
     background-color: #daa520;
     color: white;
@@ -651,6 +682,7 @@ box-sizing: content-box;
     text-transform: uppercase;
     font-size: 0.8em;
 }
+
 .massmsgdrpdwn{
     width: 30%;
     padding: 0.1em;
@@ -673,6 +705,7 @@ box-sizing: content-box;
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 #faqaddques,
 #AddLetterbtn {
     width: 99%;
@@ -685,15 +718,18 @@ box-sizing: content-box;
     cursor: pointer;
     align-content: center;
 }
+
 #column {
     float: left;
     width: 35%;
     padding: 10px;
     height: 200px;
 }
+
 #optionsform {
     float: left;
 }
+
 .Letterbutton {
     background-color: #f0e68c;
     border: none;
@@ -705,6 +741,7 @@ box-sizing: content-box;
     margin: 4px 2px;
     cursor: pointer;
 }
+
 .Letterbutton1 {
     background-color: #f1c40f;
     border: none;
@@ -716,6 +753,7 @@ box-sizing: content-box;
     margin: 4px 2px;
     cursor: pointer;
 }
+
 #submitbtn,
 #editLetterButton,
 #updateLetter {
@@ -728,11 +766,13 @@ box-sizing: content-box;
     border-radius: 2px;
     cursor: pointer;
 }
+
 .Letterdiv {
     float: left;
     display: inline-block;
     width: 100%;
 }
+
 .Priorityform {
     float: left;
     display: inline-block;
@@ -742,6 +782,7 @@ box-sizing: content-box;
     */
     width: 15%;
 }
+
 .stextinput {
     float: right;
     margin-right: 1.7em;
@@ -750,32 +791,41 @@ box-sizing: content-box;
     border: 0.2em solid #daa520;
     border-radius: 0.5em;
 }
+
 #faqdiv span {
     text-decoration: underline;
     background-color: #daa520;
 }
+
+/* Style for vertical and horizontal lines used in mass messaging */
 .vertical {
     display: block;
     border-left: 0.5vw solid #daa520;
     height: 100vh;
 }
+
 .horizontal {
     display: none;
     border-bottom: 1vw solid #daa520;
     width: 99.5vw;
 }
+
 @media screen and (max-width: 800px) {
     .vertical {
         display: none;
     }
+
     .horizontal {
         display: block;
         padding-top: 5em;
     }
+    
     .massmsgfield {
         width: 80%;
     }
 }
+
+/* Notifications window*/
 #notifications {
     display: none;
     position: absolute;
@@ -786,6 +836,7 @@ box-sizing: content-box;
     z-index: 1;
     width: 30vw;
 }
+
 #notidata {
     cursor: default;
     font-size: 100%;
@@ -794,6 +845,7 @@ box-sizing: content-box;
     overflow-y: auto;
     height: 40vh;
 }
+
 #markAll {
     font-size: 0.7em !important;
     font-weight: bold;
@@ -802,11 +854,14 @@ box-sizing: content-box;
     padding: 0.7em !important;
     z-index: 1 !important;
 }
+
 #markAll:hover {
     color: #daa520 !important;
     text-decoration: underline !important;
     cursor: pointer;
 }
+
+/* Counters */
 .counter {
     display: none;
     background: #e1141e;
@@ -817,6 +872,8 @@ box-sizing: content-box;
     border-radius: 0.2em;
     z-index: 1;
 }
+
+/* Admin's edit button in pages top*/
 .pages_edit {
     display: inline-block;
     top: 0;
@@ -837,6 +894,7 @@ box-sizing: content-box;
     border-bottom-right-radius: 0.4em;
     border-bottom-left-radius: 0.4em;
 }
+
 #columnAddRequest {
     background-color: #f0e68c;
     border: none;
@@ -906,11 +964,13 @@ box-sizing: content-box;
     margin-left:20px;
 
 }
+
 #qcsubmit:hover
 {
     background:black;
     color: #DAA520;
 }
+
 #qccomment
 {
     margin-left:auto;

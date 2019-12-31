@@ -49,24 +49,19 @@ $(document).ready(function () {
             data: { getbd: 1 },
             success: function (data) {
                 birthday = data;
-                bddd = birthday.slice(8, 10); /* Get the day part of date */
-                bdmm = birthday.slice(5, 7); /* Get the month part of date */
-                if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
-                    jQuery.ajax({ /* Send notifiation */
-                        type: "POST",
-                        url: "../operations/massmsging.php",
-                        data: "notification=" + content + "&type=notiall",
-                        success: function (html) {
-                            jQuery.ajax({ // Send mail //
-                                type: "POST",
-                                url: "../operations/massmsging.php",
-                                data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
-                                success: function (html) {
-                                }
-                            });
+                jQuery.ajax({
+                    type: "POST",
+                    url: "../operations/getudata.php",
+                    data: { getid: 1 },
+                    success: function (data) {
+                        bddd = birthday.slice(8, 10); /* Get the day part of date */
+                        bdmm = birthday.slice(5, 7); /* Get the month part of date */
+                        if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
+                            sendmail(data, mailsubj, content);
+                            sendnoti(data, content);
                         }
-                    });
-                }
+                    }
+                });
             }
         });
     }

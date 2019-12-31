@@ -42,12 +42,9 @@ include "../template/header.php";
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
                 echo "
-                <div>
-                    <td>{$name}</td>
-                </div>
-                <div>
-                    <td>{$desc}</td>
-                </div>";
+                <td><div>{$name}</div></td>
+                <td><div>{$desc}</div></td>
+                ";
                 //<td ><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
     ?>
     <td><a href="AddNewLetter.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>

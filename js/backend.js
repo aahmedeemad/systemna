@@ -851,6 +851,26 @@ $(document).ready(function () {
     });
 
     $("#AddLetterbtn").click(function () {
+      var dataa=document.getElementById('body').value;
+      dataa='<pre>'+dataa+'</pre>';
+      if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+          jQuery.ajax({
+              url: "../operations/newLetter.php",
+              data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
+              type:"POST",
+              success:function(data)
+              {
+                  loading(false);
+                  popup(data);
+              },
+              beforeSend: function () {
+                  loading(true);
+              }
+
+          });
+      } else {
+          popup('please fill Name, Salary and Date');
+      }
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",

@@ -137,6 +137,7 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        error_log("Error while user tried to view his request");
     }
 
     ?>
@@ -236,7 +237,7 @@ include "../template/header.php";
             }
         };
         doc.fromHTML(elementHTML, 15, 15, {
-            'width': 170,   
+            'width': 170,
             'elementHandlers': specialElementHandlers
         });
 

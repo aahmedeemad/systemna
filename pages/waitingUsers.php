@@ -34,14 +34,8 @@ include "../template/header.php";
             $c='-';
         return $c;
     }
-
-    $sql="
-        SELECT *
-        FROM employee left join add_info
-        on emp_id=id where employee.accepted = 2 AND privilege = 'user' AND active = 1";
-    try
-    {
-
+    $sql=" SELECT * FROM employee left join add_info on emp_id=id where employee.accepted = 2 AND privilege = 'user' AND active = 1";
+    try {
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -56,10 +50,6 @@ include "../template/header.php";
                 $ssn=check($x[$i]->ssn);
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
-
-
-
-
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
                 echo "
@@ -72,8 +62,6 @@ include "../template/header.php";
     <td><a href="../operations/DeleteTable.php?wid=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
     <td><input type= submit class ='user-accept' value='Accept'></td>
     <td><input type= submit class ='user-reject' value='Reject'></td>
-
-
     <?php
                 echo "</tr>";
             }
@@ -82,10 +70,10 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        echo "<div class='alert alert-danger'>Error please try again later</div>";
+        error_log("Error while getting waiting users");
     }
-
     ?>
 </table>
-
 <?php ob_end_flush();
 include "../template/footer.php"; ?>

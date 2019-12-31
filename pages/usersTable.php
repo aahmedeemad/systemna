@@ -28,16 +28,11 @@ if(isset($_POST['search'])){    ?>
             $c='-';
         return $c;
     }
-
-    $sql="
-        SELECT *
-        FROM employee left join add_info
-        on emp_id=id where employee.active = 1 AND privilege = 'user' AND accepted <> 2 ";
+    $sql=" SELECT * FROM employee left join add_info on emp_id=id where employee.active = 1 AND privilege = 'user' AND accepted <> 2 ";
     if(!empty($search)){
         $sql = $sql."AND ".$by." LIKE '%$search%'";
     }
-    try
-    {
+    try {
         $DB->query($sql);
         $DB->execute();
         $y=0;
@@ -56,7 +51,6 @@ if(isset($_POST['search'])){    ?>
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
                 $location = check($x[$i]->location);
-
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
                 /*if($x[$i]->accepted==1)
@@ -77,26 +71,24 @@ if(isset($_POST['search'])){    ?>
     <td><input type='submit'
            href="" class='modify' value ='+HR'></td>
     <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
-
-<?php
-if($x[$i]->accepted == 1){
- echo "<td><a type='submit'
- href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
- echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
-}
-else if($x[$i]->accepted == 0)
-{
- echo "<td></td>";
- echo "<td><a type='submit' id='button-rejected'>Rejected</a></td>";
-}
-
-echo "</tr>";
+    <?php
+    if($x[$i]->accepted == 1){
+        echo "<td><a type='submit' href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
+        echo "<td><a  type='submit'  id='button-accepted'>Accepted</a></td>";
+    }
+    else if($x[$i]->accepted == 0)
+    {
+        echo "<td></td>";
+        echo "<td><a type='submit' id='button-rejected'>Rejected</a></td>";
+    }
+    echo "</tr>";
             }
         }
     }
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        echo "<div class='alert alert-danger'>Error please try again later</div>";
         error_log("error while accessing page user table");
     }
 

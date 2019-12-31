@@ -62,8 +62,8 @@ console.log(a);
                 echo "<td>{$y}</td>";
                 echo "<td></td>";
                 echo "<td>{$id}</td>
-                     <div><td>{$question}</td></div>
-                     <div><td>{$answer}</td></div>
+                     <td><div>{$question}</div></td>
+                     <td><div>{$answer}</div></td>
                       <td>{$req_by}</td>
                       <td>{$add_by}</td>";
 

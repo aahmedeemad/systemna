@@ -31,7 +31,7 @@ if($DB->numRows() > 0)
 <div class="profile">
     <div class="profile-left">
         <div class="image-container">
-            <img src="<?php echo file_exists('../usersImages/' . $_SESSION['id'] . '.jpeg') ? '../usersImages/' . $_SESSION['id'] . '.jpeg' : '../template/avatar.jpg'; ?>" class="profile-picture">
+            <img src="<?php echo file_exists('../usersImages/' . $id . '.jpeg') ? '../usersImages/' . $id . '.jpeg' : '../template/avatar.jpg'; ?>" class="profile-picture">
             <?php if($noEdit == false) { ?> <div class="p-image">
             <i class="fa fa-camera profile-camera-button"></i>
             <input id="profile-picture-input" class="profile-picture-input hidden" type="file" accept="image/*"/>

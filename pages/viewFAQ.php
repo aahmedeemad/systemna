@@ -78,6 +78,7 @@ if($_SESSION['type']=='user') header('Location:MakeLetter.php');
     {
         $_SESSION['error'] = 'error in sql';
         error_log("Error while viewing faqs");
+        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
     }
 
     ?>

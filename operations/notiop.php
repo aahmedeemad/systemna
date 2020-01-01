@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             for($i=$DB->numRows(); $i>0; --$i){ /* iterating the results by the num of rows */
                 $x=$DB->getdata(); /* creates an array of the output result */
-                echo ($i) . "- " . $x[$i-1]->notidata . "<hr>"; /* Printing the output */
+                echo ($i) . "- <a href='" . $x[$i-1]->notihref . "' style='text-decoration: none; color: #DAA520;'>" . $x[$i-1]->notidata . "</a><hr>"; /* Printing the output */
             }
         }
         catch(Exception $e)

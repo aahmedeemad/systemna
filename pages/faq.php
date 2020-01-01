@@ -33,10 +33,8 @@ include "../template/header.php"; /* Including the header file */
             } catch (\Exception $e) {
               $_SESSION['error'] = 'error in sql';
               error_log("Error while trying to access faq page");
-
+              echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
             }
-
-
         ?>
     </div>
     <div class="askus">

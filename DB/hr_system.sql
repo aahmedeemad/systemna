@@ -127,10 +127,9 @@ CREATE TABLE `faq` (
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUES
 (1, 'What is SYSTEMNA', 'SYSTEMNA is our company&#39;s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
-(2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
-(3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
-(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad'),
-(5, 'HAW ARE IUO', 'aa', '', 'Islam');
+(2, 'How to view your profile ?', 'You can <a href="../pages/profile.php" style="text-decoration: none;">click here</a> to go to your profile and view or edit your info.', NULL, 'aahmedeemad'),
+(3, 'How to request an HR letter ?', '<a href="../pages/MakeLetter.php" style="text-decoration: none;">Click on this link</a>, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
+(4, 'How to request a new question to be added ?', 'In this page you will find a form to send us an inquiry.<br>Feel free to message us, and we will get back to you.<br>If the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
 
@@ -164,44 +163,45 @@ CREATE TABLE `notifications` (
   `ID` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `userid` int(11) NOT NULL,
-  `notidata` varchar(250) NOT NULL
+  `notidata` varchar(250) NOT NULL,
+  `notihref` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
-(1, 0, 8, 'Welcome to SYSTEMNA'),
-(2, 0, 8, 'This is notification number 2 for user number 8'),
-(3, 0, 8, 'This is notification number 3 for user number 8'),
-(4, 1, 7, 'This is notification number 1 for user number 7'),
-(5, 1, 7, 'This is notification number 2 for user number 7'),
-(6, 1, 1, 'This is notification number 1 for user number 1'),
-(7, 1, 2, 'This is notification number 1 for user number 2'),
-(8, 1, 2, 'Welcome to SYSTEMNA'),
-(9, 1, 1, 'Welcome to SYSTEMNA'),
-(10, 0, 3, 'Welcome to SYSTEMNA'),
-(11, 1, 24, 'Letter Request Added Successfully'),
-(12, 1, 24, 'Letter Request Added Successfully'),
-(13, 1, 24, 'Letter Request Added Successfully'),
-(14, 1, 24, 'Letter Request Added Successfully'),
-(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
-(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
-(17, 1, 1, 'Your Question Has Been Added Successfully!'),
-(18, 0, 26, 'An action has been made to a letter request.'),
-(19, 0, 26, 'An action has been made to a letter request.'),
-(20, 0, 26, 'An action has been made to a letter request.'),
-(21, 0, 26, 'An action has been made to a letter request.'),
-(22, 1, 24, 'Your profile email change request has been accepted!'),
-(23, 1, 24, 'Your profile fullname change request has been accepted!'),
-(24, 1, 24, 'Your profile phone change request has been accepted!'),
-(25, 1, 24, 'Your profile ssn change request has been accepted!'),
-(26, 0, 3, 'Welcome to SYSTEMNA!'),
-(27, 0, 3, 'Congratulations you have been promoted to an QC!'),
-(28, 0, 1, 'Letter Request Added Successfully'),
-(29, 0, 1, 'Letter Request Added Successfully'),
-(30, 1, 24, 'Letter Request Added Successfully');
+INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) VALUES
+(1, 0, 8, 'Welcome to SYSTEMNA', ''),
+(2, 0, 8, 'This is notification number 2 for user number 8', ''),
+(3, 0, 8, 'This is notification number 3 for user number 8', ''),
+(4, 1, 7, 'This is notification number 1 for user number 7', ''),
+(5, 1, 7, 'This is notification number 2 for user number 7', ''),
+(6, 1, 1, 'This is notification number 1 for user number 1', ''),
+(7, 1, 2, 'This is notification number 1 for user number 2', ''),
+(8, 1, 2, 'Welcome to SYSTEMNA', ''),
+(9, 1, 1, 'Welcome to SYSTEMNA', ''),
+(10, 0, 3, 'Welcome to SYSTEMNA', ''),
+(11, 1, 24, 'Letter Request Added Successfully', ''),
+(12, 1, 24, 'Letter Request Added Successfully', ''),
+(13, 1, 24, 'Letter Request Added Successfully', ''),
+(14, 1, 24, 'Letter Request Added Successfully', ''),
+(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
+(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
+(17, 1, 1, 'Your Question Has Been Added Successfully!', ''),
+(18, 0, 26, 'An action has been made to a letter request.', ''),
+(19, 0, 26, 'An action has been made to a letter request.', ''),
+(20, 0, 26, 'An action has been made to a letter request.', ''),
+(21, 0, 26, 'An action has been made to a letter request.', ''),
+(22, 1, 24, 'Your profile email change request has been accepted!', ''),
+(23, 1, 24, 'Your profile fullname change request has been accepted!', ''),
+(24, 1, 24, 'Your profile phone change request has been accepted!', ''),
+(25, 1, 24, 'Your profile ssn change request has been accepted!', ''),
+(26, 0, 3, 'Welcome to SYSTEMNA!', ''),
+(27, 0, 3, 'Congratulations you have been promoted to an QC!', ''),
+(28, 0, 1, 'Letter Request Added Successfully', ''),
+(29, 0, 1, 'Letter Request Added Successfully', ''),
+(30, 1, 24, 'Letter Request Added Successfully', '');
 
 -- --------------------------------------------------------
 

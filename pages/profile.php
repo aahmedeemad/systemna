@@ -122,8 +122,9 @@ else {
 }
 catch(Exception $e)
 {
-    echo "<div>ERROR!! Please Logout And Login Again</div>";
+    echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
     $_SESSION['error'] = 'error in sql';
+    error_log("error while getting profile");
 }
 ?>
 

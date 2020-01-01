@@ -122,7 +122,8 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
-        error_log("Error while user tried to view his request");
+        error_log("Error while user trying to view letter request");
+        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
     }
 
     ?>

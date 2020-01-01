@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
                     $uid = $x[$i]->id;
                      /* SQL query to set the data into the DB */
-                    $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+                    $sql = "INSERT INTO notifications (status, userid, notidata, notihref) VALUES ('0','$uid','$notification','')";
                     $DB->query($sql); /* Using the query function made in DB/Database.php */
                     $DB->execute(); /* Using the excute function made in DB/Database.php */
                 }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['notification'])) {
                 $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
                 /* SQL query to set the data into the DB */
-                $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+                $sql = "INSERT INTO notifications (status, userid, notidata, notihref) VALUES ('0','$uid','$notification','')";
                 $DB->query($sql); /* Using the query function made in DB/Database.php */
                 $DB->execute(); /* Using the excute function made in DB/Database.php */
             }
@@ -193,8 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $uid = $_POST['uid']; /* Getting the user ID */ /* Getting the user ID */
             $notification = $_POST['noticontent'];
+            $notihref = $_POST['notihref']; 
             /* SQL query to set the data into the DB */
-            $sql = "INSERT INTO notifications (status, userid, notidata) VALUES ('0','$uid','$notification')";
+            $sql = "INSERT INTO notifications (status, userid, notidata, notihref) VALUES ('0','$uid','$notification','$notihref')";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             echo "true";

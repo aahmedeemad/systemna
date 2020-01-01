@@ -14,7 +14,8 @@ else {
     $noEdit = false;
     $id = $_SESSION['id'];
 }
-
+try
+{
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = ".$id."" ;
 $DB->query($sql);
 $DB->execute();
@@ -53,6 +54,12 @@ if($DB->numRows() > 0)
 } else {
     echo "<div>ERROR!! Please Logout And Login Again</div>";
 }
+}
+catch(Exception $e)
+{
+    echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+    $_SESSION['error'] = 'error in sql';
+    error_log("error in pn page");
+}
 ?>
-
 <?php include "../template/footer.php"; ?>

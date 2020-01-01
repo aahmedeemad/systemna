@@ -28,7 +28,18 @@ $(document).ready(function () {
         for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
             holidd = holidays[i].slice(0, 2); /* Get the day part of date */
             holimm = holidays[i].slice(3, 5); /* Get the month part of date */
-            if (curdd == (holidd - 1) && curmm == holimm) { /* Checking if the next day is a holiday */
+            /* Get the day before the holiday */
+            if (holidd == '01'){
+                holidd = 30;
+                if (holimm == '01') {
+                    holimm = 12;
+                } else {
+                    holimm -= 1;
+                }
+            } else {
+                holidd = holidd - 1;
+            }
+            if (curdd == (holidd) && curmm == holimm) { /* Checking if the next day is a holiday */
                 jQuery.ajax({ /* Send notifiation */
                     type: "POST",
                     url: "../operations/massmsging.php",

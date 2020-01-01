@@ -127,10 +127,9 @@ CREATE TABLE `faq` (
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUES
 (1, 'What is SYSTEMNA', 'SYSTEMNA is our company&#39;s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
-(2, 'How to view your profile ?', 'You can click here to go to your profile and view your info & requests notifications.', NULL, 'aahmedeemad'),
-(3, 'How to request an HR letter ?', 'Click on this link, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
-(4, 'How to request a new question to be added ?', 'At the end of this page you will find an area to send an inquiry, feel free to message us, if the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad'),
-(5, 'HAW ARE IUO', 'aa', '', 'Islam');
+(2, 'How to view your profile ?', 'You can <a href="../pages/profile.php" style="text-decoration: none;">click here</a> to go to your profile and view or edit your info.', NULL, 'aahmedeemad'),
+(3, 'How to request an HR letter ?', '<a href="../pages/MakeLetter.php" style="text-decoration: none;">Click on this link</a>, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
+(4, 'How to request a new question to be added ?', 'In this page you will find a form to send us an inquiry.<br>Feel free to message us, and we will get back to you.<br>If the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
 

@@ -1,8 +1,8 @@
 <?php 
 $pageTitle = "SYSTEMNA | Mass Messaging"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
+try {
 ?>
-
 <style>
     @media screen and (max-width: 800px) {
         table td {
@@ -21,7 +21,6 @@ include "../template/header.php"; /* Including the header file */
                 <label>Select the user ID/Name:</label>
                 <select class="massmsgdrpdwn" id="notione">
                     <?php
-                    try {
                     /* Creating the dropdown empty option */
                     echo ('<option value = "0" disabled selected>'." ".'</option>');
                     /* SQL query to get the data from the DB */
@@ -32,13 +31,6 @@ include "../template/header.php"; /* Including the header file */
                     for ($i=0; $i<$DB->numRows(); $i++) { /* iterating the results by the num of rows */
                         /* Creating the dropdown options from DB */
                         echo ('<option value = "' . $x[$i]->id . '">' . $x[$i]->id . " - " . $x[$i]->fullname . '</option>');
-                    }
-                    }
-                    catch(Exception $e)
-                    {
-                        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-                        $_SESSION['error'] = 'error in sql';
-                        error_log("error in massmsgs page");
                     }?>
                 </select>
             </fieldset>
@@ -59,7 +51,7 @@ include "../template/header.php"; /* Including the header file */
             <fieldset>
                 <label>Select the user ID/Name/Email:</label>
                 <select class="massmsgdrpdwn" id="mailone">
-                    <?php try {
+                    <?php
                     /* Creating the dropdown empty option */
                     echo ('<option value = "$i" disabled selected>'." ".'</option>');
                     /* SQL query to get the data from the DB */
@@ -70,13 +62,6 @@ include "../template/header.php"; /* Including the header file */
                     for ($i=0; $i<$DB->numRows(); $i++) { /* iterating the results by the num of rows */
                         /* Creating the dropdown options from DB */
                         echo ('<option value = "' . $x[$i]->email . '">' . $x[$i]->id . " - " . $x[$i]->fullname . " - " . $x[$i]->email . '</option>');
-                    }
-                    }
-                    catch(Exception $e)
-                    {
-                        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-                        $_SESSION['error'] = 'error in sql';
-                        error_log("error in massmsgs page");
                     }?>
                 </select>
             </fieldset>
@@ -95,4 +80,12 @@ include "../template/header.php"; /* Including the header file */
     </tr>
 </table>
 
-<?php include "../template/footer.php"; /* Including the footer file */ ?>
+<?php 
+}
+catch(Exception $e)
+{
+    echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+    $_SESSION['error'] = 'error in sql';
+    error_log("error in massmsgs page");
+}
+include "../template/footer.php"; /* Including the footer file */ ?>

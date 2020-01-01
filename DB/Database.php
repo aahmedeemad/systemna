@@ -5,12 +5,12 @@ class Database
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $dbName = 'hr_system';
+    private $dbName = 'hr_syste';
 
     private $dbh;
     private $stmt;
     private $error;
-    
+
 
     public function __construct()
     {
@@ -23,11 +23,14 @@ class Database
         try
         {
             $this->dbh = new PDO($dsn,$this->user,$this->pass,$options);
-        }catch(PDOExeption $e)
+        }catch(PDOException $e)
         {
-            $this->error = $e->getMessage();
-
-            echo $this->error;
+            //            $this->error = $e->getMessage();
+            echo "<br><div style='text-align: center;'>ERROR! Please try again later</div>";
+            $_SESSION['error'] = 'error in DB';
+            error_log("error in DB page");
+            //            echo $this->error;
+            exit;
         }
     }
     public function query($sql)

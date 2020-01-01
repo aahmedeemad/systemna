@@ -54,5 +54,4 @@ if($DB->numRows() > 0)
     echo "<div>ERROR!! Please Logout And Login Again</div>";
 }
 ?>
-
 <?php include "../template/footer.php"; ?>

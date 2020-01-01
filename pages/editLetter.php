@@ -3,7 +3,6 @@ $pageTitle = "SYSTEMNA | Edit Letter";
 include "../template/header.php";
 ?>
 <?php
-//if($_SESSION['type'] != 'admin') header("location: index.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $priority=$_POST['priority'];

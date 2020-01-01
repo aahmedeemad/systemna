@@ -58,7 +58,7 @@ $(document).ready(function () {
                         bdmm = birthday.slice(5, 7); /* Get the month part of date */
                         if (curdd == bddd && curmm == bdmm) { /* Checking if the current day is the user's birthday */
                             sendmail(data, mailsubj, content);
-                            sendnoti(data, content);
+                            sendnoti(data, content, '');
                         }
                     }
                 });
@@ -79,9 +79,9 @@ $(document).ready(function () {
         $('#notifications').hide();
     });
 
-    $('#notifications').click(function () { /* Do nothing when notifications are clicked */
-        return false;
-    });
+    //$('#notifications').click(function () { /* Do nothing when notifications are clicked */
+    //    return false;
+    //});
 
 
     /******* Loading circle when get data with ajax *******/
@@ -499,7 +499,7 @@ $(document).ready(function () {
                     else {
                         loading(false);
                         popup(true, "Salary Updated!");
-                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.");
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
                     }
                 }
             });
@@ -572,11 +572,11 @@ $(document).ready(function () {
                         .find("td:eq(" + otherButton + ")")
                         .html("");
                     if (thisBtn.val() == "+HR") {
-                        sendnoti(idMod, "Congratulations you have been promoted to an HR!");
+                        sendnoti(idMod, "Congratulations you have been promoted to an HR!", '../pages/profile.php');
                         sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
-                        sendnoti(idMod, "Congratulations you have been promoted to an QC!");
+                        sendnoti(idMod, "Congratulations you have been promoted to an QC!", '../pages/profile.php');
                         sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
                     }
                 }
@@ -610,7 +610,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
-                sendnoti(Did, "Your profile " + Type + " change request has been accepted!");
+                sendnoti(Did, "Your profile " + Type + " change request has been accepted!", '../pages/profile.php');
                 sendmail(Did, "Profile Changes","Your profile " + Type + " change request has been accepted!");
             }
         });
@@ -639,7 +639,7 @@ $(document).ready(function () {
             success: function (msg) {
                 loading(false);
                 Row.hide();
-                sendnoti(Did, "Your profile " + Type + " change request has been rejected!");
+                sendnoti(Did, "Your profile " + Type + " change request has been rejected!", '../pages/profile.php');
                 sendmail(Did, "Profile Changes","Unfortunely, Your profile " + Type + " change request has been rejected!");
             }
         });
@@ -660,7 +660,7 @@ $(document).ready(function () {
                 loading(false);
                 Row.hide();
                 sendmail(Rid, "SYSTEMNA", "Congratulations! You have been accepted at SYSTEMNA! you can now log in using your account.");
-                sendnoti(Rid, "Welcome to SYSTEMNA!");
+                sendnoti(Rid, "Welcome to SYSTEMNA!", '../pages/profile.php');
             }
         });
     });
@@ -738,7 +738,7 @@ $(document).ready(function () {
                     url: "../operations/getudata.php",
                     data: { getid: 1 },
                     success: function (data) {
-                        sendnoti(data, "Your Question Has Been Added Successfully!");
+                        sendnoti(data, "Your Question Has Been Added Successfully!", '../pages/faq.php');
                         //sendmail(data, "Question placed", "Your Question Has Been Added Successfully!");
                     }
                 });
@@ -774,7 +774,7 @@ $(document).ready(function () {
                 url: "../operations/getudata.php",
                 data: { getid: 1 },
                 success: function (data) {
-                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!");
+                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!", '../pages/MakeLetter.php');
                     sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
                     loading(true);
                     popup(true, "Letter Added Successfully");
@@ -825,7 +825,7 @@ $(document).ready(function () {
                     url: "../operations/getudata.php",
                     data: { getid: 1 },
                     success: function (data) {
-                        sendnoti(data, "We recived your message successfully!");
+                        sendnoti(data, "We recived your message successfully!", '');
                         sendmail(data, "Message recieved", "We recived your message successfully and we are going to work on it , thank you!");
                     }
                 });
@@ -919,7 +919,7 @@ $(document).ready(function () {
                         popup(true, "Letter Added Successfully");
                     else
                         popup(false, html);
-                    sendnoti(id, "Letter Request Added Successfully!");
+                    sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
                     sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
                 },
                 beforeSend: function () {
@@ -1113,11 +1113,11 @@ $(document).ready(function () {
     }
 
     /* Function to send notifications to users */
-    function sendnoti(userid, noticontent) {
+    function sendnoti(userid, noticontent, notihref) {
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
-            data: "uid=" + userid + "&noticontent=" + noticontent + "&type=sendnotifn",
+            data: "uid=" + userid + "&noticontent=" + noticontent + "&notihref=" + notihref + "&type=sendnotifn",
             success: function (html) {
                 console.log(html);
             }

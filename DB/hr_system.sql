@@ -163,44 +163,45 @@ CREATE TABLE `notifications` (
   `ID` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `userid` int(11) NOT NULL,
-  `notidata` varchar(250) NOT NULL
+  `notidata` varchar(250) NOT NULL,
+  `notihref` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`) VALUES
-(1, 0, 8, 'Welcome to SYSTEMNA'),
-(2, 0, 8, 'This is notification number 2 for user number 8'),
-(3, 0, 8, 'This is notification number 3 for user number 8'),
-(4, 1, 7, 'This is notification number 1 for user number 7'),
-(5, 1, 7, 'This is notification number 2 for user number 7'),
-(6, 1, 1, 'This is notification number 1 for user number 1'),
-(7, 1, 2, 'This is notification number 1 for user number 2'),
-(8, 1, 2, 'Welcome to SYSTEMNA'),
-(9, 1, 1, 'Welcome to SYSTEMNA'),
-(10, 0, 3, 'Welcome to SYSTEMNA'),
-(11, 1, 24, 'Letter Request Added Successfully'),
-(12, 1, 24, 'Letter Request Added Successfully'),
-(13, 1, 24, 'Letter Request Added Successfully'),
-(14, 1, 24, 'Letter Request Added Successfully'),
-(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
-(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully'),
-(17, 1, 1, 'Your Question Has Been Added Successfully!'),
-(18, 0, 26, 'An action has been made to a letter request.'),
-(19, 0, 26, 'An action has been made to a letter request.'),
-(20, 0, 26, 'An action has been made to a letter request.'),
-(21, 0, 26, 'An action has been made to a letter request.'),
-(22, 1, 24, 'Your profile email change request has been accepted!'),
-(23, 1, 24, 'Your profile fullname change request has been accepted!'),
-(24, 1, 24, 'Your profile phone change request has been accepted!'),
-(25, 1, 24, 'Your profile ssn change request has been accepted!'),
-(26, 0, 3, 'Welcome to SYSTEMNA!'),
-(27, 0, 3, 'Congratulations you have been promoted to an QC!'),
-(28, 0, 1, 'Letter Request Added Successfully'),
-(29, 0, 1, 'Letter Request Added Successfully'),
-(30, 1, 24, 'Letter Request Added Successfully');
+INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) VALUES
+(1, 0, 8, 'Welcome to SYSTEMNA', ''),
+(2, 0, 8, 'This is notification number 2 for user number 8', ''),
+(3, 0, 8, 'This is notification number 3 for user number 8', ''),
+(4, 1, 7, 'This is notification number 1 for user number 7', ''),
+(5, 1, 7, 'This is notification number 2 for user number 7', ''),
+(6, 1, 1, 'This is notification number 1 for user number 1', ''),
+(7, 1, 2, 'This is notification number 1 for user number 2', ''),
+(8, 1, 2, 'Welcome to SYSTEMNA', ''),
+(9, 1, 1, 'Welcome to SYSTEMNA', ''),
+(10, 0, 3, 'Welcome to SYSTEMNA', ''),
+(11, 1, 24, 'Letter Request Added Successfully', ''),
+(12, 1, 24, 'Letter Request Added Successfully', ''),
+(13, 1, 24, 'Letter Request Added Successfully', ''),
+(14, 1, 24, 'Letter Request Added Successfully', ''),
+(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
+(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
+(17, 1, 1, 'Your Question Has Been Added Successfully!', ''),
+(18, 0, 26, 'An action has been made to a letter request.', ''),
+(19, 0, 26, 'An action has been made to a letter request.', ''),
+(20, 0, 26, 'An action has been made to a letter request.', ''),
+(21, 0, 26, 'An action has been made to a letter request.', ''),
+(22, 1, 24, 'Your profile email change request has been accepted!', ''),
+(23, 1, 24, 'Your profile fullname change request has been accepted!', ''),
+(24, 1, 24, 'Your profile phone change request has been accepted!', ''),
+(25, 1, 24, 'Your profile ssn change request has been accepted!', ''),
+(26, 0, 3, 'Welcome to SYSTEMNA!', ''),
+(27, 0, 3, 'Congratulations you have been promoted to an QC!', ''),
+(28, 0, 1, 'Letter Request Added Successfully', ''),
+(29, 0, 1, 'Letter Request Added Successfully', ''),
+(30, 1, 24, 'Letter Request Added Successfully', '');
 
 -- --------------------------------------------------------
 

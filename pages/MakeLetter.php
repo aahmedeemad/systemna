@@ -52,7 +52,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
     </div>
     <?php 
         } catch (Exception $e) {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
             error_log("Error while adding letter");
         }
     ?>

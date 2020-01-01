@@ -104,6 +104,8 @@ include "../template/header.php";
     catch(Exception $e)
     {
         $_SESSION['error'] = 'error in sql';
+        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+        error_log("error while getting QC table");
     }?>
 </table>
 <?php include "../template/footer.php"; 

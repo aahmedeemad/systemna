@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "ERROR! Please try again later";
             error_log("error while getting notifications counter");
         }
     }
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "ERROR! Please try again later";
             error_log("error while getting profile requests counter");
         }
     }
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "ERROR! Please try again later";
             error_log("error while getting users letter requests counter");
         }
     }
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "ERROR! Please try again later";
             error_log("error while getting own letter requests counter");
         }
     }
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "ERROR! Please try again later";
             error_log("error while getting pending users counter counter");
         }
     }

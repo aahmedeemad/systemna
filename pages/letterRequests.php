@@ -106,6 +106,7 @@ include "../template/header.php";
     {
         $_SESSION['error'] = 'error in sql';
         error_log("Error while using page letter Requests");
+        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
     }
 
     ?>

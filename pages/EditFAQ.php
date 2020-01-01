@@ -2,7 +2,7 @@
 ob_start();
 $pageTitle = "SYSTEMNA | Edit FAQ";
 include "../template/header.php"; 
-if($_SESSION['type']=='user') header('Location:MakeLetter.php');
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
 <h3> Edit Questions </h3>
 <hr>
@@ -11,8 +11,8 @@ if($_SESSION['type']=='user') header('Location:MakeLetter.php');
 if(isset($_GET['id']))
 {
     if(isset($_POST['EditFAQ'])){
-        $Question = filter_var($_POST["Question"], FILTER_SANITIZE_STRING);
-        $Answer = filter_var($_POST["Answer"], FILTER_SANITIZE_STRING);
+        $Question = $_POST["Question"];
+        $Answer = $_POST["Answer"];
         $sql="update faq set Question = '$Question', Answer = '$Answer' where ID='".$_GET['id']."' ";
         try{
          $DB->query($sql);

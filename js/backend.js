@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     $(document).click(function () { /* Closes the notification window when clicked anywhere in the page */
         $('#notifications').fadeOut('fast', 'linear');
-//        return false;
+        //        return false;
     });
 
     //$('#notifications').click(function () { /* Do nothing when notifications are clicked */
@@ -509,7 +509,6 @@ $(document).ready(function () {
 
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
-        alert($("#Display tr").length);
     });
 
     function search_table(value) {
@@ -543,6 +542,8 @@ $(document).ready(function () {
 
     $(".modify").on("click", function () {
         var thisBtn = $(this);
+        var thisTd = $(this)
+            .closest("td");
         var Eindex = $(this)
             .closest("tr")
             .index();
@@ -557,7 +558,6 @@ $(document).ready(function () {
             otherButton = 6;
         } else if ($(this).val() == "+QC") {
             typeM = "qc";
-            otherButton = 7;
         }
         loading(true);
         $.ajax({
@@ -568,16 +568,24 @@ $(document).ready(function () {
                 loading(false);
                 if (msg != 1) popup(false, "User needs to be accepted to do this action!");
                 else {
-                    thisBtn.css("background-color", "grey");
-                    $("#Display")
+                    //thisBtn.css("background-color", "grey");
+                    /*$("#Display")
                         .find("tr:eq(" + Eindex + ")")
                         .find("td:eq(" + otherButton + ")")
-                        .html("");
+                        .html("");*/
                     if (thisBtn.val() == "+HR") {
+                        // thisBtn.css("background-color", "grey");
+                        /* $("#Display")
+                             .find("tr:eq(" + Eindex + ")")
+                             .find("td:eq(" + otherButton + ")")
+                             .html("");*/
+                        thisBtn.closest('tr').hide();
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
+                        thisBtn.hide();
+                        thisTd.append('<input type= "submit" value = "-QC" class = "rmqc">')
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
                     }

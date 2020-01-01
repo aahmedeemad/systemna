@@ -66,7 +66,7 @@ include "../template/header.php";
     $sql="
         SELECT *
         FROM employee left join add_info
-        on emp_id=id where employee.active = 1 AND privilege = 'user' AND active = 1 AND accepted <> 2
+        on emp_id=id where employee.active = 1 AND privilege <> 'admin' AND active = 1 AND accepted <> 2
         ";
     try
     {
@@ -106,13 +106,22 @@ include "../template/header.php";
                 <td><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
                 if($x[$i]->accepted == 1)
                 {
+                    if($x[$i]->privilege == 'user'){
     ?>
     <td><input type='submit' class='modify' value ='+QC'></td>
     <td><input type='submit' class='modify' value ='+HR'></td>
     <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
-
+                    }
+                    else if ($x[$i]->privilege == 'qc')
+                    {
+                        ?>
+                        <td><input type='submit' class='rmqc' value ='-QC'></td>
+                        <td><input type='submit' class='modify' value ='+HR'></td>
+                        <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+                        <?php
+                    }
                     echo "<td><a href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";
                     echo "<td><a href='../pages/pn.php?id={$x[$i]->id}' class='EditBtn'>Doc</a></td>";
                     echo "<td><a id='button-accepted'>Accepted</a></td>";

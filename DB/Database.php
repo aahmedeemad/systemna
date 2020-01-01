@@ -5,7 +5,7 @@ class Database
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $dbName = 'hr_syste';
+    private $dbName = 'hr_system';
 
     private $dbh;
     private $stmt;

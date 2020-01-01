@@ -34,6 +34,10 @@ class Database
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
+    public function bind($param,$value)
+    {
+        $stmt->bindParam($param,$value);
+    }
     public function execute()
     {
         return $this->stmt->execute();

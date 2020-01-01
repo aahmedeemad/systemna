@@ -6,10 +6,10 @@ $(document).ready(function () {
     setInterval(getnotifications, 1000); /* Calling the function to update the content of notifications every 10 seconds */
     sendcalmails(); /* Calling the function to send holiday emails */
 
-    function sendcalmails(){ /* A function to send holiday emails */
+    function sendcalmails() { /* A function to send holiday emails */
         var CD = new Date(); /* Making a date object */
         var curdd = CD.getDate(); /* Getting the current day */
-        var curmm = CD.getMonth()+1; /*Getting the current month */
+        var curmm = CD.getMonth() + 1; /*Getting the current month */
         var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
         sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
         /* Setting the subject and content of mail and notification*/
@@ -39,7 +39,7 @@ $(document).ready(function () {
         }
     }
 
-    function sendbdmail(curdd, curmm){ /* A function to send birthday emails */
+    function sendbdmail(curdd, curmm) { /* A function to send birthday emails */
         /* Setting the subject and content of mail and notification*/
         var content = "SYSTEMNA wishes you a happy birthday!";
         var mailsubj = "Happy Birthday";
@@ -108,13 +108,13 @@ $(document).ready(function () {
     /******* Confirmation delete popup *******/
     function confirmation(body, url, data) {
         $(".confirmation-content").text(body);
-        $("#confirmationButton").on("click", function(){
+        $("#confirmationButton").on("click", function () {
             jQuery.ajax({
                 type: "GET",
                 url: url,
                 success: function (html) {
                     $(".modalConfirmation").css("display", "none");
-                    popup(true,"Deleted");
+                    popup(true, "Deleted");
                     $(data).hide();
                 }
             });
@@ -123,9 +123,9 @@ $(document).ready(function () {
     }
 
     /******* Confirm delete popup *******/
-    $(".deleteConfirmation").on("click", function(e){
+    $(".deleteConfirmation").on("click", function (e) {
         e.preventDefault(); /* to prevent href action */
-        confirmation("Are you sure ?", this.href , $(this).closest('tr')); /* show to confirmation popup */
+        confirmation("Are you sure ?", this.href, $(this).closest('tr')); /* show to confirmation popup */
     });
 
     /******* Show / Hide side navigation *******/
@@ -273,15 +273,15 @@ $(document).ready(function () {
     $(".edit-company-info").on("click", companyInfoToggle);
     $(".cancel-company-info").on("click", companyInfoToggle);
 
-    function submitEdit(id, type, oldValue, newValue){
+    function submitEdit(id, type, oldValue, newValue) {
         $.ajax({
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-            "id=" + id +
-            "&oldvalue=" + oldValue +
-            "&value=" + newValue +
-            "&type=" + type,
+                "id=" + id +
+                "&oldvalue=" + oldValue +
+                "&value=" + newValue +
+                "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -301,7 +301,7 @@ $(document).ready(function () {
         var fullname = $("#fullnameEdit").val();
         var defaultFullname = $("#fullnameEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (fullname != defaultFullname) submitEdit(id, "fullname" , defaultFullname, fullname);
+        if (fullname != defaultFullname) submitEdit(id, "fullname", defaultFullname, fullname);
     });
 
     $(".save-basic-info").on("click", function () {
@@ -312,9 +312,9 @@ $(document).ready(function () {
         var loc = $("#locationEdit").val();
         var defaultLoc = $("#locationEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (ssn != defaultSSN) submitEdit(id, "ssn" , defaultSSN, ssn);
-        if (bdate != defaultBdate) submitEdit(id, "bdate" , defaultBdate, bdate);
-        if (loc != defaultLoc) submitEdit(id, "location" , defaultLoc, loc);
+        if (ssn != defaultSSN) submitEdit(id, "ssn", defaultSSN, ssn);
+        if (bdate != defaultBdate) submitEdit(id, "bdate", defaultBdate, bdate);
+        if (loc != defaultLoc) submitEdit(id, "location", defaultLoc, loc);
     });
 
     $(".save-contact-info").on("click", function () {
@@ -323,8 +323,8 @@ $(document).ready(function () {
         var phone = $("#phoneEdit").val();
         var defaultPhone = $("#phoneEdit")[0]["defaultValue"];
         var id = $("#id").text();
-        if (email != defaultEmail) submitEdit(id, "email" , defaultEmail, email);
-        if (phone != defaultPhone) submitEdit(id, "phone" , defaultPhone, phone);
+        if (email != defaultEmail) submitEdit(id, "email", defaultEmail, email);
+        if (phone != defaultPhone) submitEdit(id, "phone", defaultPhone, phone);
     });
 
     $(".save-company-info").on("click", function () {
@@ -463,7 +463,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function () {
             var test = $(this)
-            .text();
+                .text();
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -481,8 +481,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-        .find("tr:eq(" + rowIndex + ")")
-        .find("td:eq(1)");
+            .find("tr:eq(" + rowIndex + ")")
+            .find("td:eq(1)");
         var test2 = $(this).html();
         test2 = test2.replace("<br>", "");
 
@@ -508,12 +508,13 @@ $(document).ready(function () {
 
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
+        alert($("#Display tr").length);
     });
 
     function search_table(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -523,9 +524,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -542,12 +543,12 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var Eindex = $(this)
-        .closest("tr")
-        .index();
+            .closest("tr")
+            .index();
         var idMod = $("#Display")
-        .find("tr:eq(" + Eindex + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Eindex + ")")
+            .find("td:eq(1)")
+            .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -573,11 +574,11 @@ $(document).ready(function () {
                         .html("");
                     if (thisBtn.val() == "+HR") {
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!");
-                        sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
+                        sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!");
-                        sendmail(idMod,"Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
+                        sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
                     }
                 }
             }
@@ -587,21 +588,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(2)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(2)")
+            .text();
         var Type = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(6)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(6)")
+            .text();
         var Rid = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         var Value = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(5)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(5)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -611,7 +612,7 @@ $(document).ready(function () {
                 loading(false);
                 Row.hide();
                 sendnoti(Did, "Your profile " + Type + " change request has been accepted!");
-                sendmail(Did, "Profile Changes","Your profile " + Type + " change request has been accepted!");
+                sendmail(Did, "Profile Changes", "Your profile " + Type + " change request has been accepted!");
             }
         });
     });
@@ -619,18 +620,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(2)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(2)")
+            .text();
         var Type = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq()")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq()")
+            .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -640,7 +641,7 @@ $(document).ready(function () {
                 loading(false);
                 Row.hide();
                 sendnoti(Did, "Your profile " + Type + " change request has been rejected!");
-                sendmail(Did, "Profile Changes","Unfortunely, Your profile " + Type + " change request has been rejected!");
+                sendmail(Did, "Profile Changes", "Unfortunely, Your profile " + Type + " change request has been rejected!");
             }
         });
     });
@@ -648,9 +649,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -668,9 +669,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -690,8 +691,8 @@ $(document).ready(function () {
 
     function search_QCtable(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -701,9 +702,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -716,7 +717,7 @@ $(document).ready(function () {
             }
         });
     }
-// function to add new question to faq
+    // function to add new question to faq
     $("#faqaddques").on("click", function () {
         var question = $("#question").val();
         var answer = $("#answer").val();
@@ -744,7 +745,7 @@ $(document).ready(function () {
                 });
                 loading(false);
                 popup(true, "Your Question Has Been Added Successfully!");
-                setInterval(window.location.replace("../pages/faq.php"),7000);
+                setInterval(window.location.replace("../pages/faq.php"), 7000);
             },
             beforeSend: function () {
                 loading(true);
@@ -758,13 +759,13 @@ $(document).ready(function () {
                 url: "AddNewLetter.php",
                 data: "Name=" + $("#Name").val(),
                 type: "POST",
-                success: function (data) {}
+                success: function (data) { }
             });
         }
         var a = document.getElementById("Name").value;
         var b = document.getElementById("description").value;
 
-        if (a == ""||b == "") {
+        if (a == "" || b == "") {
             popup(false, "Please enter the Letter data correctly !");
             return 0;
         }
@@ -781,15 +782,14 @@ $(document).ready(function () {
                 }
             });
         }
-        var dataa=document.getElementById('body').value;
-        dataa='<pre>'+dataa+'</pre>';
-        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+        var dataa = document.getElementById('body').value;
+        dataa = '<pre>' + dataa + '</pre>';
+        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
             jQuery.ajax({
                 url: "../operations/newLetter.php",
-                data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
-                type:"POST",
-                success:function(data)
-                {
+                data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val(),
+                type: "POST",
+                success: function (data) {
                     loading(false);
                     popup(data);
                 },
@@ -1124,8 +1124,7 @@ $(document).ready(function () {
         });
     }
 
-    function setCounter(type, tag)
-    {
+    function setCounter(type, tag) {
         $.ajax({
             type: "POST",
             url: "../operations/counterops.php",
@@ -1141,7 +1140,7 @@ $(document).ready(function () {
 
 
     /* Function to set all the counters */
-    function setcounters(){
+    function setcounters() {
         setCounter('setnoticounter', '#noti_Counter'); /* Function to set the notifications counter */
         setCounter('setprofilecounter', '#profile_Counter'); /* Function to set the users profile edits counter */
         setCounter('setusrsletterrequestscounter', '#usrsletterrequests_Counter'); /* Function to set the users letter requests counter */
@@ -1151,19 +1150,19 @@ $(document).ready(function () {
     }
 
     /* Function to get the notifications */
-    function getnotifications(){
+    function getnotifications() {
         $.ajax({
             type: "POST",
             url: "../operations/notiop.php",
             data: "type=setnotidata",
             success: function (html) {
                 if (html != '') { /* Print the notifications if not empty */
-                    $('#notidata').html(html).css('text-align','left');
-                    $('#markAll').css('display','block');
+                    $('#notidata').html(html).css('text-align', 'left');
+                    $('#markAll').css('display', 'block');
                 } else { /* Print this message if empty */
                     $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
-                        .css('text-align','center');
-                    $('#markAll').css('display','none'); /* Hide mark all button if no notifications */
+                        .css('text-align', 'center');
+                    $('#markAll').css('display', 'none'); /* Hide mark all button if no notifications */
                 }
             },
         });
@@ -1176,10 +1175,10 @@ $(document).ready(function () {
             url: "../operations/notiop.php",
             data: "&type=markread",
         });
-        $('#noti_Counter').css('display','none'); /* Hiding the counter when markall is clicked */
+        $('#noti_Counter').css('display', 'none'); /* Hiding the counter when markall is clicked */
         $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
-            .css('text-align','center'); /* Replacing the data when markall is clicked */
-        $('#markAll').css('display','none'); /* Hiding the markall button when markall is clicked */
+            .css('text-align', 'center'); /* Replacing the data when markall is clicked */
+        $('#markAll').css('display', 'none'); /* Hiding the markall button when markall is clicked */
     });
 
     $("#add_letter").on("click", function () { /* Function to change page on admin only button click */
@@ -1201,36 +1200,36 @@ $(document).ready(function () {
 
     /************* ADD NEW LETTER ******************/
 
-    $("#letterBodyArea").on('keyup',function(){
-        var text= document.getElementById('letterBodyArea').value;
-        var n= text.includes('NAME');
-        var s= text.includes('SALARY');
-        var d= text.includes('DATE');
-        var p= text.includes('POSITION');
-        var startdate=text.includes('START');
-        var hr=text.includes('HR');
-        if(hr==true && !text.includes("(.HR.)")){
-            text=text.replace('HR',"(.HR.) ");
+    $("#letterBodyArea").on('keyup', function () {
+        var text = document.getElementById('letterBodyArea').value;
+        var n = text.includes('NAME');
+        var s = text.includes('SALARY');
+        var d = text.includes('DATE');
+        var p = text.includes('POSITION');
+        var startdate = text.includes('START');
+        var hr = text.includes('HR');
+        if (hr == true && !text.includes("(.HR.)")) {
+            text = text.replace('HR', "(.HR.) ");
             $("#letterBodyArea").val() = text;
         }
-        if(n==true && !text.includes("(.NAME.)")){
-            text=text.replace('NAME',"(.NAME.) ");
+        if (n == true && !text.includes("(.NAME.)")) {
+            text = text.replace('NAME', "(.NAME.) ");
             $("#letterBodyArea").val() = text;
         }
-        if(s==true && !text.includes("(.SALARY.)")){
-            text=text.replace('SALARY',"(.SALARY.)");
+        if (s == true && !text.includes("(.SALARY.)")) {
+            text = text.replace('SALARY', "(.SALARY.)");
             $("#letterBodyArea").val() = text;
         }
-        if(d==true && !text.includes("(.DATE.)")){
-            text=text.replace('DATE',"(.DATE.) ");
+        if (d == true && !text.includes("(.DATE.)")) {
+            text = text.replace('DATE', "(.DATE.) ");
             $("#letterBodyArea").val() = text;
         }
-        if(p==true && !text.includes("(.POSITION.)")){
-            text=text.replace('POSITION',"(.POSITION.) ");
+        if (p == true && !text.includes("(.POSITION.)")) {
+            text = text.replace('POSITION', "(.POSITION.) ");
             $("#letterBodyArea").val() = text;
         }
-        if(startdate==true && !text.includes("(.START.)")){
-            text=text.replace('START',"(.START.) ");
+        if (startdate == true && !text.includes("(.START.)")) {
+            text = text.replace('START', "(.START.) ");
             $("#letterBodyArea").val() = text;
         }
     });
@@ -1260,13 +1259,12 @@ $(document).ready(function () {
 
     /**************** LetterRequests ********************/
 
-    $(".letterstd").on("click", function(){
+    $(".letterstd").on("click", function () {
         jQuery.ajax({
             url: "view_employee.php",
-            data:'id='+this.id,
-            type:"POST",
-            success:function(data)
-            {
+            data: 'id=' + this.id,
+            type: "POST",
+            success: function (data) {
                 loading(false);
                 $("#body").html(data);
             },

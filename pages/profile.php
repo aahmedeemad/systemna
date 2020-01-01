@@ -18,7 +18,6 @@ try
 {
 $DB->query($sql);
 $DB->execute();
-
 $info=$DB->getdata();
 
 ?>

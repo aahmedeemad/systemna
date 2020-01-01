@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     function hasOneDayPassed() { /* A function to check if one day has passed */
     var date = new Date().toLocaleDateString(); /* get today's date */
-    if( localStorage.yourapp_date == date ) /* check if there's a date in localstorage and it's equal to the above */
+    if (localStorage.yourapp_date == date) /* check if there's a date in localstorage and it's equal to the above */
         return false;
         /* this occurs when a day has passed */
         localStorage.yourapp_date = date;
@@ -16,48 +16,56 @@ $(document).ready(function () {
     }
 
     function sendcalmails() { /* A function to send holiday emails */
-        if( !hasOneDayPassed() ) return false; /* If a day hasen't passed it won't run */
-        var CD = new Date(); /* Making a date object */
-        var curdd = CD.getDate(); /* Getting the current day */
-        var curmm = CD.getMonth() + 1; /*Getting the current month */
-        var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
-        sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
-        /* Setting the subject and content of mail and notification*/
-        var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
-        var mailsubj = "Happy Holiday";
-        for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
-            holidd = holidays[i].slice(0, 2); /* Get the day part of date */
-            holimm = holidays[i].slice(3, 5); /* Get the month part of date */
-            /* Get the day before the holiday */
-            if (holidd == '01'){
-                holidd = 30;
-                if (holimm == '01') {
-                    holimm = 12;
-                } else {
-                    holimm -= 1;
-                }
-            } else {
-                holidd = holidd - 1;
-            }
-            if (curdd == (holidd) && curmm == holimm) { /* Checking if the next day is a holiday */
-                jQuery.ajax({ /* Send notifiation */
-                    type: "POST",
-                    url: "../operations/massmsging.php",
-                    data: "notification=" + content + "&type=notiall",
-                    success: function (html) {
-                        console.log(html);
-                        jQuery.ajax({ // Send mail //
+        jQuery.ajax({
+            type: "POST",
+            url: "../operations/getudata.php",
+            data: { getid: 1 },
+            success: function (data) {
+                if ( data != 8 ) return false;
+                if (!hasOneDayPassed()) return false; /* If a day hasen't passed it won't run */
+                var CD = new Date(); /* Making a date object */
+                var curdd = CD.getDate(); /* Getting the current day */
+                var curmm = CD.getMonth() + 1; /*Getting the current month */
+                var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
+                sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
+                /* Setting the subject and content of mail and notification*/
+                var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
+                var mailsubj = "Happy Holiday";
+                for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
+                    holidd = holidays[i].slice(0, 2); /* Get the day part of date */
+                    holimm = holidays[i].slice(3, 5); /* Get the month part of date */
+                    /* Get the day before the holiday */
+                    if (holidd == '01'){
+                        holidd = 30;
+                        if (holimm == '01') {
+                            holimm = 12;
+                        } else {
+                            holimm -= 1;
+                        }
+                    } else {
+                        holidd = holidd - 1;
+                    }
+                    if (curdd == (holidd) && curmm == holimm) { /* Checking if the next day is a holiday */
+                        jQuery.ajax({ /* Send notifiation */
                             type: "POST",
                             url: "../operations/massmsging.php",
-                            data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                            data: "notification=" + content + "&type=notiall",
                             success: function (html) {
                                 console.log(html);
+                                jQuery.ajax({ // Send mail //
+                                    type: "POST",
+                                    url: "../operations/massmsging.php",
+                                    data: "mailsubject=" + mailsubj + "&mailcontent=" + content + "&type=mailall",
+                                    success: function (html) {
+                                        console.log(html);
+                                    }
+                                });
                             }
                         });
                     }
-                });
+                }
             }
-        }
+        });
     }
 
     function sendbdmail(curdd, curmm) { /* A function to send birthday emails */

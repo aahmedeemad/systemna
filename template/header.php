@@ -65,6 +65,7 @@ $qcPages = array(
                 <div class="navbar-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
+                <img src="../template/logo.png" alt="SYSTEMNA Logo" style="width: 25px; height: 25px;">
                 <a style="text-decoration: none;" href="<?php echo $_SESSION['type']=='admin' ? 'index.php' : '../pages/MakeLetter.php'  ?>"><div class="logo-name"><strong style="color: #DAA520">System</strong><strong style="color: #212529" id="na">na</strong></div></a>
                 <span id="noti_Container" style="padding-left: 1em;">
                     <a id="noti_Button">

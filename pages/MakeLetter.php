@@ -46,7 +46,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
         <h4> Please choose the type that you want : </h4>
         <label><input type="radio" name="Option" id ="rdbtn3" value="With" required> With Salary</label>
         <br>
-        <label><input type="radio" name="Option" id ="rdbtn4" value="Without">Without Salary</label><br>
+        <label><input type="radio" name="Option" id ="rdbtn4" value="Without"> Without Salary</label><br>
         <br><br><br>
         <input type="button" id="applyForLetterBtn" value="Apply!">
     </div>

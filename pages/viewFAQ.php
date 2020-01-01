@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "SYSTEMNA | FAQ";
 include "../template/header.php";
-if($_SESSION['type']=='user') header('Location:MakeLetter.php'); 
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php'); 
 ?>
 
 <div style="text-align: center; align-self: center;">
@@ -18,7 +18,6 @@ if($_SESSION['type']=='user') header('Location:MakeLetter.php');
         <th>Added By</th>
         <th>Edit</th>
         <th>Delete</th>
-
     </tr>
     <?php
     function check($c){

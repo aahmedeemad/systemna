@@ -3,36 +3,44 @@ session_start();
 if(!isset($_SESSION['type']))  header('Location:../index.php');
 else if($_SESSION['type']!='admin')  header('Location:../pages/MakeLetter.php');
 else {
-include "../DB/Database.php";
-$DB = new Database();
-if(isset($_GET['id'])){
-    $d_id = $_GET['id'];
-    $sql = "update employee set active=0 where id = '$d_id'";
-    $DB->query($sql);
-    $DB->execute();
-//    header("Location: ../pages/index.php");
-}   
-if(isset($_GET['wid'])){
-    $d_id = $_GET['wid'];
-    $sql = "update employee set active=0 where id = '$d_id'";
-    $DB->query($sql);
-    $DB->execute();
-//    header("Location: ../pages/waitingUsers.php");
-}
-else if(isset($_GET['qid'])){
-    $qid = $_GET['qid'];
-    $sql = "delete from faq where ID = '$qid'";
-    $DB->query($sql);
-    $DB->execute();
-//    header("Location: ../pages/viewFAQ.php");
-}
-else if(isset($_GET['lid'])){
-    $lid = $_GET['lid'];
-    $sql = "delete from requests_types where type_id = '$lid'";
-    $DB->query($sql);
-    $DB->execute();
-//    header("Location: ../pages/allLetters.php");
-} 
-else { header("Location: ../pages/index.php"); }
+    try {
+        include "../DB/Database.php";
+        $DB = new Database();
+        if(isset($_GET['id'])){
+            $d_id = $_GET['id'];
+            $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        }   
+        else if(isset($_GET['wid'])){
+            $d_id = $_GET['wid'];
+            $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        }
+        else if(isset($_GET['qid'])){
+            $qid = $_GET['qid'];
+            $sql = "DELETE FROM faq WHERE ID = '$qid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        }
+        else if(isset($_GET['lid'])){
+            $lid = $_GET['lid'];
+            $sql = "DELETE FROM requests_types WHERE type_id = '$lid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        } 
+        else { header("Location: ../pages/index.php"); }
+    } 
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+        error_log("Error while viewing faqs");
+        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+    }
 }
 ?>

@@ -227,7 +227,7 @@ th {
   display: inline-block;
   font-size: 0.9em;
   margin: 4px 2px;
-  cursor: pointer;
+/*  cursor: pointer;*/
 }
 
 #button-rejected,
@@ -242,7 +242,7 @@ th {
   display: inline-block;
   font-size: 0.9em;
   margin: 4px 2px;
-  cursor: pointer;
+/*  cursor: pointer;*/
 }
 
 #button-pending {

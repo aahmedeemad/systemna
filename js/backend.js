@@ -114,9 +114,17 @@ $(document).ready(function () {
                 type: "GET",
                 url: url,
                 success: function (html) {
-                    $(".modalConfirmation").css("display", "none");
-                    popup(true, "Deleted");
-                    $(data).hide();
+                    if(html == "true")
+                    {
+                        $(".modalConfirmation").css("display", "none");
+                        popup(true, "Deleted");
+                        $(data).hide();
+                    }
+                    else 
+                    {
+                        $(".modalConfirmation").css("display", "none");
+                        popup(false, html);
+                    }
                 }
             });
         })
@@ -279,10 +287,10 @@ $(document).ready(function () {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-                "id=" + id +
-                "&oldvalue=" + oldValue +
-                "&value=" + newValue +
-                "&type=" + type,
+            "id=" + id +
+            "&oldvalue=" + oldValue +
+            "&value=" + newValue +
+            "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -464,7 +472,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function () {
             var test = $(this)
-                .text();
+            .text();
 
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
@@ -482,8 +490,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).html();
         test2 = test2.replace("<br>", "");
 
@@ -513,8 +521,8 @@ $(document).ready(function () {
 
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -524,9 +532,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -543,14 +551,14 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var thisTd = $(this)
-            .closest("td");
+        .closest("td");
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -596,21 +604,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -628,18 +636,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq()")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -658,9 +666,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -678,9 +686,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -700,8 +708,8 @@ $(document).ready(function () {
 
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -711,9 +719,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -925,11 +933,13 @@ $(document).ready(function () {
                 success: function (html) {
                     loading(false);
                     if (html == "true")
+                    {
                         popup(true, "Letter Added Successfully");
+                        sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
+                        sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
+                    }
                     else
                         popup(false, html);
-                    sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
-                    sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
                 },
                 beforeSend: function () {
                     loading(true);

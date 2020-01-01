@@ -6,7 +6,17 @@ $(document).ready(function () {
     setInterval(getnotifications, 1000); /* Calling the function to update the content of notifications every 10 seconds */
     sendcalmails(); /* Calling the function to send holiday emails */
 
+    function hasOneDayPassed() { /* A function to check if one day has passed */
+    var date = new Date().toLocaleDateString(); /* get today's date */
+    if( localStorage.yourapp_date == date ) /* check if there's a date in localstorage and it's equal to the above */
+        return false;
+        /* this occurs when a day has passed */
+        localStorage.yourapp_date = date;
+        return true;
+    }
+
     function sendcalmails() { /* A function to send holiday emails */
+        if( !hasOneDayPassed() ) return false; /* If a day hasen't passed it won't run */
         var CD = new Date(); /* Making a date object */
         var curdd = CD.getDate(); /* Getting the current day */
         var curmm = CD.getMonth() + 1; /*Getting the current month */
@@ -18,13 +28,13 @@ $(document).ready(function () {
         for (var i = 0; i < holidays.length; i++) { /* Iterating by the number of holidays */
             holidd = holidays[i].slice(0, 2); /* Get the day part of date */
             holimm = holidays[i].slice(3, 5); /* Get the month part of date */
-            if (curdd == holidd && curmm == holimm) { /* Checking if the current day is a holiday */
+            if (curdd == (holidd - 1) && curmm == holimm) { /* Checking if the next day is a holiday */
                 jQuery.ajax({ /* Send notifiation */
                     type: "POST",
                     url: "../operations/massmsging.php",
                     data: "notification=" + content + "&type=notiall",
                     success: function (html) {
-                        /*console.log(html);
+                        console.log(html);
                         jQuery.ajax({ // Send mail //
                             type: "POST",
                             url: "../operations/massmsging.php",
@@ -32,7 +42,7 @@ $(document).ready(function () {
                             success: function (html) {
                                 console.log(html);
                             }
-                        });*/
+                        });
                     }
                 });
             }
@@ -77,7 +87,6 @@ $(document).ready(function () {
 
     $(document).click(function () { /* Closes the notification window when clicked anywhere in the page */
         $('#notifications').fadeOut('fast', 'linear');
-        //        return false;
     });
 
     //$('#notifications').click(function () { /* Do nothing when notifications are clicked */

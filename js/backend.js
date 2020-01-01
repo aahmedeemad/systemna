@@ -559,6 +559,9 @@ $(document).ready(function () {
         } else if ($(this).val() == "+QC") {
             typeM = "qc";
         }
+        else if ($(this).val() == "-QC") {
+            typeM = "user";
+        }
         loading(true);
         $.ajax({
             method: "POST",
@@ -568,26 +571,22 @@ $(document).ready(function () {
                 loading(false);
                 if (msg != 1) popup(false, "User needs to be accepted to do this action!");
                 else {
-                    //thisBtn.css("background-color", "grey");
-                    /*$("#Display")
-                        .find("tr:eq(" + Eindex + ")")
-                        .find("td:eq(" + otherButton + ")")
-                        .html("");*/
                     if (thisBtn.val() == "+HR") {
-                        // thisBtn.css("background-color", "grey");
-                        /* $("#Display")
-                             .find("tr:eq(" + Eindex + ")")
-                             .find("td:eq(" + otherButton + ")")
-                             .html("");*/
                         thisBtn.closest('tr').hide();
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
-                        thisBtn.hide();
-                        thisTd.append('<input type= "submit" value = "-QC" class = "rmqc">')
+                        thisBtn.val('-QC');
+                        thisBtn.css("background-color", "#ff0000");
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
+                    }
+                    else if (thisBtn.val() == "-QC") {
+                        thisBtn.val('+QC');
+                        thisBtn.css("background-color", "#1c87c9");
+                        sendnoti(idMod, "you have been demoted to an user!", '../pages/profile.php');
+                        sendmail(idMod, "Demotion", "You have been demoted to user!");
                     }
                 }
             }

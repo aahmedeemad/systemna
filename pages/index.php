@@ -117,7 +117,7 @@ include "../template/header.php";
                     else if ($x[$i]->privilege == 'qc')
                     {
                         ?>
-                        <td><input type='submit' class='rmqc' value ='-QC'></td>
+                        <td><input type='submit' class='modify' style ='background-color:#ff0000' value ='-QC'></td>
                         <td><input type='submit' class='modify' value ='+HR'></td>
                         <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
                         <?php

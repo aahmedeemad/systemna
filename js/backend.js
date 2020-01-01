@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     $(document).click(function () { /* Closes the notification window when clicked anywhere in the page */
         $('#notifications').fadeOut('fast', 'linear');
-        return false;
+//        return false;
     });
 
     //$('#notifications').click(function () { /* Do nothing when notifications are clicked */

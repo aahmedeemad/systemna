@@ -113,12 +113,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Password must be at least 6 digits";
             return;
         }
-        $sql="UPDATE employee SET password = :value WHERE ID = :id" ;
+        $sql="UPDATE employee SET password = '" . sha1($_POST['value']) . "' WHERE ID = " . $_POST['id'] ;
         $DB->query($sql);
-        $DB->bind(':id',$_POST['id']);
-        $DB->bind(':value',sha1($_POST['value']));
         $DB->execute();
-        echo "true";
+        echo "truePass";
         return;
     }
 

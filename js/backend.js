@@ -337,9 +337,9 @@ $(document).ready(function () {
             data: "id=" + id + "&value=" + pass + "&type=password",
             success: function (html) {
                 loading(false);
-                if (html == "true") {
+                if (html == "truePass") {
                     companyInfoToggle();
-                    popup(true, "Your Request Has Been Submitted Successfully");
+                    popup(true, "Your Password Has Been Changed Successfully");
                 } else { popup(false, html); }
             },
             beforeSend: function () {

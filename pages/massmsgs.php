@@ -1,6 +1,7 @@
 <?php 
 $pageTitle = "SYSTEMNA | Mass Messaging"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
+$_SESSION['error'] = 'none';
 ?>
 <style>
     @media screen and (max-width: 800px) {

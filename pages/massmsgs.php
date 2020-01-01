@@ -20,7 +20,9 @@ include "../template/header.php"; /* Including the header file */
             <fieldset>
                 <label>Select the user ID/Name:</label>
                 <select class="massmsgdrpdwn" id="notione">
-                    <?php /* Creating the dropdown empty option */
+                    <?php
+                    try {
+                    /* Creating the dropdown empty option */
                     echo ('<option value = "0" disabled selected>'." ".'</option>');
                     /* SQL query to get the data from the DB */
                     $sql = "SELECT * FROM employee";
@@ -30,7 +32,14 @@ include "../template/header.php"; /* Including the header file */
                     for ($i=0; $i<$DB->numRows(); $i++) { /* iterating the results by the num of rows */
                         /* Creating the dropdown options from DB */
                         echo ('<option value = "' . $x[$i]->id . '">' . $x[$i]->id . " - " . $x[$i]->fullname . '</option>');
-                    } ?>
+                    }
+                    }
+                    catch(Exception $e)
+                    {
+                        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+                        $_SESSION['error'] = 'error in sql';
+                        error_log("error in massmsgs page");
+                    }?>
                 </select>
             </fieldset>
             <form method='post'> <!-- The notification form, functions are in backend.js using ajax -->
@@ -50,7 +59,8 @@ include "../template/header.php"; /* Including the header file */
             <fieldset>
                 <label>Select the user ID/Name/Email:</label>
                 <select class="massmsgdrpdwn" id="mailone">
-                    <?php /* Creating the dropdown empty option */
+                    <?php try {
+                    /* Creating the dropdown empty option */
                     echo ('<option value = "$i" disabled selected>'." ".'</option>');
                     /* SQL query to get the data from the DB */
                     $sql = "SELECT * FROM employee";
@@ -60,7 +70,14 @@ include "../template/header.php"; /* Including the header file */
                     for ($i=0; $i<$DB->numRows(); $i++) { /* iterating the results by the num of rows */
                         /* Creating the dropdown options from DB */
                         echo ('<option value = "' . $x[$i]->email . '">' . $x[$i]->id . " - " . $x[$i]->fullname . " - " . $x[$i]->email . '</option>');
-                    } ?>
+                    }
+                    }
+                    catch(Exception $e)
+                    {
+                        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+                        $_SESSION['error'] = 'error in sql';
+                        error_log("error in massmsgs page");
+                    }?>
                 </select>
             </fieldset>
             <form method='post'> <!-- The mail form, functions are in backend.js using ajax -->

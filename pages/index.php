@@ -103,7 +103,7 @@ include "../template/header.php";
                 <td>{$username}</td>
                 <td>{$email}</td>
                 <td>{$ssn}</td>
-                <td><div class='sal' id={$x[$i]->id}>{$salary}</div></td>";
+                <td><div class='sal'>{$salary}</div></td>";
                 if($x[$i]->accepted == 1)
                 {
                     if($x[$i]->privilege == 'user'){

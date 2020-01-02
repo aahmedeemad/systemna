@@ -1320,4 +1320,18 @@ $(document).ready(function () {
             }
         });
     });
+
+/*Forget Password Function */
+var Reset = document.getElementById('Reset');
+var newpass = document.getElementById('newpasshidden').value;
+var id = document.getElementById('idhidden').value;
+var message = document.getElementById('messagehidden').value;
+
+Reset.onclick = function()
+{
+    console.log("hi");
+    sendmail(id,message,"Your new Password".newpass);
+    sendnoti(id,"Temprory Password!","You can change your password from your profile");
+} 
 });
+     

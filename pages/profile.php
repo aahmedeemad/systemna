@@ -1,29 +1,32 @@
 <?php 
 $pageTitle = "SYSTEMNA | Profile";
-include "../template/header.php"; 
+
 ?>
 <?php
 if (isset($_GET['id']))
 {
-    if($_SESSION['type'] != "admin") header("location: MakeLetter.php");
+    
     $noEdit = true;
     $id = $_GET['id'];
+    include'../DB/Database.php';
+    $DB=new Database();
 }
 else {
+    include "../template/header.php"; 
     $noEdit = false;
     $id = $_SESSION['id'];
 }
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = " . $id;
 try
 {
-$DB->query($sql);
-$DB->execute();
-$info=$DB->getdata();
+    $DB->query($sql);
+    $DB->execute();
+    $info=$DB->getdata();
 
 ?>
 <?php
-if($DB->numRows() > 0)
-{
+    if($DB->numRows() > 0)
+    {
 ?>
 
 <img src="../template/profileBackground.jpg" alt="" class="profile-background">
@@ -115,10 +118,10 @@ if($DB->numRows() > 0)
 </div>
 
 <?php
-}
-else {
-    echo "<div>ERROR!! Please Logout And Login Again</div>";
-}
+    }
+    else {
+        echo "<div>ERROR!! Please Logout And Login Again</div>";
+    }
 }
 catch(Exception $e)
 {
@@ -128,4 +131,6 @@ catch(Exception $e)
 }
 ?>
 
-<?php include "../template/footer.php"; ?>
+<?
+if($noEdit=false){
+    php include "../template/footer.php"; }?>

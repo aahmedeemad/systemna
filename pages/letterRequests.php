@@ -58,7 +58,7 @@ include "../template/header.php";
                 }
                 else $BoolPriority="Normal";
 
-                echo  "<tr id='$id'  data-toggle='modal' class='letterstd'  data-target='#exampleModalLong'>";
+                echo  "<tr id='$emp_id'  data-toggle='modal' onclick='showdata(this.id)'  data-target='#exampleModalLong'>";
                 echo "<td>{$y}</td>";
 
                 echo "<td>{$id}</td>";
@@ -142,7 +142,6 @@ include "../template/header.php";
 </div>
 </div>-->
 
-<!--
 
 <script src="../js/bootstrap.min.js"></script>
 
@@ -150,6 +149,19 @@ include "../template/header.php";
 
 <script>
 
+function showdata(id){
+  jQuery.ajax({
+        url: "profile.php",
+        data:'id='+id,
+        type:"GET",
+
+        success:function(data)
+        {
+            $("#body").html(data);
+
+            
+        }
+    });
+}
 </script>
--->
 <?php include "../template/footer.php"; ?>

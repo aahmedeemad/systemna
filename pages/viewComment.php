@@ -31,15 +31,15 @@ include "../template/header.php";
         return $c;
     }
 
-    $sql="
+    try
+    {
+        $sql="
       SELECT comment.Comment_id , comment.Value , comment.user_id , requests.type_name , employee.username
       FROM comment INNER JOIN employee 
       ON comment.user_id = employee.id 
       INNER JOIN requests
       ON comment.Request_id = requests.Request_id;
         ";
-    try
-    {
 
         $DB->query($sql);
         $DB->execute();
@@ -65,15 +65,15 @@ include "../template/header.php";
                 <td>{$Empid}</td> 
                 <td>{$Comment}</td> 
                 ";
-                
+
 
     ?>
-<td colspan="2"><a href="../operations/EditComment.php.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
-<td colspan="3"><a href="../operations/DeleteComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td colspan="2"><a href="../operations/EditComment.php.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
+    <td colspan="3"><a href="../operations/DeleteComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
-    
-        echo "</tr>";
+
+                echo "</tr>";
             }
         }
         else {

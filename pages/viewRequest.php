@@ -133,7 +133,6 @@ include "../template/header.php";
 
 
 
-<!--
 <div class="modal fade bd-example-modal-xl" tabindex="-1" id="exampleModalLong" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -155,7 +154,6 @@ include "../template/header.php";
         </div>
     </div>
 </div>
--->
 
 
 <script>

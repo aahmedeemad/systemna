@@ -79,8 +79,8 @@ include "../template/header.php";
 
                 if($x[$i]->Status==1){
     ?>
-
-    <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:#39d029;">accepted</p></td>
+    
+    <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:#39d029;">Accepted</p></td>
 
     <?php } else if ($x[$i]->Status==0){ ?>
 

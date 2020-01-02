@@ -68,8 +68,8 @@ include "../template/header.php";
                 
 
     ?>
-<td colspan="2"><a href="../operations/EditComment.php.php?id=<?php echo $x[$i]->id ;?> " class='EditBtn1'>Edit</a></td>    
-<td colspan="3"><a href="../operations/DeleteComment.php?id=<?php echo $x[$i]->id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
+<td colspan="2"><a href="../operations/EditComment.php.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
+<td colspan="3"><a href="../operations/DeleteComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
     
@@ -77,7 +77,7 @@ include "../template/header.php";
             }
         }
         else {
-            echo "<td colspan='9'>-No data to show-</td>";
+            echo "<td colspan='9'>- No data to show -</td>";
         }
     }
     catch(Exception $e)

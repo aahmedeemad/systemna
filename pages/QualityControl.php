@@ -4,7 +4,7 @@ include "../template/header.php";
 ?>
 <br>
 <div style="text-align: center;">
-    <h1 style="font-family: sans-serif;">Quality Control</h1>
+    <h1 style="font-family: sans-serif;" id="QCtitle">Quality Control</h1>
     <input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search'>
     <select id='choice' class='tblselect'>
         <option value="empname">Employee Name</option>
@@ -12,7 +12,7 @@ include "../template/header.php";
         <option value="empid">Employee ID</option>
     </select>
 </div>
-<table id='Display'>
+<table id='Display' class="QCTbl">
     <tr id='must'>
         <th>#</th>
         <th>Request ID</th>
@@ -89,7 +89,7 @@ include "../template/header.php";
 
     ?>
     <td class ="Comment">
-        <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>" method="post">
+        <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>&user_id=<?php echo $x[$i]->emp_id?>" method="post">
             <input type='text' name="Comment" id="qccomment" placeholder='Write your comment here...'size='30' required>
             <br>
             <input type='submit' id="qcsubmit" onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
@@ -99,6 +99,9 @@ include "../template/header.php";
     <?php
         echo "</tr>";
             }
+        }
+        else {
+            echo "<td colspan='9'>-No data to show-</td>";
         }
     }
     catch(Exception $e)

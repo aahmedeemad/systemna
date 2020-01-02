@@ -38,6 +38,7 @@ $qcPages = array(
     array( "name" => "Dashboard", "href" => "../pages/QualityControl.php", "class" => "fas fa-home fa-sm icon-button" ),
     array( "name" => "Request Letter", "href" => "../pages/MakeLetter.php", "class" => "fas fa-envelope fa-sm icon-button" ),
     array( "name" => "Your Requests <div class='counter' id='ownletterrequests_Counter'></div>", "href" => "../pages/viewRequest.php", "class" => "fas fa-clock fa-sm icon-button" ),
+    array( "name" => "Your Comments", "href" => "../pages/viewComment.php", "class" => "fa fa-comment fa-sm icon-button" ),
     array( "name" => "Logout", "href" => "../pages/logout.php", "class" => "fa fa-sign-out-alt fa-sm icon-button" ),  
 );                        
 

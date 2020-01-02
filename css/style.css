@@ -970,3 +970,14 @@ display: inline-block;
 #qccomment {
     margin-left:auto;
 }
+@media only screen and (max-width: 1000px) {
+    #QCtitle
+    {
+        margin-left: auto;
+    }
+    .QCTbl
+    {
+        overflow: auto;
+        display: block;
+    }
+}

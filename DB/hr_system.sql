@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 31, 2019 at 01:41 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Jan 02, 2020 at 03:33 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -59,19 +59,11 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 --
 
 CREATE TABLE `comment` (
-  `id` int(11) NOT NULL,
+  `Comment_id` int(11) NOT NULL,
   `Value` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `Request_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`id`, `Value`, `user_id`, `Request_id`) VALUES
-(5, 'asds', 0, 20),
-(6, 'dsdasd', 0, 20);
 
 -- --------------------------------------------------------
 
@@ -98,14 +90,15 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `accepted`, `active`, `privilege`) VALUES
 (1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '', '225999999', 1, 1, 'admin'),
-(2, 'Zaky', 'Zaky', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', 1, 1, 'qc'),
+(2, 'Bony', 'Bony', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', 1, 1, 'qc'),
 (3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', 2, 1, 'user'),
 (6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', 0, 1, 'user'),
 (8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', 1, 1, 'admin'),
 (24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', 1, 1, 'admin'),
 (25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', 1, 1, 'admin'),
-(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user');
+(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user'),
+(27, NULL, '', '', '', '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,8 +120,8 @@ CREATE TABLE `faq` (
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Requested_by`, `Added_by`) VALUES
 (1, 'What is SYSTEMNA', 'SYSTEMNA is our company&#39;s HR system, where you can register for an account to easily request HR letter at anytime & from anywhere.', NULL, 'aahmedeemad'),
-(2, 'How to view your profile ?', 'You can <a href="../pages/profile.php" style="text-decoration: none;">click here</a> to go to your profile and view or edit your info.', NULL, 'aahmedeemad'),
-(3, 'How to request an HR letter ?', '<a href="../pages/MakeLetter.php" style="text-decoration: none;">Click on this link</a>, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
+(2, 'How to view your profile ?', 'You can <a href=\"../pages/profile.php\" style=\"text-decoration: none;\">click here</a> to go to your profile and view or edit your info.', NULL, 'aahmedeemad'),
+(3, 'How to request an HR letter ?', '<a href=\"../pages/MakeLetter.php\" style=\"text-decoration: none;\">Click on this link</a>, choose the letter type and then fill in the info.', NULL, 'aahmedeemad'),
 (4, 'How to request a new question to be added ?', 'In this page you will find a form to send us an inquiry.<br>Feel free to message us, and we will get back to you.<br>If the question was commonly asked, it will be added to the FAQ list.', NULL, 'aahmedeemad');
 
 -- --------------------------------------------------------
@@ -288,7 +281,8 @@ INSERT INTO `update_info` (`ID`, `UID`, `OldValue`, `Value`, `Type`, `Status`) V
 (7, 24, '123456', '123', 'password', 2),
 (8, 24, '29999999999999', '29999999999991', 'ssn', 1),
 (9, 24, '', 'cairo', 'location', 2),
-(10, 24, '', '2019-12-19', 'birthdate', 2);
+(10, 24, '', '2019-12-19', 'birthdate', 2),
+(13, 2, '', '01202820504', 'phone', 2);
 
 --
 -- Indexes for dumped tables
@@ -304,7 +298,7 @@ ALTER TABLE `add_info`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`Comment_id`);
 
 --
 -- Indexes for table `employee`
@@ -360,13 +354,13 @@ ALTER TABLE `update_info`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -402,7 +396,7 @@ ALTER TABLE `requests_types`
 -- AUTO_INCREMENT for table `update_info`
 --
 ALTER TABLE `update_info`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

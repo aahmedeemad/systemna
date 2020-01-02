@@ -29,7 +29,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 $desc=$x[$i]->description;
                 echo "<div id='columnAddRequest' style='background-color: #EEE8AA;'>";
                 echo "<br><br>";
-                echo "<label><input type='radio' class name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
+                echo "<label><input type='radio' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
                 echo "<br><br><br> ";
                 echo "<br><br>";
                 echo "</div>";

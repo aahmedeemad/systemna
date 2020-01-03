@@ -47,13 +47,12 @@ if(isset($_GET['id'])){
     <br>
     <h4>Letter body: </h4>
     
-    <p style="background-color:#dcdc6f">Please paste the letter body template and type NAME in capital letters where the employee name should be placed same thing with SALARY , POSITION ,DATE,START and name of hr as HR. <br> Note: Put in consederation that salary is going to be replaced with 'their current gross salary is EGP [amount] per annum.'  </p>
+    <p style="background-color:#dcdc6f">Please paste the letter body template and type NAME in capital letters where the employee name should be placed same thing with SALARY , POSITION ,DATE,START and Additional info if exists as ADDITIONAL <br> Note: Put in consederation that salary is going to be replaced with 'their current gross salary is EGP [amount] per annum.'  </p>
 
 
     <textarea  rows="20"  id="letterBodyArea" name="body"  style="width:100%;" placeholder="body of the new letter.." ></textarea>
 
     <br><br><br><br>
-    <input type="button" class="btn btn-info btn-sml" data-toggle="modal" data-target="#exampleModalLong" value="view letter">
     <input type="button" name="addLetter" id = "AddLetterbtn" value="Add Letter">
 
 </div>

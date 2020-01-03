@@ -22,7 +22,7 @@ include "../template/header.php";
     </tr>
 
     <?php
-    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary
+    $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary,r.additional_info 
         FROM requests r ,employee e, requests_types rt 
         WHERE e.id=r.emp_id AND r.Type_name=rt.Name AND e.id <> " . $_SESSION['id'] . " ORDER BY r.date asc, r.priority desc";
     try
@@ -42,7 +42,7 @@ include "../template/header.php";
                 $priority=$x[$i]->priority;
                 $salary=$x[$i]->salary;
                 $name=$x[$i]->fullname;
-
+                $addinfo=$x[$i]->additional_info;
                 $Boolsalray = "Without Salary";
                 $BoolPriority = "Urgent";
 
@@ -58,7 +58,7 @@ include "../template/header.php";
                 }
                 else $BoolPriority="Normal";
 
-                echo  "<tr id='$emp_id'  data-toggle='modal' onclick='showdata(this.id)'  data-target='#exampleModalLong'>";
+                echo  "<tr id='$emp_id+$addinfo'  data-toggle='modal'  onclick='showdata(this)'  data-target='#exampleModalLong'>";
                 echo "<td>{$y}</td>";
 
                 echo "<td>{$id}</td>";
@@ -72,14 +72,13 @@ include "../template/header.php";
                 else{
                     echo "<td style='color:#be800d; font-weight:bold;' >Pending</td>";
                 }
-                echo '<td>'.$x[$i]->type_name.'</td>';
-
+               echo "<td >".$x[$i]->type_name.'</td>';
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
 
                 if($x[$i]->Status==1){
     ?>
-    
+
     <td colspan="2"><p class="badge badge-primary text-wrap" style=" background-color:#39d029;">Accepted</p></td>
 
     <?php } else if ($x[$i]->Status==0){ ?>
@@ -96,7 +95,7 @@ include "../template/header.php";
                     echo "</tr>";
                    }
             }
-            
+
         }
         else {
             echo"<tr><td colspan=8>You have no requests for now ! </td></tr>";
@@ -123,45 +122,55 @@ include "../template/header.php";
 </div>
 
 <div class="modal fade " id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div id="body" class="modal-body">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="body" class="modal-body">
 
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<button type="button" class="btn btn-primary">send letter</button>
-</div>
-</div>
-</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">send letter</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <script src="../js/bootstrap.min.js"></script>
 
+
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
+</script>
 <script>
 
-function showdata(id){
-  jQuery.ajax({
-        url: "profile.php",
-        data:'id='+id,
-        type:"GET",
+    function showdata(id){
+      
+        var concatinated=id.id;
+        var seperated=concatinated.split("+");
+        var id= seperated[0];
+        var addinfo=seperated[1];
+        jQuery.ajax({
+            url: "profile.php",
+            data:'id='+id+'&addinfo='+addinfo,
+            type:"GET",
 
-        success:function(data)
-        {
-            $("#body").html(data);
+            success:function(data)
+            {
+                $("#body").html(data);
 
-            
-        }
-    });
-}
+
+            }
+        });
+    }
+
 </script>
+
+
 <?php include "../template/footer.php"; ?>

@@ -955,8 +955,9 @@ $(document).ready(function () {
             else if ($('#rdbtn4').is(':checked')) { salary = 0; }
 
             type_name = $("input[name=Letterbuttonn]:checked").val();
-            if( $('#'+type_name).length ) {
-                info=$('#'+type_name).val();
+           var x= document.getElementById(type_name);
+            if( x!=null ) {
+                info=x.value;
             }  
             if(info !=''){
                 $.ajax({

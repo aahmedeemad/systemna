@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_POST['id'])){
-    $name=$_POST['id'];
+    $Name=$_POST['id'];
     $date=$_POST['date'];
     $salary=$_POST['salary'];
     $id=$_SESSION['id'];
@@ -12,25 +12,38 @@ if (isset($_POST['id'])){
         include'../DB/Database.php';
         $DB=new Database();
 
-        if($name=='Other'){
+        if($Name=='Other'){
 
             $sql="SELECT body,Name FROM special_request where request_id= '$request_id'; " ;
             $DB->query($sql);
             $DB->execute();
             $info=$DB->getdata();
+            $additional='0';
+            $Name=$info[0]->Name;
         }
         else{
-        $sql="SELECT body,Name FROM requests_types where Name= '$name'; " ;
+        $sql="SELECT t.body ,t.Name ,r.additional_info,r.type_name FROM requests_types t , requests r where request_id='$request_id' and r.type_name=t.Name; " ;
             
         $DB->query($sql);
         $DB->execute();
-        $info=$DB->getdata();}
-        echo '<center><b>'.$name.'</b></center> <br>';
+        $info=$DB->getdata();
+        $additional=$info[0]->additional_info;
+        }
+        echo '<center><b>'.$Name.'</b></center> <br>';
         $body=$info[0]->body;
+                
         $name=$_SESSION['name'];
         $body=str_replace('(.NAME.)',$name,$body);
         $body=str_replace('(.DATE.)',$date,$body);
-        $body=str_replace('(.ADDITIONAL.)',$date,$body);
+        if($additional=='0'){
+        
+        $body=str_replace('ADDITIONAL',"",$body);
+        }
+        else
+        {
+            $body=str_replace('(.ADDITIONAL.)',$additional,$body);
+            
+        }
         if($salary==1){
 
 

@@ -112,7 +112,7 @@ include "../template/header.php";
                     echo "</tr>";
                 }
             }
-
+          
         }
         else {
             echo"<tr><td colspan=9>You have no requests for now ! </td></tr>";

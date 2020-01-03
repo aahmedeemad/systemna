@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2020 at 03:33 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Jan 03, 2020 at 03:36 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -194,7 +194,69 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (27, 0, 3, 'Congratulations you have been promoted to an QC!', ''),
 (28, 0, 1, 'Letter Request Added Successfully', ''),
 (29, 0, 1, 'Letter Request Added Successfully', ''),
-(30, 1, 24, 'Letter Request Added Successfully', '');
+(30, 1, 24, 'Letter Request Added Successfully', ''),
+(31, 0, 2, 'An action has been made to a letter request.', ''),
+(32, 0, 2, 'An action has been made to a letter request.', ''),
+(33, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(34, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(35, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(36, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(37, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(38, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(39, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(40, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(41, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
+(42, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(43, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(44, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(45, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(46, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(47, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(48, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(49, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(50, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(51, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(52, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(53, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(54, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(55, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(56, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(57, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(58, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(59, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(60, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(61, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(62, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(63, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(64, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(65, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(66, 0, 8, 'An action has been made to a letter request.', ''),
+(67, 0, 8, 'An action has been made to a letter request.', ''),
+(68, 0, 24, 'An action has been made to a letter request.', ''),
+(69, 0, 0, 'An action has been made to a letter request.', ''),
+(70, 0, 0, 'An action has been made to a letter request.', ''),
+(71, 0, 8, 'An action has been made to a letter request.', ''),
+(72, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(73, 0, 0, 'An action has been made to a letter request.', ''),
+(74, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(75, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(76, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(77, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(78, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(79, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(80, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(81, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(82, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(83, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(84, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(85, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(86, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(87, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(88, 0, 1, 'An action has been made to a letter request.', ''),
+(89, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(90, 0, 1, 'An action has been made to a letter request.', ''),
+(91, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(92, 0, 0, 'An action has been made to a letter request.', '');
 
 -- --------------------------------------------------------
 
@@ -208,7 +270,8 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `additional_info` varchar(200) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -216,19 +279,22 @@ CREATE TABLE `requests` (
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, `date`, `type_name`) VALUES
-(20, 26, 1, 0, 1, '2019-12-14 22:00:00', 'General HR Letter'),
-(21, 26, 1, 1, 1, '2019-12-14 22:00:00', 'General HR Letter'),
-(23, 26, 0, 0, 1, '2019-12-14 22:00:00', 'HR Letter directed to specific organization'),
-(24, 26, 0, 1, 0, '2019-12-14 22:00:00', 'HR Letter to whom it may concern'),
-(30, 26, 0, 0, 1, '2019-12-15 22:00:00', 'Embassy HR Letter'),
-(35, 2, 2, 0, 1, '2019-12-20 22:00:00', 'HR Letter to whom it may concern'),
-(36, 2, 2, 0, 0, '2019-12-21 00:15:31', 'Embassy HR Letter'),
-(37, 2, 2, 1, 0, '2019-12-21 00:16:25', 'General HR Letter'),
-(38, 8, 1, 1, 1, '2019-12-21 13:25:56', 'General HR Letter'),
-(41, 24, 2, 1, 1, '2019-12-30 08:09:26', 'HR Letter directed to specific organization'),
-(44, 1, 2, 1, 1, '2019-12-30 23:22:39', 'Embassy HR Letter'),
-(45, 24, 2, 1, 1, '2019-12-30 23:33:56', 'General HR Letter');
+INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, `date`, `additional_info`, `type_name`) VALUES
+(20, 26, 1, 0, 1, '2019-12-14 22:00:00', '', 'General HR Letter'),
+(21, 26, 1, 1, 1, '2019-12-14 22:00:00', '', 'General HR Letter'),
+(23, 26, 0, 0, 1, '2019-12-14 22:00:00', '', 'HR Letter directed to specific organization'),
+(24, 26, 0, 1, 0, '2019-12-14 22:00:00', '', 'HR Letter to whom it may concern'),
+(30, 26, 0, 0, 1, '2019-12-15 22:00:00', '', 'Embassy HR Letter'),
+(35, 2, 1, 0, 1, '2019-12-20 22:00:00', '', 'HR Letter to whom it may concern'),
+(36, 2, 0, 0, 0, '2019-12-21 00:15:31', '', 'Embassy HR Letter'),
+(37, 2, 2, 1, 0, '2019-12-21 00:16:25', '', 'General HR Letter'),
+(38, 8, 1, 1, 1, '2019-12-21 13:25:56', '', 'General HR Letter'),
+(41, 24, 1, 1, 1, '2019-12-30 08:09:26', '', 'HR Letter directed to specific organization'),
+(44, 1, 2, 1, 1, '2019-12-30 23:22:39', '', 'Embassy HR Letter'),
+(69, 8, 1, 0, 0, '2020-01-03 02:39:26', 'medical', 'Other'),
+(84, 1, 1, 0, 1, '2020-01-02 23:34:25', 'two', 'medical letter'),
+(85, 1, 1, 1, 1, '2020-01-02 23:46:43', 'three', 'medical letter'),
+(86, 1, 1, 1, 1, '2020-01-03 01:27:38', 'i need a letter for vacation two days', 'Other');
 
 -- --------------------------------------------------------
 
@@ -240,18 +306,42 @@ CREATE TABLE `requests_types` (
   `Type_id` int(50) NOT NULL,
   `Name` text NOT NULL,
   `description` text NOT NULL,
-  `body` text NOT NULL
+  `body` text NOT NULL,
+  `additional_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requests_types`
 --
 
-INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`) VALUES
-(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', ''),
-(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', ''),
-(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter', ''),
-(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>');
+INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`, `additional_info`) VALUES
+(1, 'Other', 'if non of the below', '', 'write what you need'),
+(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', '', 'which country are you travelling to?'),
+(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', '', 'what is the Organization name ?'),
+(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter', '', '0'),
+(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>', '0'),
+(39, 'medical letter', 'for day off', '<pre>(.NAME.) (.SALARY.) (.DATE.)  (.ADDITIONAL.) </pre>', 'what number of days do you need?');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `special_request`
+--
+
+CREATE TABLE `special_request` (
+  `id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `Name` text COLLATE utf8_bin NOT NULL,
+  `body` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `special_request`
+--
+
+INSERT INTO `special_request` (`id`, `request_id`, `Name`, `body`) VALUES
+(13, 69, 'medical', 'this is for fady bassel'),
+(18, 86, 'vacation letter', 'this is for islam regarding the two days vacation');
 
 -- --------------------------------------------------------
 
@@ -341,6 +431,13 @@ ALTER TABLE `requests_types`
   ADD PRIMARY KEY (`Type_id`);
 
 --
+-- Indexes for table `special_request`
+--
+ALTER TABLE `special_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_id` (`request_id`);
+
+--
 -- Indexes for table `update_info`
 --
 ALTER TABLE `update_info`
@@ -378,19 +475,25 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `requests_types`
 --
 ALTER TABLE `requests_types`
-  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `special_request`
+--
+ALTER TABLE `special_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `update_info`
@@ -413,6 +516,12 @@ ALTER TABLE `add_info`
 --
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
+
+--
+-- Constraints for table `special_request`
+--
+ALTER TABLE `special_request`
+  ADD CONSTRAINT `special_request_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`Request_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

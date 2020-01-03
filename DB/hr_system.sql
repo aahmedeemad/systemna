@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2020 at 06:05 AM
+-- Generation Time: Jan 03, 2020 at 03:36 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -94,7 +94,7 @@ INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phon
 (3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', 2, 1, 'user'),
 (6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
 (7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', 0, 1, 'user'),
-(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.', '01001761142', '12345678912377', 1, 1, 'admin'),
+(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', 1, 1, 'admin'),
 (24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', 1, 1, 'admin'),
 (25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', 1, 1, 'admin'),
 (26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user'),
@@ -235,7 +235,28 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (68, 0, 24, 'An action has been made to a letter request.', ''),
 (69, 0, 0, 'An action has been made to a letter request.', ''),
 (70, 0, 0, 'An action has been made to a letter request.', ''),
-(71, 0, 8, 'An action has been made to a letter request.', '');
+(71, 0, 8, 'An action has been made to a letter request.', ''),
+(72, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(73, 0, 0, 'An action has been made to a letter request.', ''),
+(74, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(75, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(76, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(77, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(78, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(79, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(80, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(81, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(82, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(83, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(84, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(85, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(86, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(87, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(88, 0, 1, 'An action has been made to a letter request.', ''),
+(89, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(90, 0, 1, 'An action has been made to a letter request.', ''),
+(91, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(92, 0, 0, 'An action has been made to a letter request.', '');
 
 -- --------------------------------------------------------
 
@@ -270,7 +291,10 @@ INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, 
 (38, 8, 1, 1, 1, '2019-12-21 13:25:56', '', 'General HR Letter'),
 (41, 24, 1, 1, 1, '2019-12-30 08:09:26', '', 'HR Letter directed to specific organization'),
 (44, 1, 2, 1, 1, '2019-12-30 23:22:39', '', 'Embassy HR Letter'),
-(69, 8, 1, 0, 0, '2020-01-03 02:39:26', 'medical', 'Other');
+(69, 8, 1, 0, 0, '2020-01-03 02:39:26', 'medical', 'Other'),
+(84, 1, 1, 0, 1, '2020-01-02 23:34:25', 'two', 'medical letter'),
+(85, 1, 1, 1, 1, '2020-01-02 23:46:43', 'three', 'medical letter'),
+(86, 1, 1, 1, 1, '2020-01-03 01:27:38', 'i need a letter for vacation two days', 'Other');
 
 -- --------------------------------------------------------
 
@@ -291,11 +315,12 @@ CREATE TABLE `requests_types` (
 --
 
 INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`, `additional_info`) VALUES
+(1, 'Other', 'if non of the below', '', 'write what you need'),
 (2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', '', 'which country are you travelling to?'),
 (3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', '', 'what is the Organization name ?'),
 (4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter', '', '0'),
-(30, 'Other', 'if non of the below', '', 'write what you need'),
-(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>', '0');
+(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>', '0'),
+(39, 'medical letter', 'for day off', '<pre>(.NAME.) (.SALARY.) (.DATE.)  (.ADDITIONAL.) </pre>', 'what number of days do you need?');
 
 -- --------------------------------------------------------
 
@@ -315,7 +340,8 @@ CREATE TABLE `special_request` (
 --
 
 INSERT INTO `special_request` (`id`, `request_id`, `Name`, `body`) VALUES
-(13, 69, 'medical', 'this is for fady bassel');
+(13, 69, 'medical', 'this is for fady bassel'),
+(18, 86, 'vacation letter', 'this is for islam regarding the two days vacation');
 
 -- --------------------------------------------------------
 
@@ -449,25 +475,25 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `requests_types`
 --
 ALTER TABLE `requests_types`
-  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `Type_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `special_request`
 --
 ALTER TABLE `special_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `update_info`

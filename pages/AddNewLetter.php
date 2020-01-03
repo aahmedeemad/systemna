@@ -40,21 +40,22 @@ if(isset($_GET['id'])){
     <input type="text" id="Name" name="Name" placeholder="new letter name.." >
     <h4>Letter description : </h4>
     <textarea id="description" name="desc." placeholder="description of the new letter.."  ></textarea>
+     <h4>aditional info : </h4>
+     <p style="background-color:#dcdc6f">Please add a valid WH question if required for additional info with question mark and caps down or leave empty. </p>
+    <input type="text" style="width:100%" id="add_info" name="add_info" placeholder="add_info (optional)" >
+   
     <br>
     <h4>Letter body: </h4>
-
-    <p style="background-color:#dcdc6f">Please paste the letter body template and type NAME in capital letters where the employee name should be placed same thing with SALARY , POSITION ,DATE,START and name of hr as HR. <br> Note: Put in consederation that salary is going to be replaced with 'their current gross salary is EGP [amount] per annum.'  </p>
+    
+    <p style="background-color:#dcdc6f">Please paste the letter body template and type NAME in capital letters where the employee name should be placed same thing with SALARY , POSITION ,DATE,START and Additional info if exists as ADDITIONAL <br> Note: Put in consederation that salary is going to be replaced with 'their current gross salary is EGP [amount] per annum.'  </p>
 
 
     <textarea  rows="20"  id="letterBodyArea" name="body"  style="width:100%;" placeholder="body of the new letter.." ></textarea>
 
     <br><br><br><br>
-    <input type="button" class="btn btn-info btn-sml" data-toggle="modal" data-target="#exampleModalLong" value="view letter">
     <input type="button" name="addLetter" id = "AddLetterbtn" value="Add Letter">
 
 </div>
-
-
 
 
 

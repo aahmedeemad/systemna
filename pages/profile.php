@@ -8,6 +8,8 @@ if (isset($_GET['id']))
 
     $noEdit = true;
     $id = $_GET['id'];
+    $addinfoo=$_GET['addinfo'];
+    echo"<p style='background-color:#dddd59'>Additional info of the reqquest : <br>" .$addinfoo. "</p>";
     include'../DB/Database.php';
     $DB=new Database();
 }

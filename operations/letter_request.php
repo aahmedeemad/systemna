@@ -7,7 +7,7 @@ if(isset($_POST['addLetter'])){
     $id=$_POST['id'];
     $body=$_POST['body'];
     $name=$_POST['Name'];
-    $sql="insert into special_request (request_id,title,body) values ('$id','$name','$body')";
+    $sql="insert into special_request (request_id,Name,body) values ('$id','$name','$body')";
     $DB->query($sql);
     $DB->execute(); 
 

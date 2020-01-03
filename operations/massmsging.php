@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['type'] == "notiall")
     {
         try {
-            $sql = "SELECT * FROM employee"; /* SQL query to get the data from the DB */
+            $sql = "SELECT * FROM employee WHERE accepted = 1"; /* SQL query to get the data from the DB */
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             $x = $DB->getdata(); /* creates an array of the output result */
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else if ($_POST['type'] == "mailall")
     {
         try {
-            $sql = "SELECT * FROM employee"; /* SQL query to get the data from the DB */
+            $sql = "SELECT * FROM employee WHERE accepted = 1"; /* SQL query to get the data from the DB */
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             $x = $DB->getdata(); /* creates an array of the output result */

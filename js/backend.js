@@ -1259,8 +1259,25 @@ $(document).ready(function () {
         var p = text.includes('POSITION');
         var startdate = text.includes('START');
         var hr = text.includes('HR');
-
-        if (n == true && !text.includes("(.NAME.)")) {
+        var additional=text.includes('ADDITIONAL');
+        var addtest;
+        var add=document.getElementById('add_info').value;
+       
+        if(add=='' || add.match(/^ *$/) !== null){
+            addtest=false;
+        }
+        else{ 
+           
+            addtest=true;}
+        
+        
+           if (addtest==true && additional == true && !text.includes("(.ADDITIONAL.)")) {
+            text = text.replace('ADDITIONAL', "(.ADDITIONAL.) ");
+            document.getElementById('letterBodyArea').value= text;
+        }
+        
+        
+           if (n == true && !text.includes("(.NAME.)")) {
             text = text.replace('NAME', "(.NAME.) ");
             document.getElementById('letterBodyArea').value= text;
         }
@@ -1285,30 +1302,55 @@ $(document).ready(function () {
     $("#AddLetterbtn").on("click", function () {
         var name=document.getElementById('Name').value;
         var description=document.getElementById('description').value;
-        if(name=='' || description ==''){
+        var add=document.getElementById('add_info').value;
+        if(name=='' || description =='' ){
             loading(false);
             popup(false,'please fill all fileds.');
         }else{
             var dataa=document.getElementById('letterBodyArea').value;
             /*dataa='<pre>'+dataa+'</pre>';*/
-            if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
-                jQuery.ajax({
-                    url: "../operations/newLetter.php",
-                    data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
-                    type:"POST",
-                    success:function(data)
-                    {
-                        loading(false);
-                        if(data == "true") popup(true,"letter created");
-                        else popup(false,data);
-                    },
-                    beforeSend: function () {
-                        loading(true);
-                    }
+            if(add!='' || add.match(/^ *$/) == null){
+                if(add.includes('what')|| add.includes('where') ||add.includes('who') || add.includes('when')){
+                if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')){
+                    jQuery.ajax({
+                        url: "../operations/newLetter.php",
+                        data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add='+$("#add_info").val(),
+                        type:"POST",
+                        success:function(data)
+                        {
+                            loading(false);
+                            popup(true,data);
+                        },
+                        beforeSend: function () {
+                            loading(true);
+                        }
 
-                });
-            } else {
-                popup(false,'please fill Name, Salary and Date');
+                    });
+                }  
+                else { popup(false,'please fill Name, Salary and Date,Additional info if added');}
+                
+                } else { popup(false,'please add valid WH question');} }else if (dataa.includes('(.NAME.)')  && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
+                    jQuery.ajax({
+                        url: "../operations/newLetter.php",
+                        data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add=0',
+                        type:"POST",
+                        success:function(data)
+                        {
+                            loading(false);
+                            popup(true,data);
+                        },
+                        beforeSend: function () {
+                            loading(true);
+                        }
+
+                    });
+                }
+
+
+
+
+            else {
+                popup(false,'please fill Name, Salary and Date,Additional info if added');
             }
         } });
 

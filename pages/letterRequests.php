@@ -88,7 +88,7 @@ include "../template/header.php";
 
     <?php } else   { ?>
 
-    <td><a href="../operations/letter_request.php?id=<?php echo $id; ?>&status=1&userid=<?php echo $emp_id; ?>" style="color:white" class="btn btn-success">Accept</a></td>
+    <td><a href="../operations/letter_request.php?id=<?php echo $id; ?>&status=1&userid=<?php echo $emp_id; ?>&name=<?php echo$x[$i]->type_name;?>" style="color:white" class="btn btn-success">Accept</a></td>
     <td><a href="../operations/letter_request.php?id=<?php echo $id; ?>&status=0&userid=<?php echo $emp_id; ?>" style="color:white" class="btn btn-danger">Reject</a></td>
 
 
@@ -122,7 +122,7 @@ include "../template/header.php";
     </div>
 </div>
 
-<!--<div class="modal fade " id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade " id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
@@ -132,15 +132,15 @@ include "../template/header.php";
 </button>
 </div>
 <div id="body" class="modal-body">
-...
+
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<button type="button" class="btn btn-primary">Save changes</button>
+<button type="button" class="btn btn-primary">send letter</button>
 </div>
 </div>
 </div>
-</div>-->
+</div>
 
 
 <script src="../js/bootstrap.min.js"></script>

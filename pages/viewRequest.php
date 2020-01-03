@@ -89,8 +89,7 @@ include "../template/header.php";
                 if($x[$i]->Status==1){
     ?>
 
-    <td colspan="2"><button id='<?php echo $x[$i]->type_name;?>' onclick="showdata(this.id,'<?php echo $x[$i]->salary;?>' ,'<?php echo $x[$i]->date;?>')" class="btn btn-info btn-sml" data-toggle="modal" data-target='#exampleModalLong'>view letter</button></td>
-    <td colspan="2"><button class="btn btn-info btn-sml" data-toggle="modal" data-target="#myModal">get by mail</button></td>
+    <td colspan="2"><button id='<?php echo $x[$i]->type_name;?>' onclick="showdata(this.id,'<?php echo $x[$i]->salary;?>' ,'<?php echo $x[$i]->date;?>','<?php echo $id; ?>')" class="btn btn-info btn-sml" data-toggle="modal" data-target='#exampleModalLong'>view letter</button></td>
 
 
     <?php } else if ($x[$i]->Status==0){
@@ -157,10 +156,10 @@ include "../template/header.php";
 
 
 <script>
-    function showdata(id,salary,date){
+    function showdata(id,salary,date,request_id){
         jQuery.ajax({
             url: "view_letter.php",
-            data:'id='+id+'&salary='+salary+'&date='+date,
+            data:'id='+id+'&salary='+salary+'&date='+date+'&request_id='+request_id,
             type:"POST",
 
             success:function(data)

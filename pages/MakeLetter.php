@@ -27,9 +27,14 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 $Name=$x[$i]->Name;
                 $btnid=$x[$i]->Type_id;
                 $desc=$x[$i]->description;
+                $add=$x[$i]->additional_info;
                 echo "<div id='columnAddRequest' style='background-color: #EEE8AA;'>";
                 echo "<br><br>";
-                echo "<label><input type='radio' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
+                echo "<label><input type='radio' onclick='showfield(this.value)' class name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
+                echo'<br>';
+                if($add !='0'){
+                    echo "<input style='width:80%' type='hidden' placeholder='$add'  id='$Name'> ";
+                }
                 echo "<br><br><br> ";
                 echo "<br><br>";
                 echo "</div>";
@@ -57,5 +62,14 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
         }
     ?>
 </div>
-
+<script>
+    function showfield(id){
+    var check=document.getElementById(id);
+       
+        if (check!=null ){
+            alert(id);
+           document.getElementById(id).type='text';            
+        }
+    }
+</script>
 <?php include "../template/footer.php"; ?>

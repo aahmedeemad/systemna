@@ -798,7 +798,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#AddLetterbtn").click(function () {
+ /*   $("#AddLetterbtn").click(function () {
         function checkAvai() {
             jQuery.ajax({
                 url: "AddNewLetter.php",
@@ -846,7 +846,7 @@ $(document).ready(function () {
         } else {
             popup('please fill Name, Salary and Date');
         }
-    });
+    });*/
 
     /* Function to submit an inquiry in FAQ page */
     $("#faqsubmit").on("click", function () {
@@ -941,6 +941,7 @@ $(document).ready(function () {
         var salary;
         var priority;
         var type_name;
+        var info='0';
         var id = $("#id").val();
         if (
             ($('#rdbtn1').is(':checked') || $('#rdbtn2').is(':checked')) &&
@@ -954,10 +955,14 @@ $(document).ready(function () {
             else if ($('#rdbtn4').is(':checked')) { salary = 0; }
 
             type_name = $("input[name=Letterbuttonn]:checked").val();
+            if( $('#'+type_name).length ) {
+                info=$('#'+type_name).val();
+            }  
+            if(info !=''){
             $.ajax({
                 type: "POST",
                 url: "../operations/addletter.php",
-                data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter",
+                data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter"+"&info="+info,
                 success: function (html) {
                     loading(false);
                     if (html == "true") {
@@ -972,7 +977,7 @@ $(document).ready(function () {
                     loading(true);
                 }
             });
-        } else { popup(false, "You have to select type, salary and priority"); }
+            } else popup(false,'fill textfield'); } else { popup(false, "You have to select type, salary and priority"); }
 
     });
 
@@ -1254,35 +1259,38 @@ $(document).ready(function () {
         var p = text.includes('POSITION');
         var startdate = text.includes('START');
         var hr = text.includes('HR');
-        if (hr == true && !text.includes("(.HR.)")) {
-            text = text.replace('HR', "(.HR.) ");
-            $("#letterBodyArea").val() = text;
-        }
+       
         if (n == true && !text.includes("(.NAME.)")) {
             text = text.replace('NAME', "(.NAME.) ");
-            $("#letterBodyArea").val() = text;
+            document.getElementById('letterBodyArea').value= text;
         }
         if (s == true && !text.includes("(.SALARY.)")) {
             text = text.replace('SALARY', "(.SALARY.)");
-            $("#letterBodyArea").val() = text;
+            document.getElementById('letterBodyArea').value = text;
         }
         if (d == true && !text.includes("(.DATE.)")) {
             text = text.replace('DATE', "(.DATE.) ");
-            $("#letterBodyArea").val() = text;
+           document.getElementById('letterBodyArea').value = text;
         }
         if (p == true && !text.includes("(.POSITION.)")) {
             text = text.replace('POSITION', "(.POSITION.) ");
-            $("#letterBodyArea").val() = text;
+            document.getElementById('letterBodyArea').value = text;
         }
         if (startdate == true && !text.includes("(.START.)")) {
             text = text.replace('START', "(.START.) ");
-            $("#letterBodyArea").val() = text;
+           document.getElementById('letterBodyArea').value = text;
         }
     });
 
-    /*  $("#AddLetterbtn").on("click", function () {
-        var dataa=document.getElementById('body').value;
-        dataa='<pre>'+dataa+'</pre>';
+      $("#AddLetterbtn").on("click", function () {
+        var name=document.getElementById('Name').value;
+        var description=document.getElementById('description').value;
+          if(name=='' || description ==''){
+              loading(false);
+              popup(false,'please fill all fileds.');
+          }else{
+        var dataa=document.getElementById('letterBodyArea').value;
+        /*dataa='<pre>'+dataa+'</pre>';*/
         if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
             jQuery.ajax({
                 url: "../operations/newLetter.php",
@@ -1291,7 +1299,7 @@ $(document).ready(function () {
                 success:function(data)
                 {
                     loading(false);
-                    popup(data);
+                    popup(true,data);
                 },
                 beforeSend: function () {
                     loading(true);
@@ -1299,9 +1307,10 @@ $(document).ready(function () {
 
             });
         } else {
-            popup('please fill Name, Salary and Date');
+            popup(false,'please fill Name, Salary and Date');
         }
-    });*/
+          } });
+      
 
     /**************** LetterRequests ********************/
 
@@ -1333,4 +1342,10 @@ Reset.onclick = function()
     sendnoti(id,"Temprory Password!","You can change your password from your profile");
 } 
 });
-     
+
+
+
+
+
+
+  

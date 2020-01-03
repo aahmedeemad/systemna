@@ -5,20 +5,32 @@ if (isset($_POST['id'])){
     $date=$_POST['date'];
     $salary=$_POST['salary'];
     $id=$_SESSION['id'];
+    $request_id=$_POST['request_id'];
 
     try{
 
         include'../DB/Database.php';
         $DB=new Database();
+
+        if($name=='Other'){
+
+            $sql="SELECT body,Name FROM special_request where request_id= '$request_id'; " ;
+            $DB->query($sql);
+            $DB->execute();
+            $info=$DB->getdata();
+        }
+        else{
         $sql="SELECT body,Name FROM requests_types where Name= '$name'; " ;
+            
         $DB->query($sql);
         $DB->execute();
-        $info=$DB->getdata();
+        $info=$DB->getdata();}
         echo '<center><b>'.$name.'</b></center> <br>';
         $body=$info[0]->body;
         $name=$_SESSION['name'];
         $body=str_replace('(.NAME.)',$name,$body);
         $body=str_replace('(.DATE.)',$date,$body);
+        $body=str_replace('(.ADDITIONAL.)',$date,$body);
         if($salary==1){
 
 

@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $salary=$_POST['salary'];
             $date=date('Y/m/d h:i:s');
             $type_name=$_POST['type_name'];
-
-            $sql="INSERT INTO requests (emp_id,Status,priority,salary,date,type_name)
-            VALUES ('$emp_id','$Status','$priority','$salary','$date','$type_name') ";
+            $info=$_POST['info'];
+            $sql="INSERT INTO requests (emp_id,Status,priority,salary,date,additional_info,type_name)
+            VALUES ('$emp_id','$Status','$priority','$salary','$date','$info','$type_name') ";
             $DB->query($sql);
             $DB->execute();
             echo "true";

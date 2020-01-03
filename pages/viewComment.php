@@ -34,7 +34,7 @@ include "../template/header.php";
     try
     {
         $sql="
-      SELECT comment.Comment_id , comment.Value , comment.user_id , requests.type_name , employee.username
+      SELECT comment.Comment_id , comment.Comment_value , comment.user_id , requests.type_name , employee.username
       FROM comment INNER JOIN employee 
       ON comment.user_id = employee.id 
       INNER JOIN requests
@@ -54,7 +54,7 @@ include "../template/header.php";
                 $id = check($x[$i]->Comment_id);
                 $RequestName =check($x[$i]->type_name);
                 $Empid = check($x[$i]->user_id);
-                $Comment = check($x[$i]->Value);
+                $Comment = check($x[$i]->Comment_value);
 
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
@@ -68,7 +68,7 @@ include "../template/header.php";
 
 
     ?>
-    <td colspan="2"><a href="../operations/EditComment.php.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
+    <td colspan="2"><a href="../operations/EditComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
     <td colspan="3"><a href="../operations/DeleteComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php

@@ -101,7 +101,7 @@ include "../template/header.php";
             }
         }
         else {
-            echo "<td colspan='9'>-No data to show-</td>";
+            echo "<td colspan='9'>- No data to show -</td>";
         }
     }
     catch(Exception $e)

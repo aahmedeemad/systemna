@@ -948,7 +948,7 @@ display: inline-block;
 }
 
 /*********** Bony's QC Table ***********/
-#qcsubmit {
+#qcsubmit , #UpBttn {
     background:#DAA520;
     padding: 2px 2px;
     border: 2px solid rgb(167, 163, 145);
@@ -962,7 +962,7 @@ display: inline-block;
 
 }
 
-#qcsubmit:hover {
+#qcsubmit:hover, #UpBttn:hover {
     background:black;
     color: #DAA520;
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2020 at 03:36 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Generation Time: Jan 03, 2020 at 10:55 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,9 +33,9 @@ CREATE TABLE `add_info` (
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT '0',
-  `n_id_picture` tinyint(1) DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,10 +60,19 @@ INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_pictur
 
 CREATE TABLE `comment` (
   `Comment_id` int(11) NOT NULL,
-  `Value` text NOT NULL,
+  `Comment_value` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `Request_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`Comment_id`, `Comment_value`, `user_id`, `Request_id`) VALUES
+(3, 'Ayhaga1', 26, 20),
+(4, 'Ayhaga2', 26, 21),
+(5, 'Ayhaga3', 26, 23);
 
 -- --------------------------------------------------------
 
@@ -195,8 +204,8 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (28, 0, 1, 'Letter Request Added Successfully', ''),
 (29, 0, 1, 'Letter Request Added Successfully', ''),
 (30, 1, 24, 'Letter Request Added Successfully', ''),
-(31, 0, 2, 'An action has been made to a letter request.', ''),
-(32, 0, 2, 'An action has been made to a letter request.', ''),
+(31, 1, 2, 'An action has been made to a letter request.', ''),
+(32, 1, 2, 'An action has been made to a letter request.', ''),
 (33, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
 (34, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
 (35, 0, 8, 'Your New Type of Letter Has Been Added Successfully!', '../pages/MakeLetter.php'),
@@ -270,7 +279,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `additional_info` varchar(200) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -451,7 +460,7 @@ ALTER TABLE `update_info`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `Comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `employee`

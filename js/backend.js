@@ -1343,9 +1343,3 @@ $(document).ready(function () {
         sendnoti(id,"Temprory Password!","You can change your password from your profile");
     } 
 });
-
-
-
-
-
-

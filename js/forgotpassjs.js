@@ -12,11 +12,16 @@ var Reset = document.getElementById('Reset');
 var NewPass = generateRandomString();
 Reset.onclick = function() {
   var mail = document.getElementById('forgotpassmail').value;
+  if (mail == "") {
+    alert("Please enter an email");
+  }
+  else {
   jQuery.ajax({
     type: 'POST',
     url: '../operations/resetpass.php',
     data: 'mail=' + mail  + '&NewPass='+ NewPass + '&type=reset',
     success: function (data) {
+      alert(data);
       var name = '';
       var mailsubject = 'Your new password';
       var mailcontent = 'Your new Password is ' + NewPass + ' You can change your password from your profile';
@@ -27,6 +32,8 @@ Reset.onclick = function() {
         success: function (data) {
         }
       });
+      location.reload();
     }
   });
+}
 };

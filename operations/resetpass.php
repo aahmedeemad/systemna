@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $sql = " UPDATE employee SET password = '" . sha1($password) . "' WHERE email = '$mail' ";
                 $DB->query($sql);
                 $DB->execute();
-                echo "True";
+                echo "An email is sent to you with your new password, use it to login then you can change it from your profile.";
             }
             else
             {
-                echo "<script>alert('This email is invaild !');</script>";
+                echo "This email is invaild !";
             }
         }
         catch(Exception $e)

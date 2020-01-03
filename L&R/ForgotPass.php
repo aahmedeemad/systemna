@@ -24,7 +24,7 @@
             <input placeholder="Email" id="forgotpassmail" type="text" name="mail" style="margin-left:20px">
           </div>
         </div>
-        <input type="submit" class="button" id="Reset" name="Reset" value="Reset">
+        <input type="button" class="button" id="Reset" name="Reset" value="Reset">
       </form>
     </div>
   </div>

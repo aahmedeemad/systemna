@@ -89,7 +89,7 @@ include "../template/header.php";
                 if($x[$i]->Status==1){
     ?>
 
-    <td colspan="2"><button id='<?php echo $x[$i]->type_name;?>' onclick="showdata(this.id,'<?php echo $x[$i]->salary;?>' ,'<?php echo $x[$i]->date;?>','<?php echo $id; ?>')" class="btn btn-info btn-sml" data-toggle="modal" data-target='#exampleModalLong'>view letter</button></td>
+    <td colspan="3"><button id='<?php echo $x[$i]->type_name;?>' onclick="showdata(this.id,'<?php echo $x[$i]->salary;?>' ,'<?php echo $x[$i]->date;?>','<?php echo $id; ?>')" class="btn btn-info btn-sml" data-toggle="modal" data-target='#exampleModalLong'>view letter</button></td>
 
 
     <?php } else if ($x[$i]->Status==0){
@@ -112,7 +112,7 @@ include "../template/header.php";
                     echo "</tr>";
                 }
             }
-          
+
         }
         else {
             echo"<tr><td colspan=9>You have no requests for now ! </td></tr>";

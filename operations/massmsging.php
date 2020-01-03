@@ -206,6 +206,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("error in send notification to one user function");
         }
     }
+    else if ($_POST['type'] == "newusermail")
+    {
+        try {
+            $umail = $_POST['email']; /* Getting the user email */
+            $uname = $_POST['name'];
+            if (isset($_POST['mailsubject']) && isset($_POST['mailcontent'])) {
+                $mailsubject = filter_var($_POST['mailsubject'], FILTER_SANITIZE_STRING);
+                $mailcontent = filter_var($_POST['mailcontent'], FILTER_SANITIZE_STRING);
+                $mail->Subject = "$mailsubject"; /* Set the subject. */
+                $email_vars = array(
+                    'name' => $uname,
+                    'content' => $mailcontent,
+                );
+                /* Importing the mail template */
+                $body = file_get_contents('../template/htmlemail.html');
+                if(isset($email_vars)){
+                    foreach($email_vars as $k=>$v){
+                        /* Replace the values in {} in template to vars in function */
+                        $body = str_replace('{'.strtoupper($k).'}', $v, $body);
+                    }
+                }
+                $mail->MsgHTML($body);
+                //$mail->Body = "$mailcontent"; /* Set the mail message body. */
+                $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
+                $mail->send(); /* Send the mail. */
+            }
+            echo "true";
+        }
+        catch(Exception $e)
+        {
+            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            error_log("error while sending mail to one user");
+        }
+    }
 }
 else 
 {

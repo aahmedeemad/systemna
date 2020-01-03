@@ -5,7 +5,7 @@ $pageTitle = "SYSTEMNA | Profile";
 <?php
 if (isset($_GET['id']))
 {
-    
+
     $noEdit = true;
     $id = $_GET['id'];
     include'../DB/Database.php';
@@ -131,6 +131,6 @@ catch(Exception $e)
 }
 ?>
 
-<?
+<?php
 if($noEdit=false){
-    php include "../template/footer.php"; }?>
+    include "../template/footer.php"; }?>

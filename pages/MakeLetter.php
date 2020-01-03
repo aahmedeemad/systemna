@@ -3,12 +3,12 @@ $pageTitle = "SYSTEMNA | Letters";
 include "../template/header.php";
 ?>
 
-<?php 
+<?php
 if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
     echo('<div style="text-align: center; align-self: center;">
     <div style="align: center;" class="pages_edit" id="letter_edit"></div>
     </div>');
-} 
+}
 ?>
 
 <div style="text-align: center; align-self: center;" >
@@ -40,7 +40,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 echo "</div>";
             }
         ?>
-        <br>
+        <br> 
         <hr>
         <br><br>
         <h4> Please choose the Letter priority : </h4>
@@ -55,7 +55,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
         <br><br><br>
         <input type="button" id="applyForLetterBtn" value="Apply!">
     </div>
-    <?php 
+    <?php
         } catch (Exception $e) {
             echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
             error_log("Error while adding letter");
@@ -65,10 +65,10 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
 <script>
     function showfield(id){
     var check=document.getElementById(id);
-       
+
         if (check!=null ){
             alert(id);
-           document.getElementById(id).type='text';            
+           document.getElementById(id).type='text';
         }
     }
 </script>

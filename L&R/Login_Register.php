@@ -1,15 +1,3 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login/Register</title>
-        <link rel="stylesheet" href="css/Login_Register-style.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="js/registerValidate.js"> </script>
-    </head>
-    <body>
         <div class="align">
             <div class="card" id="card">
                 <div class="head">
@@ -22,11 +10,10 @@
                     <form action="L&R/login.php" method="post">
                         <div class="inputs">
                             <h1 class="heading">Welcome back !</h1>
-                            <span style="color:red; font-weight:bold; position:relative; bottom:15px;" ><?php if( !empty( $_REQUEST['Message'] )     ){echo $_REQUEST['Message'];} ?></span>
+                            <span style="color:red; font-size:20px; font-weight:bold; position:relative; bottom:15px;" ><?php if(!empty( $_REQUEST['Message'])){echo $_REQUEST['Message'];} ?></span>
                             <div class="input">
                                 <input required placeholder="Username" name="Username" type="text">
                                 <i class="fas fa-user"></i>
-
                             </div>
                             <div class="input">
                                 <input required placeholder="Password" name="Password" type="password">
@@ -43,14 +30,11 @@
                 <div class="Signuptab" id="Signuptab" style=" display: none;">
                     <form action="L&R/signup.php"  method="post">
                         <div class="inputs">
-
                             <span style="  color:red;" id="error"></span>
                             <h1 class="heading">Join us !</h1>
                             <div class="input">
-
                                 <input  required onblur="validateFName(this)" name="fullname" id="fullname" placeholder="Full Name" type="text">
                                 <i class="fas fa-user"></i>
-
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="name"></span>
                             <div class="input">
@@ -79,11 +63,8 @@
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="password"></span>
                         </div>
-                        <input class ="submit"  type="submit" onclick="return check();"  value="Register">
+                        <input class ="submit" id="newusersubmit" type="submit" onclick="return check();"  value="Register">
                     </form>
                 </div>
             </div>
         </div>
-    </body>
-    <script src="js/Login_Register-script.js"></script>
-</html>

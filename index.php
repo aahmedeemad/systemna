@@ -1,8 +1,13 @@
-    <html>
+<html>
     <head>
         <title>Welcome to SYSTEMNA</title> <!-- Setting the title -->
         <link rel="icon" href="template/logo.png"> <!-- Adding the tab icon -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login/Register</title>
+        <link rel="stylesheet" href="css/Login_Register-style.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/registerValidate.js"></script>
         <style>
             .vertical {
                 display: block;
@@ -63,4 +68,5 @@
             </tr>
         </table>
     </body>
+    <script src="js/Login_Register-script.js"></script>
 </html>

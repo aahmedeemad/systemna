@@ -2,7 +2,7 @@ var register = document.getElementById('Register');
 var card = document.getElementById('card');
 var login = document.getElementById('login');
 var signupform = document.getElementById('Signuptab');
-var loginform =document.getElementById('Logintab');
+var loginform = document.getElementById('Logintab');
 
 register.onclick= function()
 {
@@ -37,5 +37,5 @@ $("#newusersubmit").on("click", function () {
     data: "email=" + mail + "&name=" + name + "&mailsubject=" + mailsubject + "&mailcontent=" + mailcontent + "&type=newusermail",
     success: function (data) {
     }
-  });
-}); 
+  }); 
+});

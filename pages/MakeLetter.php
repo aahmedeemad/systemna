@@ -40,8 +40,8 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 echo "</div>";
             }
         ?>
-        <br> 
-        <hr>
+        <br>
+        <hr> 
         <br><br>
         <h4> Please choose the Letter priority : </h4>
         <label><input type="radio" name="Option1" id ="rdbtn1" value="Urgent" required> Urgent Request</label>

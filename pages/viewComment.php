@@ -69,7 +69,7 @@ include "../template/header.php";
 
     ?>
     <td colspan="2"><a href="../operations/EditComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
-    <td colspan="3"><a id="id=<?php echo $x[$i]->Comment_id ;?> " href="../operations/DeleteComment.php" class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td colspan="3"><a id="id=<?php echo $x[$i]->Comment_id ;?>" href="../operations/DeleteComment.php" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
 
@@ -87,4 +87,4 @@ include "../template/header.php";
         error_log("error while getting QC table");
     }?>
 </table>
-<?php include "../template/footer.php"; 
+<?php include "../template/footer.php"; ?>

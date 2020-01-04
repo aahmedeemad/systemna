@@ -34,9 +34,9 @@ include "../template/header.php";
     }
 
     $sql="
-        SELECT requests_types.Name , Employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
-        FROM Requests INNER JOIN requests_types
-        ON Requests.type_name = requests_types.Name
+        SELECT requests_types.Name , employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
+        FROM requests INNER JOIN requests_types
+        ON requests.type_name = requests_types.Name
         INNER JOIN employee 
         ON employee.id = emp_id
         ";

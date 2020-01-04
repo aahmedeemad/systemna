@@ -50,7 +50,7 @@ include "../template/header.php";
     <td><a href="AddNewLetter.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
 
     <td>
-        <a href="../operations/DeleteTable.php?lid=<?php echo $id ;?>" class='deleteConfirmation EditBtn'>Delete</a>
+        <a id="lid=<?php echo $id ;?>" href="../operations/DeleteTable.php" class='deleteConfirmation EditBtn'>Delete</a>
     </td>
     <?php
                 echo "</tr>";

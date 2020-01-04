@@ -3,7 +3,7 @@ $pageTitle = "SYSTEMNA | Notifications"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
 ?>
 <div>
-	<?php
+    <?php
     try {
         $uid = $_SESSION['id']; /* Getting the user ID */
         /* SQL query to get the data from the DB */
@@ -16,7 +16,7 @@ include "../template/header.php"; /* Including the header file */
         for($i=$DB->numRows(); $i>0; --$i){ /* iterating the results by the num of rows */
             $x=$DB->getdata(); /* creates an array of the output result */
             /* Printing the output */
-            echo ($i) . "- <a href='" . $x[$i-1]->notihref . "' style='text-decoration: none; color: #DAA520;'>" . $x[$i-1]->notidata . "</a>" . "<button type='button' style='float: right; border-radius: 0.5em; background-color: #DAA520;' >" . "<a href='../operations/notiop.php?nid=" . $x[$i-1]->ID . "'>Delete</a>" . "</button>" . "<hr>";
+            echo ($i) . "- <a href='" . $x[$i-1]->notihref . "' style='text-decoration: none; color: #DAA520;'>" . $x[$i-1]->notidata . "</a>" . "<a style='float: right; border-radius: 0.5em; background-color: #DAA520; padding: 5px;' id='nid=" . $x[$i-1]->ID . "' class='deleteConfirmation' href='../operations/notiop.php'>Delete</a>" . "<hr>";
         }
     }
     catch(Exception $e)

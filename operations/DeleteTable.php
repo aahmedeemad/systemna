@@ -6,29 +6,29 @@ else {
     try {
         include "../DB/Database.php";
         $DB = new Database();
-        if(isset($_GET['id'])){//make employee not active
+        if(isset($_POST['id'])){
             $d_id = $_GET['id'];
             $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
             $DB->query($sql);
             $DB->execute();
             echo "true";
         }   
-        else if(isset($_GET['wid'])){//make waiting employee not active
+        else if(isset($_POST['wid'])){
             $d_id = $_GET['wid'];
             $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
             $DB->query($sql);
             $DB->execute();
             echo "true";
         }
-        else if(isset($_GET['qid'])){//delete faq
+        else if(isset($_POST['qid'])){
             $qid = $_GET['qid'];
             $sql = "DELETE FROM faq WHERE ID = '$qid'";
             $DB->query($sql);
             $DB->execute();
             echo "true";
         }
-        else if(isset($_GET['lid'])){//delete letter types
-            $lid = $_GET['lid'];
+        else if(isset($_POST['lid'])){
+            $lid = $_POST['lid'];
             $sql = "DELETE FROM requests_types WHERE type_id = '$lid'";
             $DB->query($sql);
             $DB->execute();

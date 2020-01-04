@@ -135,17 +135,18 @@ $(document).ready(function () {
 
 
     /******* Confirmation delete popup *******/
-    function confirmation(body, url, data) {
+    function confirmation(body, url, data, tag) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function () {
             jQuery.ajax({
-                type: "GET",
+                type: "POST",
                 url: url,
+                data: data,
                 success: function (html) {
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
-                        $(data).hide();
+                        $(tag).hide();
                     }
                     else {
                         $(".modalConfirmation").css("display", "none");
@@ -160,7 +161,7 @@ $(document).ready(function () {
     /******* Confirm delete popup *******/
     $(".deleteConfirmation").on("click", function (e) {
         e.preventDefault(); /* to prevent href action */
-        confirmation("Are you sure ?", this.href, $(this).closest('tr')); /* show to confirmation popup */
+        confirmation("Are you sure ?", this.href, this.id ,$(this).closest('tr')); /* show to confirmation popup */
     });
 
     /******* Show / Hide side navigation *******/

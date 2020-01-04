@@ -844,16 +844,16 @@ box-sizing: content-box;
     height: 40vh;
 }
 
-#markAll {
+.notibars {
     font-size: 0.7em !important;
     font-weight: bold;
-    border-top: solid 0.1em #daa520;
     text-align: center !important;
     padding: 0.7em !important;
     z-index: 1 !important;
+    border: solid 0.1em #daa520;
 }
 
-#markAll:hover {
+.notibars:hover {
     color: #daa520 !important;
     text-decoration: underline !important;
     cursor: pointer;

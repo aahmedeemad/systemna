@@ -1233,6 +1233,11 @@ $(document).ready(function () {
         $('#markAll').css('display', 'none'); /* Hiding the markall button when markall is clicked */
     });
 
+    /* Notifications View All function */
+    $("#viewAll").on("click", function () {
+        document.location.replace('../pages/notis.php');;
+    });
+
     $("#add_letter").on("click", function () { /* Function to change page on admin only button click */
         document.location.replace('../pages/AddNewLetter.php');;
     });

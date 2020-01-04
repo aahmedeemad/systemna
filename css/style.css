@@ -696,7 +696,9 @@ box-sizing: content-box;
 #requested_by,
 #answer,
 #Name,
-#description {
+#description,
+#add_info,
+#letterBodyArea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -706,7 +708,8 @@ box-sizing: content-box;
 }
 
 #faqaddques,
-#AddLetterbtn {
+#AddLetterbtn,
+#UpdateLetterbtn {
     width: 99%;
     background-color: #daa520;
     color: white;

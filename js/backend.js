@@ -322,10 +322,10 @@ $(document).ready(function () {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-                "id=" + id +
-                "&oldvalue=" + oldValue +
-                "&value=" + newValue +
-                "&type=" + type,
+            "id=" + id +
+            "&oldvalue=" + oldValue +
+            "&value=" + newValue +
+            "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -508,7 +508,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function (e) {
             var test = $(this)
-                .text();
+            .text();
             if (!test.match(/^[0-9]+$/)) {
                 $(this).removeClass("input");
                 $(this).addClass("wr");
@@ -526,8 +526,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
@@ -552,14 +552,57 @@ $(document).ready(function () {
         }
     });
 
+    $(".position").on("click", function (event) {
+        $(this)
+            .closest("div")
+            .attr("contenteditable", "true");
+        $(this).focus();
+        $(this).addClass("input");
+        orig = $(this).text();
+        $(this).keyup(function (e) {
+            var test = $(this)
+            .text();
+        });
+    });
+
+    $(".position").on("focusout", function (event) {
+
+        var tsal = $(this);
+        $(this).removeClass("input");
+        var row = $(this).closest("tr");
+        var rowIndex = row.index();
+        var c = $("#Display")
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
+        var test2 = $(this).text();
+        //test2 = test2.replace("<br>", "");
+
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { position: test2, id: c.text() },
+            success: function (msg) {
+                if (msg == '0') { popup(false, "User needs to be accepted to update his position!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                else {
+                    tsal.html("<div>" + tsal.text() + "</div>");
+                    loading(false);
+                    popup(true, "Position Updated!");
+                    sendnoti(c.text(), "You Position has been updated to " + test2, '../pages/profile.php');
+                }
+            }
+        });
+
+    });
+
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
     });
 
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -569,9 +612,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -588,14 +631,14 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var thisTd = $(this)
-            .closest("td");
+        .closest("td");
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -641,21 +684,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -673,18 +716,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq()")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -703,9 +746,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -723,9 +766,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -745,8 +788,8 @@ $(document).ready(function () {
 
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -756,9 +799,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }

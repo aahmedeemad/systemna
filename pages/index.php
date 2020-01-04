@@ -47,6 +47,7 @@ include "../template/header.php";
         <th>Email</th>
         <th>SSN</th>
         <th>Salary</th>
+        <th>Position</th>
         <th>Add QC</th>
         <th>Add HR</th>
         <th>Delete</th>
@@ -85,6 +86,7 @@ include "../template/header.php";
                 $ssn=check($x[$i]->ssn);
                 $bdate=check($x[$i]->bdate);
                 $salary=check($x[$i]->salary);
+                $position=check($x[$i]->position);
                 $fullname=check($x[$i]->fullname);
                 $username = check($x[$i]->username);
                 $email = check($x[$i]->email);
@@ -103,7 +105,8 @@ include "../template/header.php";
                 <td>{$username}</td>
                 <td>{$email}</td>
                 <td>{$ssn}</td>
-                <td><div class='sal'>{$salary}</div></td>";//salary only is in div so it can be editable
+                <td><div class='sal'>{$salary}</div></td>
+                <td><div class='position'>{$position}</div></td>";//salary only is in div so it can be editable
                 if($x[$i]->accepted == 1)//if employee is accepted show him his privileges
                 {
                     if($x[$i]->privilege == 'user'){//if employye is a user show him his privileges

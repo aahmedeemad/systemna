@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 03, 2020 at 10:55 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Generation Time: Jan 05, 2020 at 12:28 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,7 @@ CREATE TABLE `add_info` (
   `emp_id` int(11) NOT NULL,
   `bdate` date DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
+  `position` varchar(255) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
   `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
   `passport_picture` tinyint(1) DEFAULT 0,
@@ -42,15 +43,15 @@ CREATE TABLE `add_info` (
 -- Dumping data for table `add_info`
 --
 
-INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `location`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
-(1, '2019-11-04', 45454, '', 1, 0, 0),
-(2, '2019-11-11', 215487, '', 1, 0, 0),
-(6, NULL, 9999999, '', 0, 0, 0),
-(7, NULL, 20, NULL, 0, 0, 0),
-(8, NULL, 10000, NULL, 0, 0, 0),
-(24, NULL, NULL, NULL, 1, 1, 1),
-(25, NULL, NULL, NULL, 0, 0, 0),
-(26, NULL, NULL, NULL, 0, 0, 0);
+INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `position`, `location`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
+(1, '2019-11-04', 45454, '', '', 1, 0, 0),
+(2, '2019-11-11', 215487, '', '', 1, 0, 0),
+(6, NULL, 9999999, '', '', 0, 0, 0),
+(7, NULL, 20, '', NULL, 0, 0, 0),
+(8, NULL, 10000, '', NULL, 0, 0, 0),
+(24, NULL, NULL, '', NULL, 1, 1, 1),
+(25, NULL, NULL, '', NULL, 0, 0, 0),
+(26, NULL, NULL, '', NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 

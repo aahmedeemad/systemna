@@ -1389,6 +1389,5 @@ $(document).ready(function () {
                 loading(true);
             }
         });
-    });
-
+    });     
 });

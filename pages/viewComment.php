@@ -69,7 +69,7 @@ include "../template/header.php";
 
     ?>
     <td colspan="2"><a href="../operations/EditComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
-    <td colspan="3"><a id="id=<?php echo $x[$i]->Comment_id ;?> " href="../operations/DeleteComment.php" class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td colspan="3"><a id="id=<?php echo $x[$i]->Comment_id ;?>" href="../operations/DeleteComment.php" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
 
@@ -84,7 +84,7 @@ include "../template/header.php";
     {
         $_SESSION['error'] = 'error in sql';
         echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-        error_log("error while getting QC table");
+        error_log("Error while viewing comment table");
     }?>
 </table>
-<?php include "../template/footer.php"; 
+<?php include "../template/footer.php"; ?>

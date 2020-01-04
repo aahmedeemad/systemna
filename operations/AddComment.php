@@ -9,17 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['AddC']) && isset($_GET
     $R_id = $_GET['Request_id'];
     $U_id = $_GET['user_id'];
 
-    $sql = "INSERT INTO Comment(Comment_value , Request_id , user_id)
+    $sql = "INSERT INTO comment(Comment_value , Request_id , user_id)
             VALUES ('$val','$R_id','$U_id');" ;
 
     $DataBase->query($sql);
     $DataBase->execute();
 
-    header("Location: ../pages/QualityControl.php");
+    header("Location: ../pages/viewComment.php");
 }
 else
  {
-      header("Location: ../QualityControl.php");
-      echo "<script>alert('Couldn't add the Comment try again!');</script>";
+      header("Location: ../pages/viewComment.php");
  }
 ?>

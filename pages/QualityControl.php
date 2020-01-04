@@ -34,15 +34,15 @@ include "../template/header.php";
     }
 
     $sql="
-        SELECT requests_types.Name , Employee.username ,requests.date, requests.Request_id , requests.status , requests.emp_id , priority , salary
-        FROM Requests INNER JOIN requests_types
-        ON Requests.type_name = requests_types.Name
+        SELECT requests_types.Name , employee.username , requests.date , requests.Request_id ,
+               requests.status , requests.emp_id , priority , salary
+        FROM requests INNER JOIN requests_types
+        ON requests.type_name = requests_types.Name
         INNER JOIN employee 
         ON employee.id = emp_id
         ";
     try
     {
-
         $DB->query($sql);
         $DB->execute();
         $y = 0;
@@ -92,7 +92,7 @@ include "../template/header.php";
         <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>&user_id=<?php echo $x[$i]->emp_id?>" method="post">
             <input type='text' name="Comment" id="qccomment" placeholder='Write your comment here...'size='30' required>
             <br>
-            <input type='submit' id="qcsubmit" onclick ="return alert ('Your Comment has been added ')" value="Submit Comment" name="AddC">
+            <input type='submit' id="qcsubmit" value="Submit Comment" name="AddC">
         </form>    
     </td>
 
@@ -106,9 +106,9 @@ include "../template/header.php";
     }
     catch(Exception $e)
     {
-        $_SESSION['error'] = 'error in sql';
+        $_SESSION['error'] = 'Error in sql';
         echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-        error_log("error while getting QC table");
+        error_log("Error while getting QC table");
     }?>
 </table>
 <?php include "../template/footer.php"; 

@@ -6,6 +6,10 @@ include('../DB/Database.php');
 $DB = new Database();
 if(!isset($_SESSION['type'])) header("Location:../index.php");
 
+if(!isset($_COOKIE['theme'])) {
+    setcookie('theme', 'lighttheme', time()+(10 * 365 * 24 * 60 * 60), '/'); 
+}
+
 /* TEMP
 array( "name" => "", "href" => "../pages/.php", "class" => "fas fa-sm icon-button" ),
 */

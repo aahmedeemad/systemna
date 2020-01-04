@@ -14,10 +14,10 @@ class Database
 
     public function __construct()
     {
-        $dsn = "mysql:host=".$this->host.";dbname=".$this->dbName;
+        $dsn = "mysql:host=".$this->host.";dbname=".$this->dbName; 
         $options = array(
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_PERSISTENT => true,// if there is a connection that is already open use it.
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION//pdo will throw an pdo exception
         );
 
         try
@@ -33,24 +33,24 @@ class Database
             exit;
         }
     }
-    public function query($sql)
+    public function query($sql)//prepare sql query
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
-    public function execute()
+    public function execute()//execute sql query
     {
         return $this->stmt->execute();
     }
-    public function getdata()
+    public function getdata()//get all data in form of objects
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function numRows()
+    public function numRows()//get the number of row returned
     {
         return $this->stmt->rowCount();
     }
-    public function lastInsertedId()
+    public function lastInsertedId()//get number of rows changed or affected by query
     {
         return $this->dbh->lastInsertId();
     }

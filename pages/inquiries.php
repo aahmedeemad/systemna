@@ -10,7 +10,7 @@ include "../template/header.php"; /* Including the header file */
         $DB->query($sql); /* Using the query function made in DB/Database.php */
         $DB->execute(); /* Using the excute function made in DB/Database.php */
         echo "<br>
-        <h1 style='color:#DAA520'>Latest Inquiries!</h1>
+        <h1 style='text-align: center;'>Latest Inquiries!</h1>
         <br><br>" ;
         for($i=$DB->numRows(); $i>0; --$i){ /* iterating the results by the num of rows */
             $x=$DB->getdata(); /* creates an array of the output result */

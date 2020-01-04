@@ -73,8 +73,9 @@ $qcPages = array(
                         <i class='fas fa fa-bell  fa-sm icon-button'></i>
                         <div class="counter" id="noti_Counter"></div> <!-- Show notifications count -->
                         <div id="notifications"> <!-- Notifications box -->
+                            <div class="notibars" id="markAll">Mark All as Read</div> <!-- Notifications mark all as read button -->
                             <div id="notidata"></div> <!-- Notifications Data -->
-                            <div id="markAll">Mark All as Read</div> <!-- Notifications mark all as read button -->
+                            <div class="notibars" id="viewAll">View All Notifications</div> <!-- View All Notifications button -->
                         </div>
                     </a>
                 </span>

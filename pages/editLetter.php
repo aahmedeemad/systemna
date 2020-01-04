@@ -47,7 +47,7 @@ else if (isset($_GET['id']))
                 echo"<label><input type='radio' name='type_name' id='buttonsletter' value='$Name' ";
                 echo $selectedData[0]->type_name == $Name ? 'checked' : '';
                 echo "> $Name ($desc) </label>" ;
-                echo "<br><br><br><br> ";
+                echo "<br><br><br><br><br><br> ";
             }
             echo "<br><br>";
             echo "</div>";
@@ -70,6 +70,6 @@ else if (isset($_GET['id']))
             <input type="submit" id="editLetterButton" value="UPDATE!">
         </div>
     </form>
-    <?php include "../template/footer.php"; 
+    <?php include "../template/footer.php";
 
     ?>

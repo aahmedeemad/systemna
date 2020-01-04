@@ -103,7 +103,7 @@ include "../template/header.php";
                 else   {
     ?>
 
-    <td colspan="2"><a href="../operations/deleterequest.php?id=<?php echo $x[$i]->Request_id ;?> " class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td colspan="2"><a id="id=<?php echo $x[$i]->Request_id ;?> " href="../operations/deleterequest.php" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <td colspan="2"><a href="../pages/editLetter.php?id=<?php echo $x[$i]->Request_id ;?> " class='EditBtn1'>Edit</a></td>
 

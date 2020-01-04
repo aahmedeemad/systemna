@@ -63,7 +63,7 @@ if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
     <td><a href="EditFAQ.php?id=<?php echo $id ;?>" class='EditBtn'>Edit</a></td>
 
     <td>
-        <a class="deleteConfirmation EditBtn" href="../operations/DeleteTable.php?qid=<?php echo $id ;?>">Delete</a>
+        <a class="deleteConfirmation EditBtn" id="qid=<?php echo $id ;?>" href="../operations/DeleteTable.php">Delete</a>
     </td>
 
 

@@ -4,7 +4,7 @@ include('../DB/Database.php'); /* Including the DB */
 $DB = new Database(); /* Making a DB object */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['type'] == "setnotidata")
+    if (isset($_POST['type']) && $_POST['type'] == "setnotidata")
     {
         try {
             $uid = $_SESSION['id']; /* Getting the user ID */
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("error while getting notifications data");
         }
     }
-    else if ($_POST['type'] == "markread")
+    else if (isset($_POST['type']) && $_POST['type'] == "markread")
     {
         try {
             $uid = $_SESSION['id']; /* Getting the user ID */
@@ -36,20 +36,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("error while setting notifications read");
         }
     }
-}
-else if(isset($_GET['nid']))
-{
-    try {
-        $nid = $_GET['nid'];
-        $sql = "DELETE FROM notifications WHERE ID = '$nid'";
-        $DB->query($sql);
-        $DB->execute();
-        header("location: ../pages/notis.php");
-    }
-    catch(Exception $e)
+    else if(isset($_POST['nid']))
     {
-        echo "Error please try again later";
-        error_log("error while deleting notifications");
+        try {
+            $nid = $_POST['nid'];
+            $sql = "DELETE FROM notifications WHERE ID = '$nid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error while deleting notifications");
+        }
+    }
+    else if(isset($_POST['all']) && $_POST['all'] == "1")
+    {
+        try {
+            $uid = $_SESSION['id'];
+            $sql = "DELETE FROM notifications WHERE userid = '$uid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "all";
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error while deleting notifications");
+        }
     }
 }
 else 

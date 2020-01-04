@@ -1,5 +1,5 @@
 /* The Modal (background) */
-.modal , .modalConfirmation {
+.modalPopup , .modalConfirmation {
     display: none;
     position: fixed;
     z-index: 1;

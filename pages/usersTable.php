@@ -70,7 +70,7 @@ if(isset($_POST['search'])){    ?>
            href="" class='modify' value ='+QC'></td>
     <td><input type='submit'
            href="" class='modify' value ='+HR'></td>
-    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td><a id="id=<?php echo $x[$i]->id ;?>" href="../operations/DeleteTable.php" class='deleteConfirmation EditBtn'>Delete</a></td>
     <?php
     if($x[$i]->accepted == 1){
         echo "<td><a type='submit' href='../pages/userProfile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";

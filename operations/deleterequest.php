@@ -4,12 +4,12 @@ if(!isset($_SESSION['type']))
     header('Location:../index.php');
 else if($_SESSION['type']!='admin')  header('Location:../pages/MakeLetter.php');
 else {
-    if(isset($_GET['id'])){
+    if(isset($_POST['id'])){
         try
         {
             include "../DB/Database.php";
             $DB = new Database();
-            $d_id = $_GET['id'];
+            $d_id = $_POST['id'];
             $sql = "Delete FROM requests WHERE 	Request_id = '$d_id' AND Status=2 " ;
 
             $DB->query($sql);

@@ -110,7 +110,7 @@ include "../template/header.php";
     ?>
     <td><input type='submit' class='modify' value ='+QC'></td>
     <td><input type='submit' class='modify' value ='+HR'></td>
-    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+    <td><a href="../operations/DeleteTable.php" id="id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
 
     <?php
                     }
@@ -119,7 +119,7 @@ include "../template/header.php";
                         ?>
                         <td><input type='submit' class='modify' style ='background-color:#ff0000' value ='-QC'></td>
                         <td><input type='submit' class='modify' value ='+HR'></td>
-                        <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+                        <td><a href="../operations/DeleteTable.php" id="id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
                         <?php
                     }
                     echo "<td><a href='../pages/profile.php?id={$x[$i]->id}' class='EditBtn'>Profile</a></td>";//link to each employee profile
@@ -131,7 +131,7 @@ include "../template/header.php";
                     echo "<td></td>";
                     echo "<td></td>";
                     ?>
-                    <td><a href="../operations/DeleteTable.php?id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
+                    <td><a href="../operations/DeleteTable.php" id="id=<?php echo $x[$i]->id; ?>" class='deleteConfirmation EditBtn'>Delete</a></td>
                     <?php
                     echo "<td></td>";
                     echo "<td></td>";

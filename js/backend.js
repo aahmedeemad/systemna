@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     setcounters(); /* Calling the function to set the numbers of counters on site starting*/
     setInterval(setcounters, 1000); /* Calling the function to update the numbers of counters every 10 seconds */
     getnotifications(); /* Calling the function to get the notifications data from DB */
@@ -131,22 +130,27 @@ $(document).ready(function () {
         head = head == true ? "Success" : "Failed";
         $(".popup-notification h2").text(head);
         $(".popup-content").html(body);
-        $(".modal").css("display", "block");
+        $(".modalPopup").css("display", "block");
     }
 
 
     /******* Confirmation delete popup *******/
-    function confirmation(body, url, data) {
+    function confirmation(body, url, data, tag) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function () {
             jQuery.ajax({
-                type: "GET",
+                type: "POST",
                 url: url,
+                data: data,
                 success: function (html) {
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
-                        $(data).hide();
+                        $(tag).hide();
+                    }
+                    else if (html == "all") {
+                        $(".modalConfirmation").css("display", "none");
+                        window.location.reload();
                     }
                     else {
                         $(".modalConfirmation").css("display", "none");
@@ -161,7 +165,7 @@ $(document).ready(function () {
     /******* Confirm delete popup *******/
     $(".deleteConfirmation").on("click", function (e) {
         e.preventDefault(); /* to prevent href action */
-        confirmation("Are you sure ?", this.href, $(this).closest('tr')); /* show to confirmation popup */
+        confirmation("Are you sure ?", this.href, this.id, $(this).closest('tr')); /* show to confirmation popup */
     });
 
     /******* Show / Hide side navigation *******/
@@ -247,14 +251,14 @@ $(document).ready(function () {
     };
 
     $(window).click(function (e) {
-        if (e.target == $(".modal")[0]) {
-            $(".modal").css("display", "none");
+        if (e.target == $(".modalPopup")[0]) {
+            $(".modalPopup").css("display", "none");
         }
     });
 
     /* Close button in popup */
     $(".popup-close").on("click", function () {
-        $(".modal").css("display", "none");
+        $(".modalPopup").css("display", "none");
     });
 
 
@@ -491,51 +495,50 @@ $(document).ready(function () {
     /******************************************** END PN (Passport And National ID) ********************************************/
 
     var orig;
-    $(".sal").on("click", function (event) {//when the salary is clicked on
+    $(".sal").on("click", function (event) {
         $(this)
             .closest("div")
-            .attr("contenteditable", "true");//make div of salary
-        $(this).focus();//focus on div
-        $(this).addClass("input"); //make div look like an input field
-        orig = $(this).text(); //save original salary value
+            .attr("contenteditable", "true");
+        $(this).focus();
+        $(this).addClass("input");
+        orig = $(this).text();
         $(this).keyup(function (e) {
             var test = $(this)
                 .text();
-            if (!test.match(/^[0-9]+$/)) { // if input value is not a number
-                $(this).removeClass("input"); //remove class input
-                $(this).addClass("wr"); // add class wrong
+            if (!test.match(/^[0-9]+$/)) {
+                $(this).removeClass("input");
+                $(this).addClass("wr");
             } else {
-                $(this).removeClass("wr"); // remove class wrong
-                $(this).addClass("input"); // add class input
+                $(this).removeClass("wr");
+                $(this).addClass("input");
             }
         });
     });
 
     $(".sal").on("focusout", function (event) {
 
-        var tsal = $(this); // save salary object
-        $(this).removeClass("input"); //remove input class
+        var tsal = $(this);
+        $(this).removeClass("input");
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
             .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)"); // get the cell contatining user id
+            .find("td:eq(1)");
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
         if (!test2.match(/^[0-9]+$/)) {
-            popup(false, "Salary must be a number!"); // give error if salary not a number
+            popup(false, "Salary must be a number!");
         } else {
             loading(true);
             $.ajax({
                 method: "POST",
                 url: "../operations/EditTable.php",
-                data: { test: test2, id: c.text() }, // send id and salary value in post by ajax
+                data: { test: test2, id: c.text() },
                 success: function (msg) {
                     if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
-                    // if user not accepted give error + set salary value to original
                     else {
-                        tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
+                        tsal.html("<div>" + tsal.text() + "</div>");
                         loading(false);
                         popup(true, "Salary Updated!");
                         sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
@@ -1309,26 +1312,30 @@ $(document).ready(function () {
         }
     });
 
-    $("#AddLetterbtn").on("click", function () {
-        var name = document.getElementById('Name').value;
-        var description = document.getElementById('description').value;
-        var add = document.getElementById('add_info').value;
-        if (name == '' || description == '') {
+    function Letter(type) {
+        var name = $("#Name").val();
+        var description = $("#description").val();
+        var letterBodyArea = $("#letterBodyArea").val();
+        var add = $("#add_info").val();
+        var id = type == "update" ? "&id=" + $("#id").val() : ""; // check if it is add or update
+        if (name == '' || description == '' || letterBodyArea == '') {
             loading(false);
             popup(false, 'please fill all fileds.');
-        } else {
-            var dataa = document.getElementById('letterBodyArea').value;
-            /*dataa='<pre>'+dataa+'</pre>';*/
+        }
+        else {
             if (add != '' || add.match(/^ *$/) == null) {
                 if (add.includes('what') || add.includes('where') || add.includes('who') || add.includes('when')) {
-                    if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')) {
+                    if (letterBodyArea.includes('(.NAME.)') && letterBodyArea.includes('(.SALARY.)') && letterBodyArea.includes('(.DATE.)') && letterBodyArea.includes('(.ADDITIONAL.)')) {
                         jQuery.ajax({
                             url: "../operations/newLetter.php",
-                            data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val() + '&add=' + $("#add_info").val(),
+                            data: 'body=' + letterBodyArea + '&Name=' + name + '&description=' + description + '&add=' + add + id,
                             type: "POST",
                             success: function (data) {
                                 loading(false);
-                                popup(true, data);
+                                if (data == "Letter updated" || data == "Letter created")
+                                    popup(true, data);
+                                else
+                                    popup(false, data);
                             },
                             beforeSend: function () {
                                 loading(true);
@@ -1337,12 +1344,12 @@ $(document).ready(function () {
                         });
                     }
                     else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
-
-                } else { popup(false, 'please add valid WH question'); }
+                }
+                else { popup(false, 'please add valid WH question'); }
             } else if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
                 jQuery.ajax({
                     url: "../operations/newLetter.php",
-                    data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val() + '&add=0',
+                    data: 'body=' + dataa + '&Name=' + name + '&description=' + description + '&add=0' + id,
                     type: "POST",
                     success: function (data) {
                         loading(false);
@@ -1354,14 +1361,16 @@ $(document).ready(function () {
 
                 });
             }
-
-
-
-
-            else {
-                popup(false, 'please fill Name, Salary and Date,Additional info if added');
-            }
+            else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
         }
+    }
+
+    $("#AddLetterbtn").on("click", function () {
+        ;
+        Letter("add");
+    });
+    $("#UpdateLetterbtn").on("click", function () {
+        Letter("update");
     });
 
 

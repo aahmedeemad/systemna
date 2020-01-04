@@ -3,13 +3,16 @@ $pageTitle = "SYSTEMNA | Profile";
 
 ?>
 <?php
-if (isset($_GET['id']))
+if (isset($_GET['addinfo']))
 {
-
+    echo '
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/backend.js"></script>
+        ';
     $noEdit = true;
     $id = $_GET['id'];
     $addinfoo=$_GET['addinfo'];
-    echo"<p style='background-color:#dddd59'>Additional info of the reqquest : <br>" .$addinfoo. "</p>";
+    echo"<p style='background-color:#dddd59; padding:6px; color:grey'>Additional info of the request : <br>" .$addinfoo. "</p>";
     include'../DB/Database.php';
     $DB=new Database();
 }
@@ -98,19 +101,9 @@ try
                 <?php if($noEdit == false) { ?>
                 <span class="pass hidden"><?php echo $_SESSION['password'] ?></span> 
                 <?php } ?>
-
-                <!--
-<span class="eye">
-<i class="far fa-eye"></i>
-</span>
--->
             </div>
             <?php if($noEdit == false) { ?>
-            <!--            <div class="input-edit input-company-info hidden"><i class="fas fa-user fa-fw"></i><input id="usernameEdit" type="text" value="<?php echo $info[0]->username; ?>"></div>-->
             <div class="input-edit input-company-info hidden"><i class="fas fa-key fa-fw"></i><input id="passwordEdit" type="password" ><span class="eye eyeedit"><i class="far fa-eye"></i></span></div>
-
-            <!--            <div id="salary"><i class="fas fa-money-bill-alt"></i> 2000<span style="color : green;">$</span></div>-->
-
             <div class="save save-company-info hidden">Save</div>
             <div class="cancel cancel-company-info hidden">Cancel</div>
             <?php } ?>

@@ -30,7 +30,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 $add=$x[$i]->additional_info;
                 echo "<div id='columnAddRequest' style='background-color: #EEE8AA;'>";
                 echo "<br><br>";
-                echo "<label><input type='radio' onclick='showfield(this.value)' class name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
+                echo "<label><input type='radio' onclick='showfield(this.value)' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
                 echo'<br>';
                 if($add !='0'){
                     echo "<input style='width:80%' type='hidden' placeholder='$add'  id='$Name'> ";

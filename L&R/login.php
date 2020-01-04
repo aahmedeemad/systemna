@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $Message = "something gone wrong. ";
         header("Location:../index.php?Message={$Message}");
     }
-    if($DB->numRows()==0) {  
+    if($DB->numRows()==0) {
         $Message = "wrong username or password. ";
         header("Location:../index.php?Message={$Message}");
     }
@@ -49,11 +49,11 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             header('Location:../pages/QualityControl.php');
         }
         if($_SESSION['status'] == 2) {
-            $Message = "You aren't accepted yet";
+            $Message = "Your account is still pending";
             header("Location:../index.php?Message={$Message}");
         }
         elseif($_SESSION['status'] == 0) {
-            $Message = "Sorry you are rejected";
+            $Message = "Unfortunely your account information has been rejected";
             header("Location:../index.php?Message={$Message}");
         }
     }

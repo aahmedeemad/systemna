@@ -1186,6 +1186,24 @@ $(document).ready(function () {
         });
     }
 
+    /* Function to send mail with letter to user */
+    $("#sendletteronmail").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "../operations/massmsging.php",
+            data: "type=sendlettermail",
+            success: function (html) {
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
     function setCounter(type, tag) {
         $.ajax({
             type: "POST",

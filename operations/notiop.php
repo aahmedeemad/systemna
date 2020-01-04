@@ -44,7 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $DB->query($sql);
             $DB->execute();
             echo "true";
-//            header("location: ../pages/notis.php");
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error while deleting notifications");
+        }
+    }
+    else if(isset($_POST['all']) && $_POST['all'] == "1")
+    {
+        try {
+            $uid = $_SESSION['id'];
+            $sql = "DELETE FROM notifications WHERE userid = '$uid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "all";
         }
         catch(Exception $e)
         {

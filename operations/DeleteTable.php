@@ -7,21 +7,21 @@ else {
         include "../DB/Database.php";
         $DB = new Database();
         if(isset($_POST['id'])){
-            $d_id = $_GET['id'];
+            $d_id = $_POST['id'];
             $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
             $DB->query($sql);
             $DB->execute();
             echo "true";
         }   
         else if(isset($_POST['wid'])){
-            $d_id = $_GET['wid'];
+            $d_id = $_POST['wid'];
             $sql = "UPDATE employee SET active=0 WHERE id = '$d_id'";
             $DB->query($sql);
             $DB->execute();
             echo "true";
         }
         else if(isset($_POST['qid'])){
-            $qid = $_GET['qid'];
+            $qid = $_POST['qid'];
             $sql = "DELETE FROM faq WHERE ID = '$qid'";
             $DB->query($sql);
             $DB->execute();

@@ -143,10 +143,16 @@ $(document).ready(function () {
                 url: url,
                 data: data,
                 success: function (html) {
+                    alert(html);
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
                         $(tag).hide();
+                    }
+                    else if (html == "all")
+                    {
+                        $(".modalConfirmation").css("display", "none");
+                        window.location.reload();
                     }
                     else {
                         $(".modalConfirmation").css("display", "none");
@@ -1269,12 +1275,12 @@ $(document).ready(function () {
         var additional=text.includes('ADDITIONAL');
         var addtest;
         var add=document.getElementById('add_info').value;
-       
+
         if(add=='' || add.match(/^ *$/) !== null){
             addtest=false;
         }
         else{ 
-           
+
             addtest=true;}
         
         
@@ -1318,24 +1324,24 @@ $(document).ready(function () {
             /*dataa='<pre>'+dataa+'</pre>';*/
             if(add!='' || add.match(/^ *$/) == null){
                 if(add.includes('what')|| add.includes('where') ||add.includes('who') || add.includes('when')){
-                if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')){
-                    jQuery.ajax({
-                        url: "../operations/newLetter.php",
-                        data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add='+$("#add_info").val(),
-                        type:"POST",
-                        success:function(data)
-                        {
-                            loading(false);
-                            popup(true,data);
-                        },
-                        beforeSend: function () {
-                            loading(true);
-                        }
+                    if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')){
+                        jQuery.ajax({
+                            url: "../operations/newLetter.php",
+                            data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add='+$("#add_info").val(),
+                            type:"POST",
+                            success:function(data)
+                            {
+                                loading(false);
+                                popup(true,data);
+                            },
+                            beforeSend: function () {
+                                loading(true);
+                            }
 
-                    });
-                }  
-                else { popup(false,'please fill Name, Salary and Date,Additional info if added');}
-                
+                        });
+                    }  
+                    else { popup(false,'please fill Name, Salary and Date,Additional info if added');}
+
                 } else { popup(false,'please add valid WH question');} }else if (dataa.includes('(.NAME.)')  && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
                     jQuery.ajax({
                         url: "../operations/newLetter.php",

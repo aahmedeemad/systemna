@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     setcounters(); /* Calling the function to set the numbers of counters on site starting*/
     setInterval(setcounters, 1000); /* Calling the function to update the numbers of counters every 10 seconds */
     getnotifications(); /* Calling the function to get the notifications data from DB */
@@ -313,10 +314,10 @@ $(document).ready(function () {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-            "id=" + id +
-            "&oldvalue=" + oldValue +
-            "&value=" + newValue +
-            "&type=" + type,
+                "id=" + id +
+                "&oldvalue=" + oldValue +
+                "&value=" + newValue +
+                "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -490,50 +491,51 @@ $(document).ready(function () {
     /******************************************** END PN (Passport And National ID) ********************************************/
 
     var orig;
-    $(".sal").on("click", function (event) {
+    $(".sal").on("click", function (event) {//when the salary is clicked on
         $(this)
             .closest("div")
-            .attr("contenteditable", "true");
-        $(this).focus();
-        $(this).addClass("input");
-        orig = $(this).text();
+            .attr("contenteditable", "true");//make div of salary
+        $(this).focus();//focus on div
+        $(this).addClass("input"); //make div look like an input field
+        orig = $(this).text(); //save original salary value
         $(this).keyup(function (e) {
             var test = $(this)
-            .text();
-            if (!test.match(/^[0-9]+$/)) {
-                $(this).removeClass("input");
-                $(this).addClass("wr");
+                .text();
+            if (!test.match(/^[0-9]+$/)) { // if input value is not a number
+                $(this).removeClass("input"); //remove class input
+                $(this).addClass("wr"); // add class wrong
             } else {
-                $(this).removeClass("wr");
-                $(this).addClass("input");
+                $(this).removeClass("wr"); // remove class wrong
+                $(this).addClass("input"); // add class input
             }
         });
     });
 
     $(".sal").on("focusout", function (event) {
 
-        var tsal = $(this);
-        $(this).removeClass("input");
+        var tsal = $(this); // save salary object
+        $(this).removeClass("input"); //remove input class
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-        .find("tr:eq(" + rowIndex + ")")
-        .find("td:eq(1)");
+            .find("tr:eq(" + rowIndex + ")")
+            .find("td:eq(1)"); // get the cell contatining user id
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
         if (!test2.match(/^[0-9]+$/)) {
-            popup(false, "Salary must be a number!");
+            popup(false, "Salary must be a number!"); // give error if salary not a number
         } else {
             loading(true);
             $.ajax({
                 method: "POST",
                 url: "../operations/EditTable.php",
-                data: { test: test2, id: c.text() },
+                data: { test: test2, id: c.text() }, // send id and salary value in post by ajax
                 success: function (msg) {
                     if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                    // if user not accepted give error + set salary value to original
                     else {
-                        tsal.html("<div>" + tsal.text() + "</div>");
+                        tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
                         loading(false);
                         popup(true, "Salary Updated!");
                         sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
@@ -549,8 +551,8 @@ $(document).ready(function () {
 
     function search_table(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -560,9 +562,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -579,14 +581,14 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var thisTd = $(this)
-        .closest("td");
+            .closest("td");
         var Eindex = $(this)
-        .closest("tr")
-        .index();
+            .closest("tr")
+            .index();
         var idMod = $("#Display")
-        .find("tr:eq(" + Eindex + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Eindex + ")")
+            .find("td:eq(1)")
+            .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -632,21 +634,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(2)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(2)")
+            .text();
         var Type = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(6)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(6)")
+            .text();
         var Rid = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         var Value = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(5)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(5)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -664,18 +666,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(2)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(2)")
+            .text();
         var Type = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq()")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq()")
+            .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -694,9 +696,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -714,9 +716,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-        .find("tr:eq(" + Row.index() + ")")
-        .find("td:eq(1)")
-        .text();
+            .find("tr:eq(" + Row.index() + ")")
+            .find("td:eq(1)")
+            .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -736,8 +738,8 @@ $(document).ready(function () {
 
     function search_QCtable(value) {
         var selected = $("#choice")
-        .children("option:selected")
-        .val();
+            .children("option:selected")
+            .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -747,9 +749,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                .text()
-                .toLowerCase()
-                .indexOf(value.toLowerCase()) >= 0
+                    .text()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -941,7 +943,7 @@ $(document).ready(function () {
         var salary;
         var priority;
         var type_name;
-        var info='0';
+        var info = '0';
         var id = $("#id").val();
         if (
             ($('#rdbtn1').is(':checked') || $('#rdbtn2').is(':checked')) &&
@@ -955,15 +957,15 @@ $(document).ready(function () {
             else if ($('#rdbtn4').is(':checked')) { salary = 0; }
 
             type_name = $("input[name=Letterbuttonn]:checked").val();
-           var x= document.getElementById(type_name);
-            if( x!=null ) {
-                info=x.value;
-            }  
-            if(info !=''){
+            var x = document.getElementById(type_name);
+            if (x != null) {
+                info = x.value;
+            }
+            if (info != '') {
                 $.ajax({
                     type: "POST",
                     url: "../operations/addletter.php",
-                    data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter"+"&info="+info,
+                    data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter" + "&info=" + info,
                     success: function (html) {
                         loading(false);
                         if (html == "true") {
@@ -978,7 +980,8 @@ $(document).ready(function () {
                         loading(true);
                     }
                 });
-            } else popup(false,'fill textfield'); } else { popup(false, "You have to select type, salary and priority"); }
+            } else popup(false, 'fill textfield');
+        } else { popup(false, "You have to select type, salary and priority"); }
 
     });
 
@@ -1265,27 +1268,28 @@ $(document).ready(function () {
         var p = text.includes('POSITION');
         var startdate = text.includes('START');
         var hr = text.includes('HR');
-        var additional=text.includes('ADDITIONAL');
+        var additional = text.includes('ADDITIONAL');
         var addtest;
-        var add=document.getElementById('add_info').value;
-       
-        if(add=='' || add.match(/^ *$/) !== null){
-            addtest=false;
+        var add = document.getElementById('add_info').value;
+
+        if (add == '' || add.match(/^ *$/) !== null) {
+            addtest = false;
         }
-        else{ 
-           
-            addtest=true;}
-        
-        
-           if (addtest==true && additional == true && !text.includes("(.ADDITIONAL.)")) {
+        else {
+
+            addtest = true;
+        }
+
+
+        if (addtest == true && additional == true && !text.includes("(.ADDITIONAL.)")) {
             text = text.replace('ADDITIONAL', "(.ADDITIONAL.) ");
-            document.getElementById('letterBodyArea').value= text;
+            document.getElementById('letterBodyArea').value = text;
         }
-        
-        
-           if (n == true && !text.includes("(.NAME.)")) {
+
+
+        if (n == true && !text.includes("(.NAME.)")) {
             text = text.replace('NAME', "(.NAME.) ");
-            document.getElementById('letterBodyArea').value= text;
+            document.getElementById('letterBodyArea').value = text;
         }
         if (s == true && !text.includes("(.SALARY.)")) {
             text = text.replace('SALARY', "(.SALARY.)");
@@ -1306,59 +1310,59 @@ $(document).ready(function () {
     });
 
     $("#AddLetterbtn").on("click", function () {
-        var name=document.getElementById('Name').value;
-        var description=document.getElementById('description').value;
-        var add=document.getElementById('add_info').value;
-        if(name=='' || description =='' ){
+        var name = document.getElementById('Name').value;
+        var description = document.getElementById('description').value;
+        var add = document.getElementById('add_info').value;
+        if (name == '' || description == '') {
             loading(false);
-            popup(false,'please fill all fileds.');
-        }else{
-            var dataa=document.getElementById('letterBodyArea').value;
+            popup(false, 'please fill all fileds.');
+        } else {
+            var dataa = document.getElementById('letterBodyArea').value;
             /*dataa='<pre>'+dataa+'</pre>';*/
-            if(add!='' || add.match(/^ *$/) == null){
-                if(add.includes('what')|| add.includes('where') ||add.includes('who') || add.includes('when')){
-                if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')){
-                    jQuery.ajax({
-                        url: "../operations/newLetter.php",
-                        data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add='+$("#add_info").val(),
-                        type:"POST",
-                        success:function(data)
-                        {
-                            loading(false);
-                            popup(true,data);
-                        },
-                        beforeSend: function () {
-                            loading(true);
-                        }
+            if (add != '' || add.match(/^ *$/) == null) {
+                if (add.includes('what') || add.includes('where') || add.includes('who') || add.includes('when')) {
+                    if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)') && dataa.includes('(.ADDITIONAL.)')) {
+                        jQuery.ajax({
+                            url: "../operations/newLetter.php",
+                            data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val() + '&add=' + $("#add_info").val(),
+                            type: "POST",
+                            success: function (data) {
+                                loading(false);
+                                popup(true, data);
+                            },
+                            beforeSend: function () {
+                                loading(true);
+                            }
 
-                    });
-                }  
-                else { popup(false,'please fill Name, Salary and Date,Additional info if added');}
-                
-                } else { popup(false,'please add valid WH question');} }else if (dataa.includes('(.NAME.)')  && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
-                    jQuery.ajax({
-                        url: "../operations/newLetter.php",
-                        data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val()+'&add=0',
-                        type:"POST",
-                        success:function(data)
-                        {
-                            loading(false);
-                            popup(true,data);
-                        },
-                        beforeSend: function () {
-                            loading(true);
-                        }
+                        });
+                    }
+                    else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
 
-                    });
-                }
+                } else { popup(false, 'please add valid WH question'); }
+            } else if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
+                jQuery.ajax({
+                    url: "../operations/newLetter.php",
+                    data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val() + '&add=0',
+                    type: "POST",
+                    success: function (data) {
+                        loading(false);
+                        popup(true, data);
+                    },
+                    beforeSend: function () {
+                        loading(true);
+                    }
+
+                });
+            }
 
 
 
 
             else {
-                popup(false,'please fill Name, Salary and Date,Additional info if added');
+                popup(false, 'please fill Name, Salary and Date,Additional info if added');
             }
-        } });
+        }
+    });
 
 
     /**************** LetterRequests ********************/

@@ -28,9 +28,9 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $_SESSION['activity']=$x[0]->active;
         $_SESSION['type']=$x[0]->privilege;
         $_SESSION['id']=$x[0]->id;
-        if(!empty($_POST['remember'])) {
-            setcookie("username", $_POST['username'], time()+(10 * 365 * 24 * 60 * 60));
-            setcookie("password", $_POST['password'], time()+(10 * 365 * 24 * 60 * 60));
+        if(isset($_POST['remember_me'])) {
+            setcookie('username', $_POST['Username'], time()+(10 * 365 * 24 * 60 * 60),'/');
+            setcookie('password', $_POST['Password'], time()+(10 * 365 * 24 * 60 * 60),'/');
         }else{
             if(ISSET($_COOKIE['username'])) {
                 setcookie("username", "");

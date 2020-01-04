@@ -20,9 +20,9 @@ include "../template/header.php";
     $sid = $_SESSION['id'];
     $sql="
         SELECT *
-        FROM update_info left join employee on update_info.UID = employee.id
+        FROM update_info inner join employee on update_info.UID = employee.id
         where update_info.Status = 2 and UID <> '$sid'
-              ";
+              "; //select all profile request except for the one of the logined admin
     try
     {
         $DB->query($sql);
@@ -51,8 +51,8 @@ include "../template/header.php";
                 <td>{$oValue}</td>
                 <td>{$value}</td>
                 <td>{$type}</td>";
-                echo "<td><input type= 'submit' class ='accept' value='Accept'></td>";
-                echo "<td><input type= 'submit' class ='reject' value= 'Reject'></td>";
+                echo "<td><input type= 'submit' class ='accept' value='Accept'></td>";// button for accepting
+                echo "<td><input type= 'submit' class ='reject' value= 'Reject'></td>";// button for rejecting
     ?>
 
     <?php
@@ -61,10 +61,10 @@ include "../template/header.php";
         }
         else if($DB->numRows() ==0)
         {
-          echo "<tr><td colspan=12 >No Data to show</td></tr>";
+          echo "<tr><td colspan=12 >No Data to show</td></tr>";//show that there is no data if table is empty
         }
     }
-    catch(Exception $e)
+    catch(Exception $e)//if there is an error in sql query catch exception
     {
         $_SESSION['error'] = 'error in sql';
         echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";

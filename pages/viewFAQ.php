@@ -20,7 +20,7 @@ if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
         <th>Delete</th>
     </tr>
     <?php
-    function check($c){
+    function check($c){//check if value is empty so it gets replaced with a dash
         if($c==null)
             $c='-';
         else if($c=='')
@@ -31,7 +31,7 @@ if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
     $sql="
         SELECT *
         FROM faq
-              ";
+              ";// select all faqs
     try
     {
 

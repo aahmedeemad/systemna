@@ -3,8 +3,8 @@ include "../DB/Database.php";
 $DB2 = new Database();
 
 if(isset($_POST['type'])){
-   $id=$_POST['mid'];
-   $sql = "select * from employee where id = '$id';";
+   $id=$_POST['mid'];// id of the employee that is requested to change his privilege
+   $sql = "select * from employee where id = '$id';";//select that employee 
    try 
    {
    $DB2->query($sql);
@@ -15,9 +15,9 @@ if(isset($_POST['type'])){
        {$x = $DB2 ->getdata();
         echo $x[$i]->accepted;
         $acc = $x[$i]->accepted; }
-        if($acc == 1){
-         $type=$_POST['type'];
-         $sql = "update employee set privilege='$type' where id = '$id';";
+        if($acc == 1){//check if the employee is accepted in the first place
+         $type=$_POST['type'];// take the type that employee is change to
+         $sql = "update employee set privilege='$type' where id = '$id';";//set that type to that employee
          $DB2->query($sql);
          $DB2->execute();
         }
@@ -30,24 +30,24 @@ if(isset($_POST['type'])){
    
 }
 if(isset($_POST['test'])){
-    $sal=$_POST['test']; 
-    $id=$_POST['id'];
+    $sal=$_POST['test'];// salary that is to be changed
+    $id=$_POST['id']; // id of the employee
     $sql= "select * from employee where id = '$id'";
     try{
     $DB2->query($sql);
     $DB2->execute();
     $x = $DB2->getdata();
-    if($x[0]->accepted != 1)
+    if($x[0]->accepted != 1) //if he is not accepted echo to ajax
      echo $x[0]->accepted;
     else {
-    $sql = "update add_info set salary='$sal' where emp_id = '$id';";
+    $sql = "update add_info set salary='$sal' where emp_id = '$id';";//else update salary
     $DB2->query($sql);
     $DB2->execute();
     $assign = $DB2->numRows();
-    if($assign)
+    if($assign)//if query completed direct back to table
      header("Location: ../pages/index.php");
     else 
-    {
+    {//else user might not have a row in additional info then a row has to be inserted with the salary
      $sql = "insert into add_info(emp_id,salary) values ('$id','$sal');";
      $DB2->query($sql);
      $DB2->execute();
@@ -62,18 +62,27 @@ if(isset($_POST['test'])){
 
 }
 if(isset($_POST['aid'])){
-    $ID = $_POST['aid'];
+    $ID = $_POST['aid']; //id of employee to accept 
     $sql = "update employee set accepted=1 where id = '$ID';";
-    $DB2->query($sql);
-    $DB2->execute();
-    /*$sql = "insert into notifications(status,userid,notidata) values (0,'$ID','Welcome to SYSTEMNA');";
-    $DB2->query($sql);
-    $DB2->execute();*/
+    try{
+        $DB2->query($sql);
+        $DB2->execute();
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 }
 if(isset($_POST['rid'])){
-    $ID = $_POST['rid'];
+    $ID = $_POST['rid'];//id of employee to reject
     $sql = "update employee set accepted=0 where id = '$ID';";
-    $DB2->query($sql);
-    $DB2->execute();
+    try{
+        $DB2->query($sql);
+        $DB2->execute();
+    }
+    catch(Exception $e)
+    {
+        $_SESSION['error'] = 'error in sql';
+    }
 }
 ?>

@@ -27,7 +27,7 @@ include "../template/header.php";
         <th>Reject</th>
     </tr>
     <?php
-    function check($c){
+    function check($c){//function to check if row is empty to replace empty cell with a dash
         if($c==null)
             $c='-';
         else if($c=='')
@@ -35,6 +35,7 @@ include "../template/header.php";
         return $c;
     }
     $sql=" SELECT * FROM employee left join add_info on emp_id=id where employee.accepted = 2 AND privilege = 'user' AND active = 1";
+    // select pending employees only
     try {
         $DB->query($sql);
         $DB->execute();
@@ -65,6 +66,10 @@ include "../template/header.php";
     <?php
                 echo "</tr>";
             }
+        }
+        else if($DB->numRows() ==0)//if table is empty show that there is no data
+        {
+          echo "<tr><td colspan=12 >No Data to show</td></tr>";
         }
     }
     catch(Exception $e)

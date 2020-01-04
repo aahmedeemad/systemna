@@ -148,6 +148,7 @@ include "../template/header.php";
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="Export2Doc('body','SYSTEMNA HR Letter')">Download</button>
+                <button type="button" class="btn btn-primary" id="sendletteronmail">Get on mail</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

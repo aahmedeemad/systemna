@@ -240,6 +240,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("error while sending mail to one user");
         }
     }
+    else if ($_POST['type'] == "sendlettermail")
+    {
+        try {
+            $uid = $_SESSION["id"]; /* Getting the user ID */
+            $sql = "SELECT * FROM employee WHERE id='$uid' "; /* SQL query to get the data from the DB */
+            $DB->query($sql); /* Using the query function made in DB/Database.php */
+            $DB->execute(); /* Using the excute function made in DB/Database.php */
+            $x = $DB->getdata(); /* creates an array of the output result */
+            $uname = $x[0]->fullname;
+            $umail = $x[0]->email;
+            $mailsubject = 'Your Requested HR Letter';
+            $mailcontent = 'Kindly find attached the requested HR letter';
+            $mail->setFrom('systemnamiu@gmail.com', 'From SYSTEMNA'); /* Set the mail sender. */
+            $mail->Subject = "$mailsubject"; /* Set the subject. */
+            $email_vars = array(
+                'name' => $uname,
+                'content' => $mailcontent,
+            );
+            /* Importing the mail template */
+            $body = file_get_contents('../template/htmlemail.html');
+            if(isset($email_vars)){
+                foreach($email_vars as $k=>$v){
+                    /* Replace the values in {} in template to vars in function */
+                    $body = str_replace('{'.strtoupper($k).'}', $v, $body);
+                }
+            }
+            $mail->MsgHTML($body);
+            $mail->addStringAttachment(file_get_contents($contenturl), 'SYSTEMNA HR Letter.pdf');
+            //$mail->Body = "$mailcontent"; /* Set the mail message body. */
+            $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
+            $mail->send(); /* Send the mail. */
+            echo "true";
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error in send letter mail to user");
+        }
+    }
 }
 else 
 {

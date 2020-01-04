@@ -553,6 +553,49 @@ $(document).ready(function () {
         }
     });
 
+    $(".position").on("click", function (event) {
+        $(this)
+            .closest("div")
+            .attr("contenteditable", "true");
+        $(this).focus();
+        $(this).addClass("input");
+        orig = $(this).text();
+        $(this).keyup(function (e) {
+            var test = $(this)
+                .text();
+        });
+    });
+
+    $(".position").on("focusout", function (event) {
+
+        var tsal = $(this);
+        $(this).removeClass("input");
+        var row = $(this).closest("tr");
+        var rowIndex = row.index();
+        var c = $("#Display")
+            .find("tr:eq(" + rowIndex + ")")
+            .find("td:eq(1)");
+        var test2 = $(this).text();
+        //test2 = test2.replace("<br>", "");
+
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { position: test2, id: c.text() },
+            success: function (msg) {
+                if (msg == '0') { popup(false, "User needs to be accepted to update his position!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                else {
+                    tsal.html("<div>" + tsal.text() + "</div>");
+                    loading(false);
+                    popup(true, "Position Updated!");
+                    sendnoti(c.text(), "You Position has been updated to " + test2, '../pages/profile.php');
+                }
+            }
+        });
+
+    });
+
     $("#tblsearch").keyup(function () {
         search_table($(this).val());
     });
@@ -1186,6 +1229,24 @@ $(document).ready(function () {
             }
         });
     }
+
+    /* Function to send mail with letter to user */
+    $("#sendletteronmail").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "../operations/massmsging.php",
+            data: "type=sendlettermail",
+            success: function (html) {
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
 
     function setCounter(type, tag) {
         $.ajax({

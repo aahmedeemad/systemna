@@ -1212,7 +1212,7 @@ $(document).ready(function () {
                     $('#notidata').html(html).css('text-align', 'left');
                     $('#markAll').css('display', 'block');
                 } else { /* Print this message if empty */
-                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve something new.')
                         .css('text-align', 'center');
                     $('#markAll').css('display', 'none'); /* Hide mark all button if no notifications */
                 }
@@ -1228,7 +1228,7 @@ $(document).ready(function () {
             data: "&type=markread",
         });
         $('#noti_Counter').css('display', 'none'); /* Hiding the counter when markall is clicked */
-        $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
+        $('#notidata').text('You have no new notifications, you will be alereted when you recieve something new.')
             .css('text-align', 'center'); /* Replacing the data when markall is clicked */
         $('#markAll').css('display', 'none'); /* Hiding the markall button when markall is clicked */
     });

@@ -41,7 +41,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
             }
         ?>
         <br>
-        <hr> 
+        <hr>
         <br><br>
         <h4> Please choose the Letter priority : </h4>
         <label><input type="radio" name="Option1" id ="rdbtn1" value="Urgent" required> Urgent Request</label>
@@ -67,7 +67,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
     var check=document.getElementById(id);
 
         if (check!=null ){
-            alert(id);
+          //  alert(id);
            document.getElementById(id).type='text';
         }
     }

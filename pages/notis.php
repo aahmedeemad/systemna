@@ -15,7 +15,8 @@ include "../template/header.php"; /* Including the header file */
         <br><br>" ;
         for($i=$DB->numRows(); $i>0; --$i){ /* iterating the results by the num of rows */
             $x=$DB->getdata(); /* creates an array of the output result */
-            echo ($i) . "- <a href='" . $x[$i-1]->notihref . "' style='text-decoration: none; color: #DAA520;'>" . $x[$i-1]->notidata . "</a>" . "<button type='button' style='float: right; border-radius: 0.5em; background-color: #DAA520;' >Delete</button>" . "<hr>"; /* Printing the output */
+            /* Printing the output */
+            echo ($i) . "- <a href='" . $x[$i-1]->notihref . "' style='text-decoration: none; color: #DAA520;'>" . $x[$i-1]->notidata . "</a>" . "<button type='button' style='float: right; border-radius: 0.5em; background-color: #DAA520;' >" . "<a href='../operations/notiop.php?nid=" . $x[$i-1]->ID . "'>Delete</a>" . "</button>" . "<hr>";
         }
     }
     catch(Exception $e)

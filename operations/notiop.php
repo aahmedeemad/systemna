@@ -37,8 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+else if(isset($_GET['nid']))
+{
+    try {
+        $nid = $_GET['nid'];
+        $sql = "DELETE FROM notifications WHERE ID = '$nid'";
+        $DB->query($sql);
+        $DB->execute();
+        header("location: ../pages/notis.php");
+    }
+    catch(Exception $e)
+    {
+        echo "Error please try again later";
+        error_log("error while deleting notifications");
+    }
+}
 else 
 {
-    header("location: ../index.php"); /* Redirecting to mainpage if the user tried to get into this page without 'POST' method */
+    header("location: ../pages/index.php"); /* Redirecting to mainpage if the user tried to get into this page without 'POST' method */
 }
 ?>

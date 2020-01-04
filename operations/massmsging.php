@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error while sending notification to all users");
         }
     }
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error while sending notification to one user");
         }
     }
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error while sending mail to all users");
         }
     }
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error while sending mail to one user");
         }
     }
@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error in send mail to one user function");
         }
     }
@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error in send notification to one user function");
         }
     }
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "Error please try again later";
             error_log("error while sending mail to one user");
         }
     }

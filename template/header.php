@@ -160,7 +160,7 @@ $qcPages = array(
                         <h2>Confirm ?</h2>
                         <div class="confirmation-content"></div>
                         <div style="float: right; padding:5px;">
-                            <input type="button" value="Confirm" id="confirmationButton">
+                            <input type="button" value="Confirm" id="confirmationButton" class="confirmation-confirm">
                             <input type="button" value="Cancel" class="confirmation-close">
                         </div>
                     </div>

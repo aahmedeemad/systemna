@@ -217,7 +217,8 @@ th {
 }
 #button-accepted,
 .accept,
-.user-accept {
+.user-accept,
+.confirmation-confirm{
   background-color: #00ff40;
   border: none;
   color: white;
@@ -232,7 +233,8 @@ th {
 
 #button-rejected,
 .reject,
-.user-reject {
+.user-reject,
+.confirmation-close{
   background-color: #ff0000;
   border: none;
   color: white;

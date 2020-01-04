@@ -143,7 +143,6 @@ $(document).ready(function () {
                 url: url,
                 data: data,
                 success: function (html) {
-                    alert(html);
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");

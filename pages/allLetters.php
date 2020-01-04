@@ -24,7 +24,7 @@ include "../template/header.php";
     //        return $c;
     //    }
 
-    $sql="SELECT *FROM requests_types ";
+    $sql="SELECT *FROM requests_types WHERE type_id <> 1";
     try
     {
         $DB->query($sql);

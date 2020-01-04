@@ -753,7 +753,8 @@ box-sizing: content-box;
 
 #applyForLetterBtn,
 #editLetterButton,
-#updateLetter {
+#updateLetter ,
+#AddLetterbtn{
     width: 25%;
     background-color: #daa520;
     color: white;

@@ -499,50 +499,51 @@ $(document).ready(function () {
     /******************************************** END PN (Passport And National ID) ********************************************/
 
     var orig;
-    $(".sal").on("click", function (event) {
+    $(".sal").on("click", function (event) { //when the salary is clicked on
         $(this)
             .closest("div")
-            .attr("contenteditable", "true");
+            .attr("contenteditable", "true"); //make div of salary editable
         $(this).focus();
-        $(this).addClass("input");
-        orig = $(this).text();
+        $(this).addClass("input");  //make div look like an input field
+        orig = $(this).text();  //save original salary value
         $(this).keyup(function (e) {
             var test = $(this)
                 .text();
-            if (!test.match(/^[0-9]+$/)) {
-                $(this).removeClass("input");
-                $(this).addClass("wr");
+            if (!test.match(/^[0-9]+$/)) { // if input value is not a number
+                $(this).removeClass("input"); //remove class input
+                $(this).addClass("wr");  //add class wrong
             } else {
-                $(this).removeClass("wr");
-                $(this).addClass("input");
+                $(this).removeClass("wr");  // remove class wrong
+                $(this).addClass("input");  // add class input
             }
         });
     });
 
     $(".sal").on("focusout", function (event) {
 
-        var tsal = $(this);
-        $(this).removeClass("input");
+        var tsal = $(this);  // save salary object
+        $(this).removeClass("input");  //remove input class
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
             .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+            .find("td:eq(1)");  // get the cell contatining user id
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
         if (!test2.match(/^[0-9]+$/)) {
-            popup(false, "Salary must be a number!");
+            popup(false, "Salary must be a number!");  // give error if salary not a number
         } else {
             loading(true);
             $.ajax({
                 method: "POST",
                 url: "../operations/EditTable.php",
-                data: { test: test2, id: c.text() },
+                data: { test: test2, id: c.text() }, // send id and salary value in post by ajax
                 success: function (msg) {
                     if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                    // if user not accepted give error + set salary value to original
                     else {
-                        tsal.html("<div>" + tsal.text() + "</div>");
+                        tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
                         loading(false);
                         popup(true, "Salary Updated!");
                         sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
@@ -1393,5 +1394,5 @@ $(document).ready(function () {
                 loading(true);
             }
         });
-    });     
+    });
 });

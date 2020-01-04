@@ -42,10 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         try {
             /* SQL query to get the data from the DB */
-            $sql = " SELECT e.fullname, rt.Name, r.Request_id, r.emp_id, r.type_name, r.Status, r.priority, r.salary FROM requests r, employee e, requests_types rt WHERE e.id=r.emp_id AND r.type_name=rt.Name ";
+            $sql = " SELECT COUNT(*) AS num FROM requests r WHERE r.emp_id <> " .$_SESSION['id']. " AND r.Status = 2 ";
             $DB->query($sql); /* Using the query function made in DB/Database.php */
             $DB->execute(); /* Using the excute function made in DB/Database.php */
-            echo ($DB->numRows()); /* Printing the output */
+            $x=$DB->getdata(); /* creates an array of the output result */
+            echo($x[0]->num); /* Printing the output */
         }
         catch(Exception $e)
         {

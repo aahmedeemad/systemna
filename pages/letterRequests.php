@@ -24,7 +24,7 @@ include "../template/header.php";
     <?php
     $sql="  SELECT e.fullname,rt.Name,r.Request_id,r.emp_id,r.type_name,r.Status,r.priority,r.salary,r.additional_info 
         FROM requests r ,employee e, requests_types rt 
-        WHERE e.id=r.emp_id AND r.Type_name=rt.Name AND e.id <> " . $_SESSION['id'] . " ORDER BY r.date asc, r.priority desc";
+        WHERE e.id=r.emp_id AND r.Type_name=rt.Name AND e.id <> " . $_SESSION['id'] . " ORDER BY r.Status desc, r.date asc, r.priority desc";
     try
     {
 

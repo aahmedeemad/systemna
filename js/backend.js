@@ -546,7 +546,7 @@ $(document).ready(function () {
                         tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
                         loading(false);
                         popup(true, "Salary Updated!");
-                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php'); // send notification with salary change
                     }
                 }
             });

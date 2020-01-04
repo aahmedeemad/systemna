@@ -33,7 +33,7 @@ include "../template/header.php"; /* Including the header file */
         }
         catch(Exception $e)
         {
-            echo "<div class='alert alert-danger'>Error please try again later</div>";
+            echo "<div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
             error_log("error while getting notifications data");
         }
         ?>

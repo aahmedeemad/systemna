@@ -72,7 +72,7 @@ include "../template/header.php";
                 else{
                     echo "<td style='color:#be800d; font-weight:bold;' >Pending</td>";
                 }
-               echo "<td >".$x[$i]->type_name.'</td>';
+                echo "<td >".$x[$i]->type_name.'</td>';
                 echo "<td>{$BoolPriority}</td>";
                 echo "<td>{$Boolsalray}</td>";
 
@@ -111,7 +111,7 @@ include "../template/header.php";
     ?>
 </table>
 
-<div class="modal fade bd-example-modal-xl" id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-xl" id="exampleModalLong">
     <div class="modal-dialog modal-xl">
         <div id="body" class="modal-content">
             ...
@@ -121,37 +121,41 @@ include "../template/header.php";
     </div>
 </div>
 
+<!--
 <div class="modal fade " id="exampleModalLong"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div id="body" class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">send letter</button>
-            </div>
-        </div>
-    </div>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
 </div>
+<div id="body" class="modal-body">
 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary">send letter</button>
+</div>
+</div>
+</div>
+</div>
+-->
+
+<!--
 
 <script src="../js/bootstrap.min.js"></script>
 
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+-->
 
 
 <script>
 
     function showdata(id){
-      
+
         var concatinated=id.id;
         var seperated=concatinated.split("+");
         var id= seperated[0];
@@ -164,8 +168,6 @@ include "../template/header.php";
             success:function(data)
             {
                 $("#body").html(data);
-
-
             }
         });
     }

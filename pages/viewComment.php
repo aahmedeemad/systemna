@@ -84,7 +84,7 @@ include "../template/header.php";
     {
         $_SESSION['error'] = 'error in sql';
         echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-        error_log("error while getting QC table");
+        error_log("Error while viewing comment table");
     }?>
 </table>
 <?php include "../template/footer.php"; 

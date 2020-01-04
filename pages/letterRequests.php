@@ -147,7 +147,7 @@ include "../template/header.php";
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-</script>
+
 <script>
 
     function showdata(id){

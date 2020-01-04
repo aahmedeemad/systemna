@@ -145,7 +145,7 @@ $qcPages = array(
                     </ul>
                 </div>
                 <!-- Popup -->
-                <div id="myModal" class="modal">
+                <div id="myModal" class="modalPopup">
                     <div class="popup-notification" id='popup'>
                         <h2></h2>
                         <a class="popup-close" href="">&times;</a>

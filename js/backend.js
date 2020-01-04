@@ -130,7 +130,7 @@ $(document).ready(function () {
         head = head == true ? "Success" : "Failed";
         $(".popup-notification h2").text(head);
         $(".popup-content").html(body);
-        $(".modal").css("display", "block");
+        $(".modalPopup").css("display", "block");
     }
 
 
@@ -247,14 +247,14 @@ $(document).ready(function () {
     };
 
     $(window).click(function (e) {
-        if (e.target == $(".modal")[0]) {
-            $(".modal").css("display", "none");
+        if (e.target == $(".modalPopup")[0]) {
+            $(".modalPopup").css("display", "none");
         }
     });
 
     /* Close button in popup */
     $(".popup-close").on("click", function () {
-        $(".modal").css("display", "none");
+        $(".modalPopup").css("display", "none");
     });
 
 

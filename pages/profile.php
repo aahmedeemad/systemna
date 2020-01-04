@@ -5,7 +5,10 @@ $pageTitle = "SYSTEMNA | Profile";
 <?php
 if (isset($_GET['id']))
 {
-
+    echo '
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/backend.js"></script>
+        ';
     $noEdit = true;
     $id = $_GET['id'];
     $addinfoo=$_GET['addinfo'];

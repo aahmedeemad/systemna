@@ -208,6 +208,8 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #000");
         $(".profile-right-up").css("box-shadow", "5px 5px #000");
         $(".profile-right-down").css("box-shadow", "5px 5px #000");
+        $(".modal-content").css("background-color", "#585858");
+        $(".modal-content").css("color", "white");
     }
 
     function light() { /* Changing everything to light */
@@ -234,6 +236,8 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
+        $(".modal-content").css("background-color", "white");
+        $(".modal-content").css("color", "black");
     }
 
     function getCookie(name) { /* Getting the desiered cookie value by its name */

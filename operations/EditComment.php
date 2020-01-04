@@ -5,22 +5,29 @@ include "../template/header.php";
 <?php
 if (isset($_GET['id']))
 {
-    $DataBase = new Database();
     $id = $_GET['id'];
-    $sql = "SELECT Comment_value FROM comment 
-            WHERE Comment_id = '$id';";
-    $DataBase->query($sql);
-    $DataBase->execute();
-
-    try
+    if($id ==0)
     {
-        $Comment = $DataBase->getData();
+        header("Location: ../pages/viewComment.php");
     }
-    catch(Exception $e)
+    else
     {
-        $_SESSION['error'] = 'error in sql';
-        echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-        error_log("Error while getting QC comment !");
+        $DataBase = new Database();
+        $sql = "SELECT Comment_value FROM comment 
+                WHERE Comment_id = '$id';";
+        $DataBase->query($sql);
+        $DataBase->execute();
+
+        try
+        {
+            $Comment = $DataBase->getData();
+        }
+        catch(Exception $e)
+        {
+            $_SESSION['error'] = 'error in sql';
+            echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
+            error_log("Error while getting QC comment !");
+        }
     }
 }
 if(isset($_POST['submit1']))
@@ -34,6 +41,10 @@ if(isset($_POST['submit1']))
     $DataBase1->query($sql2);
     $DataBase1->execute();
 
+    header("Location: ../pages/viewComment.php");
+}
+else if(!isset($_GET['id']))
+{
     header("Location: ../pages/viewComment.php");
 }
 ?>

@@ -15,11 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['AddC']) && isset($_GET
     $DataBase->query($sql);
     $DataBase->execute();
 
-    header("Location: ../pages/QualityControl.php");
+    header("Location: ../pages/viewComment.php");
 }
 else
  {
-      header("Location: ../QualityControl.php");
-      echo "<script>alert('Couldn't add the Comment try again!');</script>";
+      header("Location: ../pages/viewComment.php");
  }
 ?>

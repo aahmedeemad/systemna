@@ -9,12 +9,14 @@ if (isset($_POST['id']))
             WHERE Comment_id = '$id';";
     $DataBase->query($sql);
     $DataBase->execute();
-    echo "true";
-//    header("Location: ../pages/viewComment.php");
+    header("Location: ../pages/viewComment.php");
+}
+else if(!isset($_GET['id']))
+{
+    header("Location: ../pages/viewComment.php");
 }
 else
  {
       header("Location: ../pages/viewComment.php");
-//      echo "<script>alert('Couldn't delete the Comment try again!');</script>";
  }
 ?>

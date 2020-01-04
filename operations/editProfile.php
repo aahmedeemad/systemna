@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } catch (Exception $e) {
         echo "<div class='alert alert-danger'>Error please try again later</div>";
-        error_log("Error while edit profile");
+        error_log("Error while editing profile");
     }
 
 

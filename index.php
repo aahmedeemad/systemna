@@ -6,7 +6,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
     $password = $_COOKIE['password'];
 try {
     //$username = filter_var($_POST["Username"], FILTER_SANITIZE_STRING);
-    $sql="SELECT * FROM employee where username= '".$username."' and password = '".sha1($password)."'";
+    $sql="SELECT * FROM employee where username= '".$username."' and password = '".$password."'";
     $DB->query($sql);
     $DB->execute();
 } catch (Exception $e) {

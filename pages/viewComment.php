@@ -23,6 +23,7 @@ include "../template/header.php";
         <th colspan="4">Actions</th>
     </tr>
     <?php
+    // To to replace the empty index with dash
     function check($c){
         if($c==null)
             $c='-';
@@ -33,6 +34,7 @@ include "../template/header.php";
 
     try
     {
+        // SQL query
         $sql="
       SELECT comment.Comment_id , comment.Comment_value , comment.user_id , requests.type_name , employee.username
       FROM comment INNER JOIN employee 
@@ -44,9 +46,9 @@ include "../template/header.php";
         $DB->query($sql);
         $DB->execute();
         $y = 0;
-        if($DB->numRows()>0)
+        if($DB->numRows() > 0)
         {
-            for($i=0;$i<$DB->numRows();$i++)
+            for($i=0;$i<$DB->numRows();$i++) // Get Data as an array of objects
             {
                 $x = $DB->getdata();
                 $y++;

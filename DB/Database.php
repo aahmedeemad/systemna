@@ -33,6 +33,7 @@ class Database
             exit;
         }
     }
+    
     //prepare sql query
     public function query($sql)
     {
@@ -63,6 +64,5 @@ class Database
     {
         return $this->dbh->lastInsertId();
     }
-
 }
 ?>

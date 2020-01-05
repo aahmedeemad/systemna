@@ -6,18 +6,18 @@ include "../template/header.php";
 if (isset($_GET['id']))
 {
     $id = $_GET['id'];
-    if($id ==0)
+    if($id ==0) // Tried to write id=0
     {
         header("Location: ../pages/viewComment.php");
     }
     else
     {
         $DataBase = new Database();
+        // SQL Query
         $sql = "SELECT Comment_value FROM comment 
                 WHERE Comment_id = '$id';";
         $DataBase->query($sql);
         $DataBase->execute();
-
         try
         {
             $Comment = $DataBase->getData();
@@ -26,15 +26,17 @@ if (isset($_GET['id']))
         {
             $_SESSION['error'] = 'error in sql';
             echo "<br><div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>";
-            error_log("Error while getting QC comment !");
+            error_log("Error while editing QC comment !");
         }
     }
 }
-if(isset($_POST['submit1']))
+if(isset($_POST['submit1'])) // When he click on update comment btn
 {
     $DataBase1 = new Database();
     $id = $_GET['id'];
-    $Value = filter_var( $_POST['Comment'],FILTER_SANITIZE_STRING);
+    $Value = filter_var( $_POST['Comment'],FILTER_SANITIZE_STRING); // Filter it from html tags and SQL injection
+
+    // SQL Query
     $sql2 = "UPDATE Comment 
              SET Comment_value= '$Value'
              WHERE Comment_id = '$id';";
@@ -43,7 +45,7 @@ if(isset($_POST['submit1']))
 
     header("Location: ../pages/viewComment.php");
 }
-else if(!isset($_GET['id']))
+else if(!isset($_GET['id'])) // If he tried to access it from the url
 {
     header("Location: ../pages/viewComment.php");
 }

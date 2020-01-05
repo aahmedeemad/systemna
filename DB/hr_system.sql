@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2020 at 12:00 PM
+-- Generation Time: Jan 05, 2020 at 12:21 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -422,7 +422,8 @@ ALTER TABLE `faq`
 -- Indexes for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `requester_id` (`requester_id`);
 
 --
 -- Indexes for table `notifications`
@@ -486,7 +487,6 @@ ALTER TABLE `faq`
 ALTER TABLE `inquiries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
-
 --
 -- AUTO_INCREMENT for table `notifications`
 --
@@ -535,6 +535,12 @@ ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`Request_id`) REFERENCES `requests` (`Request_id`),
   ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `employee` (`id`),
   ADD CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`Request_id`) REFERENCES `requests` (`Request_id`);
+
+--
+-- Constraints for table `inquiries`
+--
+ALTER TABLE `inquiries`
+  ADD CONSTRAINT `inquiries_ibfk_1` FOREIGN KEY (`requester_id`) REFERENCES `employee` (`id`);
 
 --
 -- Constraints for table `notifications`

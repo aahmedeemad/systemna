@@ -28,7 +28,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 $btnid=$x[$i]->Type_id;
                 $desc=$x[$i]->description;
                 $add=$x[$i]->additional_info;
-                echo "<div id='columnAddRequest' style='background-color: #EEE8AA;'>";
+                echo "<div id='columnAddRequest' style='background-color: #DAA520;'>";
                 echo "<br><br>";
                 echo "<label><input type='radio' onclick='showfield(this.value)' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
                 echo'<br>';

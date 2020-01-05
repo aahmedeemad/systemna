@@ -203,6 +203,7 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #000");
         $(".profile-right-up").css("box-shadow", "5px 5px #000");
         $(".profile-right-down").css("box-shadow", "5px 5px #000");
+        $("#Comment_Value").css("color", "white");
     }
 
     function light() { /* Changing everything to light */
@@ -229,6 +230,7 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
+        $("#Comment_Value").css("color", "black");
     }
 
     function getCookie(name) { /* Getting the desiered cookie value by its name */
@@ -746,8 +748,7 @@ $(document).ready(function () {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
             if (
-                x
-                .text()
+                x.text()
                 .toLowerCase()
                 .indexOf(value.toLowerCase()) >= 0
             ) {

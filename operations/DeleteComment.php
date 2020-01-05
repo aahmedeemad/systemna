@@ -1,7 +1,7 @@
 <?php
 include "../DB/Database.php";
 
-if (isset($_POST['id']))  // Get The ud from the hidden input
+if (isset($_POST['id']))  // Get The id  
 {
     
     $id = $_POST['id'];

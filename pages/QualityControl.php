@@ -4,7 +4,7 @@ include "../template/header.php";
 ?>
 <br>
 <div style="text-align: center;">
-    <h1 style="font-family: sans-serif;" id="QCtitle">Quality Control</h1>
+    <h1 style="font-family: sans-serif;" id="QCtitle">Dashboard</h1>
     <input type="text" id='QCtblsearch' class='tblsearch' placeholder='Search'>
     <select id='choice' class='tblselect'>
         <option value="empname">Employee Name</option>

@@ -7,7 +7,7 @@ include "../template/header.php"; /* Including the header file */
     <h1 style='text-align: center;'>Latest Notifications!</h1>
     <a style='float:right; text-decoration: none; color:White; border-radius: 0.5em; background-color: #DAA520; padding: 8px;' id='all=1' class='deleteConfirmation' href='../operations/notiop.php'>Delete All</a>
     <table id="Display">
-        <tr>
+        <tr id='must'>
             <td>Notifications</td>
             <td>Operations</td>
         </tr>

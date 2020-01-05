@@ -12,7 +12,6 @@ include "../template/header.php";
     <tr id='must'>
         <th>#</th>
         <th>Request ID</th>
-        <!--        <th>Employee ID</th>-->
         <th>Status</th>
         <th>Applied for Letter</th>
         <th>Priority</th>
@@ -22,13 +21,6 @@ include "../template/header.php";
     </tr>
 
     <?php
-    /*function check($c){
-        if($c==null)
-            $c='-';
-        else if($c=='')
-            $c='-';
-        return $c;
-    }*/
 
     $sql="  SELECT *
     FROM requests INNER join requests_types
@@ -112,7 +104,7 @@ include "../template/header.php";
                     echo "</tr>";
                 }
             }
-          
+
         }
         else {
             echo"<tr><td colspan=9>You have no requests for now ! </td></tr>";
@@ -171,10 +163,6 @@ include "../template/header.php";
             }
         });
     }
-</script>
-
-
-<script>
 
     function Export2Doc(element, filename = ''){
 
@@ -188,7 +176,6 @@ include "../template/header.php";
 
         // Specify link url
         var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-
         // Specify file name
         filename = filename?filename+'.doc':'document.doc';
 
@@ -231,8 +218,4 @@ include "../template/header.php";
     }*/
 </script>
 
-<script src="../js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 <?php include "../template/footer.php"; ?>

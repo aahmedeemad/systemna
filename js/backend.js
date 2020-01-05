@@ -175,6 +175,7 @@ $(document).ready(function () {
 
     $("#themeToggle").on("click", function toggleTheme() { /* Adding the theme toggle function */
         var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
+//        alert(themecookie);
         /* Checking the cookie value and setting the theme opposite to it */
         if (themecookie == "darktheme") {
             light();
@@ -185,7 +186,10 @@ $(document).ready(function () {
     });
 
     function dark() { /* Changing everything to dark */
-        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
+        var d = new Date();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "theme=darktheme; " + expires + "; path=/;";
         $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#2d3035");
         $("#notifications").css("color", "white");
@@ -214,7 +218,10 @@ $(document).ready(function () {
     }
 
     function light() { /* Changing everything to light */
-        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
+        var d = new Date();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "theme=lighttheme; " + expires + "; path=/;";
         $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
@@ -324,10 +331,10 @@ $(document).ready(function () {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-                "id=" + id +
-                "&oldvalue=" + oldValue +
-                "&value=" + newValue +
-                "&type=" + type,
+            "id=" + id +
+            "&oldvalue=" + oldValue +
+            "&value=" + newValue +
+            "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -510,7 +517,7 @@ $(document).ready(function () {
         orig = $(this).text();  //save original salary value
         $(this).keyup(function (e) {
             var test = $(this)
-                .text();
+            .text();
             if (!test.match(/^[0-9]+$/)) { // if input value is not a number
                 $(this).removeClass("input"); //remove class input
                 $(this).addClass("wr");  //add class wrong
@@ -528,8 +535,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");  // get the cell contatining user id
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");  // get the cell contatining user id
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
@@ -564,7 +571,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function (e) {
             var test = $(this)
-                .text();
+            .text();
         });
     });
 
@@ -575,8 +582,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
@@ -604,8 +611,8 @@ $(document).ready(function () {
 
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
@@ -615,9 +622,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -634,14 +641,14 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var thisTd = $(this)
-            .closest("td");
+        .closest("td");
         var Eindex = $(this)
-            .closest("tr")
-            .index();
+        .closest("tr")
+        .index();
         var idMod = $("#Display")
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
         var otherButton;
         if ($(this).val() == "+HR") {
@@ -687,21 +694,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         var Value = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -719,18 +726,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq()")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -749,9 +756,9 @@ $(document).ready(function () {
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -769,9 +776,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -791,8 +798,8 @@ $(document).ready(function () {
 
     function search_QCtable(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -802,9 +809,9 @@ $(document).ready(function () {
             var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }

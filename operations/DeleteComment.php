@@ -17,7 +17,8 @@ if (isset($_POST['id']))  // Get The id
                 WHERE Comment_id = '$id';";
         $DataBase->query($sql);
         $DataBase->execute();
-        header("Location: ../pages/viewComment.php");
+        echo "true";
+//        header("Location: ../pages/viewComment.php");
     }
 }
 else // If he tried to access it from the url

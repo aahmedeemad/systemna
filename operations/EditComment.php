@@ -41,7 +41,7 @@ if(isset($_POST['submit1'])) // When he click on update comment btn
     $Value = filter_var( $_POST['Comment'],FILTER_SANITIZE_STRING); // Filter it from html tags and SQL injection
 
     // SQL Query
-    $sql2 = "UPDATE Comment 
+    $sql2 = "UPDATE comment 
              SET Comment_value= '$Value'
              WHERE Comment_id = '$id';";
     $DataBase1->query($sql2);

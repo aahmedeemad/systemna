@@ -759,8 +759,7 @@ $(document).ready(function () {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
             if (
-                x
-                .text()
+                x.text()
                 .toLowerCase()
                 .indexOf(value.toLowerCase()) >= 0
             ) {

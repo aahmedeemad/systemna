@@ -18,8 +18,16 @@ if (isset($_GET['addinfo']))
 }
 else {
     include "../template/header.php"; 
-    $noEdit = false;
-    $id = $_SESSION['id'];
+    if(isset($_GET['id']))
+    {
+        $noEdit = true;
+        $id = $_GET['id'];
+    }
+    else
+    {
+        $noEdit = false;
+        $id = $_SESSION['id'];
+    }
 }
 $sql="SELECT * FROM employee e , add_info a WHERE e.id = a.emp_id AND e.id = " . $id;
 try
@@ -57,7 +65,7 @@ try
         <div class="save save-fullname hidden"><span><i class="fas fa-check"></i></span></div>
         <div class="cancel cancel-fullname hidden"><span><i class="fas fa-times"></i></span></div>
         <?php } ?>
-        <div class="user-position"><?php echo $info[0]->privilege; ?></div>
+        <div class="user-position"><?php echo strtoupper($info[0]->privilege); ?></div>
         <div class="title-info">Basic Info <?php if($noEdit == false) { ?> <span class="edit edit-basic-info"><i class="fas fa-pen"></i></span> <?php } ?> </div>
         <hr>
         <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->ssn; ?></div>

@@ -143,11 +143,12 @@ include "../template/header.php";
             </div>
             <div class="modal-body" id="body">
                 <div>
-                    <p>sorry something went Wrong</p>
+                    <p>Sorry something went wrong!</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="Export2Doc('body')">download</button>
+                <button type="button" class="btn btn-primary" onclick="Export2Doc('body','SYSTEMNA HR Letter')">Download</button>
+                <button type="button" class="btn btn-primary" id="sendletteronmail">Get on mail</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -246,20 +246,6 @@ th {
   margin: 4px 2px;
 /*  cursor: pointer;*/
 }
-
-#button-pending {
-    background-color: #fbff00;
-    border: none;
-    color: white;
-    padding: 3px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.9em;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
 /* islam tables */
 #Display,
 #tblRequests {
@@ -316,7 +302,7 @@ th {
 }
 
 .tblsearch:focus {
-    border-color: #3971ed !important;
+    border-color: #3971ed ;
 }
 
 .tblsearch:hover {

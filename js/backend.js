@@ -209,6 +209,8 @@ $(document).ready(function () {
         $(".profile-right-up").css("box-shadow", "5px 5px #000");
         $(".profile-right-down").css("box-shadow", "5px 5px #000");
         $("#Comment_Value").css("color", "white");
+        $(".modal-content").css("background-color", "#585858");
+        $(".modal-content").css("color", "white");
     }
 
     function light() { /* Changing everything to light */
@@ -236,6 +238,8 @@ $(document).ready(function () {
         $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
         $("#Comment_Value").css("color", "black");
+        $(".modal-content").css("background-color", "white");
+        $(".modal-content").css("color", "black");
     }
 
     function getCookie(name) { /* Getting the desiered cookie value by its name */
@@ -497,7 +501,61 @@ $(document).ready(function () {
     /******************************************** END PN (Passport And National ID) ********************************************/
 
     var orig;
-    $(".sal").on("click", function (event) {
+    $(".sal").on("click", function (event) { //when the salary is clicked on
+        $(this)
+            .closest("div")
+            .attr("contenteditable", "true"); //make div of salary editable
+        $(this).focus();
+        $(this).addClass("input");  //make div look like an input field
+        orig = $(this).text();  //save original salary value
+        $(this).keyup(function (e) {
+            var test = $(this)
+                .text();
+            if (!test.match(/^[0-9]+$/)) { // if input value is not a number
+                $(this).removeClass("input"); //remove class input
+                $(this).addClass("wr");  //add class wrong
+            } else {
+                $(this).removeClass("wr");  // remove class wrong
+                $(this).addClass("input");  // add class input
+            }
+        });
+    });
+
+    $(".sal").on("focusout", function (event) {
+
+        var tsal = $(this);  // save salary object
+        $(this).removeClass("input");  //remove input class
+        var row = $(this).closest("tr");
+        var rowIndex = row.index();
+        var c = $("#Display")
+            .find("tr:eq(" + rowIndex + ")")
+            .find("td:eq(1)");  // get the cell contatining user id
+        var test2 = $(this).text();
+        //test2 = test2.replace("<br>", "");
+
+        if (!test2.match(/^[0-9]+$/)) {
+            popup(false, "Salary must be a number!");  // give error if salary not a number
+        } else {
+            loading(true);
+            $.ajax({
+                method: "POST",
+                url: "../operations/EditTable.php",
+                data: { test: test2, id: c.text() }, // send id and salary value in post by ajax
+                success: function (msg) {
+                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                    // if user not accepted give error + set salary value to original
+                    else {
+                        tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
+                        loading(false);
+                        popup(true, "Salary Updated!");
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php'); // send notification with salary change
+                    }
+                }
+            });
+        }
+    });
+
+    $(".position").on("click", function (event) {
         $(this)
             .closest("div")
             .attr("contenteditable", "true");
@@ -507,17 +565,10 @@ $(document).ready(function () {
         $(this).keyup(function (e) {
             var test = $(this)
                 .text();
-            if (!test.match(/^[0-9]+$/)) {
-                $(this).removeClass("input");
-                $(this).addClass("wr");
-            } else {
-                $(this).removeClass("wr");
-                $(this).addClass("input");
-            }
         });
     });
 
-    $(".sal").on("focusout", function (event) {
+    $(".position").on("focusout", function (event) {
 
         var tsal = $(this);
         $(this).removeClass("input");
@@ -529,25 +580,22 @@ $(document).ready(function () {
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
-        if (!test2.match(/^[0-9]+$/)) {
-            popup(false, "Salary must be a number!");
-        } else {
-            loading(true);
-            $.ajax({
-                method: "POST",
-                url: "../operations/EditTable.php",
-                data: { test: test2, id: c.text() },
-                success: function (msg) {
-                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
-                    else {
-                        tsal.html("<div>" + tsal.text() + "</div>");
-                        loading(false);
-                        popup(true, "Salary Updated!");
-                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
-                    }
+        loading(true);
+        $.ajax({
+            method: "POST",
+            url: "../operations/EditTable.php",
+            data: { position: test2, id: c.text() },
+            success: function (msg) {
+                if (msg == '0') { popup(false, "User needs to be accepted to update his position!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                else {
+                    tsal.html("<div>" + tsal.text() + "</div>");
+                    loading(false);
+                    popup(true, "Position Updated!");
+                    sendnoti(c.text(), "You Position has been updated to " + test2, '../pages/profile.php');
                 }
-            });
-        }
+            }
+        });
+
     });
 
     $("#tblsearch").keyup(function () {
@@ -1184,6 +1232,24 @@ $(document).ready(function () {
         });
     }
 
+    /* Function to send mail with letter to user */
+    $("#sendletteronmail").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "../operations/massmsging.php",
+            data: "type=sendlettermail",
+            success: function (html) {
+                loading(false);
+                if (html == "true") {
+                    popup(true, "Sent");
+                } else { popup(false, html); }
+            },
+            beforeSend: function () {
+                loading(true);
+            }
+        });
+    });
+
     function setCounter(type, tag) {
         $.ajax({
             type: "POST",
@@ -1391,5 +1457,5 @@ $(document).ready(function () {
                 loading(true);
             }
         });
-    });     
+    });
 });

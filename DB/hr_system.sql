@@ -155,7 +155,8 @@ CREATE TABLE `inquiries` (
 --
 
 INSERT INTO `inquiries` (`id`, `subject`, `message`, `requester_name`, `requester_email`, `requester_id`) VALUES
-(1, 'testing subject', 'testing message', '1', '1', 1);
+(7, 'how can i do this', 'this is nothing but a test', 'aahmedeemad', 'ahmed3madeldin@gmail.com', 8),
+(8, 'test number 2', 'wow this is working', 'aahmedeemad', 'ahmed3madeldin@gmail.com', 8);
 
 -- --------------------------------------------------------
 
@@ -483,7 +484,8 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 
 --
 -- AUTO_INCREMENT for table `notifications`

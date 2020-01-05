@@ -747,7 +747,9 @@ $(document).ready(function () {
         search_QCtable($(this).val());
     });
 
-    function search_QCtable(value) {
+    function search_QCtable(value) 
+    {
+        // The Choice of Searching
         var selected = $("#choice")
         .children("option:selected")
         .val();
@@ -755,9 +757,11 @@ $(document).ready(function () {
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
         if (selected == "empid") selection = 4;
+        // Chech if there is data
         $("#Display tr").each(function () {
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")");
+            // Check the Lower Case letters
             if (
                 x.text()
                 .toLowerCase()
@@ -765,7 +769,6 @@ $(document).ready(function () {
             ) {
                 found = "true";
             }
-
             if (found == "true") {
                 $(this).show();
             } else {

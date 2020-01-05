@@ -20,10 +20,6 @@ if (isset($_POST['id']))  // Get The id
         header("Location: ../pages/viewComment.php");
     }
 }
-else if(!isset($_GET['id'])) // If there was no such id
-{
-    header("Location: ../pages/viewComment.php");
-}
 else // If he tried to access it from the url
  {
       header("Location: ../pages/viewComment.php");

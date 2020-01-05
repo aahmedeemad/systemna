@@ -21,6 +21,10 @@ if (isset($_GET['id']))
         try
         {
             $Comment = $DataBase->getData();
+            if ($Comment == NULL)
+            {
+                header("Location: ../pages/viewComment.php");
+            }
         }
         catch(Exception $e)
         {

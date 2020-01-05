@@ -164,6 +164,7 @@ include "../template/header.php";
 
     /* Function to send mail with letter to user */
     $("#sendletteronmail").on("click", function () {
+        $("#exampleModalLong").modal("hide");
         $.ajax({
             type: "POST",
             url: "../operations/massmsging.php",
@@ -176,7 +177,6 @@ include "../template/header.php";
                 else {
                     html = "Failed";
                 }
-                $(".modal-content").css("display", "none");
                 $(".popup-notification h2").text(html);
                 $(".popup-content").html('Mail sent successfully');
                 $(".modalPopup").css("display", "block");

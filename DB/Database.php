@@ -17,7 +17,7 @@ class Database
         $dsn = "mysql:host=".$this->host.";dbname=".$this->dbName; 
         $options = array(
             PDO::ATTR_PERSISTENT => true,// if there is a connection that is already open use it.
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION//pdo will throw an pdo exception
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION//pdo will throw a pdo exception
         );
 
         try

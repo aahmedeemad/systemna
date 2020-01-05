@@ -4,7 +4,7 @@ include('../DB/Database.php'); /* Including the DB */
 $DB = new Database(); /* Making a DB object */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['type'] == "faqinq")
+    if (isset($_POST['type']) && $_POST['type'] == "faqinq")
     {
         try {
             if (isset($_POST['subject']) && isset($_POST['content'])) {
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("error while inserting into inquries table");
         }
     }
-    elseif ($_POST['type'] == "faqaddques")
+    elseif (isset($_POST['type']) && $_POST['type'] == "faqaddques")
     {
         try {
             if (isset($_POST['question']) && isset($_POST['answer'])) {
@@ -45,6 +45,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         {
             echo "Error please try again later";
             error_log("error while inserting into faq table");
+        }
+    }
+    else if(isset($_POST['nid']))
+    {
+        try {
+            $nid = $_POST['nid'];
+            $sql = "DELETE FROM inquiries WHERE id = '$nid'";
+            $DB->query($sql);
+            $DB->execute();
+            echo "true";
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error while deleting inquiry");
+        }
+    }
+    else if(isset($_POST['all']) && $_POST['all'] == "1")
+    {
+        try {
+            $uid = $_SESSION['id'];
+            $sql = "DELETE FROM inquiries";
+            $DB->query($sql);
+            $DB->execute();
+            echo "all";
+        }
+        catch(Exception $e)
+        {
+            echo "Error please try again later";
+            error_log("error while deleting inquiry");
         }
     }
 }

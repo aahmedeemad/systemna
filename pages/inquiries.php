@@ -2,6 +2,8 @@
 $pageTitle = "SYSTEMNA | Inquiries"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
 if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
+if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div class="pages_edit" id="inq_edit">Edit</div></div>');}  /* Adding the edit button if the user is an admin */
+
 ?>
 <div>
 	<?php

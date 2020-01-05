@@ -145,7 +145,8 @@ $(document).ready(function () {
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
-                        $(tag).hide();
+                        //$(tag).hide();
+                        drow.hide();
                     }
                     else if (html == "all") {
                         $(".modalConfirmation").css("display", "none");
@@ -162,7 +163,9 @@ $(document).ready(function () {
     }
 
     /******* Confirm delete popup *******/
+    var drow;
     $(".deleteConfirmation").on("click", function (e) {
+        drow = $(this).closest('tr');
         e.preventDefault(); /* to prevent href action */
         confirmation("Are you sure ?", this.href, this.id, $(this).closest('tr')); /* show to confirmation popup */
     });

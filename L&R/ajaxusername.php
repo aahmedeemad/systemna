@@ -69,7 +69,7 @@ if(isset($_POST['mail'])){
 
 if(isset($_POST['ssn'])){
     $ssn=$_POST['ssn'];
-    if(!filter_var($ssn, FILTER_VALIDATE_INT) === false && strlen((string)$ssn)==14){
+    if(!filter_var($ssn, FILTER_VALIDATE_INT) === false && strlen((string)$ssn)==14 && $ssn>0){
         try{
             $sql="SELECT * FROM employee where ssn= '".$ssn."'  ";
             $DB->query($sql);

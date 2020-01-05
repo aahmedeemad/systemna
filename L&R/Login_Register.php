@@ -47,12 +47,12 @@
                             </div>  
                             <span style=" color:red; display:block; margin-bottom:20px;" id="username"> </span>
                             <div class="input">
-                                <input  onblur="validateNumber(this)" required  name="phone" placeholder="Telephone Number" type="text">
+                                <input  onblur="validateNumber(this)" required  name="phone" placeholder="Telephone Number" maxlength="11" type="text">
                                 <i class="fas fa-mobile-alt"></i>
                             </div>
                             <span style="color:red; display:block; margin-bottom:20px;" id="number"></span>
                             <div class="input">
-                                <input onblur="checkssn()" id="SSN" required placeholder="Social Security Number" name="ssn"  type="text">
+                                <input onblur="checkssn()" id="SSN" required placeholder="Social Security Number" name="ssn" maxlength="14"  type="text">
                                 <i class="fas fa-id-card"></i>
                             </div>
                             <span style=" color:red; display:block; margin-bottom:20px;" id="ssn"></span>

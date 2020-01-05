@@ -2,7 +2,7 @@
 include "../template/header.php";
 /*include "../DB/Database.php";*/
 $DB = new Database();
-
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 if(isset($_POST['addLetter'])){
     $id=$_POST['id'];
     $body=filter_var($_POST['body'], FILTER_SANITIZE_STRING);
@@ -17,6 +17,7 @@ if(isset($_POST['addLetter'])){
         $sql = "update requests set Status='1' where Request_id = '$id';";
         $DB->query($sql);
         $DB->execute();
+        
         $sql="insert into notifications (status,userid,notidata) values ('0','$userid','An action has been made to a letter request.')";
         $DB->query($sql);
         $DB->execute();

@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "SYSTEMNA | Requested Letters";
 include "../template/header.php";
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
 
 <br>

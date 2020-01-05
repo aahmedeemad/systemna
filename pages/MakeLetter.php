@@ -33,7 +33,7 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
                 echo "<label><input type='radio' onclick='showfield(this.value)' name='Letterbuttonn' id='buttonsletter' value='$Name'> $Name ($desc) </label>";
                 echo'<br>';
                 if($add !='0'){
-                    echo "<input style='width:80%' type='hidden' placeholder='$add'  id='$Name'> ";
+                    echo "<input class='fields' style='width:80%' type='hidden' placeholder='$add'  id='$Name'> ";
                 }
                 echo "<br><br><br> ";
                 echo "<br><br>";
@@ -64,11 +64,15 @@ if(isset($_SESSION['type']) && $_SESSION['type']=='admin') {
 </div>
 <script>
     function showfield(id){
-    var check=document.getElementById(id);
+        var check=document.getElementById(id);
 
+        var fields = document.getElementsByClassName("fields");
+        for (var i = 0; i < fields.length; i++){
+            fields[i].type = "hidden";
+        }
         if (check!=null ){
-          //  alert(id);
-           document.getElementById(id).type='text';
+            //  alert(id);
+            document.getElementById(id).type='text';
         }
     }
 </script>

@@ -136,4 +136,4 @@ catch(Exception $e)
 }
 ?>
 
-<?php if($noEdit=false){ include "../template/footer.php"; }?>
+<?php if(!isset($_GET['addinfo'])){ include "../template/footer.php"; }?>

@@ -471,7 +471,8 @@ box-sizing: content-box;
 */
 
 .profile .user-name,
-.profile .user-position {
+.profile .user-position,
+.profile .user-privielge{
     text-align: center;
 }
 
@@ -492,11 +493,11 @@ box-sizing: content-box;
     display: none !important ;
 }
 
-.profile .profile-left .user-position {
+.profile .profile-left .user-privielge {
     font-size: 1.3rem;
     font-weight: bold;
     color: gray;
-    padding-bottom: 20px;
+/*    padding-bottom: 20px;*/
 }
 
 .profile .profile-right {

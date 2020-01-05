@@ -333,9 +333,6 @@ $(document).ready(function () {
             success: function (html) {
                 loading(false);
                 if (html == "true") {
-                    if (type == "fullname") fullnameToggle();
-                    else if (type == "ssn" || type == "bdate" || type == "location") basicInfoToggle();
-                    else if (type == "email" || type == "phone") contactInfoToggle();
                     popup(true, "Your Request Has Been Submitted Successfully");
                 } else { popup(false, html); }
             },
@@ -350,6 +347,7 @@ $(document).ready(function () {
         var defaultFullname = $("#fullnameEdit")[0]["defaultValue"];
         var id = $("#id").text();
         if (fullname != defaultFullname) submitEdit(id, "fullname", defaultFullname, fullname);
+        fullnameToggle();
     });
 
     $(".save-basic-info").on("click", function () {
@@ -363,6 +361,7 @@ $(document).ready(function () {
         if (ssn != defaultSSN) submitEdit(id, "ssn", defaultSSN, ssn);
         if (bdate != defaultBdate) submitEdit(id, "bdate", defaultBdate, bdate);
         if (loc != defaultLoc) submitEdit(id, "location", defaultLoc, loc);
+        basicInfoToggle();
     });
 
     $(".save-contact-info").on("click", function () {
@@ -373,6 +372,7 @@ $(document).ready(function () {
         var id = $("#id").text();
         if (email != defaultEmail) submitEdit(id, "email", defaultEmail, email);
         if (phone != defaultPhone) submitEdit(id, "phone", defaultPhone, phone);
+        contactInfoToggle();
     });
 
     $(".save-company-info").on("click", function () {
@@ -402,22 +402,22 @@ $(document).ready(function () {
             $("#passwordEdit").attr("type", "text");
         }
     });
-
-    function uploadProfilePicture() {
-        var input = document.getElementById("profile-picture-input");
+    
+    function uploadPhoto(elementID, url, imgSrc) {
+         var input = document.getElementById(elementID);
         file = input.files[0];
         if (file != undefined) {
             formData = new FormData();
             if (file.type.match(/.jpeg/)) {
                 formData.append("image", file);
                 $.ajax({
-                    url: "../operations/uploadUserImage.php",
+                    url: url,
                     type: "POST",
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        $(".profile-picture").attr("src", data);
+                        $(imgSrc).attr("src", data);
                         window.location.reload();
                     }
                 });
@@ -426,7 +426,7 @@ $(document).ready(function () {
     }
 
     $(".profile-picture-input").on("change", function () {
-        uploadProfilePicture();
+        uploadPhoto("profile-picture-input", "../operations/uploadUserImage.php", ".profile-picture");
     });
 
     $(".profile-camera-button").on("click", function () {
@@ -439,61 +439,19 @@ $(document).ready(function () {
 
     /******************************************** START PN (Passport And National ID) ********************************************/
 
-    function uploadPassportPicture() {
-        var input = document.getElementById("passport-picture-input");
-        file = input.files[0];
-        if (file != undefined) {
-            formData = new FormData();
-            if (file.type.match(/.jpeg/)) {
-                formData.append("image", file);
-                $.ajax({
-                    url: "../operations/uploadPassportImage.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        $(".passport-picture").attr("src", data);
-                        window.location.reload();
-                    }
-                });
-            } else { popup(false, "Not a valid image!"); }
-        } else { popup(false, "Input something!"); }
-    }
-
+    /* upload passport photo */
+    
     $(".passport-picture-input").on("change", function () {
-        uploadPassportPicture();
+        uploadPhoto("passport-picture-input", "../operations/uploadPassportImage.php", ".passport-picture")
     });
 
     $(".passport-camera-button").on("click", function () {
         $(".passport-picture-input").click();
     });
-
-    function uploadNationalIdPicture() {
-        var input = document.getElementById("national-picture-input");
-        file = input.files[0];
-        if (file != undefined) {
-            formData = new FormData();
-            if (file.type.match(/.jpeg/)) {
-                formData.append("image", file);
-                $.ajax({
-                    url: "../operations/uploadNationalImage.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        $(".national-picture").attr("src", data);
-                        window.location.reload();
-                    }
-                });
-            } else { popup(false, "Not a valid image!"); }
-        } else { popup(false, "Input something!"); }
-    }
-
-
+    
+    /* upload National ID photo */
     $(".national-picture-input").on("change", function () {
-        uploadNationalIdPicture();
+        uploadPhoto("national-picture-input", "../operations/uploadNationalImage.php", ".national-picture");
     });
 
     $(".national-camera-button").on("click", function () {
@@ -853,56 +811,6 @@ $(document).ready(function () {
         });
     });
 
-    /*   $("#AddLetterbtn").click(function () {
-        function checkAvai() {
-            jQuery.ajax({
-                url: "AddNewLetter.php",
-                data: "Name=" + $("#Name").val(),
-                type: "POST",
-                success: function (data) { }
-            });
-        }
-        var a = document.getElementById("Name").value;
-        var b = document.getElementById("description").value;
-
-        if (a == "" || b == "") {
-            popup(false, "Please enter the Letter data correctly !");
-            return 0;
-        }
-        if (a != "" && b != "") {
-            jQuery.ajax({
-                type: "POST",
-                url: "../operations/getudata.php",
-                data: { getid: 1 },
-                success: function (data) {
-                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!", '../pages/MakeLetter.php');
-                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
-                    loading(true);
-                    popup(true, "Letter Added Successfully");
-                }
-            });
-        }
-        var dataa = document.getElementById('body').value;
-        dataa = '<pre>' + dataa + '</pre>';
-        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
-            jQuery.ajax({
-                url: "../operations/newLetter.php",
-                data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val(),
-                type: "POST",
-                success: function (data) {
-                    loading(false);
-                    popup(data);
-                },
-                beforeSend: function () {
-                    loading(true);
-                }
-
-            });
-        } else {
-            popup('please fill Name, Salary and Date');
-        }
-    });*/
-
     /* Function to submit an inquiry in FAQ page */
     $("#faqsubmit").on("click", function () {
         /* Getting the subject and content data */
@@ -937,54 +845,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    /*  var arr = [];
-      var counter = 0;
-      var cntr1 = 0;
-      var cntr2 = 0;
-      var cntr3 = 0;
-      var cntr4 = 0;
-
-      $("#btn2").click(function() {
-          $("#btn2").toggleClass("Letterbutton1");
-          arr.push("General HR letter");
-          counter++;
-          cntr1++;
-          if (cntr1 % 2 == 0) {
-              arr.splice(arr.indexOf("General HR letter"), 1);
-              arr.splice(arr.indexOf("General HR letter"), 1);
-          }
-      });
-      $("#btn3").click(function() {
-          $("#btn3").toggleClass("Letterbutton1");
-          arr.push("Embassy HR letter");
-          counter++;
-          cntr2++;
-          if (cntr2 % 2 == 0) {
-              arr.splice(arr.indexOf("Embassy HR letter"), 1);
-              arr.splice(arr.indexOf("Embassy HR letter"), 1);
-          }
-      });
-      $("#btn4").click(function() {
-          $("#btn4").toggleClass("Letterbutton1");
-          arr.push("Letter directed to specific organization");
-          counter++;
-          cntr3++;
-          if (cntr3 % 2 == 0) {
-              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
-              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
-          }
-      });
-      $("#btn5").click(function() {
-          $("#btn5").toggleClass("Letterbutton1");
-          arr.push("Letter to whom might concern");
-          counter++;
-          cntr4++;
-          if (cntr4 % 2 == 0) {
-              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
-              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
-          }
-      });*/
 
 
     /******************************************************************************************************************

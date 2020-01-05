@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php session_start();
 include('DB/Database.php');
 $DB = new Database();
@@ -76,8 +77,9 @@ else {
                 padding: 0vw 10vw 0vw 10vw;
             }
             table th {
-                font-weight:normal;
+                font-weight: normal;
             }
+
         @media screen and (max-width: 800px) {
             .vertical {
                 display: none;
@@ -94,7 +96,6 @@ else {
             }
             table th {
                 display: inline-block;
-                font-weight:normal;
             }
         </style>
     </head>

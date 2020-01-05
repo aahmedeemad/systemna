@@ -59,8 +59,9 @@ else if (isset($_GET['id']))
                     echo $selectedData[0]->type_name == $Name ? "value='$Add' type='text'" : "type='hidden' placeholder='$add'";
                     echo">";
                 }
+                echo "<br><br><br><br><br> ";
             }
-            echo "<br><br><br> ";
+
             echo "<br><br>";
             echo "</div>";
             ?>

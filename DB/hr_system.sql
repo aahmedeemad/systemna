@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 03:47 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Host: localhost
+-- Generation Time: Jan 05, 2020 at 04:31 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,9 +34,9 @@ CREATE TABLE `add_info` (
   `salary` int(11) DEFAULT NULL,
   `position` varchar(255) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
-  `passport_picture` tinyint(1) DEFAULT '0',
-  `n_id_picture` tinyint(1) DEFAULT '0'
+  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
+  `passport_picture` tinyint(1) DEFAULT 0,
+  `n_id_picture` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`Comment_id`, `Comment_value`, `user_id`, `Request_id`) VALUES
-(3, 'Ayhaga1', 26, 20),
+(3, 'Ayhaga1', 26, 69),
 (4, 'Ayhaga2', 26, 21),
 (5, 'Ayhaga3', 26, 23);
 
@@ -176,31 +176,6 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) VALUES
-(1, 0, 8, 'Welcome to SYSTEMNA', ''),
-(2, 0, 8, 'This is notification number 2 for user number 8', ''),
-(3, 0, 8, 'This is notification number 3 for user number 8', ''),
-(4, 1, 7, 'This is notification number 1 for user number 7', ''),
-(5, 1, 7, 'This is notification number 2 for user number 7', ''),
-(6, 1, 1, 'This is notification number 1 for user number 1', ''),
-(7, 1, 2, 'This is notification number 1 for user number 2', ''),
-(8, 1, 2, 'Welcome to SYSTEMNA', ''),
-(9, 1, 1, 'Welcome to SYSTEMNA', ''),
-(10, 0, 3, 'Welcome to SYSTEMNA', ''),
-(11, 1, 24, 'Letter Request Added Successfully', ''),
-(12, 1, 24, 'Letter Request Added Successfully', ''),
-(13, 1, 24, 'Letter Request Added Successfully', ''),
-(14, 1, 24, 'Letter Request Added Successfully', ''),
-(15, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
-(16, 1, 1, 'Your New Type of Letter Has Been Added Successfully', ''),
-(17, 1, 1, 'Your Question Has Been Added Successfully!', ''),
-(18, 0, 26, 'An action has been made to a letter request.', ''),
-(19, 0, 26, 'An action has been made to a letter request.', ''),
-(20, 0, 26, 'An action has been made to a letter request.', ''),
-(21, 0, 26, 'An action has been made to a letter request.', ''),
-(22, 1, 24, 'Your profile email change request has been accepted!', ''),
-(23, 1, 24, 'Your profile fullname change request has been accepted!', ''),
-(24, 1, 24, 'Your profile phone change request has been accepted!', ''),
-(25, 1, 24, 'Your profile ssn change request has been accepted!', ''),
 (26, 0, 3, 'Welcome to SYSTEMNA!', ''),
 (27, 0, 3, 'Congratulations you have been promoted to an QC!', ''),
 (28, 0, 1, 'Letter Request Added Successfully', ''),
@@ -244,11 +219,8 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (66, 0, 8, 'An action has been made to a letter request.', ''),
 (67, 0, 8, 'An action has been made to a letter request.', ''),
 (68, 0, 24, 'An action has been made to a letter request.', ''),
-(69, 0, 0, 'An action has been made to a letter request.', ''),
-(70, 0, 0, 'An action has been made to a letter request.', ''),
 (71, 0, 8, 'An action has been made to a letter request.', ''),
 (72, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(73, 0, 0, 'An action has been made to a letter request.', ''),
 (74, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (75, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (76, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
@@ -267,7 +239,6 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (89, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (90, 0, 1, 'An action has been made to a letter request.', ''),
 (91, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(92, 0, 0, 'An action has been made to a letter request.', ''),
 (93, 0, 2, 'You Position has been updated to sales representative', '../pages/profile.php'),
 (94, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
 (95, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
@@ -284,11 +255,8 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (106, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (107, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (108, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(109, 0, 0, 'An action has been made to a letter request.', ''),
 (110, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(111, 0, 0, 'An action has been made to a letter request.', ''),
-(112, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(113, 0, 0, 'An action has been made to a letter request.', '');
+(112, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php');
 
 -- --------------------------------------------------------
 
@@ -302,7 +270,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `additional_info` varchar(200) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -408,8 +376,7 @@ INSERT INTO `update_info` (`ID`, `UID`, `OldValue`, `Value`, `Type`, `Status`) V
 (7, 24, '123456', '123', 'password', 2),
 (8, 24, '29999999999999', '29999999999991', 'ssn', 1),
 (9, 24, '', 'cairo', 'location', 2),
-(10, 24, '', '2019-12-19', 'birthdate', 2),
-(13, 2, '', '01202820504', 'phone', 2);
+(10, 24, '', '2019-12-19', 'birthdate', 2);
 
 --
 -- Indexes for dumped tables
@@ -425,7 +392,9 @@ ALTER TABLE `add_info`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`Comment_id`);
+  ADD PRIMARY KEY (`Comment_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `Request_id` (`Request_id`);
 
 --
 -- Indexes for table `employee`
@@ -452,7 +421,8 @@ ALTER TABLE `inquiries`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `userid` (`userid`);
 
 --
 -- Indexes for table `requests`
@@ -478,7 +448,8 @@ ALTER TABLE `special_request`
 -- Indexes for table `update_info`
 --
 ALTER TABLE `update_info`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `UID` (`UID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -549,6 +520,21 @@ ALTER TABLE `add_info`
   ADD CONSTRAINT `add_info_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
 
 --
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `employee` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`Request_id`) REFERENCES `requests` (`Request_id`),
+  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `employee` (`id`),
+  ADD CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`Request_id`) REFERENCES `requests` (`Request_id`);
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `employee` (`id`);
+
+--
 -- Constraints for table `requests`
 --
 ALTER TABLE `requests`
@@ -559,6 +545,12 @@ ALTER TABLE `requests`
 --
 ALTER TABLE `special_request`
   ADD CONSTRAINT `special_request_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`Request_id`);
+
+--
+-- Constraints for table `update_info`
+--
+ALTER TABLE `update_info`
+  ADD CONSTRAINT `update_info_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `employee` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

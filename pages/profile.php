@@ -5,6 +5,7 @@ $pageTitle = "SYSTEMNA | Profile";
 <?php
 if (isset($_GET['addinfo']))
 {
+    if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
     echo '
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="../js/backend.js"></script>
@@ -20,6 +21,7 @@ else {
     include "../template/header.php"; 
     if(isset($_GET['id']))
     {
+        if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
         $noEdit = true;
         $id = $_GET['id'];
     }

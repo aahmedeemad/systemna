@@ -2,6 +2,7 @@
 $pageTitle = "SYSTEMNA | Mass Messaging"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
 $_SESSION['error'] = 'none';
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
 <style>
     @media screen and (max-width: 800px) {

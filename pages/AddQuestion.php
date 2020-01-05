@@ -1,8 +1,8 @@
 <?php
 $pageTitle = "SYSTEMNA | Add Question";
 include "../template/header.php";
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
-<?php if($_SESSION['type']=='user') header('Location:MakeLetter.php'); ?>
 <br>
 <h3> Add New Question </h3>
 <hr>

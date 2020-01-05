@@ -1,8 +1,8 @@
 <?php
 $pageTitle = "SYSTEMNA | Letters";
 include "../template/header.php";
+if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
-<?php if($_SESSION['type']=='user') header('Location:lettertypes.php'); ?>
 
 <!-- ADD "Add new type of letter if Admin(hr) -->
 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div class="pages_edit" id="add_letter">Add new type of letter</div></div>');}?>

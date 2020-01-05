@@ -402,7 +402,7 @@ $(document).ready(function () {
             $("#passwordEdit").attr("type", "text");
         }
     });
-    
+
     function uploadPhoto(elementID, url, imgSrc) {
          var input = document.getElementById(elementID);
         file = input.files[0];
@@ -440,7 +440,7 @@ $(document).ready(function () {
     /******************************************** START PN (Passport And National ID) ********************************************/
 
     /* upload passport photo */
-    
+
     $(".passport-picture-input").on("change", function () {
         uploadPhoto("passport-picture-input", "../operations/uploadPassportImage.php", ".passport-picture")
     });
@@ -448,7 +448,7 @@ $(document).ready(function () {
     $(".passport-camera-button").on("click", function () {
         $(".passport-picture-input").click();
     });
-    
+
     /* upload National ID photo */
     $(".national-picture-input").on("change", function () {
         uploadPhoto("national-picture-input", "../operations/uploadNationalImage.php", ".national-picture");
@@ -570,7 +570,7 @@ $(document).ready(function () {
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
         if (selected == "username") selection = 2;
-        $("#Display tr").each(function () { // for every row 
+        $("#Display tr").each(function () { // for every row
             var found = "false";
             var x = $(this).find("td:eq(" + selection + ")"); // search in selected column
             if (
@@ -585,7 +585,7 @@ $(document).ready(function () {
             if (found == "true") { // if found show containing row
                 $(this).show();
             } else {
-                $(this).hide(); // if not hide row 
+                $(this).hide(); // if not hide row
                 $("#must").show();
             }
         });
@@ -883,7 +883,7 @@ $(document).ready(function () {
                         if (html == "true") {
                             popup(true, "Letter Added Successfully");
                             sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
-                            sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
+                            sendmail(id, "Letter Added", "Your Letter Request has been Added Successfully!");
                         }
                         else
                             popup(false, html);

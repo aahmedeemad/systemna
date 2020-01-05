@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             $mail->MsgHTML($body);
-            $mail->addStringAttachment(file_get_contents($contenturl), 'SYSTEMNA HR Letter.pdf');
+            $mail->addStringAttachment('Mail Content', 'SYSTEMNA HR Letter.doc');
             //$mail->Body = "$mailcontent"; /* Set the mail message body. */
             $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
             $mail->send(); /* Send the mail. */

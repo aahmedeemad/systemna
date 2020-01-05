@@ -928,8 +928,9 @@ display: inline-block;
 }
 
 .pn .pnline {
-    border-left: 2px solid black;
-    height: 93vh;
+    border-left: 2px solid #daa520;
+    height: 80vh;
+    margin-top: 1em;
 }
 
 .pn .passport-camera-button,
@@ -939,6 +940,20 @@ display: inline-block;
     border-radius: 50%;
     border: 3px solid #daa520;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .pn {
+        display: block;
+    }
+    .pn .pnline {
+        border-left: 0;
+        border-bottom: 2px solid #daa520;
+        height: 0;
+    }
+    .pn .pntitle {
+        padding: 1em;
+    }
 }
 
 /*********** Bony's QC Table ***********/

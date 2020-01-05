@@ -890,6 +890,7 @@ $(document).ready(function () {
                     },
                     beforeSend: function () {
                         loading(true);
+                        setInterval(window.location.replace("../pages/viewRequest.php"), 3000);
                     }
                 });
             } else popup(false, 'fill textfield');

@@ -15,6 +15,11 @@ $(document).ready(function () {
         return true;
     }
 
+    var CD = new Date(); /* Making a date object */
+    var curdd = CD.getDate(); /* Getting the current day */
+    var curmm = CD.getMonth() + 1; /*Getting the current month */
+    sendbdmail(curdd, curmm); /* Calling the function to send borthday mail */
+
     function sendcalmails() { /* A function to send holiday emails */
         jQuery.ajax({
             type: "POST",
@@ -23,11 +28,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data != 8) return false;
                 if (!hasOneDayPassed()) return false; /* If a day hasen't passed it won't run */
-                var CD = new Date(); /* Making a date object */
-                var curdd = CD.getDate(); /* Getting the current day */
-                var curmm = CD.getMonth() + 1; /*Getting the current month */
+                /* Adding the holidays in Egypt */
                 var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
-                sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
                 /* Setting the subject and content of mail and notification*/
                 var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
                 var mailsubj = "Happy Holiday";
@@ -77,6 +79,7 @@ $(document).ready(function () {
             url: "../operations/getudata.php",
             data: { getbd: 1 },
             success: function (data) {
+                if (!hasOneDayPassed()) return false; /* If a day hasen't passed it won't run */
                 birthday = data;
                 jQuery.ajax({
                     type: "POST",

@@ -4,12 +4,16 @@ include "../template/header.php";
 ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $priority=$_POST['priority'];
     $salary=$_POST['salary'];
     $date=date('Y/m/d h:i:s');
     $type_name=$_POST['type_name'];
-    $sql="UPDATE requests SET priority = " . $priority .  " , salary = " . $salary . " , date = '" . $date . "' , type_name = '" . $type_name .  "' WHERE Request_id = " . $_POST['id'];
+    echo $type_name;
+    $Additional=$_POST[$type_name];
+    if($Additional==null || $Additional==""){
+        $Additional="0";
+    }
+    $sql="UPDATE requests SET additional_info = '" . $_POST[str_replace(' ', '_', $_POST['type_name'])] .  "' , salary = " . $salary . " , date = '" . $date . "' , type_name = '" . $type_name .  "', priority = " . $priority . " WHERE Request_id = " . $_POST['id'];
     $DB->query($sql);
     $DB->execute();
     header('Location: viewRequest.php');
@@ -42,13 +46,21 @@ else if (isset($_GET['id']))
                 $Name=$x[$i]->Name;
                 $btnid=$x[$i]->Type_id;
                 $desc=$x[$i]->description;
+                $add=$x[$i]->additional_info;
                 echo "<div id='columnAddRequest' style='background-color:#EEE8AA;'>";
                 echo "<br><br>";
-                echo"<label><input type='radio' name='type_name' id='buttonsletter' value='$Name' ";
+                echo"<label><input type='radio' onclick='showfield(this.value)' name='type_name' id='buttonsletter' value='$Name' ";
                 echo $selectedData[0]->type_name == $Name ? 'checked' : '';
                 echo "> $Name ($desc) </label>" ;
-                echo "<br><br><br><br><br><br> ";
+                echo "<br> ";
+                if($add !='0'){
+                    $Add=$selectedData[0]->additional_info;
+                    echo "<input class='fields' style='width:80%' id='$Name' name='$Name'";
+                    echo $selectedData[0]->type_name == $Name ? "value='$Add' type='text'" : "type='hidden' placeholder='$add'";
+                    echo">";
+                }
             }
+            echo "<br><br><br> ";
             echo "<br><br>";
             echo "</div>";
             ?>
@@ -67,9 +79,33 @@ else if (isset($_GET['id']))
                 <input type="radio" name="salary" id ="rdbtn4" value="0" <?php echo $selectedData[0]->salary == 0 ? 'checked' : '' ;?>> Without Salary
             </label>
             <br><br><br><br>
-            <input type="submit" id="editLetterButton" value="UPDATE!">
+            <input type="submit" onclick="return check()" id="editLetterButton" value="UPDATE!">
         </div>
     </form>
+
+    <script>
+        function showfield(id){
+            var check=document.getElementById(id);
+            var fields = document.getElementsByClassName("fields");
+            for (var i = 0; i < fields.length; i++){
+                fields[i].type = "hidden";
+            }
+            if (check!=null ){
+                //  alert(id);
+                document.getElementById(id).type='text';
+            }
+        }
+        function check(){
+            var  type_name = $("#buttonsletter:checked").val();
+            var x = document.getElementById(type_name).value;
+            if(x=="" || x==null){
+                alert('fill additional info');
+                return false;
+
+            }
+            else return true;
+        }
+    </script>
     <?php include "../template/footer.php";
 
     ?>

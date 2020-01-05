@@ -23,7 +23,7 @@ $mail->setFrom('systemnamiu@gmail.com', $_SESSION["name"] . ' from SYSTEMNA'); /
 $mail->CharSet = 'utf-8';
 $mail->isHTML(true);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
     if ($_POST['type'] == "notiall")
     {
         try {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (isset($_POST['notification'])) {
                     $notification = filter_var($_POST['notification'], FILTER_SANITIZE_STRING);
                     $uid = $x[$i]->id;
-                     /* SQL query to set the data into the DB */
+                    /* SQL query to set the data into the DB */
                     $sql = "INSERT INTO notifications (status, userid, notidata, notihref) VALUES ('0','$uid','$notification','')";
                     $DB->query($sql); /* Using the query function made in DB/Database.php */
                     $DB->execute(); /* Using the excute function made in DB/Database.php */
@@ -243,6 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else if ($_POST['type'] == "sendlettermail")
     {
         try {
+            print_r($_POST);
             $uid = $_SESSION["id"]; /* Getting the user ID */
             $sql = "SELECT * FROM employee WHERE id='$uid' "; /* SQL query to get the data from the DB */
             $DB->query($sql); /* Using the query function made in DB/Database.php */
@@ -256,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Subject = "$mailsubject"; /* Set the subject. */
             $email_vars = array(
                 'name' => $uname,
-                'content' => $mailcontent,
+                'content' => $_POST['data'],
             );
             /* Importing the mail template */
             $body = file_get_contents('../template/htmlemail.html');
@@ -267,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             $mail->MsgHTML($body);
-            $mail->addStringAttachment('Mail Content', 'SYSTEMNA HR Letter.doc');
+            $mail->addStringAttachment($_POST['data'], 'SYSTEMNA HR Letter.doc');
             //$mail->Body = "$mailcontent"; /* Set the mail message body. */
             $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
             $mail->send(); /* Send the mail. */

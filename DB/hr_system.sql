@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2020 at 04:31 AM
+-- Generation Time: Jan 05, 2020 at 12:00 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -46,6 +46,7 @@ CREATE TABLE `add_info` (
 INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `position`, `location`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
 (1, '2019-11-04', 45454, 'marketing manager', '', 1, 0, 0),
 (2, '2019-11-11', 215487, 'sales representative', '', 1, 0, 0),
+(3, NULL, NULL, '', NULL, 0, 0, 0),
 (6, NULL, 9999999, '', '', 0, 0, 0),
 (7, NULL, 20, '', NULL, 0, 0, 0),
 (8, NULL, 10000, 'accountant', NULL, 0, 0, 0),
@@ -100,16 +101,15 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `start_date`, `accepted`, `active`, `privilege`) VALUES
-(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '', '225999999', '2019-12-24', 1, 1, 'admin'),
-(2, 'Bony', 'Bony', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', '0000-00-00', 1, 1, 'qc'),
-(3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', '2020-01-05', 1, 1, 'user'),
-(6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', '0000-00-00', 0, 1, 'user'),
-(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', '0000-00-00', 0, 1, 'user'),
-(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', '2019-12-12', 1, 1, 'admin'),
-(24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', '0000-00-00', 1, 1, 'admin'),
-(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', '0000-00-00', 1, 1, 'admin'),
-(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', '0000-00-00', 1, 1, 'user'),
-(27, NULL, '', '', '', '', '', '0000-00-00', NULL, NULL, NULL);
+(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '01178963251', '23456718360310', '2019-12-24', 1, 1, 'admin'),
+(2, 'Bony', 'Bony', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '01002876349', '23456789023361', '0000-00-00', 1, 0, 'qc'),
+(3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '01148526987', '23456789023362', '2020-01-05', 1, 1, 'admin'),
+(6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '01248610335', '23456789023363', '0000-00-00', 0, 1, 'user'),
+(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '01278632149', '23456789023342', '0000-00-00', 0, 1, 'user'),
+(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '23456789123773', '2019-12-12', 1, 1, 'admin'),
+(24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark.refaat.ramzy@gmail.com', '01278249244', '29999999999991', '0000-00-00', 1, 1, 'admin'),
+(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '23456789123453', '0000-00-00', 1, 1, 'admin'),
+(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '22345678912347', '0000-00-00', 1, 1, 'user');
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (65, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (66, 0, 8, 'An action has been made to a letter request.', ''),
 (67, 0, 8, 'An action has been made to a letter request.', ''),
-(68, 0, 24, 'An action has been made to a letter request.', ''),
+(68, 1, 24, 'An action has been made to a letter request.', ''),
 (71, 0, 8, 'An action has been made to a letter request.', ''),
 (72, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (74, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
@@ -256,7 +256,16 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (107, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (108, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (110, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(112, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php');
+(112, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(114, 1, 24, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(115, 0, 3, 'You salary has been updated to 123 EGP.', '../pages/profile.php'),
+(116, 0, 3, 'Congratulations you have been promoted to an QC!', '../pages/profile.php'),
+(117, 0, 3, 'you have been demoted to an user!', '../pages/profile.php'),
+(118, 0, 26, 'Congratulations you have been promoted to an QC!', '../pages/profile.php'),
+(119, 0, 26, 'you have been demoted to an user!', '../pages/profile.php'),
+(120, 0, 3, 'Congratulations you have been promoted to an HR!', '../pages/profile.php'),
+(121, 0, 3, 'Your profile birthdate change request has been rejected!', '../pages/profile.php'),
+(122, 0, 3, 'Your profile birthdate change request has been accepted!', '../pages/profile.php');
 
 -- --------------------------------------------------------
 
@@ -287,18 +296,16 @@ INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, 
 (30, 26, 0, 0, 1, '2019-12-15 22:00:00', '', 'Embassy HR Letter'),
 (35, 2, 1, 0, 1, '2019-12-20 22:00:00', '', 'HR Letter to whom it may concern'),
 (36, 2, 0, 0, 0, '2019-12-21 00:15:31', '', 'Embassy HR Letter'),
-(37, 2, 2, 1, 0, '2019-12-21 00:16:25', '', 'General HR Letter'),
-(38, 8, 1, 1, 1, '2019-12-21 13:25:56', '', 'General HR Letter'),
+(37, 2, 1, 1, 0, '2019-12-21 00:16:25', '', 'General HR Letter'),
 (41, 24, 1, 1, 1, '2019-12-30 08:09:26', '', 'HR Letter directed to specific organization'),
-(44, 1, 2, 1, 1, '2019-12-30 23:22:39', '', 'Embassy HR Letter'),
+(44, 1, 1, 1, 1, '2019-12-30 23:22:39', '', 'Embassy HR Letter'),
 (69, 8, 1, 0, 0, '2020-01-03 02:39:26', 'medical', 'Other'),
-(84, 1, 1, 0, 1, '2020-01-02 23:34:25', 'two', 'medical letter'),
 (85, 1, 1, 1, 1, '2020-01-02 23:46:43', 'three', 'medical letter'),
 (86, 1, 1, 1, 1, '2020-01-03 01:27:38', 'i need a letter for vacation two days', 'Other'),
 (87, 8, 1, 0, 0, '2020-01-04 23:46:21', 'Sudan', 'Embassy HR Letter'),
-(88, 8, 2, 1, 0, '2020-01-05 00:04:26', '0', 'General HR Letter'),
-(89, 8, 2, 0, 1, '2020-01-05 01:19:59', '0', 'Embassy HR Letter'),
-(90, 8, 1, 0, 1, '2020-01-05 01:23:16', 'medical letter', 'Other'),
+(88, 8, 2, 1, 0, '2020-01-05 00:04:26', '', 'General HR Letter'),
+(89, 8, 0, 0, 1, '2020-01-05 01:19:59', '', 'Embassy HR Letter'),
+(90, 8, 2, 0, 1, '2020-01-05 01:23:16', 'medical letter', 'Other'),
 (92, 8, 1, 1, 1, '2020-01-05 01:39:51', 'test test', 'Other');
 
 -- --------------------------------------------------------
@@ -373,10 +380,9 @@ INSERT INTO `update_info` (`ID`, `UID`, `OldValue`, `Value`, `Type`, `Status`) V
 (4, 24, 'mark@gmail.com', 'mark@gmail.comm', 'email', 2),
 (5, 24, '01278249244', '012782492442', 'phone', 1),
 (6, 24, 'mark', 'markk', 'username', 2),
-(7, 24, '123456', '123', 'password', 2),
 (8, 24, '29999999999999', '29999999999991', 'ssn', 1),
 (9, 24, '', 'cairo', 'location', 2),
-(10, 24, '', '2019-12-19', 'birthdate', 2);
+(10, 3, '', '2019-12-19', 'birthdate', 2);
 
 --
 -- Indexes for dumped tables
@@ -483,13 +489,13 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `requests_types`

@@ -5,6 +5,7 @@ $pageTitle = "SYSTEMNA | Profile";
 <?php
 if (isset($_GET['addinfo']))
 {
+    session_start();
     if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
     echo '
         <script src="../js/jquery-3.4.1.min.js"></script>

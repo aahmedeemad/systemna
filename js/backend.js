@@ -603,27 +603,27 @@ $(document).ready(function () {
     function search_table(value) {
         var selected = $("#choice")
             .children("option:selected")
-            .val();
-        var selection;
+            .val(); // get selected choice from drop down
+        var selection; //column of selection
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
         if (selected == "username") selection = 2;
-        $("#Display tr").each(function () {
+        $("#Display tr").each(function () { // for every row 
             var found = "false";
-            var x = $(this).find("td:eq(" + selection + ")");
+            var x = $(this).find("td:eq(" + selection + ")"); // search in selected column
             if (
                 x
                     .text()
                     .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                    .indexOf(value.toLowerCase()) >= 0 //check if input exist in table
             ) {
                 found = "true";
             }
 
-            if (found == "true") {
+            if (found == "true") { // if found show containing row
                 $(this).show();
             } else {
-                $(this).hide();
+                $(this).hide(); // if not hide row 
                 $("#must").show();
             }
         });
@@ -633,22 +633,20 @@ $(document).ready(function () {
         var thisBtn = $(this);
         var thisTd = $(this)
             .closest("td");
-        var Eindex = $(this)
+        var Eindex = $(this) // row index of button
             .closest("tr")
             .index();
-        var idMod = $("#Display")
+        var idMod = $("#Display") // id cell in same row
             .find("tr:eq(" + Eindex + ")")
             .find("td:eq(1)")
             .text();
         var typeM;
-        var otherButton;
-        if ($(this).val() == "+HR") {
+        if ($(this).val() == "+HR") { // if hr button clicked chane type to admin
             typeM = "admin";
-            otherButton = 6;
-        } else if ($(this).val() == "+QC") {
+        } else if ($(this).val() == "+QC") {  // if +qc button clicked chane type to qc
             typeM = "qc";
         }
-        else if ($(this).val() == "-QC") {
+        else if ($(this).val() == "-QC") {  // if -qc button clicked chane type to qc
             typeM = "user";
         }
         loading(true);
@@ -658,22 +656,22 @@ $(document).ready(function () {
             data: { type: typeM, mid: idMod },
             success: function (msg) {
                 loading(false);
-                if (msg != 1) popup(false, "User needs to be accepted to do this action!");
+                if (msg != 1) popup(false, "User needs to be accepted to do this action!"); // check if user is accepted first
                 else {
                     if (thisBtn.val() == "+HR") {
-                        thisBtn.closest('tr').hide();
+                        thisBtn.closest('tr').hide(); // hide table row if promoted to admin
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
                         thisBtn.val('-QC');
-                        thisBtn.css("background-color", "#ff0000");
+                        thisBtn.css("background-color", "#ff0000"); // if promoted to qc change colour and value of button
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
                     }
                     else if (thisBtn.val() == "-QC") {
                         thisBtn.val('+QC');
-                        thisBtn.css("background-color", "#1c87c9");
+                        thisBtn.css("background-color", "#1c87c9"); // if promoted to qc change colour and value of button
                         sendnoti(idMod, "you have been demoted to an user!", '../pages/profile.php');
                         sendmail(idMod, "Demotion", "You have been demoted to user!");
                     }
@@ -685,18 +683,18 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
+            .find("tr:eq(" + Row.index() + ")") // get id of user
             .find("td:eq(2)")
             .text();
-        var Type = $("#tblRequests")
+        var Type = $("#tblRequests") // type of data to be changed
             .find("tr:eq(" + Row.index() + ")")
             .find("td:eq(6)")
             .text();
-        var Rid = $("#tblRequests")
+        var Rid = $("#tblRequests") // id of request
             .find("tr:eq(" + Row.index() + ")")
             .find("td:eq(1)")
             .text();
-        var Value = $("#tblRequests")
+        var Value = $("#tblRequests") // new value to be added
             .find("tr:eq(" + Row.index() + ")")
             .find("td:eq(5)")
             .text();
@@ -722,7 +720,7 @@ $(document).ready(function () {
             .text();
         var Type = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq()")
+            .find("td:eq(6)")
             .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
@@ -746,7 +744,7 @@ $(document).ready(function () {
 
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
-        var Rid = $("#Display")
+        var Rid = $("#Display") // get id of user
             .find("tr:eq(" + Row.index() + ")")
             .find("td:eq(1)")
             .text();

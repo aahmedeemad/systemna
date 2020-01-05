@@ -1285,6 +1285,7 @@ $(document).ready(function () {
                     },
                     beforeSend: function () {
                         loading(true);
+                        setInterval(window.location.replace("../pages/allLetters.php"), 1000);
                     }
 
                 });

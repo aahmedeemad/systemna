@@ -61,8 +61,8 @@ include "../template/header.php";
                 <td>{$phone}</td>";
     ?>
     <td><a href="../operations/DeleteTable.php" id="wid=<?php echo $x[$i]->id ;?>" class='deleteConfirmation EditBtn'>Delete</a></td>
-    <td><input type= submit class ='user-accept' value='Accept'></td>
-    <td><input type= submit class ='user-reject' value='Reject'></td>
+    <td><input type= 'button' class ='user-accept' value='Accept'></td>
+    <td><input type= 'button' class ='user-reject' value='Reject'></td>
     <?php
                 echo "</tr>";
             }

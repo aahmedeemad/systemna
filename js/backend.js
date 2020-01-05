@@ -482,7 +482,6 @@ $(document).ready(function () {
     });
 
     $(".sal").on("focusout", function (event) {
-
         var tsal = $(this);  // save salary object
         $(this).removeClass("input");  //remove input class
         var row = $(this).closest("tr");
@@ -508,7 +507,8 @@ $(document).ready(function () {
                         tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
                         loading(false);
                         popup(true, "Salary Updated!");
-                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php'); // send notification with salary change
+                        sendnoti(c.text(), "Your salary has been updated to " + test2 + " EGP.", '../pages/profile.php'); // send notification with salary change
+                        sendmail(c.text(), "Salary Update", "Your salary has been updated to " + test2 + " EGP.");
                     }
                 }
             });
@@ -529,7 +529,6 @@ $(document).ready(function () {
     });
 
     $(".position").on("focusout", function (event) {
-
         var tsal = $(this);
         $(this).removeClass("input");
         var row = $(this).closest("tr");
@@ -551,7 +550,8 @@ $(document).ready(function () {
                     tsal.html("<div>" + tsal.text() + "</div>");
                     loading(false);
                     popup(true, "Position Updated!");
-                    sendnoti(c.text(), "You Position has been updated to " + test2, '../pages/profile.php');
+                    sendnoti(c.text(), "Your Position has been updated to " + test2, '../pages/profile.php');
+                    sendmail(c.text(), "Position Update", "Your Position has been updated to " + test2);
                 }
             }
         });
@@ -886,7 +886,7 @@ $(document).ready(function () {
                         if (html == "true") {
                             popup(true, "Letter Added Successfully");
                             sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
-                            sendmail(id, "Letter Added", "Your Letter Request has been Added Successfully!");
+                            sendmail(id, "Letter Requested", "Your Letter Request has been Added Successfully!");
                         }
                         else
                             popup(false, html);

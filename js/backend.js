@@ -108,6 +108,10 @@ $(document).ready(function () {
         $('#notifications').fadeOut('fast', 'linear');
     });
 
+    //$('#notifications').click(function () { /* Do nothing when notifications are clicked */
+    //    return false;
+    //});
+
 
     /******* Loading circle when get data with ajax *******/
     function loading(status) {
@@ -126,27 +130,22 @@ $(document).ready(function () {
         head = head == true ? "Success" : "Failed";
         $(".popup-notification h2").text(head);
         $(".popup-content").html(body);
-        $(".modalPopup").css("display", "block");
+        $(".modal").css("display", "block");
     }
 
 
     /******* Confirmation delete popup *******/
-    function confirmation(body, url, data, tag) {
+    function confirmation(body, url, data) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function () {
             jQuery.ajax({
-                type: "POST",
+                type: "GET",
                 url: url,
-                data: data,
                 success: function (html) {
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
-                        $(tag).hide();
-                    }
-                    else if (html == "all") {
-                        $(".modalConfirmation").css("display", "none");
-                        window.location.reload();
+                        $(data).hide();
                     }
                     else {
                         $(".modalConfirmation").css("display", "none");
@@ -161,7 +160,7 @@ $(document).ready(function () {
     /******* Confirm delete popup *******/
     $(".deleteConfirmation").on("click", function (e) {
         e.preventDefault(); /* to prevent href action */
-        confirmation("Are you sure ?", this.href, this.id, $(this).closest('tr')); /* show to confirmation popup */
+        confirmation("Are you sure ?", this.href, $(this).closest('tr')); /* show to confirmation popup */
     });
 
     /******* Show / Hide side navigation *******/
@@ -181,10 +180,7 @@ $(document).ready(function () {
     });
 
     function dark() { /* Changing everything to dark */
-        var d = new Date();
-        d.setTime(d.getTime() + (24*60*60*1000));
-        var expires = "expires="+ d.toUTCString();
-        document.cookie = "theme=darktheme; " + expires + "; path=/;";
+        document.cookie = "theme=darktheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#2d3035");
         $("#notifications").css("color", "white");
@@ -207,16 +203,10 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #000");
         $(".profile-right-up").css("box-shadow", "5px 5px #000");
         $(".profile-right-down").css("box-shadow", "5px 5px #000");
-        $("#Comment_Value").css("color", "white");
-        $(".modal-content").css("background-color", "#585858");
-        $(".modal-content").css("color", "white");
     }
 
     function light() { /* Changing everything to light */
-        var d = new Date();
-        d.setTime(d.getTime() + (24*60*60*1000));
-        var expires = "expires="+ d.toUTCString();
-        document.cookie = "theme=lighttheme; " + expires + "; path=/;";
+        document.cookie = "theme=lighttheme; expires= Thu, 01 Jan 2021 00:00:00 UTC; path=/;";
         $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
         $("#notifications").css("color", "#212529");
@@ -239,9 +229,6 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
-        $("#Comment_Value").css("color", "black");
-        $(".modal-content").css("background-color", "white");
-        $(".modal-content").css("color", "black");
     }
 
     function getCookie(name) { /* Getting the desiered cookie value by its name */
@@ -259,14 +246,14 @@ $(document).ready(function () {
     };
 
     $(window).click(function (e) {
-        if (e.target == $(".modalPopup")[0]) {
-            $(".modalPopup").css("display", "none");
+        if (e.target == $(".modal")[0]) {
+            $(".modal").css("display", "none");
         }
     });
 
     /* Close button in popup */
     $(".popup-close").on("click", function () {
-        $(".modalPopup").css("display", "none");
+        $(".modal").css("display", "none");
     });
 
 
@@ -333,6 +320,9 @@ $(document).ready(function () {
             success: function (html) {
                 loading(false);
                 if (html == "true") {
+                    if (type == "fullname") fullnameToggle();
+                    else if (type == "ssn" || type == "bdate" || type == "location") basicInfoToggle();
+                    else if (type == "email" || type == "phone") contactInfoToggle();
                     popup(true, "Your Request Has Been Submitted Successfully");
                 } else { popup(false, html); }
             },
@@ -347,7 +337,6 @@ $(document).ready(function () {
         var defaultFullname = $("#fullnameEdit")[0]["defaultValue"];
         var id = $("#id").text();
         if (fullname != defaultFullname) submitEdit(id, "fullname", defaultFullname, fullname);
-        fullnameToggle();
     });
 
     $(".save-basic-info").on("click", function () {
@@ -361,7 +350,6 @@ $(document).ready(function () {
         if (ssn != defaultSSN) submitEdit(id, "ssn", defaultSSN, ssn);
         if (bdate != defaultBdate) submitEdit(id, "bdate", defaultBdate, bdate);
         if (loc != defaultLoc) submitEdit(id, "location", defaultLoc, loc);
-        basicInfoToggle();
     });
 
     $(".save-contact-info").on("click", function () {
@@ -372,7 +360,6 @@ $(document).ready(function () {
         var id = $("#id").text();
         if (email != defaultEmail) submitEdit(id, "email", defaultEmail, email);
         if (phone != defaultPhone) submitEdit(id, "phone", defaultPhone, phone);
-        contactInfoToggle();
     });
 
     $(".save-company-info").on("click", function () {
@@ -402,22 +389,22 @@ $(document).ready(function () {
             $("#passwordEdit").attr("type", "text");
         }
     });
-    
-    function uploadPhoto(elementID, url, imgSrc) {
-         var input = document.getElementById(elementID);
+
+    function uploadProfilePicture() {
+        var input = document.getElementById("profile-picture-input");
         file = input.files[0];
         if (file != undefined) {
             formData = new FormData();
             if (file.type.match(/.jpeg/)) {
                 formData.append("image", file);
                 $.ajax({
-                    url: url,
+                    url: "../operations/uploadUserImage.php",
                     type: "POST",
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        $(imgSrc).attr("src", data);
+                        $(".profile-picture").attr("src", data);
                         window.location.reload();
                     }
                 });
@@ -426,7 +413,7 @@ $(document).ready(function () {
     }
 
     $(".profile-picture-input").on("change", function () {
-        uploadPhoto("profile-picture-input", "../operations/uploadUserImage.php", ".profile-picture");
+        uploadProfilePicture();
     });
 
     $(".profile-camera-button").on("click", function () {
@@ -439,19 +426,61 @@ $(document).ready(function () {
 
     /******************************************** START PN (Passport And National ID) ********************************************/
 
-    /* upload passport photo */
-    
+    function uploadPassportPicture() {
+        var input = document.getElementById("passport-picture-input");
+        file = input.files[0];
+        if (file != undefined) {
+            formData = new FormData();
+            if (file.type.match(/.jpeg/)) {
+                formData.append("image", file);
+                $.ajax({
+                    url: "../operations/uploadPassportImage.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $(".passport-picture").attr("src", data);
+                        window.location.reload();
+                    }
+                });
+            } else { popup(false, "Not a valid image!"); }
+        } else { popup(false, "Input something!"); }
+    }
+
     $(".passport-picture-input").on("change", function () {
-        uploadPhoto("passport-picture-input", "../operations/uploadPassportImage.php", ".passport-picture")
+        uploadPassportPicture();
     });
 
     $(".passport-camera-button").on("click", function () {
         $(".passport-picture-input").click();
     });
-    
-    /* upload National ID photo */
+
+    function uploadNationalIdPicture() {
+        var input = document.getElementById("national-picture-input");
+        file = input.files[0];
+        if (file != undefined) {
+            formData = new FormData();
+            if (file.type.match(/.jpeg/)) {
+                formData.append("image", file);
+                $.ajax({
+                    url: "../operations/uploadNationalImage.php",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $(".national-picture").attr("src", data);
+                        window.location.reload();
+                    }
+                });
+            } else { popup(false, "Not a valid image!"); }
+        } else { popup(false, "Input something!"); }
+    }
+
+
     $(".national-picture-input").on("change", function () {
-        uploadPhoto("national-picture-input", "../operations/uploadNationalImage.php", ".national-picture");
+        uploadNationalIdPicture();
     });
 
     $(".national-camera-button").on("click", function () {
@@ -461,61 +490,7 @@ $(document).ready(function () {
     /******************************************** END PN (Passport And National ID) ********************************************/
 
     var orig;
-    $(".sal").on("click", function (event) { //when the salary is clicked on
-        $(this)
-            .closest("div")
-            .attr("contenteditable", "true"); //make div of salary editable
-        $(this).focus();
-        $(this).addClass("input");  //make div look like an input field
-        orig = $(this).text();  //save original salary value
-        $(this).keyup(function (e) {
-            var test = $(this)
-            .text();
-            if (!test.match(/^[0-9]+$/)) { // if input value is not a number
-                $(this).removeClass("input"); //remove class input
-                $(this).addClass("wr");  //add class wrong
-            } else {
-                $(this).removeClass("wr");  // remove class wrong
-                $(this).addClass("input");  // add class input
-            }
-        });
-    });
-
-    $(".sal").on("focusout", function (event) {
-
-        var tsal = $(this);  // save salary object
-        $(this).removeClass("input");  //remove input class
-        var row = $(this).closest("tr");
-        var rowIndex = row.index();
-        var c = $("#Display")
-        .find("tr:eq(" + rowIndex + ")")
-        .find("td:eq(1)");  // get the cell contatining user id
-        var test2 = $(this).text();
-        //test2 = test2.replace("<br>", "");
-
-        if (!test2.match(/^[0-9]+$/)) {
-            popup(false, "Salary must be a number!");  // give error if salary not a number
-        } else {
-            loading(true);
-            $.ajax({
-                method: "POST",
-                url: "../operations/EditTable.php",
-                data: { test: test2, id: c.text() }, // send id and salary value in post by ajax
-                success: function (msg) {
-                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
-                    // if user not accepted give error + set salary value to original
-                    else {
-                        tsal.html("<div>" + tsal.text() + "</div>"); // resets html in case user presses on breakline
-                        loading(false);
-                        popup(true, "Salary Updated!");
-                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php'); // send notification with salary change
-                    }
-                }
-            });
-        }
-    });
-
-    $(".position").on("click", function (event) {
+    $(".sal").on("click", function (event) {
         $(this)
             .closest("div")
             .attr("contenteditable", "true");
@@ -525,10 +500,17 @@ $(document).ready(function () {
         $(this).keyup(function (e) {
             var test = $(this)
             .text();
+            if (!test.match(/^[0-9]+$/)) {
+                $(this).removeClass("input");
+                $(this).addClass("wr");
+            } else {
+                $(this).removeClass("wr");
+                $(this).addClass("input");
+            }
         });
     });
 
-    $(".position").on("focusout", function (event) {
+    $(".sal").on("focusout", function (event) {
 
         var tsal = $(this);
         $(this).removeClass("input");
@@ -540,22 +522,25 @@ $(document).ready(function () {
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
-        loading(true);
-        $.ajax({
-            method: "POST",
-            url: "../operations/EditTable.php",
-            data: { position: test2, id: c.text() },
-            success: function (msg) {
-                if (msg == '0') { popup(false, "User needs to be accepted to update his position!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
-                else {
-                    tsal.html("<div>" + tsal.text() + "</div>");
-                    loading(false);
-                    popup(true, "Position Updated!");
-                    sendnoti(c.text(), "You Position has been updated to " + test2, '../pages/profile.php');
+        if (!test2.match(/^[0-9]+$/)) {
+            popup(false, "Salary must be a number!");
+        } else {
+            loading(true);
+            $.ajax({
+                method: "POST",
+                url: "../operations/EditTable.php",
+                data: { test: test2, id: c.text() },
+                success: function (msg) {
+                    if (msg == '0') { popup(false, "User needs to be accepted to update his salary!"); loading(false); tsal.text(orig); tsal.html("<div>" + tsal.text() + "</div>"); }
+                    else {
+                        tsal.html("<div>" + tsal.text() + "</div>");
+                        loading(false);
+                        popup(true, "Salary Updated!");
+                        sendnoti(c.text(), "You salary has been updated to " + test2 + " EGP.", '../pages/profile.php');
+                    }
                 }
-            }
-        });
-
+            });
+        }
     });
 
     $("#tblsearch").keyup(function () {
@@ -564,28 +549,28 @@ $(document).ready(function () {
 
     function search_table(value) {
         var selected = $("#choice")
-            .children("option:selected")
-            .val(); // get selected choice from drop down
-        var selection; //column of selection
+        .children("option:selected")
+        .val();
+        var selection;
         if (selected == "email") selection = 3;
         if (selected == "ssn") selection = 4;
         if (selected == "username") selection = 2;
-        $("#Display tr").each(function () { // for every row 
+        $("#Display tr").each(function () {
             var found = "false";
-            var x = $(this).find("td:eq(" + selection + ")"); // search in selected column
+            var x = $(this).find("td:eq(" + selection + ")");
             if (
                 x
-                    .text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0 //check if input exist in table
+                .text()
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
 
-            if (found == "true") { // if found show containing row
+            if (found == "true") {
                 $(this).show();
             } else {
-                $(this).hide(); // if not hide row 
+                $(this).hide();
                 $("#must").show();
             }
         });
@@ -594,21 +579,23 @@ $(document).ready(function () {
     $(".modify").on("click", function () {
         var thisBtn = $(this);
         var thisTd = $(this)
-            .closest("td");
-        var Eindex = $(this) // row index of button
-            .closest("tr")
-            .index();
-        var idMod = $("#Display") // id cell in same row
-            .find("tr:eq(" + Eindex + ")")
-            .find("td:eq(1)")
-            .text();
+        .closest("td");
+        var Eindex = $(this)
+        .closest("tr")
+        .index();
+        var idMod = $("#Display")
+        .find("tr:eq(" + Eindex + ")")
+        .find("td:eq(1)")
+        .text();
         var typeM;
-        if ($(this).val() == "+HR") { // if hr button clicked chane type to admin
+        var otherButton;
+        if ($(this).val() == "+HR") {
             typeM = "admin";
-        } else if ($(this).val() == "+QC") {  // if +qc button clicked chane type to qc
+            otherButton = 6;
+        } else if ($(this).val() == "+QC") {
             typeM = "qc";
         }
-        else if ($(this).val() == "-QC") {  // if -qc button clicked chane type to qc
+        else if ($(this).val() == "-QC") {
             typeM = "user";
         }
         loading(true);
@@ -618,22 +605,22 @@ $(document).ready(function () {
             data: { type: typeM, mid: idMod },
             success: function (msg) {
                 loading(false);
-                if (msg != 1) popup(false, "User needs to be accepted to do this action!"); // check if user is accepted first
+                if (msg != 1) popup(false, "User needs to be accepted to do this action!");
                 else {
                     if (thisBtn.val() == "+HR") {
-                        thisBtn.closest('tr').hide(); // hide table row if promoted to admin
+                        thisBtn.closest('tr').hide();
                         sendnoti(idMod, "Congratulations you have been promoted to an HR!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an HR!");
                     }
                     else if (thisBtn.val() == "+QC") {
                         thisBtn.val('-QC');
-                        thisBtn.css("background-color", "#ff0000"); // if promoted to qc change colour and value of button
+                        thisBtn.css("background-color", "#ff0000");
                         sendnoti(idMod, "Congratulations you have been promoted to an QC!", '../pages/profile.php');
                         sendmail(idMod, "Congratulations on your Promotion", "Congratulations you have been promoted to an QC!");
                     }
                     else if (thisBtn.val() == "-QC") {
                         thisBtn.val('+QC');
-                        thisBtn.css("background-color", "#1c87c9"); // if promoted to qc change colour and value of button
+                        thisBtn.css("background-color", "#1c87c9");
                         sendnoti(idMod, "you have been demoted to an user!", '../pages/profile.php');
                         sendmail(idMod, "Demotion", "You have been demoted to user!");
                     }
@@ -645,21 +632,21 @@ $(document).ready(function () {
     $(".accept").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")") // get id of user
-            .find("td:eq(2)")
-            .text();
-        var Type = $("#tblRequests") // type of data to be changed
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
-        var Rid = $("#tblRequests") // id of request
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
-        var Value = $("#tblRequests") // new value to be added
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(5)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
+        var Type = $("#tblRequests")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(6)")
+        .text();
+        var Rid = $("#tblRequests")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
+        var Value = $("#tblRequests")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(5)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -681,9 +668,9 @@ $(document).ready(function () {
         .find("td:eq(2)")
         .text();
         var Type = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(6)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq()")
+        .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
         .find("tr:eq(" + Row.index() + ")")
@@ -706,10 +693,10 @@ $(document).ready(function () {
 
     $(".user-accept").click(function () {
         var Row = $(this).closest("tr");
-        var Rid = $("#Display") // get id of user
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        var Rid = $("#Display")
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -811,6 +798,56 @@ $(document).ready(function () {
         });
     });
 
+    /*   $("#AddLetterbtn").click(function () {
+        function checkAvai() {
+            jQuery.ajax({
+                url: "AddNewLetter.php",
+                data: "Name=" + $("#Name").val(),
+                type: "POST",
+                success: function (data) { }
+            });
+        }
+        var a = document.getElementById("Name").value;
+        var b = document.getElementById("description").value;
+
+        if (a == "" || b == "") {
+            popup(false, "Please enter the Letter data correctly !");
+            return 0;
+        }
+        if (a != "" && b != "") {
+            jQuery.ajax({
+                type: "POST",
+                url: "../operations/getudata.php",
+                data: { getid: 1 },
+                success: function (data) {
+                    sendnoti(data, "Your New Type of Letter Has Been Added Successfully!", '../pages/MakeLetter.php');
+                    sendmail(data, "Letter placed", "Your New Type of Letter Has Been Added Successfully!")
+                    loading(true);
+                    popup(true, "Letter Added Successfully");
+                }
+            });
+        }
+        var dataa = document.getElementById('body').value;
+        dataa = '<pre>' + dataa + '</pre>';
+        if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
+            jQuery.ajax({
+                url: "../operations/newLetter.php",
+                data: 'body=' + dataa + '&Name=' + $("#Name").val() + '&description=' + $("#description").val(),
+                type: "POST",
+                success: function (data) {
+                    loading(false);
+                    popup(data);
+                },
+                beforeSend: function () {
+                    loading(true);
+                }
+
+            });
+        } else {
+            popup('please fill Name, Salary and Date');
+        }
+    });*/
+
     /* Function to submit an inquiry in FAQ page */
     $("#faqsubmit").on("click", function () {
         /* Getting the subject and content data */
@@ -846,6 +883,54 @@ $(document).ready(function () {
         });
     });
 
+    /*  var arr = [];
+      var counter = 0;
+      var cntr1 = 0;
+      var cntr2 = 0;
+      var cntr3 = 0;
+      var cntr4 = 0;
+
+      $("#btn2").click(function() {
+          $("#btn2").toggleClass("Letterbutton1");
+          arr.push("General HR letter");
+          counter++;
+          cntr1++;
+          if (cntr1 % 2 == 0) {
+              arr.splice(arr.indexOf("General HR letter"), 1);
+              arr.splice(arr.indexOf("General HR letter"), 1);
+          }
+      });
+      $("#btn3").click(function() {
+          $("#btn3").toggleClass("Letterbutton1");
+          arr.push("Embassy HR letter");
+          counter++;
+          cntr2++;
+          if (cntr2 % 2 == 0) {
+              arr.splice(arr.indexOf("Embassy HR letter"), 1);
+              arr.splice(arr.indexOf("Embassy HR letter"), 1);
+          }
+      });
+      $("#btn4").click(function() {
+          $("#btn4").toggleClass("Letterbutton1");
+          arr.push("Letter directed to specific organization");
+          counter++;
+          cntr3++;
+          if (cntr3 % 2 == 0) {
+              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
+              arr.splice(arr.indexOf("Letter directed to specific organization"), 1);
+          }
+      });
+      $("#btn5").click(function() {
+          $("#btn5").toggleClass("Letterbutton1");
+          arr.push("Letter to whom might concern");
+          counter++;
+          cntr4++;
+          if (cntr4 % 2 == 0) {
+              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
+              arr.splice(arr.indexOf("Letter to whom might concern"), 1);
+          }
+      });*/
+
 
     /******************************************************************************************************************
     * MakeLetter.php
@@ -856,7 +941,7 @@ $(document).ready(function () {
         var salary;
         var priority;
         var type_name;
-        var info = '0';
+        var info='0';
         var id = $("#id").val();
         if (
             ($('#rdbtn1').is(':checked') || $('#rdbtn2').is(':checked')) &&
@@ -870,21 +955,20 @@ $(document).ready(function () {
             else if ($('#rdbtn4').is(':checked')) { salary = 0; }
 
             type_name = $("input[name=Letterbuttonn]:checked").val();
-            var x = document.getElementById(type_name);
-            if (x != null) {
-                info = x.value;
+            if( $('#'+type_name).length ) {
+                info=$('#'+type_name).val();
             }
-            if (info != '') {
+            if(info !=''){
                 $.ajax({
                     type: "POST",
                     url: "../operations/addletter.php",
-                    data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter" + "&info=" + info,
+                    data: "salary=" + salary + "&priority=" + priority + "&type_name=" + type_name + "&type=addLetter"+"&info="+info,
                     success: function (html) {
                         loading(false);
                         if (html == "true") {
                             popup(true, "Letter Added Successfully");
                             sendnoti(id, "Letter Request Added Successfully!", '../pages/viewRequest.php');
-                            sendmail(id, "Letter Added", "You Letter Request has been Added Successfully!");
+                            sendmail(id, "Letter Added", "Your Letter Request has been Added Successfully!");
                         }
                         else
                             popup(false, html);
@@ -893,8 +977,7 @@ $(document).ready(function () {
                         loading(true);
                     }
                 });
-            } else popup(false, 'fill textfield');
-        } else { popup(false, "You have to select type, salary and priority"); }
+            } else popup(false,'fill textfield'); } else { popup(false, "You have to select type, salary and priority"); }
 
     });
 
@@ -1092,24 +1175,6 @@ $(document).ready(function () {
         });
     }
 
-//    /* Function to send mail with letter to user */
-//    $("#sendletteronmail").on("click", function () {
-//        $.ajax({
-//            type: "POST",
-//            url: "../operations/massmsging.php",
-//            data: "type=sendlettermail",
-//            success: function (html) {
-//                loading(false);
-//                if (html == "true") {
-//                    popup(true, "Sent");
-//                } else { popup(false, html); }
-//            },
-//            beforeSend: function () {
-//                loading(true);
-//            }
-//        });
-//    });
-
     function setCounter(type, tag) {
         $.ajax({
             type: "POST",
@@ -1146,7 +1211,7 @@ $(document).ready(function () {
                     $('#notidata').html(html).css('text-align', 'left');
                     $('#markAll').css('display', 'block');
                 } else { /* Print this message if empty */
-                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve something new.')
+                    $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
                         .css('text-align', 'center');
                     $('#markAll').css('display', 'none'); /* Hide mark all button if no notifications */
                 }
@@ -1162,14 +1227,9 @@ $(document).ready(function () {
             data: "&type=markread",
         });
         $('#noti_Counter').css('display', 'none'); /* Hiding the counter when markall is clicked */
-        $('#notidata').text('You have no new notifications, you will be alereted when you recieve something new.')
+        $('#notidata').text('You have no new notifications, you will be alereted when you recieve somethings new.')
             .css('text-align', 'center'); /* Replacing the data when markall is clicked */
         $('#markAll').css('display', 'none'); /* Hiding the markall button when markall is clicked */
-    });
-
-    /* Notifications View All function */
-    $("#viewAll").on("click", function () {
-        document.location.replace('../pages/notis.php');;
     });
 
     $("#add_letter").on("click", function () { /* Function to change page on admin only button click */
@@ -1199,28 +1259,10 @@ $(document).ready(function () {
         var p = text.includes('POSITION');
         var startdate = text.includes('START');
         var hr = text.includes('HR');
-        var additional = text.includes('ADDITIONAL');
-        var addtest;
-        var add = document.getElementById('add_info').value;
-
-        if (add == '' || add.match(/^ *$/) !== null) {
-            addtest = false;
-        }
-        else {
-
-            addtest = true;
-        }
-
-
-        if (addtest == true && additional == true && !text.includes("(.ADDITIONAL.)")) {
-            text = text.replace('ADDITIONAL', "(.ADDITIONAL.) ");
-            document.getElementById('letterBodyArea').value = text;
-        }
-
 
         if (n == true && !text.includes("(.NAME.)")) {
             text = text.replace('NAME', "(.NAME.) ");
-            document.getElementById('letterBodyArea').value = text;
+            document.getElementById('letterBodyArea').value= text;
         }
         if (s == true && !text.includes("(.SALARY.)")) {
             text = text.replace('SALARY', "(.SALARY.)");
@@ -1240,48 +1282,25 @@ $(document).ready(function () {
         }
     });
 
-    function Letter(type) {
-        var name = $("#Name").val();
-        var description = $("#description").val();
-        var letterBodyArea = $("#letterBodyArea").val();
-        var add = $("#add_info").val();
-        var id = type == "update" ? "&id=" + $("#id").val() : ""; // check if it is add or update
-        if (name == '' || description == '' || letterBodyArea == '') {
+    $("#AddLetterbtn").on("click", function () {
+        var name=document.getElementById('Name').value;
+        var description=document.getElementById('description').value;
+        if(name=='' || description ==''){
             loading(false);
-            popup(false, 'please fill all fileds.');
-        }
-        else {
-            if (add != '' || add.match(/^ *$/) == null) {
-                if (add.includes('what') || add.includes('where') || add.includes('who') || add.includes('when')) {
-                    if (letterBodyArea.includes('(.NAME.)') && letterBodyArea.includes('(.SALARY.)') && letterBodyArea.includes('(.DATE.)') && letterBodyArea.includes('(.ADDITIONAL.)')) {
-                        jQuery.ajax({
-                            url: "../operations/newLetter.php",
-                            data: 'body=' + letterBodyArea + '&Name=' + name + '&description=' + description + '&add=' + add + id,
-                            type: "POST",
-                            success: function (data) {
-                                loading(false);
-                                if (data == "Letter updated" || data == "Letter created")
-                                    popup(true, data);
-                                else
-                                    popup(false, data);
-                            },
-                            beforeSend: function () {
-                                loading(true);
-                            }
-
-                        });
-                    }
-                    else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
-                }
-                else { popup(false, 'please add valid WH question'); }
-            } else if (letterBodyArea.includes('(.NAME.)') && letterBodyArea.includes('(.SALARY.)') && letterBodyArea.includes('(.DATE.)')) {
+            popup(false,'please fill all fileds.');
+        }else{
+            var dataa=document.getElementById('letterBodyArea').value;
+            /*dataa='<pre>'+dataa+'</pre>';*/
+            if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')){
                 jQuery.ajax({
                     url: "../operations/newLetter.php",
-                    data: 'body=' + letterBodyArea + '&Name=' + name + '&description=' + description + '&add=0' + id,
-                    type: "POST",
-                    success: function (data) {
+                    data:'body='+dataa+'&Name='+$("#Name").val()+'&description='+$("#description").val(),
+                    type:"POST",
+                    success:function(data)
+                    {
                         loading(false);
-                        popup(true, data);
+                        if(data == "true") popup(true,"letter created");
+                        else popup(false,data);
                     },
                     beforeSend: function () {
                         loading(true);
@@ -1289,18 +1308,10 @@ $(document).ready(function () {
                     }
 
                 });
+            } else {
+                popup(false,'please fill Name, Salary and Date');
             }
-            else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
-        }
-    }
-
-    $("#AddLetterbtn").on("click", function () {
-        ;
-        Letter("add");
-    });
-    $("#UpdateLetterbtn").on("click", function () {
-        Letter("update");
-    });
+        } });
 
 
     /**************** LetterRequests ********************/
@@ -1319,4 +1330,17 @@ $(document).ready(function () {
             }
         });
     });
+
+    /*Forget Password Function */
+    var Reset = document.getElementById('Reset');
+    var newpass = document.getElementById('newpasshidden').value;
+    var id = document.getElementById('idhidden').value;
+    var message = document.getElementById('messagehidden').value;
+
+    Reset.onclick = function()
+    {
+        console.log("hi");
+        sendmail(id,message,"Your new Password".newpass);
+        sendnoti(id,"Temprory Password!","You can change your password from your profile");
+    }
 });

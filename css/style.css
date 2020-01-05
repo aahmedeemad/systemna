@@ -1012,4 +1012,19 @@ box-sizing: content-box;
         overflow: auto;
         display: block;
     }
+    .CommentForum
+    {
+        margin-left: 0px;
+        height: 50%;
+        width: 100%;
+        overflow: auto;
+    }
+    .CommentForum #Comment_Value
+    {
+        margin-left:30px;
+    }
+    .CommentForum #UpBttn
+    {
+        margin-left: 160px;
+    }
 }

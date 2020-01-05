@@ -5,8 +5,8 @@ $DB = new Database();
 
 if(isset($_POST['addLetter'])){
     $id=$_POST['id'];
-    $body=$_POST['body'];
-    $name=$_POST['Name'];
+    $body=filter_var($_POST['body'], FILTER_SANITIZE_STRING);
+    $name=filter_var($_POST['Name'], FILTER_SANITIZE_STRING);
     $userid=$_POST['userid'];
     try
     {

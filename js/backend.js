@@ -208,6 +208,7 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #000");
         $(".profile-right-up").css("box-shadow", "5px 5px #000");
         $(".profile-right-down").css("box-shadow", "5px 5px #000");
+        $("#Comment_Value").css("color", "white");
         $(".modal-content").css("background-color", "#585858");
         $(".modal-content").css("color", "white");
     }
@@ -236,6 +237,7 @@ $(document).ready(function () {
         $(".profile-left").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-up").css("box-shadow", "5px 5px #aaa");
         $(".profile-right-down").css("box-shadow", "5px 5px #aaa");
+        $("#Comment_Value").css("color", "black");
         $(".modal-content").css("background-color", "white");
         $(".modal-content").css("color", "black");
     }

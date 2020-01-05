@@ -745,7 +745,8 @@ box-sizing: content-box;
 #applyForLetterBtn,
 #editLetterButton,
 #updateLetter ,
-#AddLetterbtn{
+#AddLetterbtn,
+#UpBttn {
     width: 25%;
     background-color: #daa520;
     color: white;
@@ -940,7 +941,8 @@ display: inline-block;
 }
 
 /*********** Bony's QC Table ***********/
-#qcsubmit , #UpBttn {
+#qcsubmit 
+{
     background:#DAA520;
     padding: 2px 2px;
     border: 2px solid rgb(167, 163, 145);
@@ -953,14 +955,35 @@ display: inline-block;
     margin-left:20px;
 
 }
-
-#qcsubmit:hover, #UpBttn:hover {
+#qcsubmit:hover, #UpBttn:hover 
+{
     background:black;
     color: #DAA520;
 }
-
-#qccomment {
+#qccomment
+{
     margin-left:auto;
+}
+.CommentForum
+{
+    margin-left: 450px;
+    border: 1px solid gold;
+    border-radius:10px;
+    height: 30%;
+    width: 40%;
+    transition: max-height 0.2s;
+	overflow:hidden;
+    padding-top: 20px;
+}
+.CommentForum #Comment_Value
+{
+    margin-top: 10px;
+    background-color: transparent;
+    margin-left:140px;
+}
+.CommentForum #UpBttn
+{
+    margin-left:240px;
 }
 @media only screen and (max-width: 1000px) {
     #QCtitle

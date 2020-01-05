@@ -169,18 +169,34 @@ include "../template/header.php";
             url: "../operations/massmsging.php",
             data: "data=" + $("#body").html() + "&type=sendlettermail",
             success: function (html) {
-//                console.log(html);
-//                alert(html);
-//                loading(false);
-//                if (html == "true") {
-//                    popup(true, "Sent");
-//                } else { popup(false, html); }
+                loading(false);
+                if (html.includes("true")) {
+                    html = "Success";
+                }
+                else {
+                    html = "Failed";
+                }
+                $(".modal-content").css("display", "none");
+                $(".popup-notification h2").text(html);
+                $(".popup-content").html('Mail sent successfully');
+                $(".modalPopup").css("display", "block");
             },
             beforeSend: function () {
-//                loading(true);
+                loading(true);
             }
         });
     });
+
+    function loading(status) {
+        if (status == true) {
+            $(".loading").removeClass("hidden");
+            $(".content").addClass("hidden");
+        }
+        else if (status == false) {
+            $(".loading").addClass("hidden");
+            $(".content").removeClass("hidden");
+        }
+    }
 
     function Export2Doc(element, filename = ''){
 

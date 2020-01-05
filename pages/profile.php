@@ -54,7 +54,7 @@ try
             </div> <?php } ?>
         </div>
 
-        <div id="id" style="display:none"><?php echo $info[0]->id ?></div>
+        <div id="id" class="hidden"><?php echo $info[0]->id ?></div>
         <div id="fullname" class="user-name"><?php echo $info[0]->fullname; ?>
             <?php if($noEdit == false) { ?> <span class="edit edit-fullname"><i class="fas fa-pen"></i></span> <?php } ?>
         </div> 
@@ -65,7 +65,9 @@ try
         <div class="save save-fullname hidden"><span><i class="fas fa-check"></i></span></div>
         <div class="cancel cancel-fullname hidden"><span><i class="fas fa-times"></i></span></div>
         <?php } ?>
-        <div class="user-position"><?php echo strtoupper($info[0]->privilege); ?></div>
+        
+        <div class="user-privielge"><?php echo strtoupper($info[0]->privilege); ?></div>
+        <div class="user-position"><?php echo strtoupper($info[0]->position); ?></div>
         <div class="title-info">Basic Info <?php if($noEdit == false) { ?> <span class="edit edit-basic-info"><i class="fas fa-pen"></i></span> <?php } ?> </div>
         <hr>
         <div id="ssn"><i class="fas fa-id-card fa-fw"></i> <?php echo $info[0]->ssn; ?></div>
@@ -134,6 +136,4 @@ catch(Exception $e)
 }
 ?>
 
-<?php
-if($noEdit=false){
-    include "../template/footer.php"; }?>
+<?php if($noEdit=false){ include "../template/footer.php"; }?>

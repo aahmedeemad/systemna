@@ -15,6 +15,11 @@ $(document).ready(function () {
         return true;
     }
 
+    var CD = new Date(); /* Making a date object */
+    var curdd = CD.getDate(); /* Getting the current day */
+    var curmm = CD.getMonth() + 1; /*Getting the current month */
+    sendbdmail(curdd, curmm); /* Calling the function to send borthday mail */
+
     function sendcalmails() { /* A function to send holiday emails */
         jQuery.ajax({
             type: "POST",
@@ -23,11 +28,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data != 8) return false;
                 if (!hasOneDayPassed()) return false; /* If a day hasen't passed it won't run */
-                var CD = new Date(); /* Making a date object */
-                var curdd = CD.getDate(); /* Getting the current day */
-                var curmm = CD.getMonth() + 1; /*Getting the current month */
+                /* Adding the holidays in Egypt */
                 var holidays = ["07/01", "25/01", "19/04", "20/04", "25/04", "01/05", "23/05", "23/07", "29/07", "30/07", "20/08", "06/10", "28/10"];
-                sendbdmail(curdd, curmm); /* Adding the holidays in Egypt */
                 /* Setting the subject and content of mail and notification*/
                 var content = "SYSTEMNA wishes you a happy holiday, tomorrow is a day off!";
                 var mailsubj = "Happy Holiday";
@@ -77,6 +79,7 @@ $(document).ready(function () {
             url: "../operations/getudata.php",
             data: { getbd: 1 },
             success: function (data) {
+                if (!hasOneDayPassed()) return false; /* If a day hasen't passed it won't run */
                 birthday = data;
                 jQuery.ajax({
                     type: "POST",
@@ -142,8 +145,7 @@ $(document).ready(function () {
                     if (html == "true") {
                         $(".modalConfirmation").css("display", "none");
                         popup(true, "Deleted");
-                        //$(tag).hide();
-                        drow.hide();
+                        $(tag).hide();
                     }
                     else if (html == "all") {
                         $(".modalConfirmation").css("display", "none");
@@ -160,9 +162,7 @@ $(document).ready(function () {
     }
 
     /******* Confirm delete popup *******/
-    var drow;
     $(".deleteConfirmation").on("click", function (e) {
-        drow = $(this).closest('tr');
         e.preventDefault(); /* to prevent href action */
         confirmation("Are you sure ?", this.href, this.id, $(this).closest('tr')); /* show to confirmation popup */
     });
@@ -185,8 +185,8 @@ $(document).ready(function () {
 
     function dark() { /* Changing everything to dark */
         var d = new Date();
-        d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
         document.cookie = "theme=darktheme; " + expires + "; path=/;";
         $("#themeToggleBtn").html("🌝");
         $("#notifications").css("background-color", "#2d3035");
@@ -217,8 +217,8 @@ $(document).ready(function () {
 
     function light() { /* Changing everything to light */
         var d = new Date();
-        d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
         document.cookie = "theme=lighttheme; " + expires + "; path=/;";
         $("#themeToggleBtn").html("🌚");
         $("#notifications").css("background-color", "white");
@@ -329,10 +329,10 @@ $(document).ready(function () {
             type: "POST",
             url: "../operations/editProfile.php",
             data:
-                "id=" + id +
-                "&oldvalue=" + oldValue +
-                "&value=" + newValue +
-                "&type=" + type,
+            "id=" + id +
+            "&oldvalue=" + oldValue +
+            "&value=" + newValue +
+            "&type=" + type,
             success: function (html) {
                 loading(false);
                 if (html == "true") {
@@ -407,7 +407,7 @@ $(document).ready(function () {
     });
 
     function uploadPhoto(elementID, url, imgSrc) {
-        var input = document.getElementById(elementID);
+         var input = document.getElementById(elementID);
         file = input.files[0];
         if (file != undefined) {
             formData = new FormData();
@@ -473,7 +473,7 @@ $(document).ready(function () {
         orig = $(this).text();  //save original salary value
         $(this).keyup(function (e) {
             var test = $(this)
-                .text();
+            .text();
             if (!test.match(/^[0-9]+$/)) { // if input value is not a number
                 $(this).removeClass("input"); //remove class input
                 $(this).addClass("wr");  //add class wrong
@@ -490,8 +490,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");  // get the cell contatining user id
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");  // get the cell contatining user id
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
@@ -527,7 +527,7 @@ $(document).ready(function () {
         orig = $(this).text();
         $(this).keyup(function (e) {
             var test = $(this)
-                .text();
+            .text();
         });
     });
 
@@ -537,8 +537,8 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
         var rowIndex = row.index();
         var c = $("#Display")
-            .find("tr:eq(" + rowIndex + ")")
-            .find("td:eq(1)");
+        .find("tr:eq(" + rowIndex + ")")
+        .find("td:eq(1)");
         var test2 = $(this).text();
         //test2 = test2.replace("<br>", "");
 
@@ -680,18 +680,18 @@ $(document).ready(function () {
     $(".reject").click(function () {
         var Row = $(this).closest("tr");
         var Did = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(2)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(2)")
+        .text();
         var Type = $("#tblRequests")
             .find("tr:eq(" + Row.index() + ")")
             .find("td:eq(6)")
             .text();
         var Row = $(this).closest("tr");
         var Rid = $("#tblRequests")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -730,9 +730,9 @@ $(document).ready(function () {
     $(".user-reject").click(function () {
         var Row = $(this).closest("tr");
         var Rid = $("#Display")
-            .find("tr:eq(" + Row.index() + ")")
-            .find("td:eq(1)")
-            .text();
+        .find("tr:eq(" + Row.index() + ")")
+        .find("td:eq(1)")
+        .text();
         loading(true);
         $.ajax({
             method: "POST",
@@ -750,11 +750,12 @@ $(document).ready(function () {
         search_QCtable($(this).val());
     });
 
-    function search_QCtable(value) {
+    function search_QCtable(value) 
+    {
         // The Choice of Searching
         var selected = $("#choice")
-            .children("option:selected")
-            .val();
+        .children("option:selected")
+        .val();
         var selection;
         if (selected == "empname") selection = 2;
         if (selected == "requestname") selection = 3;
@@ -766,8 +767,8 @@ $(document).ready(function () {
             // Check the Lower Case letters
             if (
                 x.text()
-                    .toLowerCase()
-                    .indexOf(value.toLowerCase()) >= 0
+                .toLowerCase()
+                .indexOf(value.toLowerCase()) >= 0
             ) {
                 found = "true";
             }
@@ -1097,23 +1098,23 @@ $(document).ready(function () {
         });
     }
 
-    //    /* Function to send mail with letter to user */
-    //    $("#sendletteronmail").on("click", function () {
-    //        $.ajax({
-    //            type: "POST",
-    //            url: "../operations/massmsging.php",
-    //            data: "type=sendlettermail",
-    //            success: function (html) {
-    //                loading(false);
-    //                if (html == "true") {
-    //                    popup(true, "Sent");
-    //                } else { popup(false, html); }
-    //            },
-    //            beforeSend: function () {
-    //                loading(true);
-    //            }
-    //        });
-    //    });
+//    /* Function to send mail with letter to user */
+//    $("#sendletteronmail").on("click", function () {
+//        $.ajax({
+//            type: "POST",
+//            url: "../operations/massmsging.php",
+//            data: "type=sendlettermail",
+//            success: function (html) {
+//                loading(false);
+//                if (html == "true") {
+//                    popup(true, "Sent");
+//                } else { popup(false, html); }
+//            },
+//            beforeSend: function () {
+//                loading(true);
+//            }
+//        });
+//    });
 
     function setCounter(type, tag) {
         $.ajax({

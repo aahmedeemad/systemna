@@ -1274,10 +1274,10 @@ $(document).ready(function () {
                     else { popup(false, 'please fill Name, Salary and Date,Additional info if added'); }
                 }
                 else { popup(false, 'please add valid WH question'); }
-            } else if (dataa.includes('(.NAME.)') && dataa.includes('(.SALARY.)') && dataa.includes('(.DATE.)')) {
+            } else if (letterBodyArea.includes('(.NAME.)') && letterBodyArea.includes('(.SALARY.)') && letterBodyArea.includes('(.DATE.)')) {
                 jQuery.ajax({
                     url: "../operations/newLetter.php",
-                    data: 'body=' + dataa + '&Name=' + name + '&description=' + description + '&add=0' + id,
+                    data: 'body=' + letterBodyArea + '&Name=' + name + '&description=' + description + '&add=0' + id,
                     type: "POST",
                     success: function (data) {
                         loading(false);

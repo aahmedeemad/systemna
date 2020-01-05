@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
             $mail->Subject = "$mailsubject"; /* Set the subject. */
             $email_vars = array(
                 'name' => $uname,
-                'content' => $_POST['data'],
+                'content' => $mailcontent,
             );
             /* Importing the mail template */
             $body = file_get_contents('../template/htmlemail.html');
@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
                 }
             }
             $mail->MsgHTML($body);
-            $mail->addStringAttachment($_POST['data'], 'SYSTEMNA HR Letter.doc');
+            $mail->addStringAttachment(filter_var($_POST['data'], FILTER_SANITIZE_STRING), 'SYSTEMNA HR Letter.doc');
             //$mail->Body = "$mailcontent"; /* Set the mail message body. */
             $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
             $mail->send(); /* Send the mail. */

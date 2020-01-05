@@ -129,7 +129,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-    
+
     .sidenav-custom .sidenav-header .avatar {
         margin-left: 0;
     }
@@ -219,32 +219,32 @@ th {
 .accept,
 .user-accept,
 .confirmation-confirm{
-  background-color: #00ff40;
-  border: none;
-  color: white;
-  padding: 3px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9em;
-  margin: 4px 2px;
-/*  cursor: pointer;*/
+    background-color: #00ff40;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9em;
+    margin: 4px 2px;
+    /*  cursor: pointer;*/
 }
 
 #button-rejected,
 .reject,
 .user-reject,
 .confirmation-close{
-  background-color: #ff0000;
-  border: none;
-  color: white;
-  padding: 3px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.9em;
-  margin: 4px 2px;
-/*  cursor: pointer;*/
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9em;
+    margin: 4px 2px;
+    /*  cursor: pointer;*/
 }
 /* islam tables */
 #Display,
@@ -366,7 +366,7 @@ th {
 .profile div > i.fas {
     box-sizing: content-box;
     color: #daa520;
-/*    background-color: #e0e0e0;*/
+    /*    background-color: #e0e0e0;*/
     padding: 10px;
     margin: 10px;
     border-radius: 50%;
@@ -377,7 +377,7 @@ th {
     font-size: 1.2rem;
     margin-top: -10px;
     padding: 12px;
-/*    background-color: #e0e0e0;*/
+    /*    background-color: #e0e0e0;*/
     border-radius: 50%;
     cursor: pointer;
 }
@@ -497,7 +497,7 @@ box-sizing: content-box;
     font-size: 1.3rem;
     font-weight: bold;
     color: gray;
-/*    padding-bottom: 20px;*/
+    /*    padding-bottom: 20px;*/
 }
 
 .profile .profile-right {
@@ -685,7 +685,8 @@ box-sizing: content-box;
 #Name,
 #description,
 #add_info,
-#letterBodyArea {
+#letterBodyArea,
+.fields {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -810,7 +811,7 @@ box-sizing: content-box;
         display: block;
         padding-top: 5em;
     }
-    
+
     .massmsgfield {
         width: 80%;
     }
@@ -890,8 +891,8 @@ box-sizing: content-box;
     background-color: #f0e68c;
     border: none;
     width: 100%;
-    height: 120px;
-display: inline-block;
+    height: 150px;
+    display: inline-block;
     text-align: center;
     font-size: 19px;
     cursor: pointer;
@@ -973,7 +974,7 @@ display: inline-block;
     height: 30%;
     width: 40%;
     transition: max-height 0.2s;
-	overflow:hidden;
+    overflow:hidden;
     padding-top: 20px;
 }
 .CommentForum #Comment_Value

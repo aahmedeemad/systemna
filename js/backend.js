@@ -108,10 +108,6 @@ $(document).ready(function () {
         $('#notifications').fadeOut('fast', 'linear');
     });
 
-    //$('#notifications').click(function () { /* Do nothing when notifications are clicked */
-    //    return false;
-    //});
-
 
     /******* Loading circle when get data with ajax *******/
     function loading(status) {
@@ -175,7 +171,6 @@ $(document).ready(function () {
 
     $("#themeToggle").on("click", function toggleTheme() { /* Adding the theme toggle function */
         var themecookie = getCookie("theme"); /* Getting the cookie and adding it in a var */
-//        alert(themecookie);
         /* Checking the cookie value and setting the theme opposite to it */
         if (themecookie == "darktheme") {
             light();
@@ -1237,23 +1232,23 @@ $(document).ready(function () {
         });
     }
 
-    /* Function to send mail with letter to user */
-    $("#sendletteronmail").on("click", function () {
-        $.ajax({
-            type: "POST",
-            url: "../operations/massmsging.php",
-            data: "type=sendlettermail",
-            success: function (html) {
-                loading(false);
-                if (html == "true") {
-                    popup(true, "Sent");
-                } else { popup(false, html); }
-            },
-            beforeSend: function () {
-                loading(true);
-            }
-        });
-    });
+//    /* Function to send mail with letter to user */
+//    $("#sendletteronmail").on("click", function () {
+//        $.ajax({
+//            type: "POST",
+//            url: "../operations/massmsging.php",
+//            data: "type=sendlettermail",
+//            success: function (html) {
+//                loading(false);
+//                if (html == "true") {
+//                    popup(true, "Sent");
+//                } else { popup(false, html); }
+//            },
+//            beforeSend: function () {
+//                loading(true);
+//            }
+//        });
+//    });
 
     function setCounter(type, tag) {
         $.ajax({

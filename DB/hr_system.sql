@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 05, 2020 at 12:28 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Host: 127.0.0.1
+-- Generation Time: Jan 05, 2020 at 03:47 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,9 +34,9 @@ CREATE TABLE `add_info` (
   `salary` int(11) DEFAULT NULL,
   `position` varchar(255) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profile_picture` tinyint(1) NOT NULL DEFAULT 0,
-  `passport_picture` tinyint(1) DEFAULT 0,
-  `n_id_picture` tinyint(1) DEFAULT 0
+  `profile_picture` tinyint(1) NOT NULL DEFAULT '0',
+  `passport_picture` tinyint(1) DEFAULT '0',
+  `n_id_picture` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -44,11 +44,11 @@ CREATE TABLE `add_info` (
 --
 
 INSERT INTO `add_info` (`emp_id`, `bdate`, `salary`, `position`, `location`, `profile_picture`, `passport_picture`, `n_id_picture`) VALUES
-(1, '2019-11-04', 45454, '', '', 1, 0, 0),
-(2, '2019-11-11', 215487, '', '', 1, 0, 0),
+(1, '2019-11-04', 45454, 'marketing manager', '', 1, 0, 0),
+(2, '2019-11-11', 215487, 'sales representative', '', 1, 0, 0),
 (6, NULL, 9999999, '', '', 0, 0, 0),
 (7, NULL, 20, '', NULL, 0, 0, 0),
-(8, NULL, 10000, '', NULL, 0, 0, 0),
+(8, NULL, 10000, 'accountant', NULL, 0, 0, 0),
 (24, NULL, NULL, '', NULL, 1, 1, 1),
 (25, NULL, NULL, '', NULL, 0, 0, 0),
 (26, NULL, NULL, '', NULL, 0, 0, 0);
@@ -89,6 +89,7 @@ CREATE TABLE `employee` (
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `ssn` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
   `accepted` tinyint(1) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `privilege` varchar(255) DEFAULT NULL
@@ -98,17 +99,17 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `accepted`, `active`, `privilege`) VALUES
-(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '', '225999999', 1, 1, 'admin'),
-(2, 'Bony', 'Bony', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', 1, 1, 'qc'),
-(3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', 2, 1, 'user'),
-(6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', 0, 1, 'user'),
-(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', 0, 1, 'user'),
-(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', 1, 1, 'admin'),
-(24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', 1, 1, 'admin'),
-(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', 1, 1, 'admin'),
-(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', 1, 1, 'user'),
-(27, NULL, '', '', '', '', '', NULL, NULL, NULL);
+INSERT INTO `employee` (`id`, `fullname`, `username`, `password`, `email`, `phone`, `ssn`, `start_date`, `accepted`, `active`, `privilege`) VALUES
+(1, 'Islam', 'Islam', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'islammagdi1@gmail.com', '', '225999999', '2019-12-24', 1, 1, 'admin'),
+(2, 'Bony', 'Bony', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'abanoubgeorge16@gmail.com', '', '225585', '0000-00-00', 1, 1, 'qc'),
+(3, 'Fawler', 'Fawler', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'FawlerMorgan@gmail.com', '', '444487', '2020-01-05', 1, 1, 'user'),
+(6, 'Micah', 'MBell', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Micah@cowboy.com', '', '00000000', '0000-00-00', 0, 1, 'user'),
+(7, 'fady', 'fady', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'fadybassel1@gmail.com', '', '12345678902332', '0000-00-00', 0, 1, 'user'),
+(8, 'Ahmed Emad', 'aahmedeemad', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'ahmed3madeldin@gmail.com', '01001761142', '12345678912377', '2019-12-12', 1, 1, 'admin'),
+(24, 'markkkk', 'mark', '7C4A8D09CA3762AF61E59520943DC26494F8941B', 'mark@gmail.commm', '012782492442', '29999999999991', '0000-00-00', 1, 1, 'admin'),
+(25, 'Eazy', 'Eazy-E', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mohamed1701989@miuegypt.edu.eg', '01115558792', '12345678912345', '0000-00-00', 1, 1, 'admin'),
+(26, 'paul', 'paul', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'paul@gmail.com', '01115558793', '12345678912347', '0000-00-00', 1, 1, 'user'),
+(27, NULL, '', '', '', '', '', '0000-00-00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -266,7 +267,28 @@ INSERT INTO `notifications` (`ID`, `status`, `userid`, `notidata`, `notihref`) V
 (89, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
 (90, 0, 1, 'An action has been made to a letter request.', ''),
 (91, 0, 1, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
-(92, 0, 0, 'An action has been made to a letter request.', '');
+(92, 0, 0, 'An action has been made to a letter request.', ''),
+(93, 0, 2, 'You Position has been updated to sales representative', '../pages/profile.php'),
+(94, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(95, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(96, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(97, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(98, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(99, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(100, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(101, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(102, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(103, 0, 3, 'Welcome to SYSTEMNA!', '../pages/profile.php'),
+(104, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(105, 0, 8, 'An action has been made to a letter request.', ''),
+(106, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(107, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(108, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(109, 0, 0, 'An action has been made to a letter request.', ''),
+(110, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(111, 0, 0, 'An action has been made to a letter request.', ''),
+(112, 0, 8, 'Letter Request Added Successfully!', '../pages/viewRequest.php'),
+(113, 0, 0, 'An action has been made to a letter request.', '');
 
 -- --------------------------------------------------------
 
@@ -280,7 +302,7 @@ CREATE TABLE `requests` (
   `Status` tinyint(1) DEFAULT NULL,
   `priority` tinyint(1) NOT NULL,
   `salary` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `additional_info` varchar(200) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -304,7 +326,13 @@ INSERT INTO `requests` (`Request_id`, `emp_id`, `Status`, `priority`, `salary`, 
 (69, 8, 1, 0, 0, '2020-01-03 02:39:26', 'medical', 'Other'),
 (84, 1, 1, 0, 1, '2020-01-02 23:34:25', 'two', 'medical letter'),
 (85, 1, 1, 1, 1, '2020-01-02 23:46:43', 'three', 'medical letter'),
-(86, 1, 1, 1, 1, '2020-01-03 01:27:38', 'i need a letter for vacation two days', 'Other');
+(86, 1, 1, 1, 1, '2020-01-03 01:27:38', 'i need a letter for vacation two days', 'Other'),
+(87, 8, 1, 0, 0, '2020-01-04 23:46:21', 'Sudan', 'Embassy HR Letter'),
+(88, 8, 2, 1, 0, '2020-01-05 00:04:26', '0', 'General HR Letter'),
+(89, 8, 2, 0, 1, '2020-01-05 01:19:59', '0', 'Embassy HR Letter'),
+(90, 8, 1, 0, 1, '2020-01-05 01:23:16', 'medical letter', 'Other'),
+(91, 8, 1, 0, 1, '2020-01-05 01:34:10', 'daskd', 'Other'),
+(92, 8, 1, 1, 1, '2020-01-05 01:39:51', 'test test', 'Other');
 
 -- --------------------------------------------------------
 
@@ -326,11 +354,9 @@ CREATE TABLE `requests_types` (
 
 INSERT INTO `requests_types` (`Type_id`, `Name`, `description`, `body`, `additional_info`) VALUES
 (1, 'Other', 'if non of the below', '', 'write what you need'),
-(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', '', 'which country are you travelling to?'),
-(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', '', 'what is the Organization name ?'),
-(4, 'HR Letter to whom it may concern', 'This is a letter that doesn\'t require to choose the person who would get the letter', '', '0'),
-(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>', '0'),
-(39, 'medical letter', 'for day off', '<pre>(.NAME.) (.SALARY.) (.DATE.)  (.ADDITIONAL.) </pre>', 'what number of days do you need?');
+(2, 'Embassy HR Letter', 'This is a letter that is directed to the embassy for travelling', '<pre>(.DATE.) \r\n\r\nDear Sir/Madam,\r\n\r\nI am writing to confirm that (.NAME.)  is an employee of systemna Co. and is working as a (.POSITION.) .\r\nhas been an employee since (.START.)  and (.SALARY.) . \r\nthey intend to visit (.ADDITIONAL.)  in the period spanning her work leave. Thus, we would appreciate it if you provided her with all the necessary assistance during this time. Probably, this might improve her performance when she resumes subsequently.\r\nKindly contact us for any further clarification you might require.\r\nThank you.\r\n\r\nSincerely\r\nHR team.</pre>', 'what country are you travelling to?'),
+(3, 'HR Letter directed to specific organization', 'This is a letter for a specific place whether bank or any other institutions ', '<pre>Date: (.DATE.) \n\n\nDirected to (.ADDITIONAL.) :\n\n\nDear Sir or Madam,\n\nThis is to certify that Mr. (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 022168645.\n\nsincerly,\nHR team</pre>', 'what is the Organization name ?'),
+(32, 'General HR Letter', 'This is a letter that could be submitted for any required paper', '<pre>Date: (.DATE.) \n\nTo Whom It May Concern:\n\n\nDear Sir or Madam,\n\nThis is to certify that (.NAME.)  is an employee at systemna and is working as a (.POSITION.)  since (.START.) . (.SALARY.).\n\nIf you have any questions , please contact our office at 0225633772.\n</pre>', '0');
 
 -- --------------------------------------------------------
 
@@ -351,7 +377,9 @@ CREATE TABLE `special_request` (
 
 INSERT INTO `special_request` (`id`, `request_id`, `Name`, `body`) VALUES
 (13, 69, 'medical', 'this is for fady bassel'),
-(18, 86, 'vacation letter', 'this is for islam regarding the two days vacation');
+(18, 86, 'vacation letter', 'this is for islam regarding the two days vacation'),
+(19, 90, 'medical test ', 'this is for ahmed emad for medical request'),
+(21, 92, 'hhh', 'nqafwodpjk');
 
 -- --------------------------------------------------------
 
@@ -485,13 +513,13 @@ ALTER TABLE `inquiries`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `Request_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `requests_types`
@@ -503,7 +531,7 @@ ALTER TABLE `requests_types`
 -- AUTO_INCREMENT for table `special_request`
 --
 ALTER TABLE `special_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `update_info`

@@ -28,6 +28,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $_SESSION['activity']=$x[0]->active;
         $_SESSION['type']=$x[0]->privilege;
         $_SESSION['id']=$x[0]->id;
+        $_SESSION['start_date']=$x[0]->start_date;
         if(isset($_POST['remember_me'])) {
             setcookie('username', $_POST['Username'], time()+(10 * 365 * 24 * 60 * 60),'/');
             setcookie('password', sha1($_POST['Password']), time()+(10 * 365 * 24 * 60 * 60),'/');

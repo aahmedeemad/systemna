@@ -131,7 +131,7 @@ $(document).ready(function () {
 
 
     /******* Confirmation delete popup *******/
-    function confirmation(body, url, data, tag) {
+    function confirmation(body, url, data) {
         $(".confirmation-content").text(body);
         $("#confirmationButton").on("click", function () {
             jQuery.ajax({

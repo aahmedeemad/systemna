@@ -1191,6 +1191,9 @@ $(document).ready(function () {
         document.location.replace('../pages/allLetters.php');
     });
 
+    $("#inq_edit").on("click", function () { /* Function to change page on admin only button click */
+        document.location.replace('../pages/viewinq.php');
+    });
 
     /************* ADD NEW LETTER ******************/
 

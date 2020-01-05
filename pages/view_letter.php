@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST['id'])){
     $Name=$_POST['id'];
-    $date=$_POST['date'];
+    $date = date("d-m-Y", strtotime($_POST['date']));
     $salary=$_POST['salary'];
     $id=$_SESSION['id'];
     $request_id=$_POST['request_id'];
@@ -22,27 +22,27 @@ if (isset($_POST['id'])){
             $Name=$info[0]->Name;
         }
         else{
-        $sql="SELECT t.body ,t.Name ,r.additional_info,r.type_name FROM requests_types t , requests r where request_id='$request_id' and r.type_name=t.Name; " ;
-            
-        $DB->query($sql);
-        $DB->execute();
-        $info=$DB->getdata();
-        $additional=$info[0]->additional_info;
+            $sql="SELECT t.body ,t.Name ,r.additional_info,r.type_name FROM requests_types t , requests r where request_id='$request_id' and r.type_name=t.Name; " ;
+
+            $DB->query($sql);
+            $DB->execute();
+            $info=$DB->getdata();
+            $additional=$info[0]->additional_info;
         }
         echo '<center><b>'.$Name.'</b></center> <br>';
         $body=$info[0]->body;
-                
+
         $name=$_SESSION['name'];
         $body=str_replace('(.NAME.)',$name,$body);
         $body=str_replace('(.DATE.)',$date,$body);
         if($additional=='0'){
-        
-        $body=str_replace('ADDITIONAL',"",$body);
+
+            $body=str_replace('ADDITIONAL',"",$body);
         }
         else
         {
             $body=str_replace('(.ADDITIONAL.)',$additional,$body);
-            
+
         }
         if($salary==1){
 
@@ -56,9 +56,15 @@ if (isset($_POST['id'])){
         else {
             $body=str_replace('(.SALARY.)',"",$body);
         }
-
-        $body=str_replace('(.POSITION.)',"modeer amn",$body);
-        $body=str_replace('(.START.)',"JAN 1940",$body);
+        $sql="SELECT position FROM add_info where emp_id= $id " ;
+        $DB->query($sql);
+        $DB->execute();
+        $x=$DB->getdata();
+        $pos=$x[0]->position;
+        $startdate=$_SESSION["start_date"];
+        $newdate = date("m-Y", strtotime($startdate));  
+        $body=str_replace('(.POSITION.)',"$pos",$body);
+        $body=str_replace('(.START.)',"$newdate",$body);
         echo $body;
     }
 

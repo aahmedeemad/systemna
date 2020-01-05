@@ -1,23 +1,23 @@
 <?php
 include "../DB/Database.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['AddC']) && isset($_GET['Request_id']) && isset($_GET['user_id']))
+if (isset($_POST['AddC'])) // If he clicked on the button to submit his comment
 {
-    $DataBase = new Database();
+    $DataBase = new Database(); // Making an instance of the Db
+    $val = filter_var($_POST['Comment'], FILTER_SANITIZE_STRING); // Getting comment and filters it from any html tags or SQL injection
+    $R_id = $_POST['Request_id'];
+    $U_id = $_POST['User_id'];
 
-    $val = filter_var($_POST['Comment'], FILTER_SANITIZE_STRING);
-    $R_id = $_GET['Request_id'];
-    $U_id = $_GET['user_id'];
-
+    // Query to insert the comment
     $sql = "INSERT INTO comment(Comment_value , Request_id , user_id)
             VALUES ('$val','$R_id','$U_id');" ;
 
-    $DataBase->query($sql);
-    $DataBase->execute();
+    $DataBase->query($sql); // Sending the query
+    $DataBase->execute(); // Running the query
 
     header("Location: ../pages/viewComment.php");
 }
-else
+else // if there was an error while adding the comment
  {
       header("Location: ../pages/viewComment.php");
  }

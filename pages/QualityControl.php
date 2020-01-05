@@ -25,6 +25,7 @@ include "../template/header.php";
         <th>Comment</th>
     </tr>
     <?php
+    /* To check if ther is a data in this row */
     function check($c){
         if($c==null)
             $c='-';
@@ -32,7 +33,7 @@ include "../template/header.php";
             $c='-';
         return $c;
     }
-
+    /* Sql query */
     $sql="
         SELECT requests_types.Name , employee.username , requests.date , requests.Request_id ,
                requests.status , requests.emp_id , priority , salary
@@ -41,17 +42,19 @@ include "../template/header.php";
         INNER JOIN employee 
         ON employee.id = emp_id
         ";
+    /* We used try & catch to handle the Errord that might occur */    
     try
     {
-        $DB->query($sql);
-        $DB->execute();
-        $y = 0;
-        if($DB->numRows()>0)
+        $DB->query($sql); // Sending the Query to the Db via Pdo class
+        $DB->execute(); // Running the Query 
+        $y = 0; // Counter for number of rows in the table
+        if($DB->numRows()>0) // To check if there is data in the Db
         {
             for($i=0;$i<$DB->numRows();$i++)
             {
-                $x = $DB->getdata();
+                $x = $DB->getdata(); // To fetch all The data in the shape of an array
                 $y++;
+                // Dividing the indicies of the array to each variable
                 $EmpName = check($x[$i]->username);
                 $id = check($x[$i]->Request_id);
                 $RequestName =check($x[$i]->Name);
@@ -63,18 +66,21 @@ include "../template/header.php";
                 $Boolsalray = "No Salary";
                 $BoolPriority = "Urgent";
 
+                // To check if the letter with salary or not
                 if($salary == 1)
                 {
                     $Boolsalray ="With Salary";
                 }
                 else $Boolsalray ="No Salary";
 
+                // To know the priority of the letter
                 if($priority == 1)
                 {
                     $BoolPriority ="Urgent";
                 }
                 else $BoolPriority="Normal";
 
+                // Retreiving the data in the form of table rows & columns
                 echo  "<tr>";
                 echo "<td>{$y}</td>";
                 echo "
@@ -88,10 +94,13 @@ include "../template/header.php";
                 ";
 
     ?>
+    <!-- Comment Side  -->
     <td class ="Comment">
-        <form action="../operations/AddComment.php?Request_id=<?php echo $x[$i]->Request_id?>&user_id=<?php echo $x[$i]->emp_id?>" method="post">
+        <form action="../operations/AddComment.php" method="post">
             <input type='text' name="Comment" id="qccomment" placeholder='Write your comment here...'size='30' required>
             <br>
+            <input type="text" name="Request_id" value="<?php echo $x[$i]->Request_id?>" hidden>
+            <input type="text" name="User_id" value="<?php echo $x[$i]->emp_id?>" hidden>
             <input type='submit' id="qcsubmit" value="Submit Comment" name="AddC">
         </form>    
     </td>
@@ -104,6 +113,7 @@ include "../template/header.php";
             echo "<td colspan='9'>- No data to show -</td>";
         }
     }
+    /* To return to if there was an error */
     catch(Exception $e)
     {
         $_SESSION['error'] = 'Error in sql';

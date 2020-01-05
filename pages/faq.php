@@ -2,7 +2,6 @@
 $pageTitle = "SYSTEMNA | FAQ"; /* Setting the page title */
 include "../template/header.php"; /* Including the header file */
 ?>
-
 <?php if(isset($_SESSION['type']) && $_SESSION['type']=='admin'){echo('<div style="text-align: center; align-self: center;"><div class="pages_edit" id="faq_edit">Edit</div></div>');}  /* Adding the edit button if the user is an admin */ ?>
 <div>
     <form style="float: right;"> <!-- The search bar, function is in backend.js using ajax -->

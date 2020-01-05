@@ -65,8 +65,6 @@ include "../template/header.php";
                 <td>{$Empid}</td> 
                 <td>{$Comment}</td> 
                 ";
-
-
     ?>
     <td colspan="2"><a href="../operations/EditComment.php?id=<?php echo $x[$i]->Comment_id ;?> " class='EditBtn1'>Edit</a></td>    
     <td colspan="3"><a id="id=<?php echo $x[$i]->Comment_id ;?>" href="../operations/DeleteComment.php" class='deleteConfirmation EditBtn'>Delete</a></td>

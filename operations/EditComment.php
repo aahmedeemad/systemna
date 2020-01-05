@@ -36,8 +36,8 @@ if(isset($_POST['submit1']))
     $id = $_GET['id'];
     $Value = filter_var( $_POST['Comment'],FILTER_SANITIZE_STRING);
     $sql2 = "UPDATE Comment 
-            SET Comment_value= '$Value'
-            WHERE Comment_id = '$id';";
+             SET Comment_value= '$Value'
+             WHERE Comment_id = '$id';";
     $DataBase1->query($sql2);
     $DataBase1->execute();
 
@@ -48,10 +48,13 @@ else if(!isset($_GET['id']))
     header("Location: ../pages/viewComment.php");
 }
 ?>
-<form action="" method="post" class="CommentForum">
-    <h2 style="text-align:center;">Edit your comment here</h2>
-    <input type="text" name="Comment" value="<?php echo $Comment[0]->Comment_value?>">
+<h2 style="text-align:center;">Edit your comment here</h2>
+<div class="CommentForum">
+<form method="post">
+    <textarea type="text" name="Comment" id="Comment_Value" rows="4" cols="30"><?php echo $Comment[0]->Comment_value?></textarea>
     <br>
     <input type="submit" name="submit1" value="Update" id="UpBttn">
 </form>
+</div>
+
 <?php include "../template/footer.php"; 

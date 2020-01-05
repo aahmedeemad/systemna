@@ -33,24 +33,33 @@ class Database
             exit;
         }
     }
-    public function query($sql)//prepare sql query
+    //prepare sql query
+    public function query($sql)
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
-    public function execute()//execute sql query
+
+    //execute sql query
+    public function execute()
     {
         return $this->stmt->execute();
     }
-    public function getdata()//get all data in form of objects
+
+    //get all data in form of objects
+    public function getdata()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function numRows()//get the number of row returned
+
+    //get the number of row returned
+    public function numRows()
     {
         return $this->stmt->rowCount();
     }
-    public function lastInsertedId()//get number of rows changed or affected by query
+
+    //get number of rows changed or affected by query
+    public function lastInsertedId()
     {
         return $this->dbh->lastInsertId();
     }

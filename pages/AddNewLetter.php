@@ -8,6 +8,10 @@ if(isset($_GET['id']) && $_GET['id'] != 1){
     $DB->query($sql);
     $DB->execute();
     $x = $DB->getdata();
+    $addition=$x[0]->additional_info;
+    if($addition=='0'){
+        $addition="";
+    }
 ?>
 
 <h3> Edit Letter </h3>
@@ -20,7 +24,7 @@ if(isset($_GET['id']) && $_GET['id'] != 1){
 <textarea id="description" name="desc." placeholder="description of the new letter.."  ><?php echo $x[0]->description; ?></textarea>
 <h4>aditional info : </h4>
 <p style="background-color:#dcdc6f; padding: 6px; color:grey;">Please add a valid WH question if required for additional info with question mark and caps down or leave empty. </p>
-<input type="text" style="width:100%" id="add_info" name="add_info" placeholder="add_info (optional)" value="<?php echo $x[0]->additional_info; ?>" >
+<input type="text" style="width:100%" id="add_info" name="add_info" placeholder="add_info (optional)" value="<?php echo $addition; ?>" >
 
 <br>
 <h4>Letter body: </h4>

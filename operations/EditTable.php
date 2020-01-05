@@ -63,7 +63,9 @@ if(isset($_POST['test'])){
 }
 if(isset($_POST['aid'])){
     $ID = $_POST['aid']; //id of employee to accept 
-    $sql = "update employee set accepted=1 where id = '$ID';";
+    $date = date('Y-m-d');
+    $sql = "update employee set accepted=1,start_date='$date' where id = '$ID';";
+
     try{
         $DB->query($sql);
         $DB->execute();

@@ -5,11 +5,11 @@ $_SESSION['error'] = 'none';
 if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
 ?>
 <style>
-    @media screen and (max-width: 800px) {
-        table td {
-            display: inline;
-        }
+@media screen and (max-width: 800px) {
+    table td {
+        display: inline;
     }
+}
 </style>
 <table style="width: 100%;">
     <?php
@@ -45,16 +45,23 @@ if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
                 }?>
                 </select>
             </fieldset>
-            <form method='post'> <!-- The notification form, functions are in backend.js using ajax -->
-                <br><legend>Notification content:</legend>
+            <form method='post'>
+                <!-- The notification form, functions are in backend.js using ajax -->
+                <br>
+                <legend>Notification content:</legend>
                 <textarea name="notification" rows="8" cols="50" class="massmsgfield" id="massnoti" required></textarea>
                 <br><br>
                 <?php if ($_SESSION['error'] == 'error in sql') { echo "<div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>"; } ?>
-                <input type="button" class="massmsgsendbtn" id="notisendone" value="Send to selected user" <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
-                <input type="button" class="massmsgsendbtn" id="notisendall" value="Send to all users" <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
+                <input type="button" class="massmsgsendbtn" id="notisendone" value="Send to selected user"
+                    <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
+                <input type="button" class="massmsgsendbtn" id="notisendall" value="Send to all users"
+                    <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
             </form>
         </td>
-        <td><div class = "vertical"></div><div class = "horizontal"></div></td>
+        <td>
+            <div class="vertical"></div>
+            <div class="horizontal"></div>
+        </td>
         <td>
             <div>
                 <h2>Send mail</h2>
@@ -83,17 +90,24 @@ if($_SESSION['type']!='admin') header('Location:MakeLetter.php');
                 }?>
                 </select>
             </fieldset>
-            <form method='post'> <!-- The mail form, functions are in backend.js using ajax -->
+            <form method='post'>
+                <!-- The mail form, functions are in backend.js using ajax -->
                 <!-- Getting the mail 'from' from the session -->
-                <br><legend>From: <?php echo($_SESSION["name"] . ' from SYSTEMNA');?></legend>
-                <br><legend>Mail subject:</legend>
+                <br>
+                <legend>From: <?php echo($_SESSION["name"] . ' from SYSTEMNA');?></legend>
+                <br>
+                <legend>Mail subject:</legend>
                 <input type="text" name="mailsubject" class="massmsgfield" id="mailsubject" required>
-                <br><legend>Mail content:</legend>
-                <textarea name="mailcontent" rows="8" cols="50" class="massmsgfield" id="mailcontent" required></textarea>
+                <br>
+                <legend>Mail content:</legend>
+                <textarea name="mailcontent" rows="8" cols="50" class="massmsgfield" id="mailcontent"
+                    required></textarea>
                 <br><br>
                 <?php if ($_SESSION['error'] == 'error in sql') { echo "<div class='alert alert-danger' style='text-align: center;'>ERROR! Please try again later</div>"; } ?>
-                <input type="button" class="massmsgsendbtn" id="mailsendone" value="Send to selected user" <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
-                <input type="button" class="massmsgsendbtn" id="mailsendall" value="Send to all users" <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
+                <input type="button" class="massmsgsendbtn" id="mailsendone" value="Send to selected user"
+                    <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
+                <input type="button" class="massmsgsendbtn" id="mailsendall" value="Send to all users"
+                    <?php if ($_SESSION['error'] == 'error in sql') { echo "style='display: none;'"; } ?>>
             </form>
         </td>
     </tr>

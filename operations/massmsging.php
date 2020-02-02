@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             $x = $DB->getdata(); /* creates an array of the output result */
             $uname = $x[0]->fullname;
-            $umail = $x[0]->email; 
+            $umail = $x[0]->email;
             $mailsubject = $_POST['mailsubject'];
             $mailcontent = $_POST['mailcontent'];
             $mail->setFrom('systemnamiu@gmail.com', 'From SYSTEMNA'); /* Set the mail sender. */
@@ -169,15 +169,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
                 'content' => $mailcontent,
             );
             /* Importing the mail template */
-           /* $body = file_get_contents('../template/htmlemail.html');
+            $body = file_get_contents('../template/htmlemail.html');
             if(isset($email_vars)){
                 foreach($email_vars as $k=>$v){
-                    /* Replace the values in {} in template to vars in function 
+                    /* Replace the values in {} in template to vars in function */
                     $body = str_replace('{'.strtoupper($k).'}', $v, $body);
                 }
-            } */
-            //$mail->MsgHTML($body);
-            $mail->Body = "leeeel"; /* Set the mail message body. */
+            }
+            $mail->MsgHTML($body);
+            //$mail->Body = "$mailcontent"; /* Set the mail message body. */
             $mail->addAddress("$umail", "$uname"); /* Add a recipient. */
             $mail->send(); /* Send the mail. */
             echo "true";

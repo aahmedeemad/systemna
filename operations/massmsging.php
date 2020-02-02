@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['type'])) {
             $DB->execute(); /* Using the excute function made in DB/Database.php */
             $x = $DB->getdata(); /* creates an array of the output result */
             $uname = $x[0]->fullname;
-            $umail = $x[0]->email;
+            $umail = $x[0]->email; 
             $mailsubject = $_POST['mailsubject'];
             $mailcontent = $_POST['mailcontent'];
             $mail->setFrom('systemnamiu@gmail.com', 'From SYSTEMNA'); /* Set the mail sender. */
